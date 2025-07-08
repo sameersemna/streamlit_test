@@ -7,13 +7,14 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
-# --- IMPORTANT: Download NLTK stopwords data if not already present ---
-# This line ensures that the 'stopwords' corpus is available.
-# It's good practice to place this where stopwords are first accessed.
 try:
     stopwords.words('english') # Attempt to access to check if already downloaded
 except LookupError:
     nltk.download('stopwords')
+try:
+    nltk.data.find('tokenizers/punkt') # Attempt to access to check if already downloaded
+except LookupError:
+    nltk.download('punkt')
 
 # Now you can safely use stopwords
 stop_words = stopwords.words('english')
