@@ -15,6 +15,10 @@ try:
     nltk.data.find('tokenizers/punkt') # Attempt to access to check if already downloaded
 except LookupError:
     nltk.download('punkt')
+try:
+    nltk.data.find('tokenizers/punkt_tab') # Attempt to access to check if already downloaded
+except LookupError:
+    nltk.download('punkt_tab')
 
 # Now you can safely use stopwords
 stop_words = stopwords.words('english')
