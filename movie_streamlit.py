@@ -2,19 +2,13 @@ import streamlit as st
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Embedding, GlobalAveragePooling1D, Dense
-from nltk.corpus import stopwords
 import pandas as pd
-from nltk.corpus import stopwords
-from functions import preprocess_sentence, print_closest, find_closest, get_closest, compare
+from functions import stop_words, preprocess_sentence, print_closest, find_closest, get_closest, compare
 
 df = pd.read_csv("MovieReview.csv")
 # display(df.head())
 print(df.shape)
-
 df = df.drop('sentiment', axis=1)
-
-stop_words = stopwords.words('english')
-
 df.review = df.review.apply(lambda x :preprocess_sentence(x))
 
 tokenizer = tf.keras.preprocessing.text.Tokenizer(num_words=10000)
