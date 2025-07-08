@@ -5,7 +5,7 @@ from tensorflow.keras.layers import Embedding, GlobalAveragePooling1D, Dense
 from nltk.corpus import stopwords
 import pandas as pd
 from nltk.corpus import stopwords
-from functions import preprocess_sentence, print_closest
+from functions import preprocess_sentence, print_closest, find_closest, get_closest, compare
 
 df = pd.read_csv("MovieReview.csv")
 # display(df.head())
@@ -67,4 +67,20 @@ st.title("Movie Streamlit App (with Word2Vec)")
 
 vectors = model.layers[0].trainable_weights[0].numpy()
 
-print_closest('zombie', word2idx, vectors, idx2word)
+focus_word = 'zombie'
+st.write(f"print_closest: {focus_word}")
+# print_closest(focus_word, word2idx, vectors, idx2word)
+focus_word_closest = get_closest(focus_word, word2idx, vectors, idx2word, 20)
+st.table(focus_word_closest)
+
+focus_word = 'warrior'
+st.write(f"print_closest: {focus_word}")
+focus_word_closest = get_closest(focus_word, word2idx, vectors, idx2word, 20)
+st.table(focus_word_closest)
+
+index_word1='zombie'
+index_word2='warrior'
+index_word3='vampire'
+st.write(f"compare: {index_word1}, {index_word2}, {index_word3}")
+comparison = compare(word2idx[index_word1], word2idx[index_word2], word2idx[index_word3], vectors, 1)
+st.table(comparison)

@@ -58,4 +58,4 @@ model.save("word2vec.keras")
 # e.g. `model.save('my_model.keras')` 
 # or `keras.saving.save_model(model, 'my_model.keras')`. 
 
-# Run: streamlit run movie_streamlit2.py 
+# Run: streamlit run movie_streamlit.py 

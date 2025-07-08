@@ -1,3 +1,4 @@
+import streamlit as st
 import numpy as np
 from sklearn.preprocessing import Normalizer
 import re
@@ -43,6 +44,7 @@ def dot_product(vec1, vec2):
 def cosine_similarity(vec1, vec2):
     return dot_product(vec1, vec2)/np.sqrt(dot_product(vec1, vec1)*dot_product(vec2, vec2))
 
+@st.cache_data
 def find_closest(word_index, vectors, number_closest):
     list1=[]
     query_vector = vectors[word_index]
@@ -52,6 +54,7 @@ def find_closest(word_index, vectors, number_closest):
             list1.append([dist,index])
     return np.asarray(sorted(list1,reverse=True)[:number_closest])
 
+@st.cache_data
 def compare(index_word1, index_word2, index_word3, vectors, number_closest):
     list1=[]
     query_vector = vectors[index_word1] - vectors[index_word2] + vectors[index_word3]
@@ -64,8 +67,21 @@ def compare(index_word1, index_word2, index_word3, vectors, number_closest):
             list1.append([dist,index])
     return np.asarray(sorted(list1,reverse=True)[:number_closest])
 
+@st.cache_data
 def print_closest(word, word2idx, vectors, idx2word, number=10):
     index_closest_words = find_closest(word2idx[word], vectors, number)
     for index_word in index_closest_words :
         print(idx2word[index_word[1]]," -- ",index_word[0])
+
+@st.cache_data
+def get_closest(word, word2idx, vectors, idx2word, number=10):
+    list_ret=[]
+    index_closest_words = find_closest(word2idx[word], vectors, number)
+    for index_word in index_closest_words :
+        print(idx2word[index_word[1]]," -- ",index_word[0])
+        list_ret.append([
+            *index_word,
+            idx2word[index_word[1]]
+        ])
+    return list_ret
 
