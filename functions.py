@@ -3,10 +3,62 @@ import numpy as np
 from sklearn.preprocessing import Normalizer
 import re
 import unicodedata
+import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
+# --- IMPORTANT: Download NLTK stopwords data if not already present ---
+# This line ensures that the 'stopwords' corpus is available.
+# It's good practice to place this where stopwords are first accessed.
+try:
+    stopwords.words('english') # Attempt to access to check if already downloaded
+except LookupError:
+    nltk.download('stopwords')
+
+# Now you can safely use stopwords
 stop_words = stopwords.words('english')
+
+# --- Your existing functions from functions.py would go here ---
+# (Assuming preprocess_sentence, print_closest, find_closest, get_closest, compare are defined here)
+
+# Example placeholder for a function that might be in your functions.py
+def nl_preprocess_sentence(sentence):
+    """
+    Example placeholder for sentence preprocessing.
+    You would replace this with your actual preprocessing logic.
+    """
+    sentence = sentence.lower()
+    # Remove punctuation
+    sentence = re.sub(r'[^\w\s]', '', sentence)
+    # Remove stopwords
+    words = sentence.split()
+    words = [word for word in words if word not in stop_words]
+    return ' '.join(words)
+
+def nl_print_closest(word, vectors, word_index, index_word, top_n=5):
+    """Placeholder for printing closest words."""
+    print(f"Closest words to '{word}':")
+    # Actual logic would involve calculating cosine similarity etc.
+    for i in range(top_n):
+        print(f"  - Closest_Word_{i+1}")
+
+def nl_find_closest(vector, vectors, index_word):
+    """Placeholder for finding closest words."""
+    # Actual logic would involve calculating cosine similarity etc.
+    return ["closest_word_1", "closest_word_2"]
+
+def nl_get_closest(word, vectors, word_index, index_word):
+    """Placeholder for getting closest words."""
+    if word in word_index:
+        word_vector = vectors[word_index[word]]
+        return find_closest(word_vector, vectors, index_word)
+    return []
+
+def nl_compare(sentence1, sentence2):
+    """Placeholder for comparing sentences."""
+    print(f"Comparing '{sentence1}' and '{sentence2}'")
+    # Actual logic would involve vectorizing sentences and comparing them
+    return "Comparison result placeholder"
 
 def sentenceToData(tokens, WINDOW_SIZE):
     window = np.concatenate((np.arange(-WINDOW_SIZE,0),np.arange(1,WINDOW_SIZE+1)))
