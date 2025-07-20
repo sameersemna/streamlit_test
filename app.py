@@ -78,11 +78,11 @@ X_test, X_train, Y_train = load_all_data()
 def download_nltk_data():
     try:
         nltk.data.find('corpora/stopwords')
-    except nltk.downloader.DownloadError:
+    except Exception:
         nltk.download('stopwords')
     try:
         nltk.data.find('tokenizers/punkt') # Required for word_tokenize, though not explicitly used here, good to have if needed later
-    except nltk.downloader.DownloadError:
+    except Exception:
         nltk.download('punkt')
 
 download_nltk_data()
