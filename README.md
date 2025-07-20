@@ -20,7 +20,7 @@ git commit -m word2vec.h5
 
 # Rakuten project
 Note: Make sure about the folder paths
-
+[apr25-bds-rakuten-2](https://apr25-bds-rakuten-2.streamlit.app/)
 ```
 sh copyfiles.sh
 streamlit run app.py

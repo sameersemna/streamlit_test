@@ -3,9 +3,9 @@
 joblib==1.5.1
 matplotlib==3.10.3
 nltk==3.9.1
-numpy==1.26.4
 pandas==2.2.3
 scikit-learn==1.6.1
 seaborn==0.13.2
 streamlit==1.46.1
-tensorflow
+tensorflow==2.19.0
+wordcloud==1.9.4
