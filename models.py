@@ -13,7 +13,7 @@ from tensorflow.keras.metrics import F1Score
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-N_EPOCHS          = 3
+N_EPOCHS          = 10
 BATCH_SIZE        = 64
 LR                = 0.01
 DATASET_PERC      = 0.9
@@ -21,8 +21,7 @@ IMG_SIZE          = 224## 224 minimum
 CONV_FILTERS_1, CONV_FILTERS_2, CONV_FILTERS_3, CONV_FILTERS_4, CONV_FILTERS_5 = 16,16,32,64,128
 CONV_K_REG        = 0.0001
 DENSE_K_REG       = 0.001
-FILE_MODEL_WEIGHTS = f"./data/processed/image_epochs_{N_EPOCHS}.h5"
-FILE_MODEL_HISTORY = f"./data/processed/image_epochs_{N_EPOCHS}.pkl"
+DIR_MODELS         = "./data/processed"
 
 f1_metric = F1Score(average='macro', name='f1_score')
 

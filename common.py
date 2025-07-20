@@ -1,34 +1,5 @@
-# from concurrent.futures import ThreadPoolExecutor
-# from gensim.models import Word2Vec
-# from imblearn.over_sampling import SMOTE
-# from PIL import Image
-# from scipy.stats import entropy, kstest, linregress
-# from sklearn.ensemble import RandomForestClassifier
-# from sklearn.feature_extraction.text import TfidfVectorizer
-# from sklearn.linear_model import LinearRegression
-# from sklearn.linear_model import LogisticRegression, SGDClassifier
-# from sklearn.metrics import mean_squared_error, f1_score, classification_report, confusion_matrix, r2_score
-# from sklearn.model_selection import train_test_split
-# from sklearn.naive_bayes import MultinomialNB
-# from sklearn.preprocessing import MinMaxScaler, LabelEncoder
-# from sklearn.svm import LinearSVC
-# from sklearn.utils.class_weight import compute_class_weight
-# from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
-# from tensorflow.keras.layers import Dropout, BatchNormalization, Input, Dense, Conv2D, MaxPooling2D, GlobalAveragePooling2D
-# from tensorflow.keras.metrics import F1Score
-# from tensorflow.keras.models import Model
-# from tensorflow.keras.optimizers import AdamW
-# from tensorflow.keras.preprocessing.image import ImageDataGenerator
-# from tensorflow.keras.preprocessing.sequence import pad_sequences
-# from tensorflow.keras.preprocessing.text import Tokenizer
-# from tensorflow.keras.regularizers import l2
-# import ast
-# import base64
-# import cv2
-# import imagehash
-# import time
-# import warnings
-# import xgboost as xgb
+import streamlit as st
+import os
 
 # Mapping dictionary
 prdtypes = {
@@ -59,6 +30,36 @@ prdtypes = {
     2585: "Entretien",
     2705: "Livres neufs",
     2905: "Jeux PC"
+}
+
+prdtypes_en = {
+ 10: "Used books",
+ 40: "Video games",
+ 50: "Video game accessories",
+ 60: "Video game consoles",
+ 1140: "Children's figurines",
+ 1160: "Trading cards",
+ 1180: "Adult figurines and role-playing games",
+ 1280: "Toys",
+ 1281: "Board games",
+ 1300: "Remote-controlled toys",
+ 1301: "Baby socks",
+ 1302: "Children's fishing",
+ 1320: "Childcare",
+ 1560: "Interior Furniture",
+ 1920: "Bedding",
+ 1940: "Food",
+ 2060: "Decoration",
+ 2220: "Pets",
+ 2280: "Magazines",
+ 2403: "Magazines, Books and Comics",
+ 2462: "Used Games",
+ 2522: "Stationery",
+ 2582: "Garden Furniture",
+ 2583: "Swimming Pool Equipment",
+ 2585: "Maintenance",
+ 2705: "New Books",
+ 2905: "PC Games"
 }
 
 # --- IMPORTANT: FILL YOUR CUSTOM STOPWORDS HERE ---
@@ -136,3 +137,36 @@ word_grouping = {
     'sample': 'samples', 'boucle': 'boucles', 'sonorisation': 'sonorisation', 'lumiere': 'lumière spectacle',
     'scene': 'scène', 'structure': 'structure', 'accessoires': 'accessoires spectacle', 'decoration': 'décoration événement'
 }
+
+def select_h5_file(folder_path="."):
+    """
+    Creates a Streamlit selectbox to choose an .h5 file from a specified folder.
+
+    Args:
+        folder_path (str): The path to the folder to search for .h5 files.
+                           Defaults to the current directory.
+    Returns:
+        str: The selected .h5 file name, or None if no files are found or selected.
+    """
+    h5_files = []
+    if os.path.exists(folder_path) and os.path.isdir(folder_path):
+        for file in os.listdir(folder_path):
+            if file.endswith(".h5") and os.path.isfile(os.path.join(folder_path, file)):
+                h5_files.append(file.replace('.h5', ''))
+        h5_files.sort() # Sort alphabetically for better user experience
+    else:
+        st.warning(f"Folder not found: {folder_path}. Please ensure the folder exists.")
+        return None
+
+    if not h5_files:
+        st.info(f"No .h5 files found in '{folder_path}'.")
+        return None
+    else:
+        selected_file = st.selectbox(
+            "Select an .h5 model file:",
+            options=["Select"] + h5_files, # Add an empty option to allow no selection initially
+            index=0, # Default to the empty option
+            help="Choose a Keras/TensorFlow model file (e.g., .h5, .keras)."
+        )
+        return selected_file if selected_file else None
+

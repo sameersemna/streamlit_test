@@ -13,7 +13,7 @@ import re
 import io
 import pickle
 import models
-from common import custom_stopwords, prdtypes, word_grouping
+from common import custom_stopwords, prdtypes, prdtypes_en, select_h5_file, word_grouping
 
 # --- PAGE CONFIG MUST BE THE VERY FIRST STREAMLIT COMMAND ---
 st.set_page_config(
@@ -248,8 +248,11 @@ if page == pages[1]:
     data = X_train.copy()
 
     st.title("Word Clouds and Frequency Tables by Product Type")
+    st.subheader("(Type Name assumed based on observations in French & English)")
+    #         "Choose a product type:", sorted(data['prdtypecode'].unique()))
     selected_type = st.selectbox(
-        "Choose a product type:", sorted(data['prdtypecode'].unique()))
+        "Choose a product type:", prdtypes,
+        format_func=lambda x: f"(prdtypecode: {str(x)}) {prdtypes.get(x)} [{prdtypes_en.get(x)}]")
 
     subset = data[data['prdtypecode'] == selected_type]
     designation_tokens = subset['designation'].dropna().astype(
@@ -704,83 +707,94 @@ if page == pages[1]:
 if page == pages[2]:
     st.header("Modelling")
 
-    model = models.get_model_img_custom(X_train)
-    # Now, load the weights. The model's layers are now defined and built.
-    try:
-        model.load_weights(models.FILE_MODEL_WEIGHTS)
-        st.success("Model weights loaded successfully!")
-    except Exception as e:
-        st.error(f"Error loading model weights: {e}")
-        st.info(f"Please ensure '{models.FILE_MODEL_WEIGHTS}' exists and the model architecture (vocab_size, embedding_dim, max_sequence_length, and layer types/order) precisely matches the saved weights.")
+    selected_model_file = select_h5_file(folder_path=models.DIR_MODELS)
 
-    # You can now use your model
-    st.write("Model Summary:")
-    model.summary()
-
-    vectors = model.layers[-1].trainable_weights[0].numpy()
-    st.write(f"Shape of last loaded Dense vector: {vectors.shape}")
-
-
-    if os.path.exists(models.FILE_MODEL_HISTORY):
-        with open(models.FILE_MODEL_HISTORY, 'rb') as file_pi:
-            history = pickle.load(file_pi)
-        print(f"Training history loaded from {models.FILE_MODEL_HISTORY}")
-        print("Loaded history keys:", history.history.keys())
+    if not selected_model_file or selected_model_file == 'Select':
+        st.write("No model file selected.")
     else:
-        print(f"Warning: Training history file not found at {models.FILE_MODEL_HISTORY}")
+        st.write(f"You selected: **{selected_model_file}**")
 
-    model_name = f'image-cnn-epochs-{models.N_EPOCHS}-lr-{models.LR}_testing_valf1-{history.history["val_f1_score"][-1]:.3f}'
+        FILE_MODEL_WEIGHTS = f"{models.DIR_MODELS}/{selected_model_file}.h5"
+        FILE_MODEL_HISTORY = f"{models.DIR_MODELS}/{selected_model_file}.pkl"
+        st.info(f"Files used: {FILE_MODEL_WEIGHTS}, {FILE_MODEL_HISTORY}")
 
-    st.title(f"Last Dense Layer (with {model_name})")
-    st.json(history.history, expanded = False)
+        model = models.get_model_img_custom(X_train)
+        # Now, load the weights. The model's layers are now defined and built.
+        try:
+            model.load_weights(FILE_MODEL_WEIGHTS)
+            st.success("Model weights loaded successfully!")
+        except Exception as e:
+            st.error(f"Error loading model weights: {e}")
+            st.info(f"Please ensure '{FILE_MODEL_WEIGHTS}' exists and the model architecture (vocab_size, embedding_dim, max_sequence_length, and layer types/order) precisely matches the saved weights.")
 
-    # TRAINING CURVES + SUMMARY
-    fig = plt.figure(figsize=(12, 4))
+        # You can now use your model
+        st.write("Model Summary:")
+        model.summary()
 
-    # Create grid: 2x3 layout
-    gs = fig.add_gridspec(2, 3, height_ratios=[1, 1], width_ratios=[1, 1, 0.8])
+        vectors = model.layers[-1].trainable_weights[0].numpy()
+        st.write(f"Shape of last loaded Dense vector: {vectors.shape}")
 
-    # Training curves (top row)
-    ax1 = fig.add_subplot(gs[0, 0])
-    ax1.plot(history.history['loss'], label='Train', linewidth=2)
-    ax1.plot(history.history['val_loss'], label='Val', linewidth=2)
-    ax1.set_title('Loss', fontweight='bold')
-    ax1.legend()
-    ax1.grid(True, alpha=0.3)
 
-    ax2 = fig.add_subplot(gs[0, 1])
-    ax2.plot(history.history['accuracy'], label='Train', linewidth=2)
-    ax2.plot(history.history['val_accuracy'], label='Val', linewidth=2)
-    ax2.set_title('Accuracy', fontweight='bold')
-    ax2.legend()
-    ax2.grid(True, alpha=0.3)
+        if os.path.exists(FILE_MODEL_HISTORY):
+            with open(FILE_MODEL_HISTORY, 'rb') as file_pi:
+                history = pickle.load(file_pi)
+            print(f"Training history loaded from {FILE_MODEL_HISTORY}")
+            print("Loaded history keys:", history.history.keys())
+        else:
+            print(f"Warning: Training history file not found at {FILE_MODEL_HISTORY}")
 
-    # F1 and LR (bottom row)
-    ax3 = fig.add_subplot(gs[1, 0])
-    if 'f1_score' in history.history:
-        ax3.plot(history.history['f1_score'], label='Train', linewidth=2)
-        ax3.plot(history.history['val_f1_score'], label='Val', linewidth=2)
-        ax3.set_title('F1 Score', fontweight='bold')
-        ax3.legend()
-    else:
-        ax3.text(0.5, 0.5, 'F1 not tracked', ha='center', va='center')
-        ax3.set_title('F1 Score (N/A)')
-    ax3.grid(True, alpha=0.3)
+        model_name = f'{selected_model_file}-lr-{models.LR}_testing_valf1-{history.history["val_f1_score"][-1]:.3f}'
 
-    ax4 = fig.add_subplot(gs[1, 1])
-    if 'learning_rate' in history.history:
-        ax4.plot(history.history['learning_rate'], linewidth=2, color='red')
-        ax4.set_title('Learning Rate', fontweight='bold')
-        ax4.set_yscale('log')
-    else:
-        ax4.text(0.5, 0.5, 'LR not tracked', ha='center', va='center')
-        ax4.set_title('Learning Rate (N/A)')
-    ax4.grid(True, alpha=0.3)
+        st.title(f"Last Dense Layer (with {model_name})")
+        st.json(history.history, expanded = False)
 
-    # Summary text (right side)
-    ax_text = fig.add_subplot(gs[:, 2])
-    ax_text.axis('off')
+        # TRAINING CURVES + SUMMARY
+        fig = plt.figure(figsize=(12, 4))
 
-    plt.suptitle(f'Training Report - {model_name}', fontsize=14, fontweight='bold')
-    plt.tight_layout()
-    st.pyplot(fig)
+        # Create grid: 2x3 layout
+        gs = fig.add_gridspec(2, 3, height_ratios=[1, 1], width_ratios=[1, 1, 0.8])
+
+        # Training curves (top row)
+        ax1 = fig.add_subplot(gs[0, 0])
+        ax1.plot(history.history['loss'], label='Train', linewidth=2)
+        ax1.plot(history.history['val_loss'], label='Val', linewidth=2)
+        ax1.set_title('Loss', fontweight='bold')
+        ax1.legend()
+        ax1.grid(True, alpha=0.3)
+
+        ax2 = fig.add_subplot(gs[0, 1])
+        ax2.plot(history.history['accuracy'], label='Train', linewidth=2)
+        ax2.plot(history.history['val_accuracy'], label='Val', linewidth=2)
+        ax2.set_title('Accuracy', fontweight='bold')
+        ax2.legend()
+        ax2.grid(True, alpha=0.3)
+
+        # F1 and LR (bottom row)
+        ax3 = fig.add_subplot(gs[1, 0])
+        if 'f1_score' in history.history:
+            ax3.plot(history.history['f1_score'], label='Train', linewidth=2)
+            ax3.plot(history.history['val_f1_score'], label='Val', linewidth=2)
+            ax3.set_title('F1 Score', fontweight='bold')
+            ax3.legend()
+        else:
+            ax3.text(0.5, 0.5, 'F1 not tracked', ha='center', va='center')
+            ax3.set_title('F1 Score (N/A)')
+        ax3.grid(True, alpha=0.3)
+
+        ax4 = fig.add_subplot(gs[1, 1])
+        if 'learning_rate' in history.history:
+            ax4.plot(history.history['learning_rate'], linewidth=2, color='red')
+            ax4.set_title('Learning Rate', fontweight='bold')
+            ax4.set_yscale('log')
+        else:
+            ax4.text(0.5, 0.5, 'LR not tracked', ha='center', va='center')
+            ax4.set_title('Learning Rate (N/A)')
+        ax4.grid(True, alpha=0.3)
+
+        # Summary text (right side)
+        ax_text = fig.add_subplot(gs[:, 2])
+        ax_text.axis('off')
+
+        plt.suptitle(f'Training Report - {model_name}', fontsize=14, fontweight='bold')
+        plt.tight_layout()
+        st.pyplot(fig)
