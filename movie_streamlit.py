@@ -59,8 +59,6 @@ st.write(f"Shape of loaded embedding vectors: {vectors.shape}")
 # Further Streamlit app logic would go here
 st.title("Movie Streamlit App (with Word2Vec)")
 
-vectors = model.layers[0].trainable_weights[0].numpy()
-
 focus_word = 'zombie'
 st.write(f"print_closest: {focus_word}")
 # print_closest(focus_word, word2idx, vectors, idx2word)
