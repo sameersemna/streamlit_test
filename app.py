@@ -13,7 +13,7 @@ import re
 import io
 import pickle
 import models
-from common import custom_stopwords, prdtypes, prdtypes_en, select_h5_file, word_grouping
+from common import custom_stopwords, display_paired_images_in_reports_folder, prdtypes, prdtypes_en, select_h5_file, word_grouping
 
 # --- PAGE CONFIG MUST BE THE VERY FIRST STREAMLIT COMMAND ---
 st.set_page_config(
@@ -93,7 +93,12 @@ def get_freq_df(tokens):
 # ---- Streamlit specific code ----
 st.title("Rakuten e-commerce project")
 st.sidebar.title("Table of contents")
-pages = ["Data Processing", "DataVizualization", "Modelling"]
+pages = [
+    "Data Processing", 
+    "DataVizualization", 
+    "Modelling",
+    "Interpretation"
+]
 page = st.sidebar.radio("Go to", pages)
 
 
@@ -798,3 +803,10 @@ if page == pages[2]:
         plt.suptitle(f'Training Report - {model_name}', fontsize=14, fontweight='bold')
         plt.tight_layout()
         st.pyplot(fig)
+
+# --- Page 4: Interpretation ---
+if page == pages[3]:
+    st.header("Interpretation")
+    st.subheader("GradCAM")
+
+    display_paired_images_in_reports_folder("./reports/figures")

@@ -170,3 +170,74 @@ def select_h5_file(folder_path="."):
         )
         return selected_file if selected_file else None
 
+
+def display_paired_images_in_reports_folder(reports_folder="./reports"):
+    """
+    Scans a specified folder for .jpg and .gif files with matching base names
+    and displays them side-by-side in two columns in a Streamlit app.
+
+    Args:
+        reports_folder (str): The path to the folder containing the image files.
+                              Defaults to './reports'.
+    """
+    st.header("Visual Reports: Paired Images")
+
+    # 1. Check if the reports folder exists
+    if not os.path.isdir(reports_folder):
+        st.error(f"The folder '{reports_folder}' does not exist or is not a directory. "
+                 f"Please ensure it's created and contains files, or adjust the path.")
+        return
+
+    # 2. Collect .jpg and .gif files, mapping them by their base name (without extension)
+    jpg_files = {}
+    gif_files = {}
+
+    for filename in os.listdir(reports_folder):
+        file_path = os.path.join(reports_folder, filename)
+        # Ensure it's a file and not a directory
+        if os.path.isfile(file_path):
+            name, ext = os.path.splitext(filename)
+            ext = ext.lower() # Normalize extension to lowercase for robust matching
+
+            if ext == '.jpg':
+                jpg_files[name] = file_path
+            elif ext == '.gif':
+                gif_files[name] = file_path
+
+    # 3. Find common base names (files that exist as both .jpg and .gif)
+    # Using set intersection for efficiency
+    common_names = sorted(list(set(jpg_files.keys()) & set(gif_files.keys())))
+
+    # 4. Display the results
+    if not common_names:
+        st.info(f"No matching .jpg and .gif file pairs found in '{reports_folder}'.")
+        st.write("Make sure you have files like 'report1.jpg' and 'report1.gif' in the specified folder.")
+        return
+
+    st.write(f"Displaying {len(common_names)} pairs of .jpg and .gif files from '{reports_folder}':")
+
+    # Create an initial set of two columns for the header
+    header_col1, header_col2 = st.columns(2)
+    with header_col1:
+        st.subheader("JPEG (Left Column)")
+    with header_col2:
+        st.subheader("GIF (Right Column)")
+    st.markdown("---") # Visual separator
+
+    # Loop through common names and display images
+    for name in common_names:
+        jpg_path = jpg_files[name]
+        gif_path = gif_files[name]
+
+        # Display the common name (title for the pair)
+        st.markdown(f"**Report Name: {name}**", unsafe_allow_html=True)
+
+        # Create two columns for each pair of images
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.image(jpg_path, caption=f"{name}.jpg", use_container_width=True)
+        with col2:
+            st.image(gif_path, caption=f"{name}.gif", use_container_width=True)
+
+        st.markdown("---") # Separator between each pair of images for clarity
