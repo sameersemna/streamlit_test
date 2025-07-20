@@ -21,7 +21,7 @@ IMG_SIZE          = 224## 224 minimum
 CONV_FILTERS_1, CONV_FILTERS_2, CONV_FILTERS_3, CONV_FILTERS_4, CONV_FILTERS_5 = 16,16,32,64,128
 CONV_K_REG        = 0.0001
 DENSE_K_REG       = 0.001
-DIR_MODELS         = "./data/processed"
+DIR_MODELS         = "./data/processed/weights"
 
 f1_metric = F1Score(average='macro', name='f1_score')
 

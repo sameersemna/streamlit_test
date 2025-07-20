@@ -13,5 +13,4 @@ copy_file 'data/raw/X_train_update.parquet'
 copy_file 'data/raw/X_test_update.parquet'
 copy_file 'data/raw/Y_train_CVw08PX.parquet'
 
-cp $dir_rakuten/models/weights/image_epochs_3.h5 ./data/processed/image_epochs_3.h5
-cp $dir_rakuten/models/weights/image_epochs_3.pkl ./data/processed/image_epochs_3.pkl
+cp -r $dir_rakuten/data/processed/weights ./data/processed
