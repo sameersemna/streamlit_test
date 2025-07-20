@@ -17,3 +17,11 @@ git add .gitattributes
 git add word2vec.h5 
 git commit -m word2vec.h5
 ```
+
+# Rakuten project
+Note: Make sure about the folder paths
+
+```
+sh copyfiles.sh
+streamlit run app.py
+```
