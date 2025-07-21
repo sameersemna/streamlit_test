@@ -14,6 +14,10 @@ import io
 import pickle
 import models
 from common import custom_stopwords, display_paired_images_in_reports_folder, prdtypes, prdtypes_en, select_h5_file, word_grouping
+from functions import display_html_file, show_pdf_page
+import keras
+from sklearn.metrics import confusion_matrix, classification_report
+
 
 # --- PAGE CONFIG MUST BE THE VERY FIRST STREAMLIT COMMAND ---
 st.set_page_config(
@@ -83,7 +87,6 @@ def clean_text(text):
     return [word_grouping.get(w, w) for w in tokens if w not in all_stopwords]
 
 # Word clouds
-
 
 def plot_wordcloud(tokens, title, colormap):
     text = ' '.join(tokens)
@@ -737,339 +740,379 @@ if page == pages[1]:
     *   **Baseline Preprocessing**
         
         *   Maintains original image aspect ratio through intelligent scaling calculations
-            
         *   Creates uniform 500x500 pixel output with white background padding for consistent dimensions
-            
         *   Performs essential color space conversion from BGR to RGB format
-            
         *   Uses INTER\_AREA interpolation for high-quality downsampling during resize operations
-            
         *   Centers resized images on white background using calculated offsets
-            
         *   Normalizes pixel values to \[0,1\] range for machine learning compatibility
-            
-        *   Minimal computational overhead with fastest processing speed
-            
-        *   Serves as foundation method without quality enhancements
             
     *   **Advanced Augmentation**
         
         *   Implements comprehensive multi-stage enhancement pipeline for superior image quality
-            
         *   Fast Non-Local Means Denoising removes color noise while preserving edge details
-            
-        *   CLAHE (Contrast Limited Adaptive Histogram Equalization) enhances local contrast in LAB color space
-            
+        *   CLAHE (Contrast Limited Adaptive Histogram Equalization) enhances local contrast
         *   Custom sharpening kernel (9-center, -1 surrounding) increases edge definition and clarity
-            
         *   Color balance adjustment with alpha scaling (1.1) and brightness offset (10) for optimal exposure
-            
-        *   Sequential processing ensures each enhancement builds upon previous improvements
-            
-        *   Significantly higher computational cost but delivers professional-quality results
-            
-        *   Ideal for applications requiring maximum image quality and visual consistency
             
     *   **Background Removal** - Uses AI-based rembg library for automatic background segmentation and replacement
         
     *   **Smart Cropping** - Employs edge detection and contour analysis to automatically crop to product boundaries
-        
-
-    The code includes memory-efficient batch processing capabilities and can save processed images to disk for large datasets.
-
-    **Multimodal CNN Model Summary**
-    --------------------------------
-
-    **Complete multimodal classification system combining text and image data using Text CNN + MobileNetV2 architecture for product classification**
-
-    ### **Text Modeling Outline**
-
-    *   **Preprocessing**: Pre-tokenized text sequences padded to max length 60
-        
-    *   **Embedding Layer**: 250-dimensional trainable embeddings with L2 regularization
-        
-    *   **Multi-Kernel CNN**: Parallel Conv1D branches with kernel sizes \[2,3,4,5\] and 128 filters each
-        
-    *   **Feature Extraction**: GlobalMaxPooling1D → BatchNorm → Concatenation → Dense(128) → Dropout(0.4)
-        
-    *   **Output**: 128-dimensional text feature representation
-        
-
-    ### **Image Modeling Outline**
-
-    *   **Backbone**: MobileNetV2 pretrained on ImageNet (frozen initially)
-        
-    *   **Input Processing**: 224×224 RGB images with MobileNetV2 preprocessing
-        
-    *   **Feature Extraction**: GlobalAveragePooling2D → Dense(256) → BatchNorm → Dropout(0.4)
-        
-    *   **Dimensionality**: Reduces from 1280 MobileNetV2 features to 256 dimensions
-        
-    *   **Output**: 256-dimensional image feature representation
-        
-
-    ### **Multimodal Fusion Details**
-
-    *   **Early Fusion**: Concatenates text features (128D) + image features (256D) = 384D combined
-        
-    *   **Fusion Network**: Two-layer classifier with 256→128 neurons, BatchNorm, Dropout(0.5)
-        
-    *   **Final Classification**: Dense layer with softmax activation for multi-class prediction
-        
-    *   **Joint Training**: End-to-end optimization with shared loss backpropagation
-        
-
-    ### **Data Augmentation Details**
-
-    *   **Text Augmentation**: None (uses pre-processed tokens)
-        
-    *   **Image Augmentation**: Applied during training via MultimodalDataGenerator
-        
-    *   **Preprocessing**: MobileNetV2-specific normalization (\[-1,1\] range with ImageNet stats)
-        
-    *   **Batch Processing**: Custom generator handles both modalities simultaneously with proper alignment
-        
-
-    ### **Training Pipeline**
-
-    *   **Optimization**: AdamW with weight decay, ReduceLROnPlateau scheduling
-        
-    *   **Regularization**: L2 regularization on conv/dense layers, dropout, batch normalization
-        
-    *   **Class Balancing**: Computed class weights for imbalanced dataset handling
-        
-    *   **Metrics**: Categorical crossentropy loss, accuracy, macro F1-score
-        
-
-    ### **Image-Specific Data Augmentation Details**
-
-    *   **Active Implementation**: ImageDataGenerator with real-time transforms during batch generation
-        
-    *   **Transform Parameters**:
-        
-        *   **Rotation**: ±15 degrees random rotation
-            
-        *   **Zoom**: ±10% random zoom in/out
-            
-        *   **Flip**: 50% chance horizontal flip
-            
-        *   **Brightness**: ±5% brightness variation
-            
-        *   **Fill**: nearest pixel interpolation for empty areas
-            
-    *   **Conditional Processing**:
-        
-        *   **Training**: augment\_images=True → creates augmentor instance
-            
-        *   **Validation**: augment\_images=False → no augmentation applied
-            
-        *   **Runtime**: random\_transform() applies transforms before preprocessing
-            
-    *   **Pipeline**: Load → Augment (if enabled) → MobileNetV2 preprocess → Batch
-        
-    *   **Features**: Real-time randomized transforms, conservative parameters, integrated with multimodal generator
     """)
-
-# --- Page 3: Modelling ---
 if page == pages[2]:
-    st.header("Modelling")
 
-    st.markdown("""
-    **Simple text-based modelling:** run on the basic text tokens
-                
-    {‘Logistic Regression’: {‘model’: LogisticRegression(max\_iter=1000, solver=‘liblinear’), ‘f1\_score’: 0.7734938224667732, ‘f1\_weighted’: 0.7902879939112404, ‘predictions’: array(\[2705, 1302, 1560, ..., 1560, 1302, 1300\], shape=(16984,))}, ‘SGD Classifier’: {‘model’: SGDClassifier(loss=‘log\_loss’), ‘f1\_score’: 0.7342957373976658, ‘f1\_weighted’: 0.7529368805858434, ‘predictions’: array(\[1281, 1302, 1560, ..., 1560, 2280, 2280\], shape=(16984,))}, ‘Linear SVM’: {‘model’: LinearSVC(), ‘f1\_score’: 0.783122845011161, ‘f1\_weighted’: 0.8044003932739417, ‘predictions’: array(\[1280, 1302, 1560, ..., 1560, 1302, 1300\], shape=(16984,))}, ‘Random Forest’: {‘model’: RandomForestClassifier(max\_depth=20, n\_jobs=-1), ‘f1\_score’: 0.6164494092352807, ‘f1\_weighted’: 0.6270541941377651, ‘predictions’: array(\[1280, 1302, 1560, ..., 1560,  10,  10\], shape=(16984,))}}
+    st.header("Modeling")
 
-    **Text only CNN:** Here’s a bullet point summary of this CNN text classification model:
-                
-    **Model Architecture:**
-                
-    • Multi-branch CNN with parallel Conv1D layers using different kernel sizes (default: 2, 3, 4, 5)
-    
-    • Embedding layer (180 dimensions) followed by convolutional branches with global max pooling
-    
-    • Two dense layers (128 and 64 units) with batch normalization and dropout for regularization
-    
-    • Softmax output layer for multi-class product classification
-                
-    **Key Features:**
-    
-    • tokenized text sequences with configurable vocabulary limit (15,000 tokens)
-    
-    • class weighting to handle imbalanced datasets
-    
-    • early stopping and learning rate reduction callbacks for training optimization
-    
-    • AdamW optimizer with L2 regularization throughout the network
-                
-    **Training Configuration:**
-    
-    • Configurable hyperparameters via command line arguments (epochs, batch size, learning rate, etc.)
-    
-    • Train/validation split (80/20) with stratified sampling
+    text_model = "text-cnn-epochs-100-lr-0.001-testing.keras"
+    text_history = "text-cnn-epochs-100-lr-0.001-testing_history.json"
+    text_report = 'training_text-cnn-epochs-100-lr-0.001-testing_f1-0.7257_t-0721_1642.pdf'
 
-    • F1 score monitoring for model evaluation and early stopping
-                
-    **Analysis & Reporting:**
-                
-    • Includes occlusion-based feature importance analysis for model interpretabilityMultimodal:
-    
-    **Model Architecture:**
+    img_model = ''
+    img_history = ''
 
-    *   **Dual-branch multimodal system** combining text CNN and image CNN (MobileNetV2) for product classification
-        
-    *   **Text branch**: Multi-kernel Conv1D layers (kernels 2,3,4,5) with embedding layer and global max pooling
-        
-    *   **Image branch**: Pre-trained MobileNetV2 backbone with global average pooling and dense layers
-        
-    *   **Fusion layer**: Concatenates text features (128D) and image features (256D) for joint classification
-        
+    multimodal_model = "multimodal-text-mobilenetv2-epochs-100-lr-0.0005_valf1-0.762.keras"
+    multimodal_history = "multimodal-text-mobilenetv2-epochs-100-lr-0.0005_valf1-0.762_history.json"
+    multimodal_report = 'training_multimodal-text-mobilenetv2-epochs-100-lr-0.0005_valf1-0.762_f1-0.7620_t-0720_0148.pdf'
+    # Model selection dropdown
+    model_options = [
+        "Select a model",
+        "Basic ML Models", 
+        "Custom CNN Text",
+        "MobileNet for Images", 
+        "Multimodal Fusion Model"
+    ]
 
-    **Key Multimodal Features:**
+    selected_model = st.selectbox("Choose a model:", model_options)
 
-    *   Processes both tokenized French text and product images simultaneously
+    if selected_model == "Basic ML Models":
+        st.subheader("Basic ML Models")
+        display_html_file('basic_models.html')
         
-    *   Custom data generator handles batch loading of text sequences and image files from disk
+    elif selected_model == "Custom CNN Text":
+        st.subheader("Custom CNN Text Model")
         
-    *   MobileNetV2 preprocessing with optional ImageNet normalization or standard scaling
+        # Load specific model files
+        model_file = text_model
+        history_file = text_history
         
-    *   Image augmentation support for training data (disabled for validation)
+        model_path = f"models/{model_file}"
+        history_path = f"models/{history_file}"
         
-
-    **Training Configuration:**
-
-    *   Command-line configurable hyperparameters for both text and image processing
+        st.info(f"Loading model: {model_file}")
+        st.info(f"Loading history: {history_file}")
         
-    *   Class-weighted training for imbalanced datasets with stratified train/val split
-        
-    *   Early stopping and learning rate reduction based on validation F1 score
-        
-    *   AdamW optimizer with weight decay and L2 regularization throughout
-        
-
-    **Technical Implementation:**
-
-    *   **Data handling**: Single dataframe with pre-processed text tokens and image file paths
-        
-    *   **Memory efficiency**: Batch-wise image loading prevents memory overflow
-        
-    *   **Freezing strategy**: Optional MobileNetV2 backbone freezing for transfer learning
-        
-    *   **Model saving**: Automatic saving when validation F1 score exceeds 0.7 threshold
-        
-
-    **Performance & Evaluation:**
-
-    *   F1 score monitoring (macro-averaged) as primary evaluation metric
-        
-    *   Comprehensive training report generation with hyperparameter tracking
-        
-    *   Training history saved in JSON format for analysis
-        
-    *   Higher complexity model targeting >70% validation F1 performance
-        
-
-    **Data Pipeline:**
-
-    *   Custom MultimodalDataGenerator loads text sequences and images per batch
-        
-    *   Handles image preprocessing, resizing (224x224), and optional augmentation
-    """)
-
-    selected_model_file = select_h5_file(folder_path=models.DIR_MODELS)
-
-    if not selected_model_file or selected_model_file == 'Select':
-        st.write("No model file selected.")
-    else:
-        st.write(f"You selected: **{selected_model_file}**")
-
-        FILE_MODEL_WEIGHTS = f"{models.DIR_MODELS}/{selected_model_file}.h5"
-        FILE_MODEL_HISTORY = f"{models.DIR_MODELS}/{selected_model_file}.pkl"
-        st.info(f"Files used: {FILE_MODEL_WEIGHTS}, {FILE_MODEL_HISTORY}")
-
-        model = models.get_model_img_custom(X_train)
-        # Now, load the weights. The model's layers are now defined and built.
+        # Load Keras model
         try:
-            model.load_weights(FILE_MODEL_WEIGHTS)
-            st.success("Model weights loaded successfully!")
+            model = keras.models.load_model(model_path)
+            st.success(f"Complete Keras model loaded from: {model_path}")
         except Exception as e:
-            st.error(f"Error loading model weights: {e}")
-            st.info(
-                f"Please ensure '{FILE_MODEL_WEIGHTS}' exists and the model architecture (vocab_size, embedding_dim, max_sequence_length, and layer types/order) precisely matches the saved weights.")
+            st.error(f"Error loading Keras model: {e}")
+            st.stop()
+        
+        # Load history from JSON
+        if os.path.exists(history_path):
+            with open(history_path, 'r') as f:
+                history_data = json.load(f)
+            st.success(f"Training history loaded from {history_path}")
+            
+            # Display model info
+            model_name = "Custom CNN Text Model"
+            st.title(f"CNN Text Model Results: {model_name}")
+            
+            # Create visualization
+            fig = plt.figure(figsize=(12, 8))
+            
+            # Loss curve
+            plt.subplot(2, 2, 1)
+            plt.plot(history_data['loss'], label='Train Loss', linewidth=2)
+            plt.plot(history_data['val_loss'], label='Val Loss', linewidth=2)
+            plt.title('Training Loss', fontweight='bold')
+            plt.legend()
+            plt.grid(True, alpha=0.3)
+            
+            # F1 Score curve (main focus)
+            plt.subplot(2, 2, 2)
+            if 'f1_score' in history_data:
+                plt.plot(history_data['f1_score'], label='Train F1 Macro', linewidth=2)
+                plt.plot(history_data['val_f1_score'], label='Val F1 Macro', linewidth=2)
+                plt.title('F1 Score (Macro) - Primary Metric', fontweight='bold')
+                plt.legend()
+            else:
+                plt.text(0.5, 0.5, 'F1 Macro not tracked', ha='center', va='center')
+                plt.title('F1 Score (N/A)')
+            plt.grid(True, alpha=0.3)
+            
+            # Learning Rate (if available)
+            plt.subplot(2, 2, 3)
+            if 'learning_rate' in history_data:
+                plt.plot(history_data['learning_rate'], linewidth=2, color='red')
+                plt.title('Learning Rate', fontweight='bold')
+                plt.yscale('log')
+            else:
+                plt.text(0.5, 0.5, 'LR not tracked', ha='center', va='center')
+                plt.title('Learning Rate (N/A)')
+            plt.grid(True, alpha=0.3)
+            
+            # Model summary info
+            plt.subplot(2, 2, 4)
+            plt.axis('off')
+            
+            final_val_f1 = history_data.get('val_f1_score', ['N/A'])[-1] if 'val_f1_score' in history_data else 'N/A'
+            final_train_f1 = history_data.get('f1_score', ['N/A'])[-1] if 'f1_score' in history_data else 'N/A'
+            final_val_loss = history_data['val_loss'][-1]
+            epochs = len(history_data['loss'])
+            
+            summary_text = f"""MODEL SUMMARY
 
-        # You can now use your model
-        st.write("Model Summary:")
-        model.summary()
+    Epochs: {epochs}
+    Final Train F1 Macro: {final_train_f1 if final_train_f1 != 'N/A' else 'N/A'}
+    Final Val F1 Macro: {final_val_f1 if final_val_f1 != 'N/A' else 'N/A'}
+    Final Val Loss: {final_val_loss:.3f}
 
-        vectors = model.layers[-1].trainable_weights[0].numpy()
-        st.write(f"Shape of last loaded Dense vector: {vectors.shape}")
-
-        if os.path.exists(FILE_MODEL_HISTORY):
-            with open(FILE_MODEL_HISTORY, 'rb') as file_pi:
-                history = pickle.load(file_pi)
-            print(f"Training history loaded from {FILE_MODEL_HISTORY}")
-            print("Loaded history keys:", history.history.keys())
+    Parameters: {model.count_params():,}
+    Architecture: Custom CNN Text
+    """
+            
+            plt.text(0.1, 0.9, summary_text, transform=plt.gca().transAxes,
+                    fontsize=10, verticalalignment='top', fontfamily='monospace')
+            
+            plt.suptitle(f'Training Results: {model_name}', fontsize=14, fontweight='bold')
+            plt.tight_layout()
+            st.pyplot(fig)
+            
+            # Show detailed metrics
+            st.subheader("Training History Details")
+            with st.expander("View Raw Training History"):
+                st.json(history_data)
+                
         else:
-            print(
-                f"Warning: Training history file not found at {FILE_MODEL_HISTORY}")
+            st.error(f"Training history file not found: {history_path}")
 
-        model_name = f'{selected_model_file}-lr-{models.LR}_testing_valf1-{history.history["val_f1_score"][-1]:.3f}'
+        pdf_path = 'models/'+ text_report
+        show_pdf_page(pdf_path, pnum=2)
+            
+    elif selected_model == "Multimodal Fusion Model":
+        st.subheader("Multimodal Fusion Model")
+        
+        # Load specific multimodal model files
+        model_file = multimodal_model
+        history_file = multimodal_history
+        
+        model_path = f"models/{model_file}"
+        history_path = f"models/{history_file}"
+        
+        st.info(f"Loading model: {model_file}")
+        st.info(f"Loading history: {history_file}")
+        
+        # Load Keras model
+        try:
+            model = keras.models.load_model(model_path)
+            st.success(f"Complete Keras model loaded from: {model_path}")
+        except Exception as e:
+            st.error(f"Error loading Keras model: {e}")
+            st.stop()
+        
+        # Load history from JSON
+        if os.path.exists(history_path):
+            with open(history_path, 'r') as f:
+                history_data = json.load(f)
+            st.success(f"Training history loaded from {history_path}")
+            
+            # Display model info
+            model_name = "Multimodal Fusion Model (Text + MobileNetV2)"
+            st.title(f"Multimodal Model Results: {model_name}")
+            
+            # Create visualization
+            fig = plt.figure(figsize=(12, 8))
+            
+            # Loss curve
+            plt.subplot(2, 2, 1)
+            plt.plot(history_data['loss'], label='Train Loss', linewidth=2)
+            plt.plot(history_data['val_loss'], label='Val Loss', linewidth=2)
+            plt.title('Training Loss', fontweight='bold')
+            plt.legend()
+            plt.grid(True, alpha=0.3)
+            
+            # F1 Score curve (main focus)
+            plt.subplot(2, 2, 2)
+            if 'f1_score' in history_data:
+                plt.plot(history_data['f1_score'], label='Train F1 Macro', linewidth=2)
+                plt.plot(history_data['val_f1_score'], label='Val F1 Macro', linewidth=2)
+                plt.title('F1 Score (Macro) - Primary Metric', fontweight='bold')
+                plt.legend()
+            else:
+                plt.text(0.5, 0.5, 'F1 Macro not tracked', ha='center', va='center')
+                plt.title('F1 Score (N/A)')
+            plt.grid(True, alpha=0.3)
+            
+            # Learning Rate (if available)
+            plt.subplot(2, 2, 3)
+            if 'learning_rate' in history_data:
+                plt.plot(history_data['learning_rate'], linewidth=2, color='red')
+                plt.title('Learning Rate', fontweight='bold')
+                plt.yscale('log')
+            else:
+                plt.text(0.5, 0.5, 'LR not tracked', ha='center', va='center')
+                plt.title('Learning Rate (N/A)')
+            plt.grid(True, alpha=0.3)
+            
+            # Model summary info
+            plt.subplot(2, 2, 4)
+            plt.axis('off')
+            
+            final_val_f1 = history_data.get('val_f1_score', ['N/A'])[-1] if 'val_f1_score' in history_data else 'N/A'
+            final_train_f1 = history_data.get('f1_score', ['N/A'])[-1] if 'f1_score' in history_data else 'N/A'
+            final_val_loss = history_data['val_loss'][-1]
+            epochs = len(history_data['loss'])
+            
+            summary_text = f"""MODEL SUMMARY
 
-        st.title(f"Last Dense Layer (with {model_name})")
-        st.json(history.history, expanded=False)
+    Epochs: {epochs}
+    Final Train F1 Macro: {final_train_f1 if final_train_f1 != 'N/A' else 'N/A'}
+    Final Val F1 Macro: {final_val_f1 if final_val_f1 != 'N/A' else 'N/A'}
+    Final Val Loss: {final_val_loss:.3f}
 
-        # TRAINING CURVES + SUMMARY
-        fig = plt.figure(figsize=(12, 4))
-
-        # Create grid: 2x3 layout
-        gs = fig.add_gridspec(2, 3, height_ratios=[
-                              1, 1], width_ratios=[1, 1, 0.8])
-
-        # Training curves (top row)
-        ax1 = fig.add_subplot(gs[0, 0])
-        ax1.plot(history.history['loss'], label='Train', linewidth=2)
-        ax1.plot(history.history['val_loss'], label='Val', linewidth=2)
-        ax1.set_title('Loss', fontweight='bold')
-        ax1.legend()
-        ax1.grid(True, alpha=0.3)
-
-        ax2 = fig.add_subplot(gs[0, 1])
-        ax2.plot(history.history['accuracy'], label='Train', linewidth=2)
-        ax2.plot(history.history['val_accuracy'], label='Val', linewidth=2)
-        ax2.set_title('Accuracy', fontweight='bold')
-        ax2.legend()
-        ax2.grid(True, alpha=0.3)
-
-        # F1 and LR (bottom row)
-        ax3 = fig.add_subplot(gs[1, 0])
-        if 'f1_score' in history.history:
-            ax3.plot(history.history['f1_score'], label='Train', linewidth=2)
-            ax3.plot(history.history['val_f1_score'], label='Val', linewidth=2)
-            ax3.set_title('F1 Score', fontweight='bold')
-            ax3.legend()
+    Parameters: {model.count_params():,}
+    Architecture: Multimodal (Text CNN + MobileNetV2)
+    """
+            
+            plt.text(0.1, 0.9, summary_text, transform=plt.gca().transAxes,
+                    fontsize=10, verticalalignment='top', fontfamily='monospace')
+            
+            plt.suptitle(f'Training Results: {model_name}', fontsize=14, fontweight='bold')
+            plt.tight_layout()
+            st.pyplot(fig)
+            
+            # Show detailed metrics
+            st.subheader("Training History Details")
+            with st.expander("View Raw Training History"):
+                st.json(history_data)
+                
         else:
-            ax3.text(0.5, 0.5, 'F1 not tracked', ha='center', va='center')
-            ax3.set_title('F1 Score (N/A)')
-        ax3.grid(True, alpha=0.3)
+            st.error(f"Training history file not found: {history_path}")
 
-        ax4 = fig.add_subplot(gs[1, 1])
-        if 'learning_rate' in history.history:
-            ax4.plot(history.history['learning_rate'],
-                     linewidth=2, color='red')
-            ax4.set_title('Learning Rate', fontweight='bold')
-            ax4.set_yscale('log')
-        else:
-            ax4.text(0.5, 0.5, 'LR not tracked', ha='center', va='center')
-            ax4.set_title('Learning Rate (N/A)')
-        ax4.grid(True, alpha=0.3)
+        pdf_path = 'models/'+ multimodal_report
+        show_pdf_page(pdf_path, pnum=2)
 
-        # Summary text (right side)
-        ax_text = fig.add_subplot(gs[:, 2])
-        ax_text.axis('off')
+    elif selected_model == "MobileNet for Images":
+        st.subheader("MobileNet for Images")
+        st.info("MobileNet implementation coming soon...")
+        # Add your MobileNet implementation here
+        
+    else:
+        st.write("Please select a model from the dropdown above.")
 
-        plt.suptitle(
-            f'Training Report - {model_name}', fontsize=14, fontweight='bold')
-        plt.tight_layout()
-        st.pyplot(fig)
+
+# # --- Page 3: Modelling ---
+# from functions import display_html_file
+
+
+# if page == pages[2]:
+#     st.header("Modelling")
+
+#     display_html_file('basic_models.html')
+
+#     display_html_file('multimodal.html', height=1200)
+
+
+#     st.markdown("""Technical Specifications:""")
+
+#     display_html_file('technic.html')
+
+#     selected_model_file = select_h5_file(folder_path=models.DIR_MODELS)
+
+#     if not selected_model_file or selected_model_file == 'Select':
+#         st.write("No model file selected.")
+#     else:
+#         st.write(f"You selected: **{selected_model_file}**")
+
+#         FILE_MODEL_WEIGHTS = f"{models.DIR_MODELS}/{selected_model_file}.h5"
+#         FILE_MODEL_HISTORY = f"{models.DIR_MODELS}/{selected_model_file}.pkl"
+#         st.info(f"Files used: {FILE_MODEL_WEIGHTS}, {FILE_MODEL_HISTORY}")
+
+#         model = models.get_model_img_custom(X_train)
+#         # Now, load the weights. The model's layers are now defined and built.
+#         try:
+#             model.load_weights(FILE_MODEL_WEIGHTS)
+#             st.success("Model weights loaded successfully!")
+#         except Exception as e:
+#             st.error(f"Error loading model weights: {e}")
+#             st.info(
+#                 f"Please ensure '{FILE_MODEL_WEIGHTS}' exists and the model architecture (vocab_size, embedding_dim, max_sequence_length, and layer types/order) precisely matches the saved weights.")
+
+#         # You can now use your model
+#         st.write("Model Summary:")
+#         model.summary()
+
+#         vectors = model.layers[-1].trainable_weights[0].numpy()
+#         st.write(f"Shape of last loaded Dense vector: {vectors.shape}")
+
+#         if os.path.exists(FILE_MODEL_HISTORY):
+#             with open(FILE_MODEL_HISTORY, 'rb') as file_pi:
+#                 history = pickle.load(file_pi)
+#             print(f"Training history loaded from {FILE_MODEL_HISTORY}")
+#             print("Loaded history keys:", history.history.keys())
+#         else:
+#             print(
+#                 f"Warning: Training history file not found at {FILE_MODEL_HISTORY}")
+
+#         model_name = f'{selected_model_file}-lr-{models.LR}_testing_valf1-{history.history["val_f1_score"][-1]:.3f}'
+
+#         st.title(f"Last Dense Layer (with {model_name})")
+#         st.json(history.history, expanded=False)
+
+#         # TRAINING CURVES + SUMMARY
+#         fig = plt.figure(figsize=(12, 4))
+
+#         # Create grid: 2x3 layout
+#         gs = fig.add_gridspec(2, 3, height_ratios=[
+#                               1, 1], width_ratios=[1, 1, 0.8])
+
+#         # Training curves (top row)
+#         ax1 = fig.add_subplot(gs[0, 0])
+#         ax1.plot(history.history['loss'], label='Train', linewidth=2)
+#         ax1.plot(history.history['val_loss'], label='Val', linewidth=2)
+#         ax1.set_title('Loss', fontweight='bold')
+#         ax1.legend()
+#         ax1.grid(True, alpha=0.3)
+
+#         ax2 = fig.add_subplot(gs[0, 1])
+#         ax2.plot(history.history['accuracy'], label='Train', linewidth=2)
+#         ax2.plot(history.history['val_accuracy'], label='Val', linewidth=2)
+#         ax2.set_title('Accuracy', fontweight='bold')
+#         ax2.legend()
+#         ax2.grid(True, alpha=0.3)
+
+#         # F1 and LR (bottom row)
+#         ax3 = fig.add_subplot(gs[1, 0])
+#         if 'f1_score' in history.history:
+#             ax3.plot(history.history['f1_score'], label='Train', linewidth=2)
+#             ax3.plot(history.history['val_f1_score'], label='Val', linewidth=2)
+#             ax3.set_title('F1 Score', fontweight='bold')
+#             ax3.legend()
+#         else:
+#             ax3.text(0.5, 0.5, 'F1 not tracked', ha='center', va='center')
+#             ax3.set_title('F1 Score (N/A)')
+#         ax3.grid(True, alpha=0.3)
+
+#         ax4 = fig.add_subplot(gs[1, 1])
+#         if 'learning_rate' in history.history:
+#             ax4.plot(history.history['learning_rate'],
+#                      linewidth=2, color='red')
+#             ax4.set_title('Learning Rate', fontweight='bold')
+#             ax4.set_yscale('log')
+#         else:
+#             ax4.text(0.5, 0.5, 'LR not tracked', ha='center', va='center')
+#             ax4.set_title('Learning Rate (N/A)')
+#         ax4.grid(True, alpha=0.3)
+
+#         # Summary text (right side)
+#         ax_text = fig.add_subplot(gs[:, 2])
+#         ax_text.axis('off')
+
+#         plt.suptitle(
+#             f'Training Report - {model_name}', fontsize=14, fontweight='bold')
+#         plt.tight_layout()
+#         st.pyplot(fig)
 
 # --- Page 4: Interpretation ---
 if page == pages[3]:

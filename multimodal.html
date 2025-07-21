@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimodal CNN Architecture</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 15px;
+            background: #6c757d;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+        
+        .model-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .input-section {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .branch {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 18px;
+            min-width: 280px;
+            border: 2px solid #dee2e6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .branch:hover {
+            transform: translateY(-2px);
+        }
+        
+        .text-branch {
+            border-color: #f97316;
+            background: #fef3f2;
+        }
+        
+        .image-branch {
+            border-color: #f97316;
+            background: #fef3f2;
+        }
+        
+        .branch-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        .text-branch .branch-title {
+            color: #ea580c;
+        }
+        
+        .image-branch .branch-title {
+            color: #ea580c;
+        }
+        
+        .layer {
+            background: white;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.85em;
+            border-left: 4px solid #6c757d;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .input-layer {
+            border-left-color: #6c757d;
+            background: white;
+        }
+        
+        .conv-layer {
+            border-left-color: #6c757d;
+            background: white;
+        }
+        
+        .dense-layer {
+            border-left-color: #6c757d;
+            background: white;
+        }
+        
+        .fusion-section {
+            background: #eff6ff;
+            border: 2px solid #3b82f6;
+            border-radius: 10px;
+            padding: 18px;
+            text-align: center;
+            min-width: 350px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .fusion-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #1d4ed8;
+            margin-bottom: 12px;
+        }
+        
+        .arrow {
+            font-size: 1.5em;
+            color: #6c757d;
+            margin: 5px 0;
+        }
+        
+        .parallel-conv {
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+            margin: 8px 0;
+        }
+        
+        .conv-kernel {
+            flex: 1;
+            background: white;
+            padding: 6px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            text-align: center;
+            border: 1px solid #6c757d;
+        }
+        
+        .feature-dims {
+            font-size: 0.8em;
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        .output-layer {
+            background: #fef3f2;
+            border: 2px solid #f97316;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ea580c;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .specs {
+            background: rgba(108, 117, 125, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+        
+        .specs h3 {
+            color: #495057;
+            margin-bottom: 10px;
+        }
+        
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .spec-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔀 Multimodal CNN Architecture</h1>
+        
+        <div class="model-flow">
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="branch text-branch">
+                    <div class="branch-title">📝 TEXT BRANCH</div>
+                    
+                    <div class="layer input-layer">
+                        <strong>Text Input</strong><br>
+                        Shape: (batch_size, 60)
+                        <div class="feature-dims">Tokenized French text sequences</div>
+                    </div>
+                    
+                    <div class="layer dense-layer">
+                        <strong>Embedding Layer</strong><br>
+                        Vocab: 15,000 → 250D
+                        <div class="feature-dims">Output: (batch_size, 60, 250)</div>
+                    </div>
+                    
+                    <div class="parallel-conv">
+                        <div class="conv-kernel">Conv1D<br>K=2<br>128 filters</div>
+                        <div class="conv-kernel">Conv1D<br>K=3<br>128 filters</div>
+                        <div class="conv-kernel">Conv1D<br>K=4<br>128 filters</div>
+                        <div class="conv-kernel">Conv1D<br>K=5<br>128 filters</div>
+                    </div>
+                    
+                    <div class="layer conv-layer">
+                        <strong>Global Max Pooling + Concat</strong>
+                        <div class="feature-dims">4 × 128 = 512 features</div>
+                    </div>
+                    
+                    <div class="layer dense-layer">
+                        <strong>Dense + BatchNorm + Dropout</strong><br>
+                        512 → 128D
+                        <div class="feature-dims">Text features: 128D</div>
+                    </div>
+                </div>
+                
+                <div class="branch image-branch">
+                    <div class="branch-title">🖼️ IMAGE BRANCH</div>
+                    
+                    <div class="layer input-layer">
+                        <strong>Image Input</strong><br>
+                        Shape: (batch_size, 224, 224, 3)
+                        <div class="feature-dims">Product images (RGB)</div>
+                    </div>
+                    
+                    <div class="layer conv-layer">
+                        <strong>MobileNetV2 Backbone</strong><br>
+                        Pre-trained on ImageNet
+                        <div class="feature-dims">Feature maps: various sizes</div>
+                    </div>
+                    
+                    <div class="layer conv-layer">
+                        <strong>Global Average Pooling</strong>
+                        <div class="feature-dims">Output: 1,280 features</div>
+                    </div>
+                    
+                    <div class="layer dense-layer">
+                        <strong>Dense + BatchNorm + Dropout</strong><br>
+                        1,280 → 256D
+                        <div class="feature-dims">Image features: 256D</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="arrow">⬇️</div>
+            
+            <!-- Fusion Section -->
+            <div class="fusion-section">
+                <div class="fusion-title">🔗 MULTIMODAL FUSION</div>
+                
+                <div class="layer dense-layer">
+                    <strong>Concatenate Features</strong><br>
+                    Text (128D) + Image (256D) = 384D
+                    <div class="feature-dims">Fused multimodal representation</div>
+                </div>
+                
+                <div class="layer dense-layer">
+                    <strong>Fusion Dense 1</strong><br>
+                    384 → 128D + BatchNorm + Dropout(0.5)
+                </div>
+                
+                <div class="layer dense-layer">
+                    <strong>Fusion Dense 2</strong><br>
+                    128 → 64D + BatchNorm + Dropout(0.5)
+                </div>
+            </div>
+            
+            <div class="arrow">⬇️</div>
+            
+            <!-- Output Section -->
+            <div class="output-layer">
+                <strong>🎯 CLASSIFICATION OUTPUT</strong><br>
+                64D → num_classes (Softmax)<br>
+                <div class="feature-dims">Product category probabilities</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
