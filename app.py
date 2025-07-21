@@ -23,6 +23,8 @@ st.set_page_config(
 )
 
 # --- Data Loading (Cached for efficiency) ---
+
+
 @st.cache_data
 def load_all_data():
     path = r"./data/raw"
@@ -32,18 +34,22 @@ def load_all_data():
         Y_train_df = pd.read_parquet(f"{path}/Y_train_CVw08PX.parquet")
         # Merge Y_train into X_train immediately after loading to ensure consistency across reruns
         X_train_df = X_train_df.merge(Y_train_df, how='left', left_index=True,
-                                    right_index=True, suffixes=('_X_train', '_Y_train'))
+                                      right_index=True, suffixes=('_X_train', '_Y_train'))
         return X_test_df, X_train_df, Y_train_df
     except FileNotFoundError as e:
-        st.error(f"Error loading data: {e}. Please ensure data files are in the '{path}' directory.")
-        st.stop() # Stop the app if data is not found
+        st.error(
+            f"Error loading data: {e}. Please ensure data files are in the '{path}' directory.")
+        st.stop()  # Stop the app if data is not found
     except Exception as e:
         st.error(f"An unexpected error occurred during data loading: {e}")
         st.stop()
 
+
 X_test, X_train, Y_train = load_all_data()
 
 # --- NLTK Downloads (Cached for efficiency) ---
+
+
 @st.cache_resource
 def download_nltk_data():
     try:
@@ -51,9 +57,11 @@ def download_nltk_data():
     except Exception:
         nltk.download('stopwords')
     try:
-        nltk.data.find('tokenizers/punkt') # Required for word_tokenize, though not explicitly used here, good to have if needed later
+        # Required for word_tokenize, though not explicitly used here, good to have if needed later
+        nltk.data.find('tokenizers/punkt')
     except Exception:
         nltk.download('punkt')
+
 
 download_nltk_data()
 
@@ -62,6 +70,8 @@ french_stopwords = set(stopwords.words('french'))
 all_stopwords = french_stopwords.union(custom_stopwords)
 
 # Tokenization and cleaning
+
+
 def clean_text(text):
     if not isinstance(text, str):
         return []
@@ -73,13 +83,15 @@ def clean_text(text):
     return [word_grouping.get(w, w) for w in tokens if w not in all_stopwords]
 
 # Word clouds
+
+
 def plot_wordcloud(tokens, title, colormap):
     text = ' '.join(tokens)
     if not text:
         st.warning(f"No valid text for: {title}")
         return
     wc = WordCloud(width=800, height=400, background_color="white",
-                    colormap=colormap).generate(text)
+                   colormap=colormap).generate(text)
     fig, ax = plt.subplots(figsize=(10, 5))
     ax.imshow(wc, interpolation="bilinear")
     ax.axis("off")
@@ -87,15 +99,18 @@ def plot_wordcloud(tokens, title, colormap):
     st.pyplot(fig)
 
 # Frequency tables
+
+
 def get_freq_df(tokens):
     return pd.DataFrame(Counter(tokens).most_common(20), columns=["Word", "Frequency"])
+
 
 # ---- Streamlit specific code ----
 st.title("Rakuten e-commerce project")
 st.sidebar.title("Table of contents")
 pages = [
-    "Data Processing", 
-    "DataVizualization", 
+    "Data Processing",
+    "Data Exploration", # Visualization
     "Modelling",
     "Interpretation"
 ]
@@ -104,7 +119,6 @@ page = st.sidebar.radio("Go to", pages)
 
 # --- Page 1: Data Processing ---
 if page == pages[0]:
-    st.header("Display the original train data")
     st.subheader("Presentation of DataFrames")
 
     tables = [('X_train', X_train), ('X_test', X_test), ('Y_train', Y_train)]
@@ -115,25 +129,22 @@ if page == pages[0]:
         buffer = io.StringIO()
         table.info(buf=buffer)
         s = buffer.getvalue()
-        st.text(s)
+        # st.text(s)
+        # st.write(f"Duplicates: {table.duplicated().sum()}")
 
-        st.write(f"Duplicates: {table.duplicated().sum()}")
-
-    st.subheader("The training data (merged with Y_train)")
-    st.dataframe(X_train.head())
-    st.write(f"Shape of X_train: {X_train.shape}")
-
-    st.subheader("The dataset description")
-    st.dataframe(X_train.describe())
-
-    if st.checkbox("Show NA counts for X_train"):
-        st.dataframe(X_train.isna().sum())
+    # st.subheader("The training data (merged with Y_train)")
+    # st.dataframe(X_train.head())
+    # st.write(f"Shape of X_train: {X_train.shape}")
+    # st.subheader("The dataset description")
+    # st.dataframe(X_train.describe())
+    # if st.checkbox("Show NA counts for X_train"):
+    #     st.dataframe(X_train.isna().sum())
 
     st.markdown("""
-    "In each column, we are going to investigate:
+    In each column, we are going to investigate:
     1. Missing values
     2. Duplicates
-    3. Unique modalities"
+    3. Unique modalities
     """)
 
     missing_x = X_train.isnull().sum()
@@ -151,7 +162,8 @@ if page == pages[0]:
     )].duplicated(subset=["description"]).mean() * 100
     duplicate_productid_percent = X_train.duplicated(
         subset=["productid"]).mean() * 100
-    duplicate_imageid_percent = X_train.duplicated(subset=["imageid"]).mean() * 100
+    duplicate_imageid_percent = X_train.duplicated(
+        subset=["imageid"]).mean() * 100
     duplicate_prdtypecode_percent = X_train.duplicated(
         subset=["prdtypecode"]).mean() * 100
 
@@ -211,49 +223,51 @@ if page == pages[0]:
     check_df = pd.DataFrame({
         "Values": values,
         "Values (%)": percent_values
-    }, index=index) # Removed [:15] as index_tuples list has exactly 15 elements now
+        # Removed [:15] as index_tuples list has exactly 15 elements now
+    }, index=index)
 
     st.title("Data Quality Checks")
 
     st.dataframe(check_df.style.format(
-        {"Values (%)": "{:.2f}%"}), use_container_width=True) # Added % sign to format
+        # Added % sign to format
+        {"Values (%)": "{:.2f}%"}), use_container_width=True)
 
     st.markdown(
         f"**The exact number of duplicates by line is:** {X_train.duplicated().sum()}")
 
-    st.header("First Analysis Interpretation")
+    st.header("First Analysis")
     st.markdown("""
-    *=== Designation ===*
+    === Designation ===
 
-    *No null values but 3% of duplicates, which can cause issues further on.*
+    No null values but 3% of duplicates, which can cause issues further on.
 
-    *=== Description ===*
+    === Description ===
 
-    *35% of missing values, suggesting that descriptions are optional for sellers on Rakuten.*
-    *14% of duplicates, which suggests that some sellers may have...*
-    *- copy-pasted descriptions for identical products they sold numerous copies of*
-    *- copy-pasted descriptions for identical products with some slight feature differences (different color, size, state, etc.)*
+    35% of missing values, suggesting that descriptions are optional for sellers on Rakuten.
+    14% of duplicates, which suggests that some sellers may have...
+    - copy-pasted descriptions for identical products they sold numerous copies of
+    - copy-pasted descriptions for identical products with some slight feature differences (different color, size, state, etc.)
 
-    *Missing values and duplicates will require some preprocessing.*
+    Missing values and duplicates will require some preprocessing.
 
-    *=== Productid and Imageid ===*
+    === Productid and Imageid ===
 
-    *Unique identifiers generated for each product. No missing values or duplicates.*
+    Unique identifiers generated for each product. No missing values or duplicates.
 
-    *=== Product Type Code ===*
+    === Product Type Code ===
 
-    *There are 27 unique product types. We will drill-down into these further on.*
+    There are 27 unique product types. We will drill-down into these further on.
     """)
 
 
 # --- Page 2: DataVizualization ---
 if page == pages[1]:
     st.header("Product type identification")
-    st.subheader("Generating Wordclouds for each product type")
     data = X_train.copy()
 
     st.title("Word Clouds and Frequency Tables by Product Type")
-    st.subheader("(Type Name assumed based on observations in French & English)")
+    st.subheader(
+        "(Type Name assumed based on observations in French & English)")
     #         "Choose a product type:", sorted(data['prdtypecode'].unique()))
     selected_type = st.selectbox(
         "Choose a product type:", prdtypes,
@@ -296,11 +310,13 @@ if page == pages[1]:
 
     # Show a sample table
     st.subheader("Sample of Mapped Product Types in X_train")
-    st.dataframe(X_train.sample(10).sort_values(
-        by="prdtypecode"), use_container_width=True)
+    st.dataframe(
+        X_train.sample(20)[['prdtypecode', 'prdtype',]].sort_values(by="prdtypecode"),
+        use_container_width=True,
+        # hide_index=True
+    )
 
     st.subheader("Distribution of products across product types")
-    st.write("General statistics")
     prdtypecode_count = X_train['prdtypecode'].value_counts()
 
     # Key statistics
@@ -309,7 +325,8 @@ if page == pages[1]:
     prdtypecode_avg_frequency = round(prdtypecode_count.mean(), 0)
     prdtypecode_med_frequency = round(prdtypecode_count.median(), 0)
     prdtypecode_std_classes = round(prdtypecode_count.std(), 0)
-    imbalance_ratio = round(prdtypecode_count.max() / prdtypecode_count.min(), 1)
+    imbalance_ratio = round(prdtypecode_count.max() /
+                            prdtypecode_count.min(), 1)
 
     # Class names from prdtypes dictionary
     prdtype_max_frequency = prdtypes.get(prdtypecode_max_frequency, "Unknown")
@@ -371,12 +388,12 @@ if page == pages[1]:
     ax2.set_ylim(0, prdtypecode_count[prdtypecode_count_index].max())
     st.pyplot(fig1)
 
-    st.header("Distribution of products per product Type Code")
-    prdtypecode_count_df = pd.DataFrame({
-        "Product Type": prdtype_sorted_list,
-        "Occurences": prdtypecode_count
-    })
-    st.dataframe(prdtypecode_count_df)
+    # st.header("Distribution of products per product Type Code")
+    # prdtypecode_count_df = pd.DataFrame({
+    #     "Product Type": prdtype_sorted_list,
+    #     "Occurences": prdtypecode_count
+    # })
+    # st.dataframe(prdtypecode_count_df)
 
     st.header("Dispersion Product Types per # Occurences")
     fig2 = plt.figure(figsize=(14, 3))
@@ -393,13 +410,15 @@ if page == pages[1]:
     """)
 
     st.write("Data inspection")
-    X_train['designation_length'] = X_train['designation'].astype(str).str.len()
-    X_train['description_length'] = X_train['description'].astype(str).str.len()
+    X_train['designation_length'] = X_train['designation'].astype(
+        str).str.len()
+    X_train['description_length'] = X_train['description'].astype(
+        str).str.len()
 
     # Group by 'prdtypecode' and count the null values in 'description' and total values
     null_counts = X_train.groupby('prdtypecode').agg({
         'description': lambda x: x.isnull().sum(),
-        'designation': 'count' # This counts non-null designations
+        'designation': 'count'  # This counts non-null designations
     }).reset_index()
 
     # Map 'prdtypecode' to 'prdtype' using the prdtypes dictionary
@@ -421,7 +440,6 @@ if page == pages[1]:
     # Sort the DataFrame by the number of null values in 'description' in descending order
     final_df = final_df.sort_values('null_descriptions_count', ascending=False)
 
-    st.title("Number of Null Values in Description per Product Type")
     fig, ax1 = plt.subplots(figsize=(12, 6))
     sns.barplot(data=final_df, x='prdtype',
                 y='null_descriptions_count', ax=ax1, color='skyblue')
@@ -440,20 +458,18 @@ if page == pages[1]:
     plt.tight_layout()
     st.pyplot(fig)
 
-    # Display the final DataFrame sorted by percentage of null values
-    final_df_sorted = final_df.sort_values(
-        'null_descriptions_pct', ascending=False)
-    st.header("Number of Null Values in Description per Product Type")
-    st.dataframe(final_df_sorted)
+    # final_df_sorted = final_df.sort_values(
+    #     'null_descriptions_pct', ascending=False)
+    # st.dataframe(final_df_sorted)
 
     st.write('''We notice that 3 product types have >40% of null descriptions. 3 of these categories relate to books or magazines,
              suggesting that the title was a sufficient source of information for sellers and buyers, especially when it is second hand.
              We will have to take this in consideration in the future to prevent underfitting.''')
 
-
     st.write("Replicate descriptions")
     # Create a new column that checks if designation is identical to description
-    X_train['identical_designation_description'] = X_train['designation'].astype(str) == X_train['description'].astype(str)
+    X_train['identical_designation_description'] = X_train['designation'].astype(
+        str) == X_train['description'].astype(str)
     # Group by 'prdtypecode' and count the occurrences where designation is identical to description
     identical_counts = X_train.groupby('prdtypecode').agg({
         'identical_designation_description': 'sum',
@@ -475,7 +491,6 @@ if page == pages[1]:
                                  'prdtype', 'identical_count', 'identical_pct']]
     final_df = final_df.sort_values('identical_count', ascending=False)
 
-    st.title("Number of Products with Identical Designation and Description per Product Type")
     fig, ax1 = plt.subplots(figsize=(12, 6))
     sns.barplot(data=final_df, x='prdtype',
                 y='identical_count', ax=ax1, color='skyblue')
@@ -495,30 +510,28 @@ if page == pages[1]:
     plt.tight_layout()
     st.pyplot(fig)
 
-    # Display the final DataFrame sorted by percentage of identical values
-    final_df_sorted = final_df.sort_values('identical_pct', ascending=False)
-    st.header(
-        "Number of Products with Identical Designation and Description per Product Type")
-    st.dataframe(final_df_sorted)
+    # final_df_sorted = final_df.sort_values('identical_pct', ascending=False)
+    # st.dataframe(final_df_sorted)
 
     # Display sample of products with identical designation and description
     replicate_products = X_train[X_train['identical_designation_description']]
     replicate_products_count = replicate_products.shape[0]
 
-    st.header("Random Sample of 10 Products with Identical Designation and Description")
-    st.write(f'There are {replicate_products_count} replicate products in total.')
+    st.header(
+        "Random Sample of 10 Products with Identical Designation and Description")
+    st.write(
+        f'There are {replicate_products_count} replicate products in total.')
     st.dataframe(replicate_products[[
         'prdtypecode', 'prdtype', 'designation', 'description']].sample(10))
 
     st.write('''Replicate dimensions is a limited phenomenon. It reaches 1.4% of products for Puériculture products (child care).
              We will still have this in mind for the preprocessing.''')
 
-    st.header("Duplicate designations and descriptions")
-    st.title("Duplicate Values Analysis")
-
     # X_train['designation_length'] = X_train['designation'].str.len()
     # X_train['description_length'] = X_train['description'].str.len()
-
+    
+    # st.header("Duplicate designations and descriptions")
+    # st.title("Duplicate Values Analysis")
     # Group by 'prdtypecode' and count duplicates
     duplicate_counts = X_train.groupby('prdtypecode').agg(
         designation_duplicates=pd.NamedAgg(
@@ -530,8 +543,6 @@ if page == pages[1]:
         description_non_null_count=pd.NamedAgg(
             column='description', aggfunc=lambda x: x.dropna().count())
     ).reset_index()
-
-    # Map 'prdtypecode' to 'prdtype'
     duplicate_counts['prdtype'] = duplicate_counts['prdtypecode'].map(prdtypes)
 
     # Calculate percentages
@@ -556,78 +567,79 @@ if page == pages[1]:
     mean_description_pct = final_df['duplicate_descriptions_pct'].mean()
 
     # VISUALIZATION 1: DESIGNATION DUPLICATES
-    st.header(
-        "Number of Duplicate Values in Designation per Product Type (Excluding Nulls)")
-    fig1, ax1 = plt.subplots(figsize=(14, 6))
+    # st.header(
+    #     "Number of Duplicate Values in Designation per Product Type (Excluding Nulls)")
+    # fig1, ax1 = plt.subplots(figsize=(14, 6))
 
-    sns.barplot(data=final_df, x='prdtype', y='duplicate_designations_count',
-                ax=ax1, color='skyblue')
-    ax1.set_xlabel('Product Type')
-    ax1.set_ylabel('Number of Duplicate Values')
-    ax1.set_xticklabels(ax1.get_xticklabels(), rotation=90, ha='right')
-    ax1.grid(True, linestyle=':', alpha=0.7)
-
-    # Mean line
-    ax1.axhline(mean_designation_count, color='skyblue',
-                linestyle=':', linewidth=1)
-    ax1.text(x=len(final_df)-0.5, y=mean_designation_count,
-             s=f'Mean: {mean_designation_count:.1f}', color='skyblue',
-             ha='right', va='center', bbox=dict(facecolor='white', alpha=0.7))
-
-    # Percentage line
-    ax2 = ax1.twinx()
-    sns.lineplot(data=final_df, x='prdtype', y='duplicate_designations_pct',
-                 ax=ax2, color='lightcoral', marker='o')
-    ax2.set_ylabel('Percentage of Duplicate Values (%)')
-    ax2.axhline(mean_designation_pct, color='lightcoral',
-                linestyle=':', linewidth=1)
-    ax2.text(x=len(final_df)-0.5, y=mean_designation_pct,
-             s=f'Mean (%): {mean_designation_pct:.1f}%', color='lightcoral',
-             ha='right', va='center', bbox=dict(facecolor='white', alpha=0.7))
-
-    st.pyplot(fig1)
-
-    # VISUALIZATION 2: DESCRIPTION DUPLICATES
-    st.header(
-        "Number of Duplicate Values in Description per Product Type (Excluding Nulls)")
-    fig2, ax3 = plt.subplots(figsize=(14, 6))
-
-    sns.barplot(data=final_df, x='prdtype', y='duplicate_descriptions_count',
-                ax=ax3, color='skyblue')
-    ax3.set_xlabel('Product Type')
-    ax3.set_ylabel('Number of Duplicate Values')
-    ax3.set_xticklabels(ax3.get_xticklabels(), rotation=90, ha='right')
-    ax3.grid(True, linestyle=':', alpha=0.7)
+    # sns.barplot(data=final_df, x='prdtype', y='duplicate_designations_count',
+    #             ax=ax1, color='skyblue')
+    # ax1.set_xlabel('Product Type')
+    # ax1.set_ylabel('Number of Duplicate Values')
+    # ax1.set_xticklabels(ax1.get_xticklabels(), rotation=90, ha='right')
+    # ax1.grid(True, linestyle=':', alpha=0.7)
 
     # Mean line
-    ax3.axhline(mean_description_count, color='skyblue',
-                linestyle=':', linewidth=1)
-    ax3.text(x=len(final_df)-0.5, y=mean_description_count,
-             s=f'Mean: {mean_description_count:.1f}', color='skyblue',
-             ha='right', va='center', bbox=dict(facecolor='white', alpha=0.7))
+    # ax1.axhline(mean_designation_count, color='skyblue',
+    #             linestyle=':', linewidth=1)
+    # ax1.text(x=len(final_df)-0.5, y=mean_designation_count,
+    #          s=f'Mean: {mean_designation_count:.1f}', color='skyblue',
+    #          ha='right', va='center', bbox=dict(facecolor='white', alpha=0.7))
 
     # Percentage line
-    ax4 = ax3.twinx()
-    sns.lineplot(data=final_df, x='prdtype', y='duplicate_descriptions_pct',
-                 ax=ax4, color='lightcoral', marker='o')
-    ax4.set_ylabel('Percentage of Duplicate Values (%)')
-    ax4.axhline(mean_description_pct, color='lightcoral',
-                linestyle=':', linewidth=1)
-    ax4.text(x=len(final_df)-0.5, y=mean_description_pct,
-             s=f'Mean (%): {mean_description_pct:.1f}%', color='lightcoral',
-             ha='right', va='center', bbox=dict(facecolor='white', alpha=0.7))
+    # ax2 = ax1.twinx()
+    # sns.lineplot(data=final_df, x='prdtype', y='duplicate_designations_pct',
+    #              ax=ax2, color='lightcoral', marker='o')
+    # ax2.set_ylabel('Percentage of Duplicate Values (%)')
+    # ax2.axhline(mean_designation_pct, color='lightcoral',
+    #             linestyle=':', linewidth=1)
+    # ax2.text(x=len(final_df)-0.5, y=mean_designation_pct,
+    #          s=f'Mean (%): {mean_designation_pct:.1f}%', color='lightcoral',
+    #          ha='right', va='center', bbox=dict(facecolor='white', alpha=0.7))
 
-    st.pyplot(fig2)
+    # st.pyplot(fig1)
 
-    # DATA TABLE
-    st.header("Duplicate Values Summary")
-    final_df_sorted = final_df.sort_values(
-        'duplicate_descriptions_pct', ascending=False)
-    st.dataframe(final_df_sorted)
+    # # VISUALIZATION 2: DESCRIPTION DUPLICATES
+    # st.header(
+    #     "Number of Duplicate Values in Description per Product Type (Excluding Nulls)")
+    # fig2, ax3 = plt.subplots(figsize=(14, 6))
+
+    # sns.barplot(data=final_df, x='prdtype', y='duplicate_descriptions_count',
+    #             ax=ax3, color='skyblue')
+    # ax3.set_xlabel('Product Type')
+    # ax3.set_ylabel('Number of Duplicate Values')
+    # ax3.set_xticklabels(ax3.get_xticklabels(), rotation=90, ha='right')
+    # ax3.grid(True, linestyle=':', alpha=0.7)
+
+    # # Mean line
+    # ax3.axhline(mean_description_count, color='skyblue',
+    #             linestyle=':', linewidth=1)
+    # ax3.text(x=len(final_df)-0.5, y=mean_description_count,
+    #          s=f'Mean: {mean_description_count:.1f}', color='skyblue',
+    #          ha='right', va='center', bbox=dict(facecolor='white', alpha=0.7))
+
+    # # Percentage line
+    # ax4 = ax3.twinx()
+    # sns.lineplot(data=final_df, x='prdtype', y='duplicate_descriptions_pct',
+    #              ax=ax4, color='lightcoral', marker='o')
+    # ax4.set_ylabel('Percentage of Duplicate Values (%)')
+    # ax4.axhline(mean_description_pct, color='lightcoral',
+    #             linestyle=':', linewidth=1)
+    # ax4.text(x=len(final_df)-0.5, y=mean_description_pct,
+    #          s=f'Mean (%): {mean_description_pct:.1f}%', color='lightcoral',
+    #          ha='right', va='center', bbox=dict(facecolor='white', alpha=0.7))
+
+    # st.pyplot(fig2)
+
+    # # DATA TABLE
+    # st.header("Duplicate Values Summary")
+    # final_df_sorted = final_df.sort_values(
+    #     'duplicate_descriptions_pct', ascending=False)
+    # st.dataframe(final_df_sorted)
 
     # TITLE AND HEADER
-    st.title("Product Duplicates Analysis")
-    st.header("Product Types by Percentage of Duplicate Designations vs. Descriptions")
+    st.title("Duplicates Analysis")
+    st.header(
+        "Product Types by Percentage of Duplicate Designations vs. Descriptions")
 
     # CREATE THE VISUALIZATION
     fig = plt.figure(figsize=(10, 12))
@@ -643,7 +655,8 @@ if page == pages[1]:
         alpha=0.7
     )
 
-    plt.title('Product Types by Percentage of Duplicate Designations vs. Descriptions')
+    plt.title(
+        'Product Types by Percentage of Duplicate Designations vs. Descriptions')
     plt.xlabel('Percentage of Duplicate Designations (%)')
     plt.ylabel('Percentage of Duplicate Descriptions (%)')
     plt.grid(None, linestyle=':', alpha=0.7)
@@ -668,8 +681,9 @@ if page == pages[1]:
     st.pyplot(fig)
 
     # Display final dataframe
-    st.header("Number of Duplicate Values in Designation and Description per Product Type (Excluding Nulls)")
-    st.dataframe(final_df)
+    # st.header(
+    #     "Number of Duplicate Values in Designation and Description per Product Type (Excluding Nulls)")
+    # st.dataframe(final_df)
     col1, col2 = st.columns(2)
 
     # Get and display top 20 duplicated designations
@@ -684,7 +698,8 @@ if page == pages[1]:
             on='designation',
             how='left'
         )
-        top_designations['prdtype'] = top_designations['prdtypecode'].map(prdtypes)
+        top_designations['prdtype'] = top_designations['prdtypecode'].map(
+            prdtypes)
         st.dataframe(
             top_designations.sort_values('duplicate_count', ascending=False)
             .head(20)[['prdtypecode', 'prdtype', 'designation', 'duplicate_count']]
@@ -702,10 +717,12 @@ if page == pages[1]:
             on='description',
             how='left'
         )
-        top_descriptions['prdtype'] = top_descriptions['prdtypecode'].map(prdtypes)
+        top_descriptions['prdtype'] = top_descriptions['prdtypecode'].map(
+            prdtypes)
         st.dataframe(
             top_descriptions.sort_values('duplicate_count', ascending=False)
-            .head(20)[['prdtypecode', 'prdtype', 'description', 'duplicate_count']] # Completed the line
+            # Completed the line
+            .head(20)[['prdtypecode', 'prdtype', 'description', 'duplicate_count']]
         )
 
 # --- Page 3: Modelling ---
@@ -730,7 +747,8 @@ if page == pages[2]:
             st.success("Model weights loaded successfully!")
         except Exception as e:
             st.error(f"Error loading model weights: {e}")
-            st.info(f"Please ensure '{FILE_MODEL_WEIGHTS}' exists and the model architecture (vocab_size, embedding_dim, max_sequence_length, and layer types/order) precisely matches the saved weights.")
+            st.info(
+                f"Please ensure '{FILE_MODEL_WEIGHTS}' exists and the model architecture (vocab_size, embedding_dim, max_sequence_length, and layer types/order) precisely matches the saved weights.")
 
         # You can now use your model
         st.write("Model Summary:")
@@ -739,25 +757,26 @@ if page == pages[2]:
         vectors = model.layers[-1].trainable_weights[0].numpy()
         st.write(f"Shape of last loaded Dense vector: {vectors.shape}")
 
-
         if os.path.exists(FILE_MODEL_HISTORY):
             with open(FILE_MODEL_HISTORY, 'rb') as file_pi:
                 history = pickle.load(file_pi)
             print(f"Training history loaded from {FILE_MODEL_HISTORY}")
             print("Loaded history keys:", history.history.keys())
         else:
-            print(f"Warning: Training history file not found at {FILE_MODEL_HISTORY}")
+            print(
+                f"Warning: Training history file not found at {FILE_MODEL_HISTORY}")
 
         model_name = f'{selected_model_file}-lr-{models.LR}_testing_valf1-{history.history["val_f1_score"][-1]:.3f}'
 
         st.title(f"Last Dense Layer (with {model_name})")
-        st.json(history.history, expanded = False)
+        st.json(history.history, expanded=False)
 
         # TRAINING CURVES + SUMMARY
         fig = plt.figure(figsize=(12, 4))
 
         # Create grid: 2x3 layout
-        gs = fig.add_gridspec(2, 3, height_ratios=[1, 1], width_ratios=[1, 1, 0.8])
+        gs = fig.add_gridspec(2, 3, height_ratios=[
+                              1, 1], width_ratios=[1, 1, 0.8])
 
         # Training curves (top row)
         ax1 = fig.add_subplot(gs[0, 0])
@@ -788,7 +807,8 @@ if page == pages[2]:
 
         ax4 = fig.add_subplot(gs[1, 1])
         if 'learning_rate' in history.history:
-            ax4.plot(history.history['learning_rate'], linewidth=2, color='red')
+            ax4.plot(history.history['learning_rate'],
+                     linewidth=2, color='red')
             ax4.set_title('Learning Rate', fontweight='bold')
             ax4.set_yscale('log')
         else:
@@ -800,7 +820,8 @@ if page == pages[2]:
         ax_text = fig.add_subplot(gs[:, 2])
         ax_text.axis('off')
 
-        plt.suptitle(f'Training Report - {model_name}', fontsize=14, fontweight='bold')
+        plt.suptitle(
+            f'Training Report - {model_name}', fontsize=14, fontweight='bold')
         plt.tight_layout()
         st.pyplot(fig)
 
