@@ -892,7 +892,8 @@ if page == pages[2]:
             
     elif selected_model == "Multimodal Fusion Model":
         st.subheader("Multimodal Fusion Model")
-        
+        display_html_file('multimodal.html')
+        display_html_file('technic.html')
         # Load specific multimodal model files
         model_file = multimodal_model
         history_file = multimodal_history
