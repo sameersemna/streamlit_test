@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improved CNN Model</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 15px;
+            background: transparent;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .model-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .branch {
+            background: #fef3f2;
+            border-color: #f97316;
+            border-radius: 8px;
+            padding: 15px;
+            min-width: 350px;
+            border: 2px solid #f97316;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .branch-title {
+            font-size: 1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #ea580c;
+        }
+        
+        .layer {
+            background: white;
+            padding: 8px;
+            margin: 6px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 0.8em;
+            border-left: 4px solid #6c757d;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .arrow {
+            font-size: 1.2em;
+            color: #6c757d;
+            margin: 3px 0;
+        }
+        
+        .parallel-conv {
+            display: flex;
+            gap: 6px;
+            justify-content: space-between;
+            margin: 6px 0;
+        }
+        
+        .conv-kernel {
+            flex: 1;
+            background: white;
+            padding: 4px;
+            border-radius: 3px;
+            font-size: 0.7em;
+            text-align: center;
+            border: 1px solid #6c757d;
+        }
+        
+        .feature-dims {
+            font-size: 0.7em;
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 3px;
+        }
+        
+        .output-layer {
+            background: #fef3f2;
+            border: 2px solid #f97316;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            font-size: 1em;
+            font-weight: bold;
+            color: #ea580c;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text CNN Model</h1>
+        
+        <div class="model-flow">
+            <!-- Input and Processing -->
+            <div class="branch">
+                <div class="branch-title">TEXT PROCESSING PIPELINE</div>
+                
+                <div class="layer">
+                    <strong>Text Input</strong><br>
+                    Shape: (batch_size, 60)
+                    <div class="feature-dims">French text token sequences</div>
+                </div>
+                
+                <div class="layer">
+                    <strong>Embedding Layer</strong><br>
+                    Vocab: 15,000 → 180D
+                    <div class="feature-dims">Output: (batch_size, 60, 180)</div>
+                </div>
+                
+                <div class="parallel-conv">
+                    <div class="conv-kernel">Conv1D<br>K=2<br>128 filters</div>
+                    <div class="conv-kernel">Conv1D<br>K=3<br>128 filters</div>
+                    <div class="conv-kernel">Conv1D<br>K=4<br>128 filters</div>
+                    <div class="conv-kernel">Conv1D<br>K=5<br>128 filters</div>
+                </div>
+                
+                <div class="layer">
+                    <strong>Global Max Pooling + Concat</strong>
+                    <div class="feature-dims">4 × 128 = 512 features</div>
+                </div>
+            </div>
+            
+            <div class="arrow">⬇️</div>
+            
+            <!-- Dense Processing -->
+            <div class="branch">
+                <div class="branch-title">DENSE FUSION LAYERS</div>
+                
+                <div class="layer">
+                    <strong>Dense Layer 1</strong><br>
+                    512 → 256D + BatchNorm + Dropout(0.5)
+                    <div class="feature-dims">Configurable size with regularization (0.075)</div>
+                </div>
+                
+                <div class="layer">
+                    <strong>Dense Layer 2</strong><br>
+                    256 → 128D + BatchNorm + Dropout(0.5)
+                    <div class="feature-dims">Feature extraction</div>
+                </div>
+            </div>
+            
+            <div class="arrow">⬇️</div>
+            
+            <!-- Output Section -->
+            <div class="output-layer">
+                <strong>CLASSIFICATION OUTPUT</strong><br>
+                128D → 27 classes (Softmax)<br>
+                <div class="feature-dims">Product category predictions</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

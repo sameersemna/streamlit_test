@@ -789,6 +789,9 @@ if page == pages[2]:
         
     elif selected_model == "Custom CNN Text":
         st.subheader("Custom CNN Text Model")
+
+
+        display_html_file('text_model.html')
         
         # Load specific model files
         model_file = text_model
