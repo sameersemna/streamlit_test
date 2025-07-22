@@ -12,44 +12,37 @@ from wordcloud import WordCloud
 import re
 import io
 import pickle
+from pathlib import Path
 import models
 from common import custom_stopwords, display_paired_images_in_reports_folder, prdtypes, prdtypes_en, select_h5_file, word_grouping
 
-# --- PAGE CONFIG MUST BE THE VERY FIRST STREAMLIT COMMAND ---
-st.set_page_config(
-    page_title="Rakuten E-commerce Project",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+DATA_RAW = './data/raw'
+DATA_PROCESSED = './data/processed'
+DIR_MARKDOWN = './markdown'
+
+def read_markdown_file(markdown_file):
+    return Path(markdown_file).read_text()
 
 # --- Data Loading (Cached for efficiency) ---
-
-
 @st.cache_data
 def load_all_data():
-    path = r"./data/raw"
     try:
-        X_test_df = pd.read_parquet(f"{path}/X_test_update.parquet")
-        X_train_df = pd.read_parquet(f"{path}/X_train_update.parquet")
-        Y_train_df = pd.read_parquet(f"{path}/Y_train_CVw08PX.parquet")
+        X_test_df = pd.read_parquet(f"{DATA_RAW}/X_test_update.parquet")
+        X_train_df = pd.read_parquet(f"{DATA_RAW}/X_train_update.parquet")
+        Y_train_df = pd.read_parquet(f"{DATA_RAW}/Y_train_CVw08PX.parquet")
         # Merge Y_train into X_train immediately after loading to ensure consistency across reruns
         X_train_df = X_train_df.merge(Y_train_df, how='left', left_index=True,
                                       right_index=True, suffixes=('_X_train', '_Y_train'))
         return X_test_df, X_train_df, Y_train_df
     except FileNotFoundError as e:
         st.error(
-            f"Error loading data: {e}. Please ensure data files are in the '{path}' directory.")
+            f"Error loading data: {e}. Please ensure data files are in the '{DATA_RAW}' directory.")
         st.stop()  # Stop the app if data is not found
     except Exception as e:
         st.error(f"An unexpected error occurred during data loading: {e}")
         st.stop()
 
-
-X_test, X_train, Y_train = load_all_data()
-
 # --- NLTK Downloads (Cached for efficiency) ---
-
-
 @st.cache_resource
 def download_nltk_data():
     try:
@@ -62,16 +55,7 @@ def download_nltk_data():
     except Exception:
         nltk.download('punkt')
 
-
-download_nltk_data()
-
-# Stopwords and replacements
-french_stopwords = set(stopwords.words('french'))
-all_stopwords = french_stopwords.union(custom_stopwords)
-
 # Tokenization and cleaning
-
-
 def clean_text(text):
     if not isinstance(text, str):
         return []
@@ -83,8 +67,6 @@ def clean_text(text):
     return [word_grouping.get(w, w) for w in tokens if w not in all_stopwords]
 
 # Word clouds
-
-
 def plot_wordcloud(tokens, title, colormap):
     text = ' '.join(tokens)
     if not text:
@@ -99,11 +81,21 @@ def plot_wordcloud(tokens, title, colormap):
     st.pyplot(fig)
 
 # Frequency tables
-
-
 def get_freq_df(tokens):
     return pd.DataFrame(Counter(tokens).most_common(20), columns=["Word", "Frequency"])
 
+download_nltk_data()
+# Stopwords and replacements
+french_stopwords = set(stopwords.words('french'))
+all_stopwords = french_stopwords.union(custom_stopwords)
+X_test, X_train, Y_train = load_all_data()
+
+# --- PAGE CONFIG MUST BE THE VERY FIRST STREAMLIT COMMAND ---
+st.set_page_config(
+    page_title="Rakuten E-commerce Project",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # ---- Streamlit specific code ----
 st.title("Rakuten e-commerce project")
@@ -121,7 +113,18 @@ page_current = 0
 
 # --- Page 0: Introduction ---------------------------------------------------
 if page == pages[page_current]:
-    st.subheader("Introduction")
+    st.title("Introduction")
+    # Page configuration
+    st.set_page_config(page_title="Rakuten Product Classification", layout="centered")
+    st.title("Classification of Rakuten E-Commerce Products")
+
+    introduction = read_markdown_file(f"{DIR_MARKDOWN}/introduction.md")
+    st.markdown(introduction, unsafe_allow_html=True)
+
+    # Footer
+    st.markdown("---")
+    st.caption("Developed as part of the Rakuten France Multimodal Product Classification Challenge.")
+
 
 # --- Page 1: Data Processing ---------------------------------------------------
 page_current = page_current + 1
@@ -733,256 +736,16 @@ if page == pages[page_current]:
             .head(20)[['prdtypecode', 'prdtype', 'description', 'duplicate_count']]
         )
 
-    
-
-    st.markdown("""
-    **Image Preprocessing Methods Summary**
-
-    This code implements four different image preprocessing approaches for standardizing product images, with two primary methods offering distinct levels of processing complexity.
-
-    ### **Method Comparison**
-
-    *   **Baseline Preprocessing**
-        
-        *   Maintains original image aspect ratio through intelligent scaling calculations
-            
-        *   Creates uniform 500x500 pixel output with white background padding for consistent dimensions
-            
-        *   Performs essential color space conversion from BGR to RGB format
-            
-        *   Uses INTER\_AREA interpolation for high-quality downsampling during resize operations
-            
-        *   Centers resized images on white background using calculated offsets
-            
-        *   Normalizes pixel values to \[0,1\] range for machine learning compatibility
-            
-        *   Minimal computational overhead with fastest processing speed
-            
-        *   Serves as foundation method without quality enhancements
-            
-    *   **Advanced Augmentation**
-        
-        *   Implements comprehensive multi-stage enhancement pipeline for superior image quality
-            
-        *   Fast Non-Local Means Denoising removes color noise while preserving edge details
-            
-        *   CLAHE (Contrast Limited Adaptive Histogram Equalization) enhances local contrast in LAB color space
-            
-        *   Custom sharpening kernel (9-center, -1 surrounding) increases edge definition and clarity
-            
-        *   Color balance adjustment with alpha scaling (1.1) and brightness offset (10) for optimal exposure
-            
-        *   Sequential processing ensures each enhancement builds upon previous improvements
-            
-        *   Significantly higher computational cost but delivers professional-quality results
-            
-        *   Ideal for applications requiring maximum image quality and visual consistency
-            
-    *   **Background Removal** - Uses AI-based rembg library for automatic background segmentation and replacement
-        
-    *   **Smart Cropping** - Employs edge detection and contour analysis to automatically crop to product boundaries
-        
-
-    The code includes memory-efficient batch processing capabilities and can save processed images to disk for large datasets.
-
-    **Multimodal CNN Model Summary**
-    --------------------------------
-
-    **Complete multimodal classification system combining text and image data using Text CNN + MobileNetV2 architecture for product classification**
-
-    ### **Text Modeling Outline**
-
-    *   **Preprocessing**: Pre-tokenized text sequences padded to max length 60
-        
-    *   **Embedding Layer**: 250-dimensional trainable embeddings with L2 regularization
-        
-    *   **Multi-Kernel CNN**: Parallel Conv1D branches with kernel sizes \[2,3,4,5\] and 128 filters each
-        
-    *   **Feature Extraction**: GlobalMaxPooling1D → BatchNorm → Concatenation → Dense(128) → Dropout(0.4)
-        
-    *   **Output**: 128-dimensional text feature representation
-        
-
-    ### **Image Modeling Outline**
-
-    *   **Backbone**: MobileNetV2 pretrained on ImageNet (frozen initially)
-        
-    *   **Input Processing**: 224×224 RGB images with MobileNetV2 preprocessing
-        
-    *   **Feature Extraction**: GlobalAveragePooling2D → Dense(256) → BatchNorm → Dropout(0.4)
-        
-    *   **Dimensionality**: Reduces from 1280 MobileNetV2 features to 256 dimensions
-        
-    *   **Output**: 256-dimensional image feature representation
-        
-
-    ### **Multimodal Fusion Details**
-
-    *   **Early Fusion**: Concatenates text features (128D) + image features (256D) = 384D combined
-        
-    *   **Fusion Network**: Two-layer classifier with 256→128 neurons, BatchNorm, Dropout(0.5)
-        
-    *   **Final Classification**: Dense layer with softmax activation for multi-class prediction
-        
-    *   **Joint Training**: End-to-end optimization with shared loss backpropagation
-        
-
-    ### **Data Augmentation Details**
-
-    *   **Text Augmentation**: None (uses pre-processed tokens)
-        
-    *   **Image Augmentation**: Applied during training via MultimodalDataGenerator
-        
-    *   **Preprocessing**: MobileNetV2-specific normalization (\[-1,1\] range with ImageNet stats)
-        
-    *   **Batch Processing**: Custom generator handles both modalities simultaneously with proper alignment
-        
-
-    ### **Training Pipeline**
-
-    *   **Optimization**: AdamW with weight decay, ReduceLROnPlateau scheduling
-        
-    *   **Regularization**: L2 regularization on conv/dense layers, dropout, batch normalization
-        
-    *   **Class Balancing**: Computed class weights for imbalanced dataset handling
-        
-    *   **Metrics**: Categorical crossentropy loss, accuracy, macro F1-score
-        
-
-    ### **Image-Specific Data Augmentation Details**
-
-    *   **Active Implementation**: ImageDataGenerator with real-time transforms during batch generation
-        
-    *   **Transform Parameters**:
-        
-        *   **Rotation**: ±15 degrees random rotation
-            
-        *   **Zoom**: ±10% random zoom in/out
-            
-        *   **Flip**: 50% chance horizontal flip
-            
-        *   **Brightness**: ±5% brightness variation
-            
-        *   **Fill**: nearest pixel interpolation for empty areas
-            
-    *   **Conditional Processing**:
-        
-        *   **Training**: augment\_images=True → creates augmentor instance
-            
-        *   **Validation**: augment\_images=False → no augmentation applied
-            
-        *   **Runtime**: random\_transform() applies transforms before preprocessing
-            
-    *   **Pipeline**: Load → Augment (if enabled) → MobileNetV2 preprocess → Batch
-        
-    *   **Features**: Real-time randomized transforms, conservative parameters, integrated with multimodal generator
-    """)
+    summary_images = read_markdown_file(f"{DIR_MARKDOWN}/summary_images.md")
+    st.markdown(summary_images, unsafe_allow_html=True)
 
 # --- Page 3: Modelling ---------------------------------------------------
 page_current = page_current + 1
 if page == pages[page_current]:
     st.header("Modelling")
 
-    st.markdown("""
-    **Simple text-based modelling:** run on the basic text tokens
-                
-    {‘Logistic Regression’: {‘model’: LogisticRegression(max\_iter=1000, solver=‘liblinear’), ‘f1\_score’: 0.7734938224667732, ‘f1\_weighted’: 0.7902879939112404, ‘predictions’: array(\[2705, 1302, 1560, ..., 1560, 1302, 1300\], shape=(16984,))}, ‘SGD Classifier’: {‘model’: SGDClassifier(loss=‘log\_loss’), ‘f1\_score’: 0.7342957373976658, ‘f1\_weighted’: 0.7529368805858434, ‘predictions’: array(\[1281, 1302, 1560, ..., 1560, 2280, 2280\], shape=(16984,))}, ‘Linear SVM’: {‘model’: LinearSVC(), ‘f1\_score’: 0.783122845011161, ‘f1\_weighted’: 0.8044003932739417, ‘predictions’: array(\[1280, 1302, 1560, ..., 1560, 1302, 1300\], shape=(16984,))}, ‘Random Forest’: {‘model’: RandomForestClassifier(max\_depth=20, n\_jobs=-1), ‘f1\_score’: 0.6164494092352807, ‘f1\_weighted’: 0.6270541941377651, ‘predictions’: array(\[1280, 1302, 1560, ..., 1560,  10,  10\], shape=(16984,))}}
-
-    **Text only CNN:** Here’s a bullet point summary of this CNN text classification model:
-                
-    **Model Architecture:**
-                
-    • Multi-branch CNN with parallel Conv1D layers using different kernel sizes (default: 2, 3, 4, 5)
-    
-    • Embedding layer (180 dimensions) followed by convolutional branches with global max pooling
-    
-    • Two dense layers (128 and 64 units) with batch normalization and dropout for regularization
-    
-    • Softmax output layer for multi-class product classification
-                
-    **Key Features:**
-    
-    • tokenized text sequences with configurable vocabulary limit (15,000 tokens)
-    
-    • class weighting to handle imbalanced datasets
-    
-    • early stopping and learning rate reduction callbacks for training optimization
-    
-    • AdamW optimizer with L2 regularization throughout the network
-                
-    **Training Configuration:**
-    
-    • Configurable hyperparameters via command line arguments (epochs, batch size, learning rate, etc.)
-    
-    • Train/validation split (80/20) with stratified sampling
-
-    • F1 score monitoring for model evaluation and early stopping
-                
-    **Analysis & Reporting:**
-                
-    • Includes occlusion-based feature importance analysis for model interpretabilityMultimodal:
-    
-    **Model Architecture:**
-
-    *   **Dual-branch multimodal system** combining text CNN and image CNN (MobileNetV2) for product classification
-        
-    *   **Text branch**: Multi-kernel Conv1D layers (kernels 2,3,4,5) with embedding layer and global max pooling
-        
-    *   **Image branch**: Pre-trained MobileNetV2 backbone with global average pooling and dense layers
-        
-    *   **Fusion layer**: Concatenates text features (128D) and image features (256D) for joint classification
-        
-
-    **Key Multimodal Features:**
-
-    *   Processes both tokenized French text and product images simultaneously
-        
-    *   Custom data generator handles batch loading of text sequences and image files from disk
-        
-    *   MobileNetV2 preprocessing with optional ImageNet normalization or standard scaling
-        
-    *   Image augmentation support for training data (disabled for validation)
-        
-
-    **Training Configuration:**
-
-    *   Command-line configurable hyperparameters for both text and image processing
-        
-    *   Class-weighted training for imbalanced datasets with stratified train/val split
-        
-    *   Early stopping and learning rate reduction based on validation F1 score
-        
-    *   AdamW optimizer with weight decay and L2 regularization throughout
-        
-
-    **Technical Implementation:**
-
-    *   **Data handling**: Single dataframe with pre-processed text tokens and image file paths
-        
-    *   **Memory efficiency**: Batch-wise image loading prevents memory overflow
-        
-    *   **Freezing strategy**: Optional MobileNetV2 backbone freezing for transfer learning
-        
-    *   **Model saving**: Automatic saving when validation F1 score exceeds 0.7 threshold
-        
-
-    **Performance & Evaluation:**
-
-    *   F1 score monitoring (macro-averaged) as primary evaluation metric
-        
-    *   Comprehensive training report generation with hyperparameter tracking
-        
-    *   Training history saved in JSON format for analysis
-        
-    *   Higher complexity model targeting >70% validation F1 performance
-        
-
-    **Data Pipeline:**
-
-    *   Custom MultimodalDataGenerator loads text sequences and images per batch
-        
-    *   Handles image preprocessing, resizing (224x224), and optional augmentation
-    """)
+    modelling = read_markdown_file(f"{DIR_MARKDOWN}/modelling.md")
+    st.markdown(modelling, unsafe_allow_html=True)
 
     selected_model_file = select_h5_file(folder_path=models.DIR_MODELS)
 
@@ -1106,4 +869,7 @@ if page == pages[page_current]:
 # --- Page 5: Conclusion ---------------------------------------------------
 page_current = page_current + 1
 if page == pages[page_current]:
-    st.subheader("Conclusion")
+    st.title("Conclusion")
+
+    conclusion = read_markdown_file(f"{DIR_MARKDOWN}/conclusion.md")
+    st.markdown(conclusion, unsafe_allow_html=True)
