@@ -11,6 +11,170 @@ from functions import display_html_file, show_pdf_page
 import keras
 from sklearn.metrics import confusion_matrix, classification_report
 
+import cv2
+from PIL import Image
+import random
+import glob
+from rembg import remove
+import warnings
+import io
+
+warnings.filterwarnings('ignore')
+
+
+
+from image_preprocessing import (load_original_image, get_random_image_path, baseline_preprocessing, 
+        advanced_augmentation_preprocessing, background_removal_preprocessing, smart_crop_preprocessing)
+
+
+st.title("🖼️ Image Preprocessing Methods Demo")
+
+
+st.markdown("### 📊 Basic Image Properties")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.metric("Total Images", "84,916")
+    st.metric("Missing Images", "0")
+    st.metric("Average Sharpness", "671.93")
+    st.metric("Sharp Images (%)", "86%")
+
+with col2:
+    st.metric("Average Brightness", "43.47")
+    st.metric("Bright Images (%)", "35%")
+    st.metric("Average Contrast", "62.93")
+
+
+st.markdown("*Compare 4 different image preprocessing approaches*")
+
+# Sidebar controls
+st.sidebar.header("Controls")
+
+# Random image button
+if st.sidebar.button("🎲 Select Random Image", type="primary"):
+    st.session_state.current_image = get_random_image_path()
+    st.session_state.processed_images = None
+
+# Initialize session state
+if 'current_image' not in st.session_state:
+    st.session_state.current_image = get_random_image_path()
+if 'processed_images' not in st.session_state:
+    st.session_state.processed_images = None
+
+# Display current image info
+st.info(f"**Current Image:** {os.path.basename(st.session_state.current_image)}")
+
+# Show original image continuously at the top
+if st.session_state.current_image:
+    original = load_original_image(st.session_state.current_image)
+    if original is not None:
+        st.subheader("📸 Original Image")
+        
+        # Make the original image bigger by using columns
+        col1, col2, col3 = st.columns([1, 3, 1])
+        with col2:
+            st.image(original, caption=f"Current: {os.path.basename(st.session_state.current_image)}", use_container_width=True)
+
+# Method descriptions - always visible as dropdown
+st.markdown("---")
+st.subheader("🔍 Method Descriptions")
+
+with st.expander("📖 Click to learn about each method"):
+    st.markdown("""
+    **⚡ Baseline Preprocessing:**
+    - Maintains aspect ratio with intelligent scaling
+    - Creates uniform 500×500 output with white padding
+    - RGB conversion and normalization to [0,1]
+    
+    **🎭 Background Removed:**
+    - Uses AI-based rembg library for automatic background removal
+    - Replaces background with white
+    
+    **✂️ Smart Crop:**
+    - Uses edge detection and contour analysis
+    - Automatically crops to product boundaries
+    - Applies histogram equalization for better contrast
+    
+    **🌟 Advanced Augmentation:**
+    - Multi-stage enhancement pipeline
+    - Fast Non-Local Means Denoising
+    - CLAHE (Contrast Limited Adaptive Histogram Equalization)
+    - Custom sharpening kernel and color balance
+    """)
+
+# Show process instruction if not processed yet
+if not st.session_state.processed_images:
+    st.info("👆 Click 'Process Image' to see the preprocessing results!")
+
+# Process images button
+if st.sidebar.button("🔄 Process Image", type="secondary"):
+    with st.spinner("Processing image with all methods... This may take a moment."):
+        
+        if original is not None:
+            # Process with all methods
+            baseline = baseline_preprocessing(st.session_state.current_image)
+            background_removed = background_removal_preprocessing(st.session_state.current_image)
+            smart_crop = smart_crop_preprocessing(st.session_state.current_image)
+            advanced = advanced_augmentation_preprocessing(st.session_state.current_image)
+            
+            # Store in session state
+            st.session_state.processed_images = {
+                'baseline': baseline,
+                'background_removed': background_removed,
+                'smart_crop': smart_crop,
+                'advanced': advanced
+            }
+            
+            st.success("✅ Image processed successfully!")
+        else:
+            st.error("Failed to load the selected image.")
+
+# Display results
+if st.session_state.processed_images:
+    st.markdown("---")
+    st.subheader("📊 Processing Results")
+    
+    # Create 4 columns for the processed images
+    col1, col2 = st.columns(2)
+    col3, col4 = st.columns(2)
+    
+    
+    columns = [col1, col2, col3, col4]
+    methods = [
+        ('baseline', '⚡ Baseline'),
+        ('background_removed', '🎭 Background Removed'),
+        ('smart_crop', '✂️ Smart Crop'),
+        ('advanced', '🌟 Advanced Augmentation')
+    ]
+    
+    for i, (method, title) in enumerate(methods):
+        with columns[i]:
+            st.markdown(f"**{title}**")
+            
+            img = st.session_state.processed_images[method]
+            if img is not None:
+                # Convert to display format if needed
+                if img.dtype == np.float32:
+                    display_img = (img * 255).astype(np.uint8)
+                else:
+                    display_img = img
+                
+                st.image(display_img, use_container_width=True)
+                
+                # Show image stats
+                st.caption(f"Shape: {img.shape}")
+                if img.dtype == np.float32:
+                    st.caption(f"Range: [{img.min():.3f}, {img.max():.3f}]")
+                else:
+                    st.caption(f"Range: [{img.min()}, {img.max()}]")
+            else:
+                st.error("Failed to process with this method")
+
+else:
+    st.markdown("---")
+
+
 st.header("Modeling")
 
 text_model = "text-cnn-epochs-100-lr-0.001-testing.keras"
