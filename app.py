@@ -109,16 +109,23 @@ def get_freq_df(tokens):
 st.title("Rakuten e-commerce project")
 st.sidebar.title("Table of contents")
 pages = [
+    "Introduction",
     "Data Processing",
     "Data Exploration", # Visualization
     "Modelling",
-    "Interpretation"
+    "Interpretation",
+    "Conclusion"
 ]
 page = st.sidebar.radio("Go to", pages)
+page_current = 0
 
+# --- Page 0: Introduction ---------------------------------------------------
+if page == pages[page_current]:
+    st.subheader("Introduction")
 
-# --- Page 1: Data Processing ---
-if page == pages[0]:
+# --- Page 1: Data Processing ---------------------------------------------------
+page_current = page_current + 1
+if page == pages[page_current]:
     st.subheader("Presentation of DataFrames")
 
     tables = [('X_train', X_train), ('X_test', X_test), ('Y_train', Y_train)]
@@ -260,8 +267,9 @@ if page == pages[0]:
     """)
 
 
-# --- Page 2: DataVizualization ---
-if page == pages[1]:
+# --- Page 2: DataVizualization ---------------------------------------------------
+page_current = page_current + 1
+if page == pages[page_current]:
     st.header("Product type identification")
     data = X_train.copy()
 
@@ -870,8 +878,9 @@ if page == pages[1]:
     *   **Features**: Real-time randomized transforms, conservative parameters, integrated with multimodal generator
     """)
 
-# --- Page 3: Modelling ---
-if page == pages[2]:
+# --- Page 3: Modelling ---------------------------------------------------
+page_current = page_current + 1
+if page == pages[page_current]:
     st.header("Modelling")
 
     st.markdown("""
@@ -1071,8 +1080,9 @@ if page == pages[2]:
         plt.tight_layout()
         st.pyplot(fig)
 
-# --- Page 4: Interpretation ---
-if page == pages[3]:
+# --- Page 4: Interpretation ---------------------------------------------------
+page_current = page_current + 1
+if page == pages[page_current]:
     st.header("Interpretation")
 
     st.markdown("""
@@ -1092,3 +1102,8 @@ if page == pages[3]:
     st.subheader("GradCAM")
 
     display_paired_images_in_reports_folder("./reports/figures")
+
+# --- Page 5: Conclusion ---------------------------------------------------
+page_current = page_current + 1
+if page == pages[page_current]:
+    st.subheader("Conclusion")
