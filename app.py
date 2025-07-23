@@ -1,13 +1,7 @@
 from collections import Counter
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 from pathlib import Path
-from PIL import Image
-from rembg import remove
-from sklearn.metrics import confusion_matrix, classification_report
 from wordcloud import WordCloud
-import cv2
-import glob
 import io
 import json
 import keras
@@ -17,7 +11,6 @@ import numpy as np
 import os
 import pandas as pd
 import pickle
-import random
 import re
 import seaborn as sns
 import streamlit as st
