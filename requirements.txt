@@ -4,6 +4,7 @@ fitz==0.0.1.dev2
 frontend==0.0.3
 joblib==1.5.1
 matplotlib==3.10.3
+onnxruntime==1.22.1
 nltk==3.9.1
 opencv-python-headless
 pandas==2.2.3
