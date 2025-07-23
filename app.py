@@ -18,6 +18,17 @@ from functions import display_html_file, show_pdf_page
 import keras
 from sklearn.metrics import confusion_matrix, classification_report
 import json
+from pathlib import Path
+
+DATA_RAW = './data/raw'
+DATA_PROCESSED = './data/processed'
+DIR_MARKDOWN = './markdown'
+DIR_HTML = './html'
+DIR_MODELS = './models'
+DIR_SAMPLE_IMAGES = './sample_images'
+
+def read_markdown_file(markdown_file):
+    return Path(markdown_file).read_text()
 
 
 # --- PAGE CONFIG MUST BE THE VERY FIRST STREAMLIT COMMAND ---
@@ -120,10 +131,11 @@ pages = [
     "Interpretation"
 ]
 page = st.sidebar.radio("Go to", pages)
-
+page_current = 0
 
 # --- Page 1: Data Processing ---
-if page == pages[0]:
+page_current = page_current + 1
+if page == pages[page_current]:
     st.subheader("Presentation of DataFrames")
 
     tables = [('X_train', X_train), ('X_test', X_test), ('Y_train', Y_train)]
@@ -266,7 +278,8 @@ if page == pages[0]:
 
 
 # --- Page 2: DataVizualization ---
-if page == pages[1]:
+page_current = page_current + 1
+if page == pages[page_current]:
     st.header("Product type identification")
     data = X_train.copy()
 
@@ -730,38 +743,11 @@ if page == pages[1]:
             .head(20)[['prdtypecode', 'prdtype', 'description', 'duplicate_count']]
         )
 
-    
+# -----------------------------------------------------
+page_current = page_current + 1
+if page == pages[page_current]:
+    st.title("🖼️ Image Preprocessing Methods Demo")
 
-    st.markdown("""
-    **Image Preprocessing Methods Summary**
-
-    This code implements four different image preprocessing approaches for standardizing product images, with two primary methods offering distinct levels of processing complexity.
-
-    ### **Method Comparison**
-
-    *   **Baseline Preprocessing**
-        
-        *   Maintains original image aspect ratio through intelligent scaling calculations
-        *   Creates uniform 500x500 pixel output with white background padding for consistent dimensions
-        *   Performs essential color space conversion from BGR to RGB format
-        *   Uses INTER\_AREA interpolation for high-quality downsampling during resize operations
-        *   Centers resized images on white background using calculated offsets
-        *   Normalizes pixel values to \[0,1\] range for machine learning compatibility
-            
-    *   **Advanced Augmentation**
-        
-        *   Implements comprehensive multi-stage enhancement pipeline for superior image quality
-        *   Fast Non-Local Means Denoising removes color noise while preserving edge details
-        *   CLAHE (Contrast Limited Adaptive Histogram Equalization) enhances local contrast
-        *   Custom sharpening kernel (9-center, -1 surrounding) increases edge definition and clarity
-        *   Color balance adjustment with alpha scaling (1.1) and brightness offset (10) for optimal exposure
-            
-    *   **Background Removal** - Uses AI-based rembg library for automatic background segmentation and replacement
-        
-    *   **Smart Cropping** - Employs edge detection and contour analysis to automatically crop to product boundaries
-    """)
-
-if page == pages[2]:
     import cv2
     from PIL import Image
     import random
@@ -774,10 +760,6 @@ if page == pages[2]:
 
     from image_preprocessing import (load_original_image, get_random_image_path, baseline_preprocessing, 
             advanced_augmentation_preprocessing, background_removal_preprocessing, smart_crop_preprocessing)
-
-
-    st.title("🖼️ Image Preprocessing Methods Demo")
-
 
     st.markdown("### 📊 Basic Image Properties")
 
@@ -830,27 +812,31 @@ if page == pages[2]:
     st.subheader("🔍 Method Descriptions")
 
     with st.expander("📖 Click to learn about each method"):
-        st.markdown("""
-        **⚡ Baseline Preprocessing:**
-        - Maintains aspect ratio with intelligent scaling
-        - Creates uniform 500×500 output with white padding
-        - RGB conversion and normalization to [0,1]
+
+        preproc_img = read_markdown_file(f"{DIR_MARKDOWN}/image_preproc.md")
+        st.markdown(preproc_img, unsafe_allow_html=True)
         
-        **🎭 Background Removed:**
-        - Uses AI-based rembg library for automatic background removal
-        - Replaces background with white
+        # st.markdown("""
+        # **⚡ Baseline Preprocessing:**
+        # - Maintains aspect ratio with intelligent scaling
+        # - Creates uniform 500×500 output with white padding
+        # - RGB conversion and normalization to [0,1]
         
-        **✂️ Smart Crop:**
-        - Uses edge detection and contour analysis
-        - Automatically crops to product boundaries
-        - Applies histogram equalization for better contrast
+        # **🎭 Background Removed:**
+        # - Uses AI-based rembg library for automatic background removal
+        # - Replaces background with white
         
-        **🌟 Advanced Augmentation:**
-        - Multi-stage enhancement pipeline
-        - Fast Non-Local Means Denoising
-        - CLAHE (Contrast Limited Adaptive Histogram Equalization)
-        - Custom sharpening kernel and color balance
-        """)
+        # **✂️ Smart Crop:**
+        # - Uses edge detection and contour analysis
+        # - Automatically crops to product boundaries
+        # - Applies histogram equalization for better contrast
+        
+        # **🌟 Advanced Augmentation:**
+        # - Multi-stage enhancement pipeline
+        # - Fast Non-Local Means Denoising
+        # - CLAHE (Contrast Limited Adaptive Histogram Equalization)
+        # - Custom sharpening kernel and color balance
+        # """)
 
     # Show process instruction if not processed yet
     if not st.session_state.processed_images:
@@ -923,20 +909,24 @@ if page == pages[2]:
     else:
         st.markdown("---")
 
-if page == pages[3]:
+# ---  Modeling ---------------------------
+page_current = page_current + 1
+if page == pages[page_current]:
 
     st.header("Modeling")
 
     text_model = "text-cnn-epochs-100-lr-0.001-testing.keras"
     text_history = "text-cnn-epochs-100-lr-0.001-testing_history.json"
     text_report = 'training_text-cnn-epochs-100-lr-0.001-testing_f1-0.7257_t-0721_1642.pdf'
+    #text_predictions = ''
 
     img_model = ''
     img_history = ''
 
-    multimodal_model = "multimodal-text-mobilenetv2-epochs-100-lr-0.0005_valf1-0.762.keras"
-    multimodal_history = "multimodal-text-mobilenetv2-epochs-100-lr-0.0005_valf1-0.762_history.json"
-    multimodal_report = 'training_multimodal-text-mobilenetv2-epochs-100-lr-0.0005_valf1-0.762_f1-0.7620_t-0720_0148.pdf'
+    multimodal_model = "multimodal-mobilenetv2--lr-0.0001_f1-0.795.keras"
+    multimodal_history = "multimodal-mobilenetv2--lr-0.0001_f1-0.795history.json"
+    multimodal_report = 'training_multimodal-mobilenetv2--lr-0.0001_f1-0.795_f1-0.7950_t-0722_2033.pdf'
+    multimodal_predictions = 'multimodal-mobilenetv2--lr-0.0001_f1-0.795_predictions.npy'
     # Model selection dropdown
     model_options = [
         "Select a model",
@@ -1170,121 +1160,10 @@ if page == pages[3]:
     else:
         st.write("Please select a model from the dropdown above.")
 
-
-# # --- Page 3: Modelling ---
-# from functions import display_html_file
-
-
-# if page == pages[2]:
-#     st.header("Modelling")
-
-#     display_html_file('basic_models.html')
-
-#     display_html_file('multimodal.html', height=1200)
-
-
-#     st.markdown("""Technical Specifications:""")
-
-#     display_html_file('technic.html')
-
-#     selected_model_file = select_h5_file(folder_path=models.DIR_MODELS)
-
-#     if not selected_model_file or selected_model_file == 'Select':
-#         st.write("No model file selected.")
-#     else:
-#         st.write(f"You selected: **{selected_model_file}**")
-
-#         FILE_MODEL_WEIGHTS = f"{models.DIR_MODELS}/{selected_model_file}.h5"
-#         FILE_MODEL_HISTORY = f"{models.DIR_MODELS}/{selected_model_file}.pkl"
-#         st.info(f"Files used: {FILE_MODEL_WEIGHTS}, {FILE_MODEL_HISTORY}")
-
-#         model = models.get_model_img_custom(X_train)
-#         # Now, load the weights. The model's layers are now defined and built.
-#         try:
-#             model.load_weights(FILE_MODEL_WEIGHTS)
-#             st.success("Model weights loaded successfully!")
-#         except Exception as e:
-#             st.error(f"Error loading model weights: {e}")
-#             st.info(
-#                 f"Please ensure '{FILE_MODEL_WEIGHTS}' exists and the model architecture (vocab_size, embedding_dim, max_sequence_length, and layer types/order) precisely matches the saved weights.")
-
-#         # You can now use your model
-#         st.write("Model Summary:")
-#         model.summary()
-
-#         vectors = model.layers[-1].trainable_weights[0].numpy()
-#         st.write(f"Shape of last loaded Dense vector: {vectors.shape}")
-
-#         if os.path.exists(FILE_MODEL_HISTORY):
-#             with open(FILE_MODEL_HISTORY, 'rb') as file_pi:
-#                 history = pickle.load(file_pi)
-#             print(f"Training history loaded from {FILE_MODEL_HISTORY}")
-#             print("Loaded history keys:", history.history.keys())
-#         else:
-#             print(
-#                 f"Warning: Training history file not found at {FILE_MODEL_HISTORY}")
-
-#         model_name = f'{selected_model_file}-lr-{models.LR}_testing_valf1-{history.history["val_f1_score"][-1]:.3f}'
-
-#         st.title(f"Last Dense Layer (with {model_name})")
-#         st.json(history.history, expanded=False)
-
-#         # TRAINING CURVES + SUMMARY
-#         fig = plt.figure(figsize=(12, 4))
-
-#         # Create grid: 2x3 layout
-#         gs = fig.add_gridspec(2, 3, height_ratios=[
-#                               1, 1], width_ratios=[1, 1, 0.8])
-
-#         # Training curves (top row)
-#         ax1 = fig.add_subplot(gs[0, 0])
-#         ax1.plot(history.history['loss'], label='Train', linewidth=2)
-#         ax1.plot(history.history['val_loss'], label='Val', linewidth=2)
-#         ax1.set_title('Loss', fontweight='bold')
-#         ax1.legend()
-#         ax1.grid(True, alpha=0.3)
-
-#         ax2 = fig.add_subplot(gs[0, 1])
-#         ax2.plot(history.history['accuracy'], label='Train', linewidth=2)
-#         ax2.plot(history.history['val_accuracy'], label='Val', linewidth=2)
-#         ax2.set_title('Accuracy', fontweight='bold')
-#         ax2.legend()
-#         ax2.grid(True, alpha=0.3)
-
-#         # F1 and LR (bottom row)
-#         ax3 = fig.add_subplot(gs[1, 0])
-#         if 'f1_score' in history.history:
-#             ax3.plot(history.history['f1_score'], label='Train', linewidth=2)
-#             ax3.plot(history.history['val_f1_score'], label='Val', linewidth=2)
-#             ax3.set_title('F1 Score', fontweight='bold')
-#             ax3.legend()
-#         else:
-#             ax3.text(0.5, 0.5, 'F1 not tracked', ha='center', va='center')
-#             ax3.set_title('F1 Score (N/A)')
-#         ax3.grid(True, alpha=0.3)
-
-#         ax4 = fig.add_subplot(gs[1, 1])
-#         if 'learning_rate' in history.history:
-#             ax4.plot(history.history['learning_rate'],
-#                      linewidth=2, color='red')
-#             ax4.set_title('Learning Rate', fontweight='bold')
-#             ax4.set_yscale('log')
-#         else:
-#             ax4.text(0.5, 0.5, 'LR not tracked', ha='center', va='center')
-#             ax4.set_title('Learning Rate (N/A)')
-#         ax4.grid(True, alpha=0.3)
-
-#         # Summary text (right side)
-#         ax_text = fig.add_subplot(gs[:, 2])
-#         ax_text.axis('off')
-
-#         plt.suptitle(
-#             f'Training Report - {model_name}', fontsize=14, fontweight='bold')
-#         plt.tight_layout()
-#         st.pyplot(fig)
-
 # --- Page 4: Interpretation ---
-if page == pages[4]:
+page_current = page_current + 1
+if page == pages[page_current]:
+
     st.header("Interpretation")
 
     st.markdown("""
@@ -1304,3 +1183,12 @@ if page == pages[4]:
     st.subheader("GradCAM")
 
     display_paired_images_in_reports_folder("./reports/figures")
+
+
+# --- Page 5: Conclusion ---------------------------------------------------
+page_current = page_current + 1
+if page == pages[page_current]:
+    st.title("Conclusion")
+
+    conclusion = read_markdown_file(f"{DIR_MARKDOWN}/conclusion.md")
+    st.markdown(conclusion, unsafe_allow_html=True)
