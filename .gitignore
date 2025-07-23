@@ -1,6 +1,5 @@
 /__pycache__
-
-*.keras
-*.pdf
+.DS_Store
+__MACOSX
 *.csv
 *.npy
