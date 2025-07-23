@@ -1,0 +1,5445 @@
+[
+  {
+    "sample_id": 14583,
+    "predicted": 7,
+    "confidence": 0.4310818910598755,
+    "true": 0,
+    "correct": false,
+    "top_tokens": [
+      "fun",
+      "felt",
+      "crafts"
+    ]
+  },
+  {
+    "sample_id": 1672,
+    "predicted": 0,
+    "confidence": 0.4912758469581604,
+    "true": 0,
+    "correct": true,
+    "top_tokens": [
+      "edition",
+      "religion",
+      "affaires",
+      "arre",
+      "parlement"
+    ]
+  },
+  {
+    "sample_id": 2941,
+    "predicted": 19,
+    "confidence": 0.8808655142784119,
+    "true": 0,
+    "correct": false,
+    "top_tokens": [
+      "anne",
+      "guide",
+      "aventures"
+    ]
+  },
+  {
+    "sample_id": 8050,
+    "predicted": 25,
+    "confidence": 0.8842406272888184,
+    "true": 0,
+    "correct": false,
+    "top_tokens": [
+      "ape",
+      "esprit",
+      "pond",
+      "question",
+      "propos"
+    ]
+  },
+  {
+    "sample_id": 10312,
+    "predicted": 5,
+    "confidence": 0.4286765158176422,
+    "true": 0,
+    "correct": false,
+    "top_tokens": [
+      "serpent",
+      "omega"
+    ]
+  },
+  {
+    "sample_id": 6680,
+    "predicted": 0,
+    "confidence": 0.32258716225624084,
+    "true": 0,
+    "correct": true,
+    "top_tokens": [
+      "livre",
+      "cassette",
+      "coup",
+      "pied"
+    ]
+  },
+  {
+    "sample_id": 3661,
+    "predicted": 18,
+    "confidence": 0.5645648837089539,
+    "true": 0,
+    "correct": false,
+    "top_tokens": [
+      "marche",
+      "chapeaux",
+      "catalogue",
+      "bon"
+    ]
+  },
+  {
+    "sample_id": 5009,
+    "predicted": 15,
+    "confidence": 0.23322156071662903,
+    "true": 0,
+    "correct": false,
+    "top_tokens": [
+      "cieux",
+      "surmonte",
+      "nombre",
+      "liquide",
+      "pre"
+    ]
+  },
+  {
+    "sample_id": 12367,
+    "predicted": 0,
+    "confidence": 0.8590702414512634,
+    "true": 0,
+    "correct": true,
+    "top_tokens": [
+      "exercices",
+      "coeur",
+      "ouvrir",
+      "esprit",
+      "guide"
+    ]
+  },
+  {
+    "sample_id": 16975,
+    "predicted": 25,
+    "confidence": 0.4614522159099579,
+    "true": 0,
+    "correct": false,
+    "top_tokens": [
+      "temps",
+      "franc",
+      "ais",
+      "debit",
+      "allemand"
+    ]
+  },
+  {
+    "sample_id": 4615,
+    "predicted": 0,
+    "confidence": 0.6772539615631104,
+    "true": 0,
+    "correct": true,
+    "top_tokens": [
+      "publicite",
+      "loisirs"
+    ]
+  },
+  {
+    "sample_id": 4394,
+    "predicted": 0,
+    "confidence": 0.6966832876205444,
+    "true": 0,
+    "correct": true,
+    "top_tokens": [
+      "art",
+      "adventure",
+      "crivez"
+    ]
+  },
+  {
+    "sample_id": 12350,
+    "predicted": 0,
+    "confidence": 0.8134571313858032,
+    "true": 0,
+    "correct": true,
+    "top_tokens": [
+      "piano"
+    ]
+  },
+  {
+    "sample_id": 10365,
+    "predicted": 18,
+    "confidence": 0.8010979294776917,
+    "true": 0,
+    "correct": false,
+    "top_tokens": [
+      "alsace",
+      "lorraine",
+      "france"
+    ]
+  },
+  {
+    "sample_id": 15493,
+    "predicted": 0,
+    "confidence": 0.6879698634147644,
+    "true": 0,
+    "correct": true,
+    "top_tokens": [
+      "guide"
+    ]
+  },
+  {
+    "sample_id": 12232,
+    "predicted": 1,
+    "confidence": 0.9758927226066589,
+    "true": 1,
+    "correct": true,
+    "top_tokens": [
+      "version",
+      "pal",
+      "anglais",
+      "nintendo",
+      "land"
+    ]
+  },
+  {
+    "sample_id": 5273,
+    "predicted": 6,
+    "confidence": 0.6414890885353088,
+    "true": 1,
+    "correct": false,
+    "top_tokens": [
+      "rpg",
+      "oriente",
+      "action",
+      "monstre",
+      "cre"
+    ]
+  },
+  {
+    "sample_id": 15509,
+    "predicted": 0,
+    "confidence": 0.43240299820899963,
+    "true": 1,
+    "correct": false,
+    "top_tokens": [
+      "blinde",
+      "king",
+      "bounty",
+      "princesse"
+    ]
+  },
+  {
+    "sample_id": 11023,
+    "predicted": 4,
+    "confidence": 0.437718003988266,
+    "true": 1,
+    "correct": false,
+    "top_tokens": [
+      "dbz",
+      "meteor",
+      "ball",
+      "dragon"
+    ]
+  },
+  {
+    "sample_id": 10289,
+    "predicted": 1,
+    "confidence": 0.944159746170044,
+    "true": 1,
+    "correct": true,
+    "top_tokens": [
+      "pirates",
+      "bout",
+      "monde"
+    ]
+  },
+  {
+    "sample_id": 1613,
+    "predicted": 26,
+    "confidence": 0.2499784231185913,
+    "true": 1,
+    "correct": false,
+    "top_tokens": [
+      "interactive",
+      "jeu",
+      "aime",
+      "esprit",
+      "livre"
+    ]
+  },
+  {
+    "sample_id": 13165,
+    "predicted": 1,
+    "confidence": 0.9864529967308044,
+    "true": 1,
+    "correct": true,
+    "top_tokens": [
+      "ache",
+      "series",
+      "world",
+      "wii",
+      "vement"
+    ]
+  },
+  {
+    "sample_id": 11871,
+    "predicted": 0,
+    "confidence": 0.4373728930950165,
+    "true": 1,
+    "correct": false,
+    "top_tokens": [
+      "bible",
+      "enfant"
+    ]
+  },
+  {
+    "sample_id": 40,
+    "predicted": 25,
+    "confidence": 0.5685911178588867,
+    "true": 1,
+    "correct": false,
+    "top_tokens": [
+      "vie",
+      "petits"
+    ]
+  },
+  {
+    "sample_id": 2527,
+    "predicted": 1,
+    "confidence": 0.9988605976104736,
+    "true": 1,
+    "correct": true,
+    "top_tokens": [
+      "anglais",
+      "jeu",
+      "import",
+      "xbox",
+      "apparaissent"
+    ]
+  },
+  {
+    "sample_id": 3670,
+    "predicted": 7,
+    "confidence": 0.2926928699016571,
+    "true": 1,
+    "correct": false,
+    "top_tokens": [
+      "importation",
+      "soie",
+      "pre",
+      "sentation"
+    ]
+  },
+  {
+    "sample_id": 15498,
+    "predicted": 1,
+    "confidence": 0.9649403095245361,
+    "true": 1,
+    "correct": true,
+    "top_tokens": [
+      "yxjjpj",
+      "charge",
+      "poigne",
+      "bouton",
+      "charge"
+    ]
+  },
+  {
+    "sample_id": 2328,
+    "predicted": 1,
+    "confidence": 0.9504450559616089,
+    "true": 1,
+    "correct": true,
+    "top_tokens": [
+      "ajouter",
+      "simulateur",
+      "vulcan"
+    ]
+  },
+  {
+    "sample_id": 10969,
+    "predicted": 19,
+    "confidence": 0.34447532892227173,
+    "true": 1,
+    "correct": false,
+    "top_tokens": [
+      "kate",
+      "arrow",
+      "jungle"
+    ]
+  },
+  {
+    "sample_id": 11480,
+    "predicted": 1,
+    "confidence": 0.9756681323051453,
+    "true": 1,
+    "correct": true,
+    "top_tokens": [
+      "magideal",
+      "parleur",
+      "forfait",
+      "comprend",
+      "tablette"
+    ]
+  },
+  {
+    "sample_id": 3883,
+    "predicted": 24,
+    "confidence": 0.8724618554115295,
+    "true": 2,
+    "correct": false,
+    "top_tokens": [
+      "fan",
+      "source",
+      "contenu",
+      "poigne",
+      "ventilateur"
+    ]
+  },
+  {
+    "sample_id": 5711,
+    "predicted": 2,
+    "confidence": 0.8894041180610657,
+    "true": 2,
+    "correct": true,
+    "top_tokens": [
+      "fil",
+      "compatible",
+      "tement",
+      "manette",
+      "charge"
+    ]
+  },
+  {
+    "sample_id": 14903,
+    "predicted": 2,
+    "confidence": 0.497199147939682,
+    "true": 2,
+    "correct": true,
+    "top_tokens": [
+      "capteur",
+      "wii",
+      "pie",
+      "motion",
+      "vide"
+    ]
+  },
+  {
+    "sample_id": 14471,
+    "predicted": 2,
+    "confidence": 0.32423973083496094,
+    "true": 2,
+    "correct": true,
+    "top_tokens": [
+      "jeu",
+      "charge",
+      "fine",
+      "phone",
+      "portable"
+    ]
+  },
+  {
+    "sample_id": 1741,
+    "predicted": 2,
+    "confidence": 0.9857677817344666,
+    "true": 2,
+    "correct": true,
+    "top_tokens": [
+      "cutane",
+      "slim",
+      "manettes",
+      "console",
+      "storm"
+    ]
+  },
+  {
+    "sample_id": 5607,
+    "predicted": 2,
+    "confidence": 0.928125262260437,
+    "true": 2,
+    "correct": true,
+    "top_tokens": [
+      "signal",
+      "charge",
+      "vide",
+      "rechargeable",
+      "chargeur"
+    ]
+  },
+  {
+    "sample_id": 423,
+    "predicted": 2,
+    "confidence": 0.9301559925079346,
+    "true": 2,
+    "correct": true,
+    "top_tokens": [
+      "manette",
+      "nappe",
+      "charge",
+      "connecteur",
+      "interne"
+    ]
+  },
+  {
+    "sample_id": 9949,
+    "predicted": 2,
+    "confidence": 0.9836128950119019,
+    "true": 2,
+    "correct": true,
+    "top_tokens": [
+      "remarquez",
+      "gamecube",
+      "party",
+      "mario"
+    ]
+  },
+  {
+    "sample_id": 4543,
+    "predicted": 2,
+    "confidence": 0.9988853335380554,
+    "true": 2,
+    "correct": true,
+    "top_tokens": [
+      "filaire",
+      "playstation",
+      "boutons",
+      "sony",
+      "warrior"
+    ]
+  },
+  {
+    "sample_id": 2298,
+    "predicted": 2,
+    "confidence": 0.75590580701828,
+    "true": 2,
+    "correct": true,
+    "top_tokens": [
+      "console",
+      "plaque",
+      "xbox",
+      "nume",
+      "xbox"
+    ]
+  },
+  {
+    "sample_id": 300,
+    "predicted": 2,
+    "confidence": 0.9946675300598145,
+    "true": 2,
+    "correct": true,
+    "top_tokens": [
+      "coque",
+      "uniquement",
+      "compatible",
+      "mois"
+    ]
+  },
+  {
+    "sample_id": 1779,
+    "predicted": 1,
+    "confidence": 0.4777447283267975,
+    "true": 2,
+    "correct": false,
+    "top_tokens": [
+      "parties",
+      "profiter",
+      "esthe",
+      "jeu",
+      "boutons"
+    ]
+  },
+  {
+    "sample_id": 2409,
+    "predicted": 2,
+    "confidence": 0.5311535000801086,
+    "true": 2,
+    "correct": true,
+    "top_tokens": [
+      "rayures",
+      "prote",
+      "protection",
+      "jeu",
+      "cas"
+    ]
+  },
+  {
+    "sample_id": 8329,
+    "predicted": 2,
+    "confidence": 0.9457906484603882,
+    "true": 2,
+    "correct": true,
+    "top_tokens": [
+      "cran",
+      "lentille",
+      "sortie",
+      "console",
+      "inclure"
+    ]
+  },
+  {
+    "sample_id": 4836,
+    "predicted": 1,
+    "confidence": 0.6898555755615234,
+    "true": 2,
+    "correct": false,
+    "top_tokens": [
+      "marrage",
+      "infinity",
+      "disney",
+      "wars",
+      "star"
+    ]
+  },
+  {
+    "sample_id": 6423,
+    "predicted": 3,
+    "confidence": 0.9999722242355347,
+    "true": 3,
+    "correct": true,
+    "top_tokens": [
+      "ecran",
+      "tactile",
+      "affichage",
+      "cran",
+      "communication"
+    ]
+  },
+  {
+    "sample_id": 10076,
+    "predicted": 3,
+    "confidence": 0.9982592463493347,
+    "true": 3,
+    "correct": true,
+    "top_tokens": [
+      "portable",
+      "jeu",
+      "console",
+      "playstation",
+      "sony"
+    ]
+  },
+  {
+    "sample_id": 5198,
+    "predicted": 20,
+    "confidence": 0.5483492016792297,
+    "true": 3,
+    "correct": false,
+    "top_tokens": [
+      "game",
+      "regarder",
+      "large",
+      "new",
+      "cran"
+    ]
+  },
+  {
+    "sample_id": 11965,
+    "predicted": 3,
+    "confidence": 0.9999881982803345,
+    "true": 3,
+    "correct": true,
+    "top_tokens": [
+      "ecran",
+      "tactile",
+      "affichage",
+      "consoles",
+      "communication"
+    ]
+  },
+  {
+    "sample_id": 977,
+    "predicted": 3,
+    "confidence": 0.9999889135360718,
+    "true": 3,
+    "correct": true,
+    "top_tokens": [
+      "ecran",
+      "tactile",
+      "affichage",
+      "nume",
+      "nom"
+    ]
+  },
+  {
+    "sample_id": 5784,
+    "predicted": 3,
+    "confidence": 0.9999384880065918,
+    "true": 3,
+    "correct": true,
+    "top_tokens": [
+      "ecran",
+      "tactile",
+      "affichage",
+      "cran",
+      "communication"
+    ]
+  },
+  {
+    "sample_id": 8471,
+    "predicted": 2,
+    "confidence": 0.6521598100662231,
+    "true": 3,
+    "correct": false,
+    "top_tokens": [
+      "bloc",
+      "nintendo",
+      "uniquement",
+      "contenu",
+      "console"
+    ]
+  },
+  {
+    "sample_id": 10602,
+    "predicted": 3,
+    "confidence": 0.9999715089797974,
+    "true": 3,
+    "correct": true,
+    "top_tokens": [
+      "ecran",
+      "tactile",
+      "nume",
+      "cran",
+      "affichage"
+    ]
+  },
+  {
+    "sample_id": 8599,
+    "predicted": 8,
+    "confidence": 0.5355989336967468,
+    "true": 3,
+    "correct": false,
+    "top_tokens": [
+      "factory",
+      "table",
+      "montre",
+      "jeu",
+      "mario"
+    ]
+  },
+  {
+    "sample_id": 15366,
+    "predicted": 3,
+    "confidence": 0.9986044764518738,
+    "true": 3,
+    "correct": true,
+    "top_tokens": [
+      "portable",
+      "console",
+      "nintendo",
+      "jeu"
+    ]
+  },
+  {
+    "sample_id": 8158,
+    "predicted": 1,
+    "confidence": 0.43179014325141907,
+    "true": 3,
+    "correct": false,
+    "top_tokens": [
+      "audio",
+      "installer",
+      "optique",
+      "maximale",
+      "processeur"
+    ]
+  },
+  {
+    "sample_id": 10598,
+    "predicted": 3,
+    "confidence": 0.9999668598175049,
+    "true": 3,
+    "correct": true,
+    "top_tokens": [
+      "ecran",
+      "tactile",
+      "cran",
+      "affichage",
+      "nume"
+    ]
+  },
+  {
+    "sample_id": 9022,
+    "predicted": 20,
+    "confidence": 0.7169162034988403,
+    "true": 3,
+    "correct": false,
+    "top_tokens": [
+      "playstation",
+      "pro",
+      "sony"
+    ]
+  },
+  {
+    "sample_id": 9352,
+    "predicted": 3,
+    "confidence": 0.9999347925186157,
+    "true": 3,
+    "correct": true,
+    "top_tokens": [
+      "tactile",
+      "ecran",
+      "other",
+      "cran",
+      "nume"
+    ]
+  },
+  {
+    "sample_id": 5840,
+    "predicted": 3,
+    "confidence": 0.9996612071990967,
+    "true": 3,
+    "correct": true,
+    "top_tokens": [
+      "ecran",
+      "tactile",
+      "nume",
+      "cran",
+      "console"
+    ]
+  },
+  {
+    "sample_id": 1877,
+    "predicted": 4,
+    "confidence": 0.920360267162323,
+    "true": 4,
+    "correct": true,
+    "top_tokens": [
+      "marvel",
+      "figurines",
+      "super",
+      "ros"
+    ]
+  },
+  {
+    "sample_id": 8242,
+    "predicted": 4,
+    "confidence": 0.8497032523155212,
+    "true": 4,
+    "correct": true,
+    "top_tokens": [
+      "ver",
+      "figurine",
+      "figurine",
+      "outfit",
+      "articule"
+    ]
+  },
+  {
+    "sample_id": 71,
+    "predicted": 4,
+    "confidence": 0.8940566182136536,
+    "true": 4,
+    "correct": true,
+    "top_tokens": [
+      "livre",
+      "sine",
+      "boite",
+      "main",
+      "sang"
+    ]
+  },
+  {
+    "sample_id": 4373,
+    "predicted": 4,
+    "confidence": 0.9832599759101868,
+    "true": 4,
+    "correct": true,
+    "top_tokens": [
+      "figurine",
+      "animaux",
+      "ours",
+      "sauvages",
+      "servant"
+    ]
+  },
+  {
+    "sample_id": 10839,
+    "predicted": 4,
+    "confidence": 0.5328940749168396,
+    "true": 4,
+    "correct": true,
+    "top_tokens": [
+      "peint",
+      "thermoplastique",
+      "film",
+      "animation",
+      "disney"
+    ]
+  },
+  {
+    "sample_id": 11140,
+    "predicted": 4,
+    "confidence": 0.9987978935241699,
+    "true": 4,
+    "correct": true,
+    "top_tokens": [
+      "pop",
+      "funko",
+      "television",
+      "twin",
+      "figure"
+    ]
+  },
+  {
+    "sample_id": 9477,
+    "predicted": 7,
+    "confidence": 0.9157209992408752,
+    "true": 4,
+    "correct": false,
+    "top_tokens": [
+      "faveurs",
+      "individuellement",
+      "anniversaire",
+      "garc",
+      "doux"
+    ]
+  },
+  {
+    "sample_id": 6234,
+    "predicted": 4,
+    "confidence": 0.7600736021995544,
+    "true": 4,
+    "correct": true,
+    "top_tokens": [
+      "tenue",
+      "engager",
+      "figurines",
+      "assortiment",
+      "coffrets"
+    ]
+  },
+  {
+    "sample_id": 2443,
+    "predicted": 2,
+    "confidence": 0.5926701426506042,
+    "true": 4,
+    "correct": false,
+    "top_tokens": [
+      "hama",
+      "casque",
+      "casque",
+      "perle"
+    ]
+  },
+  {
+    "sample_id": 10676,
+    "predicted": 4,
+    "confidence": 0.9875527620315552,
+    "true": 4,
+    "correct": true,
+    "top_tokens": [
+      "magnet",
+      "corps",
+      "vie",
+      "humain"
+    ]
+  },
+  {
+    "sample_id": 7415,
+    "predicted": 8,
+    "confidence": 0.8759411573410034,
+    "true": 4,
+    "correct": false,
+    "top_tokens": [
+      "jeton",
+      "ninja",
+      "tortue",
+      "application",
+      "star"
+    ]
+  },
+  {
+    "sample_id": 284,
+    "predicted": 4,
+    "confidence": 0.998426079750061,
+    "true": 4,
+    "correct": true,
+    "top_tokens": [
+      "pvc",
+      "nendoroid",
+      "figure"
+    ]
+  },
+  {
+    "sample_id": 4212,
+    "predicted": 21,
+    "confidence": 0.3865322768688202,
+    "true": 4,
+    "correct": false,
+    "top_tokens": [
+      "naruto",
+      "longueur",
+      "sac",
+      "bandoulie",
+      "bandoulie"
+    ]
+  },
+  {
+    "sample_id": 3605,
+    "predicted": 4,
+    "confidence": 0.5769981741905212,
+    "true": 4,
+    "correct": true,
+    "top_tokens": [
+      "japan",
+      "scale",
+      "edition",
+      "special",
+      "form"
+    ]
+  },
+  {
+    "sample_id": 6886,
+    "predicted": 7,
+    "confidence": 0.7753279209136963,
+    "true": 4,
+    "correct": false,
+    "top_tokens": [
+      "boite",
+      "chec",
+      "chec",
+      "fou",
+      "fou"
+    ]
+  },
+  {
+    "sample_id": 14325,
+    "predicted": 5,
+    "confidence": 0.9893891215324402,
+    "true": 5,
+    "correct": true,
+    "top_tokens": [
+      "panini",
+      "officiel",
+      "panier"
+    ]
+  },
+  {
+    "sample_id": 4341,
+    "predicted": 5,
+    "confidence": 0.9347042441368103,
+    "true": 5,
+    "correct": true,
+    "top_tokens": [
+      "carte",
+      "entite",
+      "vieille"
+    ]
+  },
+  {
+    "sample_id": 14368,
+    "predicted": 5,
+    "confidence": 0.995179295539856,
+    "true": 5,
+    "correct": true,
+    "top_tokens": [
+      "mtg",
+      "magic",
+      "foil",
+      "premium",
+      "dernier"
+    ]
+  },
+  {
+    "sample_id": 6399,
+    "predicted": 0,
+    "confidence": 0.4142579436302185,
+    "true": 5,
+    "correct": false,
+    "top_tokens": [
+      "lourde",
+      "orage",
+      "violent",
+      "tempe"
+    ]
+  },
+  {
+    "sample_id": 6416,
+    "predicted": 5,
+    "confidence": 0.9945071339607239,
+    "true": 5,
+    "correct": true,
+    "top_tokens": [
+      "fleer"
+    ]
+  },
+  {
+    "sample_id": 15678,
+    "predicted": 5,
+    "confidence": 0.972915768623352,
+    "true": 5,
+    "correct": true,
+    "top_tokens": [
+      "carte",
+      "sire"
+    ]
+  },
+  {
+    "sample_id": 5867,
+    "predicted": 5,
+    "confidence": 0.9978693723678589,
+    "true": 5,
+    "correct": true,
+    "top_tokens": [
+      "poke",
+      "rare",
+      "heroes",
+      "anglais",
+      "gym"
+    ]
+  },
+  {
+    "sample_id": 6002,
+    "predicted": 5,
+    "confidence": 0.9764211773872375,
+    "true": 5,
+    "correct": true,
+    "top_tokens": [
+      "carte",
+      "monde",
+      "catch",
+      "lourds",
+      "evolution"
+    ]
+  },
+  {
+    "sample_id": 9890,
+    "predicted": 5,
+    "confidence": 0.998823344707489,
+    "true": 5,
+    "correct": true,
+    "top_tokens": [
+      "pokemon",
+      "carte"
+    ]
+  },
+  {
+    "sample_id": 2597,
+    "predicted": 5,
+    "confidence": 0.9884238839149475,
+    "true": 5,
+    "correct": true,
+    "top_tokens": [
+      "poke",
+      "inverse"
+    ]
+  },
+  {
+    "sample_id": 9699,
+    "predicted": 5,
+    "confidence": 0.8940317630767822,
+    "true": 5,
+    "correct": true,
+    "top_tokens": [
+      "warcraft",
+      "world",
+      "ros",
+      "posture"
+    ]
+  },
+  {
+    "sample_id": 10283,
+    "predicted": 1,
+    "confidence": 0.4013824760913849,
+    "true": 5,
+    "correct": false,
+    "top_tokens": [
+      "guerrier",
+      "action"
+    ]
+  },
+  {
+    "sample_id": 7576,
+    "predicted": 5,
+    "confidence": 0.8478233218193054,
+    "true": 5,
+    "correct": true,
+    "top_tokens": [
+      "warcraft",
+      "world",
+      "honneur",
+      "champion"
+    ]
+  },
+  {
+    "sample_id": 11636,
+    "predicted": 5,
+    "confidence": 0.9972111582756042,
+    "true": 5,
+    "correct": true,
+    "top_tokens": [
+      "commune"
+    ]
+  },
+  {
+    "sample_id": 50,
+    "predicted": 8,
+    "confidence": 0.4989504814147949,
+    "true": 5,
+    "correct": false,
+    "top_tokens": [
+      "balle",
+      "cartes",
+      "dragon"
+    ]
+  },
+  {
+    "sample_id": 2869,
+    "predicted": 6,
+    "confidence": 0.999250590801239,
+    "true": 6,
+    "correct": true,
+    "top_tokens": [
+      "pocket",
+      "monster",
+      "series"
+    ]
+  },
+  {
+    "sample_id": 892,
+    "predicted": 7,
+    "confidence": 0.8859976530075073,
+    "true": 6,
+    "correct": false,
+    "top_tokens": [
+      "camion",
+      "contient",
+      "pompiers",
+      "action",
+      "licopte"
+    ]
+  },
+  {
+    "sample_id": 13790,
+    "predicted": 8,
+    "confidence": 0.376020222902298,
+    "true": 6,
+    "correct": false,
+    "top_tokens": [
+      "witch",
+      "boi",
+      "comple"
+    ]
+  },
+  {
+    "sample_id": 7468,
+    "predicted": 6,
+    "confidence": 0.9997444748878479,
+    "true": 6,
+    "correct": true,
+    "top_tokens": [
+      "dragons",
+      "dungeons",
+      "chateau",
+      "castle"
+    ]
+  },
+  {
+    "sample_id": 10976,
+    "predicted": 6,
+    "confidence": 0.9984927177429199,
+    "true": 6,
+    "correct": true,
+    "top_tokens": [
+      "warhammer",
+      "hero",
+      "archer",
+      "table",
+      "quest"
+    ]
+  },
+  {
+    "sample_id": 262,
+    "predicted": 6,
+    "confidence": 0.7581314444541931,
+    "true": 6,
+    "correct": true,
+    "top_tokens": [
+      "anneaux",
+      "seigneur",
+      "terres",
+      "jeu",
+      "bataille"
+    ]
+  },
+  {
+    "sample_id": 12646,
+    "predicted": 4,
+    "confidence": 0.886466920375824,
+    "true": 6,
+    "correct": false,
+    "top_tokens": [
+      "figurine",
+      "dressage",
+      "reproduit",
+      "figurine",
+      "longues"
+    ]
+  },
+  {
+    "sample_id": 7809,
+    "predicted": 6,
+    "confidence": 0.9425258040428162,
+    "true": 6,
+    "correct": true,
+    "top_tokens": [
+      "roclix",
+      "batman",
+      "joker",
+      "wild"
+    ]
+  },
+  {
+    "sample_id": 567,
+    "predicted": 19,
+    "confidence": 0.3443037271499634,
+    "true": 6,
+    "correct": false,
+    "top_tokens": [
+      "claires",
+      "ran",
+      "marine",
+      "space"
+    ]
+  },
+  {
+    "sample_id": 1679,
+    "predicted": 6,
+    "confidence": 0.999250590801239,
+    "true": 6,
+    "correct": true,
+    "top_tokens": [
+      "pocket",
+      "monster",
+      "series"
+    ]
+  },
+  {
+    "sample_id": 12914,
+    "predicted": 6,
+    "confidence": 0.9851373434066772,
+    "true": 6,
+    "correct": true,
+    "top_tokens": [
+      "miniatures",
+      "alliance",
+      "empire",
+      "luke"
+    ]
+  },
+  {
+    "sample_id": 9151,
+    "predicted": 6,
+    "confidence": 0.9896047115325928,
+    "true": 6,
+    "correct": true,
+    "top_tokens": [
+      "prince",
+      "august",
+      "pot",
+      "gamme",
+      "inte"
+    ]
+  },
+  {
+    "sample_id": 4327,
+    "predicted": 6,
+    "confidence": 0.9810773730278015,
+    "true": 6,
+    "correct": true,
+    "top_tokens": [
+      "miniatures",
+      "world",
+      "warcraft"
+    ]
+  },
+  {
+    "sample_id": 14245,
+    "predicted": 6,
+    "confidence": 0.9596710205078125,
+    "true": 6,
+    "correct": true,
+    "top_tokens": [
+      "heroclix",
+      "wolverine",
+      "manta",
+      "marvel"
+    ]
+  },
+  {
+    "sample_id": 10726,
+    "predicted": 0,
+    "confidence": 0.5042381882667542,
+    "true": 6,
+    "correct": false,
+    "top_tokens": [
+      "espace",
+      "tre",
+      "lointaine",
+      "mai",
+      "lune"
+    ]
+  },
+  {
+    "sample_id": 12412,
+    "predicted": 7,
+    "confidence": 0.5024458765983582,
+    "true": 7,
+    "correct": true,
+    "top_tokens": [
+      "licopte",
+      "drone",
+      "joueur",
+      "emballage",
+      "mjx"
+    ]
+  },
+  {
+    "sample_id": 4314,
+    "predicted": 4,
+    "confidence": 0.6737248301506042,
+    "true": 7,
+    "correct": false,
+    "top_tokens": [
+      "figurine",
+      "cle",
+      "porte",
+      "amour",
+      "ourson"
+    ]
+  },
+  {
+    "sample_id": 5082,
+    "predicted": 7,
+    "confidence": 0.955727756023407,
+    "true": 7,
+    "correct": true,
+    "top_tokens": [
+      "poupe",
+      "poupe",
+      "peluche",
+      "kitty",
+      "peluche"
+    ]
+  },
+  {
+    "sample_id": 7732,
+    "predicted": 7,
+    "confidence": 0.5079213976860046,
+    "true": 7,
+    "correct": true,
+    "top_tokens": [
+      "peluche",
+      "jaunes",
+      "fonce",
+      "pingle",
+      "coquilles"
+    ]
+  },
+  {
+    "sample_id": 2231,
+    "predicted": 7,
+    "confidence": 0.6606265902519226,
+    "true": 7,
+    "correct": true,
+    "top_tokens": [
+      "lego",
+      "studios",
+      "stunt",
+      "piece",
+      "cascade"
+    ]
+  },
+  {
+    "sample_id": 1470,
+    "predicted": 8,
+    "confidence": 0.9735997915267944,
+    "true": 7,
+    "correct": false,
+    "top_tokens": [
+      "clay",
+      "jouet",
+      "feature",
+      "emballage",
+      "contenu"
+    ]
+  },
+  {
+    "sample_id": 8644,
+    "predicted": 7,
+    "confidence": 0.5090311169624329,
+    "true": 7,
+    "correct": true,
+    "top_tokens": [
+      "voiture",
+      "neiges"
+    ]
+  },
+  {
+    "sample_id": 13746,
+    "predicted": 7,
+    "confidence": 0.9650355577468872,
+    "true": 7,
+    "correct": true,
+    "top_tokens": [
+      "jouet",
+      "loisirs",
+      "squishy",
+      "descriptions",
+      "soft"
+    ]
+  },
+  {
+    "sample_id": 15090,
+    "predicted": 7,
+    "confidence": 0.42223772406578064,
+    "true": 7,
+    "correct": true,
+    "top_tokens": [
+      "mignon",
+      "noeud",
+      "circonfe",
+      "rence",
+      "filles"
+    ]
+  },
+  {
+    "sample_id": 8653,
+    "predicted": 11,
+    "confidence": 0.5822343230247498,
+    "true": 7,
+    "correct": false,
+    "top_tokens": [
+      "reme",
+      "stress",
+      "amusant",
+      "gross",
+      "gross"
+    ]
+  },
+  {
+    "sample_id": 414,
+    "predicted": 8,
+    "confidence": 0.4638494551181793,
+    "true": 7,
+    "correct": false,
+    "top_tokens": [
+      "jouet",
+      "parfait",
+      "queue",
+      "autisme",
+      "tdah"
+    ]
+  },
+  {
+    "sample_id": 9703,
+    "predicted": 7,
+    "confidence": 0.8192329406738281,
+    "true": 7,
+    "correct": true,
+    "top_tokens": [
+      "bear",
+      "japan",
+      "import",
+      "love",
+      "building"
+    ]
+  },
+  {
+    "sample_id": 10374,
+    "predicted": 7,
+    "confidence": 0.987206220626831,
+    "true": 7,
+    "correct": true,
+    "top_tokens": [
+      "doudou",
+      "winnie",
+      "plat",
+      "dentition"
+    ]
+  },
+  {
+    "sample_id": 15565,
+    "predicted": 7,
+    "confidence": 0.9881072044372559,
+    "true": 7,
+    "correct": true,
+    "top_tokens": [
+      "doudou",
+      "ours",
+      "peluche",
+      "champs",
+      "tartine"
+    ]
+  },
+  {
+    "sample_id": 12542,
+    "predicted": 7,
+    "confidence": 0.9397274851799011,
+    "true": 7,
+    "correct": true,
+    "top_tokens": [
+      "doudou",
+      "lapin",
+      "imprime",
+      "plat",
+      "croissant"
+    ]
+  },
+  {
+    "sample_id": 11279,
+    "predicted": 8,
+    "confidence": 0.7420527338981628,
+    "true": 8,
+    "correct": true,
+    "top_tokens": [
+      "asmodee",
+      "party",
+      "party"
+    ]
+  },
+  {
+    "sample_id": 7824,
+    "predicted": 1,
+    "confidence": 0.8302733898162842,
+    "true": 8,
+    "correct": false,
+    "top_tokens": [
+      "import",
+      "allemand",
+      "steam",
+      "france",
+      "allemagne"
+    ]
+  },
+  {
+    "sample_id": 8648,
+    "predicted": 8,
+    "confidence": 0.9855014681816101,
+    "true": 8,
+    "correct": true,
+    "top_tokens": [
+      "jeu",
+      "socie"
+    ]
+  },
+  {
+    "sample_id": 3327,
+    "predicted": 8,
+    "confidence": 0.6336823105812073,
+    "true": 8,
+    "correct": true,
+    "top_tokens": [
+      "game",
+      "roll",
+      "game",
+      "enfant",
+      "boulettes"
+    ]
+  },
+  {
+    "sample_id": 9604,
+    "predicted": 4,
+    "confidence": 0.9014722108840942,
+    "true": 8,
+    "correct": false,
+    "top_tokens": [
+      "importation",
+      "jeter",
+      "japon",
+      "bande",
+      "nest"
+    ]
+  },
+  {
+    "sample_id": 9733,
+    "predicted": 7,
+    "confidence": 0.9495920538902283,
+    "true": 8,
+    "correct": false,
+    "top_tokens": [
+      "ativite",
+      "enfant",
+      "ability",
+      "robot",
+      "partir"
+    ]
+  },
+  {
+    "sample_id": 1224,
+    "predicted": 8,
+    "confidence": 0.7621159553527832,
+    "true": 8,
+    "correct": true,
+    "top_tokens": [
+      "jeu",
+      "cartes",
+      "cartes",
+      "jeu",
+      "peter"
+    ]
+  },
+  {
+    "sample_id": 7086,
+    "predicted": 8,
+    "confidence": 0.9910997748374939,
+    "true": 8,
+    "correct": true,
+    "top_tokens": [
+      "tarot",
+      "card",
+      "tarot",
+      "spe",
+      "jeu"
+    ]
+  },
+  {
+    "sample_id": 2181,
+    "predicted": 8,
+    "confidence": 0.8979384899139404,
+    "true": 8,
+    "correct": true,
+    "top_tokens": [
+      "tarot",
+      "cartes",
+      "heritage",
+      "pochette"
+    ]
+  },
+  {
+    "sample_id": 9302,
+    "predicted": 8,
+    "confidence": 0.996240496635437,
+    "true": 8,
+    "correct": true,
+    "top_tokens": [
+      "zombicide",
+      "boite",
+      "jeu",
+      "zombicide",
+      "zombie"
+    ]
+  },
+  {
+    "sample_id": 15854,
+    "predicted": 7,
+    "confidence": 0.8173614740371704,
+    "true": 8,
+    "correct": false,
+    "top_tokens": [
+      "bois",
+      "puzzle",
+      "bois",
+      "ome",
+      "bois"
+    ]
+  },
+  {
+    "sample_id": 8288,
+    "predicted": 18,
+    "confidence": 0.49095791578292847,
+    "true": 8,
+    "correct": false,
+    "top_tokens": [
+      "quipe",
+      "travail",
+      "festivals",
+      "brer"
+    ]
+  },
+  {
+    "sample_id": 7156,
+    "predicted": 7,
+    "confidence": 0.5337567329406738,
+    "true": 8,
+    "correct": false,
+    "top_tokens": [
+      "tranche",
+      "ressemble",
+      "maquillage",
+      "contact",
+      "aspect"
+    ]
+  },
+  {
+    "sample_id": 12427,
+    "predicted": 8,
+    "confidence": 0.9216606616973877,
+    "true": 8,
+    "correct": true,
+    "top_tokens": [
+      "jeu",
+      "gles",
+      "domino",
+      "domino",
+      "autour"
+    ]
+  },
+  {
+    "sample_id": 16335,
+    "predicted": 8,
+    "confidence": 0.8752502799034119,
+    "true": 8,
+    "correct": true,
+    "top_tokens": [
+      "asmodee",
+      "version",
+      "asmodee",
+      "partir",
+      "feux"
+    ]
+  },
+  {
+    "sample_id": 8424,
+    "predicted": 9,
+    "confidence": 0.997528612613678,
+    "true": 9,
+    "correct": true,
+    "top_tokens": [
+      "rique",
+      "hpp",
+      "niveau",
+      "acier",
+      "wpl"
+    ]
+  },
+  {
+    "sample_id": 16388,
+    "predicted": 1,
+    "confidence": 0.4388415515422821,
+    "true": 9,
+    "correct": false,
+    "top_tokens": [
+      "jaguar",
+      "miniature"
+    ]
+  },
+  {
+    "sample_id": 13769,
+    "predicted": 9,
+    "confidence": 0.9910304546356201,
+    "true": 9,
+    "correct": true,
+    "top_tokens": [
+      "rique",
+      "scy",
+      "aluminium",
+      "alliage",
+      "sunnylife"
+    ]
+  },
+  {
+    "sample_id": 9998,
+    "predicted": 9,
+    "confidence": 0.998097836971283,
+    "true": 9,
+    "correct": true,
+    "top_tokens": [
+      "maquette",
+      "rique",
+      "avion",
+      "safe",
+      "phantom"
+    ]
+  },
+  {
+    "sample_id": 4647,
+    "predicted": 9,
+    "confidence": 0.9895815849304199,
+    "true": 9,
+    "correct": true,
+    "top_tokens": [
+      "rique",
+      "licopte",
+      "hover",
+      "super",
+      "endurance"
+    ]
+  },
+  {
+    "sample_id": 15816,
+    "predicted": 9,
+    "confidence": 0.4567200243473053,
+    "true": 9,
+    "correct": true,
+    "top_tokens": [
+      "moteur",
+      "moteur",
+      "voiture",
+      "nergie",
+      "prend"
+    ]
+  },
+  {
+    "sample_id": 7491,
+    "predicted": 7,
+    "confidence": 0.5473822951316833,
+    "true": 9,
+    "correct": false,
+    "top_tokens": [
+      "plastic",
+      "globe"
+    ]
+  },
+  {
+    "sample_id": 8068,
+    "predicted": 9,
+    "confidence": 0.9982471466064453,
+    "true": 9,
+    "correct": true,
+    "top_tokens": [
+      "rique",
+      "quadcopter",
+      "lithium",
+      "fpv",
+      "quence"
+    ]
+  },
+  {
+    "sample_id": 7460,
+    "predicted": 9,
+    "confidence": 0.6049231886863708,
+    "true": 9,
+    "correct": true,
+    "top_tokens": [
+      "alfa",
+      "series",
+      "romeo",
+      "gray"
+    ]
+  },
+  {
+    "sample_id": 14940,
+    "predicted": 9,
+    "confidence": 0.9945902824401855,
+    "true": 9,
+    "correct": true,
+    "top_tokens": [
+      "esc",
+      "route",
+      "moteur",
+      "couple",
+      "voiture"
+    ]
+  },
+  {
+    "sample_id": 10580,
+    "predicted": 9,
+    "confidence": 0.9950909614562988,
+    "true": 9,
+    "correct": true,
+    "top_tokens": [
+      "rique",
+      "dfgjlkni",
+      "dji",
+      "drone",
+      "ble"
+    ]
+  },
+  {
+    "sample_id": 4947,
+    "predicted": 8,
+    "confidence": 0.5448104739189148,
+    "true": 9,
+    "correct": false,
+    "top_tokens": [
+      "transporte",
+      "autour",
+      "tourner",
+      "laissez",
+      "recharge"
+    ]
+  },
+  {
+    "sample_id": 1386,
+    "predicted": 9,
+    "confidence": 0.9986308217048645,
+    "true": 9,
+    "correct": true,
+    "top_tokens": [
+      "rique",
+      "maquette",
+      "avion",
+      "airplane",
+      "gyro"
+    ]
+  },
+  {
+    "sample_id": 3338,
+    "predicted": 9,
+    "confidence": 0.9992848038673401,
+    "true": 9,
+    "correct": true,
+    "top_tokens": [
+      "drone",
+      "rique",
+      "batterie",
+      "xiaomi",
+      "chargeur"
+    ]
+  },
+  {
+    "sample_id": 342,
+    "predicted": 9,
+    "confidence": 0.9981176853179932,
+    "true": 9,
+    "correct": true,
+    "top_tokens": [
+      "rique",
+      "drone",
+      "rapide",
+      "charge",
+      "portable"
+    ]
+  },
+  {
+    "sample_id": 4158,
+    "predicted": 10,
+    "confidence": 0.9986935257911682,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "foot",
+      "baby",
+      "table",
+      "foot",
+      "baby"
+    ]
+  },
+  {
+    "sample_id": 14935,
+    "predicted": 10,
+    "confidence": 1.0,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "billard",
+      "triangle",
+      "plastique",
+      "billes",
+      "bce"
+    ]
+  },
+  {
+    "sample_id": 2044,
+    "predicted": 10,
+    "confidence": 0.9909752011299133,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "supreme",
+      "pool",
+      "brosse",
+      "tapis",
+      "pointe"
+    ]
+  },
+  {
+    "sample_id": 7437,
+    "predicted": 10,
+    "confidence": 0.9997515082359314,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "billard",
+      "queue",
+      "proce",
+      "conc",
+      "bille"
+    ]
+  },
+  {
+    "sample_id": 12115,
+    "predicted": 10,
+    "confidence": 0.9998575448989868,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "auucne",
+      "cheville",
+      "main",
+      "feature",
+      "enfant"
+    ]
+  },
+  {
+    "sample_id": 5935,
+    "predicted": 10,
+    "confidence": 0.9999771118164062,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "billard",
+      "queue",
+      "housses",
+      "transporter",
+      "maple"
+    ]
+  },
+  {
+    "sample_id": 7120,
+    "predicted": 10,
+    "confidence": 0.9923525452613831,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "supre",
+      "embouts",
+      "colle"
+    ]
+  },
+  {
+    "sample_id": 16704,
+    "predicted": 10,
+    "confidence": 0.999967098236084,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "chaussettes",
+      "paire",
+      "obtenez",
+      "tail",
+      "assurez"
+    ]
+  },
+  {
+    "sample_id": 1156,
+    "predicted": 10,
+    "confidence": 0.9996753931045532,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "chaussettes",
+      "paire",
+      "sentiment",
+      "sexe",
+      "coffret"
+    ]
+  },
+  {
+    "sample_id": 7394,
+    "predicted": 10,
+    "confidence": 0.9877594113349915,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "triangle",
+      "queues",
+      "billard",
+      "massif",
+      "ardoise"
+    ]
+  },
+  {
+    "sample_id": 969,
+    "predicted": 10,
+    "confidence": 0.9997439980506897,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "chaussettes",
+      "paire",
+      "sexe",
+      "plai",
+      "main"
+    ]
+  },
+  {
+    "sample_id": 10679,
+    "predicted": 10,
+    "confidence": 0.9999821186065674,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "chaussettes",
+      "tail",
+      "obtenez",
+      "auucne",
+      "paires"
+    ]
+  },
+  {
+    "sample_id": 12289,
+    "predicted": 10,
+    "confidence": 0.9988045692443848,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "sexe",
+      "informations",
+      "garc",
+      "couper",
+      "douceur"
+    ]
+  },
+  {
+    "sample_id": 3078,
+    "predicted": 10,
+    "confidence": 0.9999693632125854,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "chette",
+      "fle",
+      "ailettes",
+      "micron",
+      "rigidite"
+    ]
+  },
+  {
+    "sample_id": 2394,
+    "predicted": 10,
+    "confidence": 0.9999223947525024,
+    "true": 10,
+    "correct": true,
+    "top_tokens": [
+      "chaussettes",
+      "paire",
+      "recommande",
+      "sexe",
+      "main"
+    ]
+  },
+  {
+    "sample_id": 16302,
+    "predicted": 7,
+    "confidence": 0.4604284167289734,
+    "true": 11,
+    "correct": false,
+    "top_tokens": [
+      "haute",
+      "alliage",
+      "cle",
+      "titane",
+      "alise"
+    ]
+  },
+  {
+    "sample_id": 16367,
+    "predicted": 23,
+    "confidence": 0.8966680765151978,
+    "true": 11,
+    "correct": false,
+    "top_tokens": [
+      "piscine",
+      "jardin",
+      "profitez",
+      "piscine",
+      "gonflable"
+    ]
+  },
+  {
+    "sample_id": 210,
+    "predicted": 11,
+    "confidence": 0.9587016701698303,
+    "true": 11,
+    "correct": true,
+    "top_tokens": [
+      "stress",
+      "stress",
+      "soulager",
+      "jouet",
+      "coordination"
+    ]
+  },
+  {
+    "sample_id": 10547,
+    "predicted": 22,
+    "confidence": 0.6904140710830688,
+    "true": 11,
+    "correct": false,
+    "top_tokens": [
+      "table",
+      "outdoor",
+      "table",
+      "nique",
+      "pique"
+    ]
+  },
+  {
+    "sample_id": 11758,
+    "predicted": 22,
+    "confidence": 0.8882282376289368,
+    "true": 11,
+    "correct": false,
+    "top_tokens": [
+      "anti",
+      "parasol",
+      "cline",
+      "parasol",
+      "assortis"
+    ]
+  },
+  {
+    "sample_id": 7559,
+    "predicted": 11,
+    "confidence": 0.9365330338478088,
+    "true": 11,
+    "correct": true,
+    "top_tokens": [
+      "torche",
+      "goverie",
+      "frontale",
+      "rechargeable",
+      "camping"
+    ]
+  },
+  {
+    "sample_id": 6356,
+    "predicted": 11,
+    "confidence": 0.9692243933677673,
+    "true": 11,
+    "correct": true,
+    "top_tokens": [
+      "squishies",
+      "libre",
+      "stress",
+      "montantes",
+      "phones"
+    ]
+  },
+  {
+    "sample_id": 15063,
+    "predicted": 13,
+    "confidence": 0.5334947109222412,
+    "true": 11,
+    "correct": false,
+    "top_tokens": [
+      "table",
+      "pique",
+      "nique",
+      "garden"
+    ]
+  },
+  {
+    "sample_id": 16598,
+    "predicted": 24,
+    "confidence": 0.40302643179893494,
+    "true": 11,
+    "correct": false,
+    "top_tokens": [
+      "ruban",
+      "tige",
+      "ans",
+      "gymnastique",
+      "grs"
+    ]
+  },
+  {
+    "sample_id": 6528,
+    "predicted": 11,
+    "confidence": 0.9996967315673828,
+    "true": 11,
+    "correct": true,
+    "top_tokens": [
+      "tropolitaine",
+      "uniquement",
+      "trampoline",
+      "trampoline",
+      "corse"
+    ]
+  },
+  {
+    "sample_id": 9157,
+    "predicted": 11,
+    "confidence": 0.7654637098312378,
+    "true": 11,
+    "correct": true,
+    "top_tokens": [
+      "corde",
+      "sistance",
+      "haute",
+      "surface",
+      "ligne"
+    ]
+  },
+  {
+    "sample_id": 16705,
+    "predicted": 11,
+    "confidence": 0.7000552415847778,
+    "true": 11,
+    "correct": true,
+    "top_tokens": [
+      "tanque",
+      "boules",
+      "sable",
+      "technique",
+      "enfant"
+    ]
+  },
+  {
+    "sample_id": 13053,
+    "predicted": 11,
+    "confidence": 0.8808099031448364,
+    "true": 11,
+    "correct": true,
+    "top_tokens": [
+      "obtenez",
+      "ligne",
+      "graphique",
+      "main",
+      "correspond"
+    ]
+  },
+  {
+    "sample_id": 5179,
+    "predicted": 11,
+    "confidence": 0.9957595467567444,
+    "true": 11,
+    "correct": true,
+    "top_tokens": [
+      "rappel",
+      "chinois",
+      "number",
+      "chaud",
+      "lectionnez"
+    ]
+  },
+  {
+    "sample_id": 14255,
+    "predicted": 23,
+    "confidence": 0.35722097754478455,
+    "true": 11,
+    "correct": false,
+    "top_tokens": [
+      "tamis",
+      "moules",
+      "arrosoir",
+      "sable",
+      "pelle"
+    ]
+  },
+  {
+    "sample_id": 8960,
+    "predicted": 12,
+    "confidence": 0.9841146469116211,
+    "true": 12,
+    "correct": true,
+    "top_tokens": [
+      "naissance",
+      "unite",
+      "fille",
+      "lulu",
+      "brode"
+    ]
+  },
+  {
+    "sample_id": 3725,
+    "predicted": 12,
+    "confidence": 0.9973856806755066,
+    "true": 12,
+    "correct": true,
+    "top_tokens": [
+      "pue",
+      "riculture",
+      "ligne",
+      "techniques",
+      "raffine"
+    ]
+  },
+  {
+    "sample_id": 9036,
+    "predicted": 19,
+    "confidence": 0.5137720704078674,
+    "true": 12,
+    "correct": false,
+    "top_tokens": [
+      "planche",
+      "framboise",
+      "pages",
+      "autocollant"
+    ]
+  },
+  {
+    "sample_id": 8402,
+    "predicted": 12,
+    "confidence": 0.9949321150779724,
+    "true": 12,
+    "correct": true,
+    "top_tokens": [
+      "poussette",
+      "biberon",
+      "langer",
+      "matelas",
+      "posse"
+    ]
+  },
+  {
+    "sample_id": 1924,
+    "predicted": 12,
+    "confidence": 0.834733784198761,
+    "true": 12,
+    "correct": true,
+    "top_tokens": [
+      "femmes",
+      "sac",
+      "sac",
+      "dos",
+      "merci"
+    ]
+  },
+  {
+    "sample_id": 15364,
+    "predicted": 7,
+    "confidence": 0.7571307420730591,
+    "true": 12,
+    "correct": false,
+    "top_tokens": [
+      "pages",
+      "comprendre",
+      "promouvoir",
+      "jeu",
+      "couvertures"
+    ]
+  },
+  {
+    "sample_id": 8779,
+    "predicted": 12,
+    "confidence": 0.990630567073822,
+    "true": 12,
+    "correct": true,
+    "top_tokens": [
+      "mois",
+      "sportives",
+      "coton",
+      "convient",
+      "respirant"
+    ]
+  },
+  {
+    "sample_id": 11840,
+    "predicted": 12,
+    "confidence": 0.8882436752319336,
+    "true": 12,
+    "correct": true,
+    "top_tokens": [
+      "thermome",
+      "front",
+      "touch"
+    ]
+  },
+  {
+    "sample_id": 3278,
+    "predicted": 12,
+    "confidence": 0.9988642930984497,
+    "true": 12,
+    "correct": true,
+    "top_tokens": [
+      "bavoir",
+      "imprime",
+      "cher",
+      "aime"
+    ]
+  },
+  {
+    "sample_id": 11164,
+    "predicted": 12,
+    "confidence": 0.9979448914527893,
+    "true": 12,
+    "correct": true,
+    "top_tokens": [
+      "biberon",
+      "sensation"
+    ]
+  },
+  {
+    "sample_id": 14476,
+    "predicted": 12,
+    "confidence": 0.9996107220649719,
+    "true": 12,
+    "correct": true,
+    "top_tokens": [
+      "bavoir",
+      "imprime"
+    ]
+  },
+  {
+    "sample_id": 10591,
+    "predicted": 12,
+    "confidence": 0.990429162979126,
+    "true": 12,
+    "correct": true,
+    "top_tokens": [
+      "veil",
+      "tapis",
+      "veil",
+      "sens",
+      "rembourre"
+    ]
+  },
+  {
+    "sample_id": 7668,
+    "predicted": 12,
+    "confidence": 0.9983779191970825,
+    "true": 12,
+    "correct": true,
+    "top_tokens": [
+      "hochet"
+    ]
+  },
+  {
+    "sample_id": 4639,
+    "predicted": 12,
+    "confidence": 0.997676432132721,
+    "true": 12,
+    "correct": true,
+    "top_tokens": [
+      "loisirs",
+      "applicables",
+      "sac",
+      "normalement",
+      "disperse"
+    ]
+  },
+  {
+    "sample_id": 14408,
+    "predicted": 12,
+    "confidence": 0.9694399833679199,
+    "true": 12,
+    "correct": true,
+    "top_tokens": [
+      "repositionnable",
+      "enfant",
+      "utilisable",
+      "traces",
+      "chambre"
+    ]
+  },
+  {
+    "sample_id": 5335,
+    "predicted": 13,
+    "confidence": 0.9869938492774963,
+    "true": 13,
+    "correct": true,
+    "top_tokens": [
+      "tement",
+      "pieds",
+      "similicuir",
+      "res",
+      "profondeur"
+    ]
+  },
+  {
+    "sample_id": 7438,
+    "predicted": 13,
+    "confidence": 0.9826524257659912,
+    "true": 13,
+    "correct": true,
+    "top_tokens": [
+      "acariens",
+      "anti",
+      "matelas",
+      "coton",
+      "matelasse"
+    ]
+  },
+  {
+    "sample_id": 1089,
+    "predicted": 14,
+    "confidence": 0.32865941524505615,
+    "true": 13,
+    "correct": false,
+    "top_tokens": [
+      "tissu",
+      "salete",
+      "surface",
+      "parfait",
+      "doux"
+    ]
+  },
+  {
+    "sample_id": 11340,
+    "predicted": 13,
+    "confidence": 0.7883676886558533,
+    "true": 13,
+    "correct": true,
+    "top_tokens": [
+      "mdf",
+      "bois",
+      "paulownia",
+      "tiroir",
+      "design"
+    ]
+  },
+  {
+    "sample_id": 4091,
+    "predicted": 16,
+    "confidence": 0.6777834892272949,
+    "true": 13,
+    "correct": false,
+    "top_tokens": [
+      "pcs",
+      "diffe",
+      "quantite",
+      "cuisson",
+      "caracte"
+    ]
+  },
+  {
+    "sample_id": 8490,
+    "predicted": 13,
+    "confidence": 0.9802817106246948,
+    "true": 13,
+    "correct": true,
+    "top_tokens": [
+      "sommier",
+      "compose",
+      "finition",
+      "matelas",
+      "pieds"
+    ]
+  },
+  {
+    "sample_id": 9688,
+    "predicted": 13,
+    "confidence": 0.2731940448284149,
+    "true": 13,
+    "correct": true,
+    "top_tokens": [
+      "surface",
+      "gamer",
+      "ergonomique",
+      "courses",
+      "pros"
+    ]
+  },
+  {
+    "sample_id": 9033,
+    "predicted": 13,
+    "confidence": 0.9273335337638855,
+    "true": 13,
+    "correct": true,
+    "top_tokens": [
+      "design",
+      "fauteuil",
+      "livre",
+      "houssable",
+      "clair"
+    ]
+  },
+  {
+    "sample_id": 10030,
+    "predicted": 13,
+    "confidence": 0.9125636219978333,
+    "true": 13,
+    "correct": true,
+    "top_tokens": [
+      "cuisine",
+      "essentiels",
+      "facile",
+      "peluches",
+      "wearable"
+    ]
+  },
+  {
+    "sample_id": 6207,
+    "predicted": 16,
+    "confidence": 0.8891246318817139,
+    "true": 13,
+    "correct": false,
+    "top_tokens": [
+      "magasin",
+      "maison",
+      "luminaire",
+      "rustique",
+      "applique"
+    ]
+  },
+  {
+    "sample_id": 14017,
+    "predicted": 13,
+    "confidence": 0.9460434317588806,
+    "true": 13,
+    "correct": true,
+    "top_tokens": [
+      "similicuir",
+      "moire",
+      "lit",
+      "matelas",
+      "lit"
+    ]
+  },
+  {
+    "sample_id": 16345,
+    "predicted": 13,
+    "confidence": 0.9736547470092773,
+    "true": 13,
+    "correct": true,
+    "top_tokens": [
+      "chaise",
+      "moule",
+      "assise",
+      "coque",
+      "expression"
+    ]
+  },
+  {
+    "sample_id": 13664,
+    "predicted": 13,
+    "confidence": 0.9929718375205994,
+    "true": 13,
+    "correct": true,
+    "top_tokens": [
+      "etage",
+      "fonte",
+      "murale",
+      "coration",
+      "florale"
+    ]
+  },
+  {
+    "sample_id": 16341,
+    "predicted": 13,
+    "confidence": 0.9909308552742004,
+    "true": 13,
+    "correct": true,
+    "top_tokens": [
+      "assise",
+      "rembourre",
+      "canisme",
+      "fauteuil",
+      "dossier"
+    ]
+  },
+  {
+    "sample_id": 1937,
+    "predicted": 13,
+    "confidence": 0.7949603199958801,
+    "true": 13,
+    "correct": true,
+    "top_tokens": [
+      "single",
+      "places",
+      "places",
+      "chaise",
+      "chien"
+    ]
+  },
+  {
+    "sample_id": 12681,
+    "predicted": 14,
+    "confidence": 0.9962278604507446,
+    "true": 14,
+    "correct": true,
+    "top_tokens": [
+      "pillow",
+      "oreiller",
+      "livre",
+      "inclus",
+      "inte"
+    ]
+  },
+  {
+    "sample_id": 7060,
+    "predicted": 14,
+    "confidence": 0.9960160851478577,
+    "true": 14,
+    "correct": true,
+    "top_tokens": [
+      "taie",
+      "comprend",
+      "javel",
+      "mesures",
+      "manuelles"
+    ]
+  },
+  {
+    "sample_id": 8253,
+    "predicted": 14,
+    "confidence": 0.9889294505119324,
+    "true": 14,
+    "correct": true,
+    "top_tokens": [
+      "taie",
+      "requise",
+      "options",
+      "paire",
+      "taie"
+    ]
+  },
+  {
+    "sample_id": 324,
+    "predicted": 14,
+    "confidence": 0.9959750771522522,
+    "true": 14,
+    "correct": true,
+    "top_tokens": [
+      "pillow",
+      "oreiller",
+      "viation",
+      "contenu",
+      "mesure"
+    ]
+  },
+  {
+    "sample_id": 13389,
+    "predicted": 14,
+    "confidence": 0.9966159462928772,
+    "true": 14,
+    "correct": true,
+    "top_tokens": [
+      "parai",
+      "taie",
+      "corer",
+      "maison",
+      "salon"
+    ]
+  },
+  {
+    "sample_id": 5794,
+    "predicted": 14,
+    "confidence": 0.9923668503761292,
+    "true": 14,
+    "correct": true,
+    "top_tokens": [
+      "pillow",
+      "inclus",
+      "mesure",
+      "viation",
+      "club"
+    ]
+  },
+  {
+    "sample_id": 6018,
+    "predicted": 14,
+    "confidence": 0.9908614158630371,
+    "true": 14,
+    "correct": true,
+    "top_tokens": [
+      "suan",
+      "couverture",
+      "lit",
+      "forfait",
+      "livre"
+    ]
+  },
+  {
+    "sample_id": 802,
+    "predicted": 7,
+    "confidence": 0.5941209197044373,
+    "true": 14,
+    "correct": false,
+    "top_tokens": [
+      "peluche",
+      "doux",
+      "comprend",
+      "emoji",
+      "peluche"
+    ]
+  },
+  {
+    "sample_id": 195,
+    "predicted": 14,
+    "confidence": 0.9937062859535217,
+    "true": 14,
+    "correct": true,
+    "top_tokens": [
+      "coussin",
+      "pillow",
+      "coton",
+      "place",
+      "draps"
+    ]
+  },
+  {
+    "sample_id": 16123,
+    "predicted": 14,
+    "confidence": 0.9926799535751343,
+    "true": 14,
+    "correct": true,
+    "top_tokens": [
+      "canard",
+      "coton",
+      "machine",
+      "repassage",
+      "cuisine"
+    ]
+  },
+  {
+    "sample_id": 631,
+    "predicted": 14,
+    "confidence": 0.9959174990653992,
+    "true": 14,
+    "correct": true,
+    "top_tokens": [
+      "taie",
+      "place",
+      "parfait",
+      "ment",
+      "canape"
+    ]
+  },
+  {
+    "sample_id": 6384,
+    "predicted": 14,
+    "confidence": 0.9913314580917358,
+    "true": 14,
+    "correct": true,
+    "top_tokens": [
+      "suan",
+      "taie",
+      "coussin",
+      "sofa",
+      "cover"
+    ]
+  },
+  {
+    "sample_id": 3068,
+    "predicted": 14,
+    "confidence": 0.979060173034668,
+    "true": 14,
+    "correct": true,
+    "top_tokens": [
+      "drap",
+      "tapis",
+      "coton",
+      "douche",
+      "gant"
+    ]
+  },
+  {
+    "sample_id": 9195,
+    "predicted": 14,
+    "confidence": 0.9957477450370789,
+    "true": 14,
+    "correct": true,
+    "top_tokens": [
+      "viation",
+      "taie",
+      "forfait",
+      "taie",
+      "oreiller"
+    ]
+  },
+  {
+    "sample_id": 16929,
+    "predicted": 14,
+    "confidence": 0.9900026321411133,
+    "true": 14,
+    "correct": true,
+    "top_tokens": [
+      "taie",
+      "chaise",
+      "coussin",
+      "bureau",
+      "canape"
+    ]
+  },
+  {
+    "sample_id": 13683,
+    "predicted": 16,
+    "confidence": 0.6173874139785767,
+    "true": 15,
+    "correct": false,
+    "top_tokens": [
+      "confort",
+      "homme",
+      "mousse",
+      "logo",
+      "chaussettes"
+    ]
+  },
+  {
+    "sample_id": 14073,
+    "predicted": 15,
+    "confidence": 0.9999818801879883,
+    "true": 15,
+    "correct": true,
+    "top_tokens": [
+      "cacao",
+      "cacao",
+      "sucre",
+      "gou",
+      "aro"
+    ]
+  },
+  {
+    "sample_id": 13942,
+    "predicted": 15,
+    "confidence": 0.9999945163726807,
+    "true": 15,
+    "correct": true,
+    "top_tokens": [
+      "petits",
+      "bio",
+      "bio",
+      "bio",
+      "bio"
+    ]
+  },
+  {
+    "sample_id": 7174,
+    "predicted": 15,
+    "confidence": 0.9999819993972778,
+    "true": 15,
+    "correct": true,
+    "top_tokens": [
+      "pommes",
+      "paration",
+      "bio",
+      "pre",
+      "pre"
+    ]
+  },
+  {
+    "sample_id": 12682,
+    "predicted": 15,
+    "confidence": 0.9999562501907349,
+    "true": 15,
+    "correct": true,
+    "top_tokens": [
+      "truffe",
+      "truffe",
+      "gluten",
+      "gluten"
+    ]
+  },
+  {
+    "sample_id": 2412,
+    "predicted": 15,
+    "confidence": 0.9980453252792358,
+    "true": 15,
+    "correct": true,
+    "top_tokens": [
+      "cafe",
+      "cafe",
+      "corse",
+      "cafe",
+      "ables"
+    ]
+  },
+  {
+    "sample_id": 15397,
+    "predicted": 15,
+    "confidence": 0.998916506767273,
+    "true": 15,
+    "correct": true,
+    "top_tokens": [
+      "graisse",
+      "sachet",
+      "oeufs",
+      "consommateurs",
+      "graisse"
+    ]
+  },
+  {
+    "sample_id": 1690,
+    "predicted": 15,
+    "confidence": 0.9995294809341431,
+    "true": 15,
+    "correct": true,
+    "top_tokens": [
+      "thon",
+      "huile",
+      "poisson",
+      "conditionnement",
+      "olive"
+    ]
+  },
+  {
+    "sample_id": 16068,
+    "predicted": 0,
+    "confidence": 0.3571617305278778,
+    "true": 15,
+    "correct": false,
+    "top_tokens": [
+      "croquante"
+    ]
+  },
+  {
+    "sample_id": 3779,
+    "predicted": 15,
+    "confidence": 0.9999665021896362,
+    "true": 15,
+    "correct": true,
+    "top_tokens": [
+      "bio",
+      "bio",
+      "bio",
+      "fou",
+      "bio"
+    ]
+  },
+  {
+    "sample_id": 11422,
+    "predicted": 15,
+    "confidence": 0.9241921901702881,
+    "true": 15,
+    "correct": true,
+    "top_tokens": [
+      "lait",
+      "fruits",
+      "cola",
+      "gou",
+      "cola"
+    ]
+  },
+  {
+    "sample_id": 8922,
+    "predicted": 15,
+    "confidence": 0.9999550580978394,
+    "true": 15,
+    "correct": true,
+    "top_tokens": [
+      "bio",
+      "bio",
+      "gingembre",
+      "gingembre",
+      "gingembre"
+    ]
+  },
+  {
+    "sample_id": 9081,
+    "predicted": 15,
+    "confidence": 0.980719268321991,
+    "true": 15,
+    "correct": true,
+    "top_tokens": [
+      "cafe",
+      "compatibles",
+      "compatibles",
+      "compatibles",
+      "cafe"
+    ]
+  },
+  {
+    "sample_id": 16639,
+    "predicted": 15,
+    "confidence": 0.999998927116394,
+    "true": 15,
+    "correct": true,
+    "top_tokens": [
+      "consultez",
+      "frais",
+      "soigne",
+      "date",
+      "boites"
+    ]
+  },
+  {
+    "sample_id": 6411,
+    "predicted": 21,
+    "confidence": 0.9879078269004822,
+    "true": 15,
+    "correct": false,
+    "top_tokens": [
+      "lots",
+      "sacs",
+      "carton",
+      "fond",
+      "carton"
+    ]
+  },
+  {
+    "sample_id": 10296,
+    "predicted": 16,
+    "confidence": 0.9261332154273987,
+    "true": 16,
+    "correct": true,
+    "top_tokens": [
+      "mur",
+      "description",
+      "salon",
+      "matie",
+      "forfait"
+    ]
+  },
+  {
+    "sample_id": 8785,
+    "predicted": 0,
+    "confidence": 0.3117843270301819,
+    "true": 16,
+    "correct": false,
+    "top_tokens": [
+      "indien",
+      "boites",
+      "hit",
+      "super",
+      "encens"
+    ]
+  },
+  {
+    "sample_id": 961,
+    "predicted": 16,
+    "confidence": 0.8502289652824402,
+    "true": 16,
+    "correct": true,
+    "top_tokens": [
+      "matie",
+      "techniques",
+      "polyester",
+      "informations",
+      "bain"
+    ]
+  },
+  {
+    "sample_id": 7497,
+    "predicted": 16,
+    "confidence": 0.6251974701881409,
+    "true": 16,
+    "correct": true,
+    "top_tokens": [
+      "contenu",
+      "coffret",
+      "remercie",
+      "images",
+      "rectangle"
+    ]
+  },
+  {
+    "sample_id": 13064,
+    "predicted": 13,
+    "confidence": 0.4375797510147095,
+    "true": 16,
+    "correct": false,
+    "top_tokens": [
+      "booster",
+      "multicolor",
+      "mignon",
+      "esprit",
+      "incluent"
+    ]
+  },
+  {
+    "sample_id": 4090,
+    "predicted": 16,
+    "confidence": 0.9148712158203125,
+    "true": 16,
+    "correct": true,
+    "top_tokens": [
+      "mariage",
+      "besoins",
+      "chambre",
+      "bois",
+      "bois"
+    ]
+  },
+  {
+    "sample_id": 10574,
+    "predicted": 14,
+    "confidence": 0.853804886341095,
+    "true": 16,
+    "correct": false,
+    "top_tokens": [
+      "lavable",
+      "lit",
+      "plai",
+      "taie",
+      "fermeture"
+    ]
+  },
+  {
+    "sample_id": 9148,
+    "predicted": 12,
+    "confidence": 0.6204330325126648,
+    "true": 16,
+    "correct": false,
+    "top_tokens": [
+      "humidificateur",
+      "water",
+      "tasse",
+      "poids",
+      "mesure"
+    ]
+  },
+  {
+    "sample_id": 14266,
+    "predicted": 16,
+    "confidence": 0.8905773162841797,
+    "true": 16,
+    "correct": true,
+    "top_tokens": [
+      "contenir",
+      "contenir",
+      "contenir",
+      "cification",
+      "perles"
+    ]
+  },
+  {
+    "sample_id": 11663,
+    "predicted": 16,
+    "confidence": 0.7685944437980652,
+    "true": 16,
+    "correct": true,
+    "top_tokens": [
+      "doux",
+      "toucher",
+      "machine",
+      "bricolage",
+      "carte"
+    ]
+  },
+  {
+    "sample_id": 1568,
+    "predicted": 16,
+    "confidence": 0.8276002407073975,
+    "true": 16,
+    "correct": true,
+    "top_tokens": [
+      "solaires",
+      "lumie",
+      "automatiquement",
+      "comprennent",
+      "lumie"
+    ]
+  },
+  {
+    "sample_id": 2774,
+    "predicted": 7,
+    "confidence": 0.45226824283599854,
+    "true": 16,
+    "correct": false,
+    "top_tokens": [
+      "socle",
+      "beetle",
+      "lumineux",
+      "cube",
+      "cristal"
+    ]
+  },
+  {
+    "sample_id": 5719,
+    "predicted": 16,
+    "confidence": 0.9652005434036255,
+    "true": 16,
+    "correct": true,
+    "top_tokens": [
+      "scrapbooking",
+      "condition",
+      "artisanat",
+      "remercie",
+      "papier"
+    ]
+  },
+  {
+    "sample_id": 4527,
+    "predicted": 16,
+    "confidence": 0.9620770812034607,
+    "true": 16,
+    "correct": true,
+    "top_tokens": [
+      "motivation",
+      "rique",
+      "nume",
+      "nume",
+      "caracte"
+    ]
+  },
+  {
+    "sample_id": 11929,
+    "predicted": 16,
+    "confidence": 0.978304386138916,
+    "true": 16,
+    "correct": true,
+    "top_tokens": [
+      "diamant",
+      "image",
+      "diamant",
+      "besoin",
+      "fini"
+    ]
+  },
+  {
+    "sample_id": 15857,
+    "predicted": 17,
+    "confidence": 0.999993085861206,
+    "true": 17,
+    "correct": true,
+    "top_tokens": [
+      "dents",
+      "chien",
+      "chien",
+      "chien",
+      "dents"
+    ]
+  },
+  {
+    "sample_id": 14151,
+    "predicted": 17,
+    "confidence": 0.9557896256446838,
+    "true": 17,
+    "correct": true,
+    "top_tokens": [
+      "chat",
+      "jouet"
+    ]
+  },
+  {
+    "sample_id": 13195,
+    "predicted": 17,
+    "confidence": 0.9999704360961914,
+    "true": 17,
+    "correct": true,
+    "top_tokens": [
+      "collier",
+      "pet",
+      "sweetheart",
+      "chien",
+      "confortable"
+    ]
+  },
+  {
+    "sample_id": 15078,
+    "predicted": 17,
+    "confidence": 0.9999970197677612,
+    "true": 17,
+    "correct": true,
+    "top_tokens": [
+      "collier",
+      "collier",
+      "chien",
+      "colliers",
+      "chien"
+    ]
+  },
+  {
+    "sample_id": 1571,
+    "predicted": 17,
+    "confidence": 0.983507513999939,
+    "true": 17,
+    "correct": true,
+    "top_tokens": [
+      "aquarium",
+      "aquarium",
+      "comprend",
+      "sentiment",
+      "compre"
+    ]
+  },
+  {
+    "sample_id": 9750,
+    "predicted": 17,
+    "confidence": 0.2853131890296936,
+    "true": 17,
+    "correct": true,
+    "top_tokens": [
+      "polaire",
+      "rieur",
+      "inte",
+      "chien",
+      "ajustable"
+    ]
+  },
+  {
+    "sample_id": 4827,
+    "predicted": 17,
+    "confidence": 0.9996495246887207,
+    "true": 17,
+    "correct": true,
+    "top_tokens": [
+      "animal",
+      "compagnie",
+      "chiens",
+      "ide",
+      "utiliser"
+    ]
+  },
+  {
+    "sample_id": 9452,
+    "predicted": 17,
+    "confidence": 0.9772756695747375,
+    "true": 17,
+    "correct": true,
+    "top_tokens": [
+      "aquarium",
+      "eau",
+      "tailles",
+      "servoir",
+      "main"
+    ]
+  },
+  {
+    "sample_id": 1511,
+    "predicted": 17,
+    "confidence": 0.43843117356300354,
+    "true": 17,
+    "correct": true,
+    "top_tokens": [
+      "compagnie",
+      "animal",
+      "yeux",
+      "chats",
+      "pet"
+    ]
+  },
+  {
+    "sample_id": 12314,
+    "predicted": 17,
+    "confidence": 0.845156729221344,
+    "true": 17,
+    "correct": true,
+    "top_tokens": [
+      "nylon",
+      "polyester",
+      "rence",
+      "dog",
+      "facile"
+    ]
+  },
+  {
+    "sample_id": 1738,
+    "predicted": 17,
+    "confidence": 0.95424884557724,
+    "true": 17,
+    "correct": true,
+    "top_tokens": [
+      "animal",
+      "chat",
+      "compagnie",
+      "pattes",
+      "cloches"
+    ]
+  },
+  {
+    "sample_id": 13742,
+    "predicted": 8,
+    "confidence": 0.3922227919101715,
+    "true": 17,
+    "correct": false,
+    "top_tokens": [
+      "gamelle",
+      "conception",
+      "coloris",
+      "lamine",
+      "simple"
+    ]
+  },
+  {
+    "sample_id": 14157,
+    "predicted": 17,
+    "confidence": 0.9999289512634277,
+    "true": 17,
+    "correct": true,
+    "top_tokens": [
+      "chiens",
+      "petits",
+      "chiens",
+      "parfait",
+      "galement"
+    ]
+  },
+  {
+    "sample_id": 9171,
+    "predicted": 17,
+    "confidence": 0.9998494386672974,
+    "true": 17,
+    "correct": true,
+    "top_tokens": [
+      "animal",
+      "compagnie",
+      "collier",
+      "permettent",
+      "chat"
+    ]
+  },
+  {
+    "sample_id": 6971,
+    "predicted": 17,
+    "confidence": 0.99997878074646,
+    "true": 17,
+    "correct": true,
+    "top_tokens": [
+      "puppy",
+      "pet",
+      "eau",
+      "colliers",
+      "chien"
+    ]
+  },
+  {
+    "sample_id": 7498,
+    "predicted": 18,
+    "confidence": 0.9743943810462952,
+    "true": 18,
+    "correct": true,
+    "top_tokens": [
+      "tele",
+      "scope",
+      "cinema",
+      "benoit",
+      "tourne"
+    ]
+  },
+  {
+    "sample_id": 11465,
+    "predicted": 18,
+    "confidence": 0.8853423595428467,
+    "true": 18,
+    "correct": true,
+    "top_tokens": [
+      "magazine",
+      "france",
+      "projet",
+      "jeu",
+      "commun"
+    ]
+  },
+  {
+    "sample_id": 3745,
+    "predicted": 19,
+    "confidence": 0.9074096083641052,
+    "true": 18,
+    "correct": false,
+    "top_tokens": [
+      "gaston"
+    ]
+  },
+  {
+    "sample_id": 7278,
+    "predicted": 18,
+    "confidence": 0.4992809593677521,
+    "true": 18,
+    "correct": true,
+    "top_tokens": [
+      "fusil",
+      "cibles",
+      "saga",
+      "jean",
+      "russe"
+    ]
+  },
+  {
+    "sample_id": 11464,
+    "predicted": 18,
+    "confidence": 0.8904579281806946,
+    "true": 18,
+    "correct": true,
+    "top_tokens": [
+      "illustre",
+      "monde",
+      "expe",
+      "mexique",
+      "dition"
+    ]
+  },
+  {
+    "sample_id": 7918,
+    "predicted": 12,
+    "confidence": 0.9681905508041382,
+    "true": 18,
+    "correct": false,
+    "top_tokens": [
+      "hochet",
+      "ric",
+      "dela",
+      "code"
+    ]
+  },
+  {
+    "sample_id": 14264,
+    "predicted": 18,
+    "confidence": 0.9858025312423706,
+    "true": 18,
+    "correct": true,
+    "top_tokens": [
+      "echo",
+      "presse",
+      "directeur",
+      "publicite",
+      "paris"
+    ]
+  },
+  {
+    "sample_id": 3074,
+    "predicted": 18,
+    "confidence": 0.9805152416229248,
+    "true": 18,
+    "correct": true,
+    "top_tokens": [
+      "charles",
+      "france",
+      "leon",
+      "dirige",
+      "baron"
+    ]
+  },
+  {
+    "sample_id": 1830,
+    "predicted": 4,
+    "confidence": 0.3011171221733093,
+    "true": 18,
+    "correct": false,
+    "top_tokens": [
+      "pirate"
+    ]
+  },
+  {
+    "sample_id": 14650,
+    "predicted": 19,
+    "confidence": 0.4794210195541382,
+    "true": 18,
+    "correct": false,
+    "top_tokens": [
+      "jim",
+      "juillet"
+    ]
+  },
+  {
+    "sample_id": 7766,
+    "predicted": 0,
+    "confidence": 0.5373730063438416,
+    "true": 18,
+    "correct": false,
+    "top_tokens": [
+      "aste",
+      "obe",
+      "lix",
+      "gale"
+    ]
+  },
+  {
+    "sample_id": 15075,
+    "predicted": 1,
+    "confidence": 0.8753703832626343,
+    "true": 18,
+    "correct": false,
+    "top_tokens": [
+      "mondiale",
+      "guerre"
+    ]
+  },
+  {
+    "sample_id": 4256,
+    "predicted": 8,
+    "confidence": 0.9847522377967834,
+    "true": 18,
+    "correct": false,
+    "top_tokens": [
+      "questions",
+      "cycle"
+    ]
+  },
+  {
+    "sample_id": 7751,
+    "predicted": 18,
+    "confidence": 0.9845902919769287,
+    "true": 18,
+    "correct": true,
+    "top_tokens": [
+      "gravure",
+      "universel",
+      "journal",
+      "fetes",
+      "porte"
+    ]
+  },
+  {
+    "sample_id": 8887,
+    "predicted": 18,
+    "confidence": 0.6812235116958618,
+    "true": 18,
+    "correct": true,
+    "top_tokens": [
+      "vue",
+      "point",
+      "future",
+      "vie",
+      "harry"
+    ]
+  },
+  {
+    "sample_id": 6545,
+    "predicted": 19,
+    "confidence": 0.9935084581375122,
+    "true": 19,
+    "correct": true,
+    "top_tokens": [
+      "volumes",
+      "presses",
+      "philosophe",
+      "france"
+    ]
+  },
+  {
+    "sample_id": 9486,
+    "predicted": 0,
+    "confidence": 0.5859727263450623,
+    "true": 19,
+    "correct": false,
+    "top_tokens": [
+      "recherche",
+      "civilisations",
+      "encyclopedie"
+    ]
+  },
+  {
+    "sample_id": 5783,
+    "predicted": 19,
+    "confidence": 0.6152364611625671,
+    "true": 19,
+    "correct": true,
+    "top_tokens": [
+      "journaux",
+      "socie",
+      "hebdo"
+    ]
+  },
+  {
+    "sample_id": 13555,
+    "predicted": 19,
+    "confidence": 0.885574221611023,
+    "true": 19,
+    "correct": true,
+    "top_tokens": [
+      "journaux",
+      "guerre"
+    ]
+  },
+  {
+    "sample_id": 12260,
+    "predicted": 18,
+    "confidence": 0.5686184763908386,
+    "true": 19,
+    "correct": false,
+    "top_tokens": [
+      "jean",
+      "universite",
+      "robert",
+      "bac",
+      "jeunes"
+    ]
+  },
+  {
+    "sample_id": 7383,
+    "predicted": 18,
+    "confidence": 0.9517133235931396,
+    "true": 19,
+    "correct": false,
+    "top_tokens": [
+      "magazine",
+      "liste",
+      "demande",
+      "anciens",
+      "vend"
+    ]
+  },
+  {
+    "sample_id": 15295,
+    "predicted": 18,
+    "confidence": 0.8683885335922241,
+    "true": 19,
+    "correct": false,
+    "top_tokens": [
+      "officiel",
+      "ration",
+      "france",
+      "confe",
+      "nationale"
+    ]
+  },
+  {
+    "sample_id": 16605,
+    "predicted": 19,
+    "confidence": 0.45611152052879333,
+    "true": 19,
+    "correct": true,
+    "top_tokens": [
+      "saga",
+      "grant",
+      "rie",
+      "batman"
+    ]
+  },
+  {
+    "sample_id": 7300,
+    "predicted": 19,
+    "confidence": 0.35078492760658264,
+    "true": 19,
+    "correct": true,
+    "top_tokens": [
+      "tbe",
+      "divine",
+      "max",
+      "semi",
+      "droite"
+    ]
+  },
+  {
+    "sample_id": 14626,
+    "predicted": 0,
+    "confidence": 0.5910756587982178,
+    "true": 19,
+    "correct": false,
+    "top_tokens": [
+      "introduction",
+      "sabre",
+      "tude",
+      "traditionnel",
+      "japonais"
+    ]
+  },
+  {
+    "sample_id": 11673,
+    "predicted": 19,
+    "confidence": 0.9102146029472351,
+    "true": 19,
+    "correct": true,
+    "top_tokens": [
+      "livre",
+      "croix",
+      "point"
+    ]
+  },
+  {
+    "sample_id": 15402,
+    "predicted": 19,
+    "confidence": 0.44621044397354126,
+    "true": 19,
+    "correct": true,
+    "top_tokens": [
+      "livre",
+      "harlequin",
+      "tirage",
+      "passion"
+    ]
+  },
+  {
+    "sample_id": 8238,
+    "predicted": 19,
+    "confidence": 0.8515328764915466,
+    "true": 19,
+    "correct": true,
+    "top_tokens": [
+      "editions",
+      "miller",
+      "vols",
+      "ours"
+    ]
+  },
+  {
+    "sample_id": 12993,
+    "predicted": 19,
+    "confidence": 0.9934020638465881,
+    "true": 19,
+    "correct": true,
+    "top_tokens": [
+      "tomes",
+      "comple",
+      "ditions",
+      "oeuvres",
+      "rencontre"
+    ]
+  },
+  {
+    "sample_id": 16307,
+    "predicted": 0,
+    "confidence": 0.3147605359554291,
+    "true": 19,
+    "correct": false,
+    "top_tokens": [
+      "freud"
+    ]
+  },
+  {
+    "sample_id": 8257,
+    "predicted": 1,
+    "confidence": 0.566516637802124,
+    "true": 20,
+    "correct": false,
+    "top_tokens": [
+      "super",
+      "game"
+    ]
+  },
+  {
+    "sample_id": 8683,
+    "predicted": 20,
+    "confidence": 0.9666399955749512,
+    "true": 20,
+    "correct": true,
+    "top_tokens": [
+      "jeu",
+      "kinect",
+      "xbox",
+      "slim",
+      "giga"
+    ]
+  },
+  {
+    "sample_id": 9000,
+    "predicted": 2,
+    "confidence": 0.4176923334598541,
+    "true": 20,
+    "correct": false,
+    "top_tokens": [
+      "notice",
+      "tro",
+      "tomy",
+      "retro",
+      "jeu"
+    ]
+  },
+  {
+    "sample_id": 9012,
+    "predicted": 20,
+    "confidence": 0.9030189514160156,
+    "true": 20,
+    "correct": true,
+    "top_tokens": [
+      "jeu"
+    ]
+  },
+  {
+    "sample_id": 2375,
+    "predicted": 19,
+    "confidence": 0.8363000750541687,
+    "true": 20,
+    "correct": false,
+    "top_tokens": [
+      "tbe",
+      "unite",
+      "interface",
+      "moteur"
+    ]
+  },
+  {
+    "sample_id": 1302,
+    "predicted": 20,
+    "confidence": 0.9967972636222839,
+    "true": 20,
+    "correct": true,
+    "top_tokens": [
+      "manettes",
+      "jeu"
+    ]
+  },
+  {
+    "sample_id": 12645,
+    "predicted": 20,
+    "confidence": 0.9259965419769287,
+    "true": 20,
+    "correct": true,
+    "top_tokens": [
+      "sony",
+      "slim",
+      "lite",
+      "psp"
+    ]
+  },
+  {
+    "sample_id": 1943,
+    "predicted": 5,
+    "confidence": 0.6950596570968628,
+    "true": 20,
+    "correct": false,
+    "top_tokens": [
+      "carte",
+      "poke"
+    ]
+  },
+  {
+    "sample_id": 13517,
+    "predicted": 20,
+    "confidence": 0.9941983222961426,
+    "true": 20,
+    "correct": true,
+    "top_tokens": [
+      "jeu",
+      "wii",
+      "nintendo"
+    ]
+  },
+  {
+    "sample_id": 2831,
+    "predicted": 20,
+    "confidence": 0.9979078769683838,
+    "true": 20,
+    "correct": true,
+    "top_tokens": [
+      "jeu",
+      "photos",
+      "wii",
+      "nintendo",
+      "circus"
+    ]
+  },
+  {
+    "sample_id": 10032,
+    "predicted": 3,
+    "confidence": 0.8706236481666565,
+    "true": 20,
+    "correct": false,
+    "top_tokens": [
+      "black",
+      "console",
+      "xbox",
+      "ops"
+    ]
+  },
+  {
+    "sample_id": 8550,
+    "predicted": 20,
+    "confidence": 0.5129984021186829,
+    "true": 20,
+    "correct": true,
+    "top_tokens": [
+      "jeu",
+      "top"
+    ]
+  },
+  {
+    "sample_id": 10449,
+    "predicted": 20,
+    "confidence": 0.9309305548667908,
+    "true": 20,
+    "correct": true,
+    "top_tokens": [
+      "manette",
+      "jeu",
+      "jeu"
+    ]
+  },
+  {
+    "sample_id": 9624,
+    "predicted": 20,
+    "confidence": 0.7009605169296265,
+    "true": 20,
+    "correct": true,
+    "top_tokens": [
+      "xbox",
+      "raider",
+      "tomb"
+    ]
+  },
+  {
+    "sample_id": 4701,
+    "predicted": 19,
+    "confidence": 0.5341532826423645,
+    "true": 20,
+    "correct": false,
+    "top_tokens": [
+      "bandai",
+      "amis"
+    ]
+  },
+  {
+    "sample_id": 3842,
+    "predicted": 21,
+    "confidence": 0.99937903881073,
+    "true": 21,
+    "correct": true,
+    "top_tokens": [
+      "sided",
+      "dice",
+      "dice",
+      "sided",
+      "multi"
+    ]
+  },
+  {
+    "sample_id": 12941,
+    "predicted": 19,
+    "confidence": 0.42367827892303467,
+    "true": 21,
+    "correct": false,
+    "top_tokens": [
+      "mate",
+      "mate",
+      "mate"
+    ]
+  },
+  {
+    "sample_id": 10691,
+    "predicted": 21,
+    "confidence": 0.9996001124382019,
+    "true": 21,
+    "correct": true,
+    "top_tokens": [
+      "trodat",
+      "encreur",
+      "tampon",
+      "tampon",
+      "encreur"
+    ]
+  },
+  {
+    "sample_id": 12595,
+    "predicted": 21,
+    "confidence": 0.9944908618927002,
+    "true": 21,
+    "correct": true,
+    "top_tokens": [
+      "schneider",
+      "marqueurs",
+      "maxx",
+      "biseau",
+      "tableau"
+    ]
+  },
+  {
+    "sample_id": 3790,
+    "predicted": 7,
+    "confidence": 0.5547959804534912,
+    "true": 21,
+    "correct": false,
+    "top_tokens": [
+      "lumineux",
+      "dora"
+    ]
+  },
+  {
+    "sample_id": 6211,
+    "predicted": 21,
+    "confidence": 0.9993008375167847,
+    "true": 21,
+    "correct": true,
+    "top_tokens": [
+      "stylo",
+      "plume"
+    ]
+  },
+  {
+    "sample_id": 5147,
+    "predicted": 21,
+    "confidence": 0.949381411075592,
+    "true": 21,
+    "correct": true,
+    "top_tokens": [
+      "utilisations",
+      "reliure",
+      "collage",
+      "colle",
+      "porcelaine"
+    ]
+  },
+  {
+    "sample_id": 4049,
+    "predicted": 21,
+    "confidence": 0.994865357875824,
+    "true": 21,
+    "correct": true,
+    "top_tokens": [
+      "tiquettes",
+      "avery",
+      "adhe",
+      "rouges",
+      "adhe"
+    ]
+  },
+  {
+    "sample_id": 141,
+    "predicted": 21,
+    "confidence": 0.9977682828903198,
+    "true": 21,
+    "correct": true,
+    "top_tokens": [
+      "stylos",
+      "feutre",
+      "bague",
+      "tal",
+      "bic"
+    ]
+  },
+  {
+    "sample_id": 6117,
+    "predicted": 21,
+    "confidence": 0.9990202188491821,
+    "true": 21,
+    "correct": true,
+    "top_tokens": [
+      "bille",
+      "stylos",
+      "diat",
+      "direct",
+      "spe"
+    ]
+  },
+  {
+    "sample_id": 2224,
+    "predicted": 21,
+    "confidence": 0.9993008375167847,
+    "true": 21,
+    "correct": true,
+    "top_tokens": [
+      "stylo",
+      "plume"
+    ]
+  },
+  {
+    "sample_id": 1773,
+    "predicted": 21,
+    "confidence": 0.9966532588005066,
+    "true": 21,
+    "correct": true,
+    "top_tokens": [
+      "lastiques",
+      "lastiques",
+      "exacompta",
+      "lastiques",
+      "carton"
+    ]
+  },
+  {
+    "sample_id": 16283,
+    "predicted": 21,
+    "confidence": 0.9302634596824646,
+    "true": 21,
+    "correct": true,
+    "top_tokens": [
+      "documents",
+      "contenir",
+      "feuilles",
+      "postales",
+      "postales"
+    ]
+  },
+  {
+    "sample_id": 16002,
+    "predicted": 21,
+    "confidence": 0.9918147921562195,
+    "true": 21,
+    "correct": true,
+    "top_tokens": [
+      "carnet",
+      "cartes",
+      "protege",
+      "visibles",
+      "etui"
+    ]
+  },
+  {
+    "sample_id": 11772,
+    "predicted": 21,
+    "confidence": 0.9996495246887207,
+    "true": 21,
+    "correct": true,
+    "top_tokens": [
+      "mines",
+      "schneider",
+      "mine",
+      "porte",
+      "crayon"
+    ]
+  },
+  {
+    "sample_id": 3247,
+    "predicted": 22,
+    "confidence": 0.998202919960022,
+    "true": 22,
+    "correct": true,
+    "top_tokens": [
+      "aluminium",
+      "structure",
+      "fonte",
+      "anneaux",
+      "aluminium"
+    ]
+  },
+  {
+    "sample_id": 8332,
+    "predicted": 22,
+    "confidence": 0.949539303779602,
+    "true": 22,
+    "correct": true,
+    "top_tokens": [
+      "jardin",
+      "exte",
+      "rieur",
+      "plantes",
+      "stable"
+    ]
+  },
+  {
+    "sample_id": 16625,
+    "predicted": 22,
+    "confidence": 0.9777870178222656,
+    "true": 22,
+    "correct": true,
+    "top_tokens": [
+      "acier",
+      "bac",
+      "jardinie",
+      "mentaires",
+      "galvanise"
+    ]
+  },
+  {
+    "sample_id": 4587,
+    "predicted": 24,
+    "confidence": 0.9822188019752502,
+    "true": 22,
+    "correct": false,
+    "top_tokens": [
+      "robinet",
+      "vis",
+      "droite",
+      "trique",
+      "fiches"
+    ]
+  },
+  {
+    "sample_id": 12527,
+    "predicted": 16,
+    "confidence": 0.20440097153186798,
+    "true": 22,
+    "correct": false,
+    "top_tokens": [
+      "naturel",
+      "utilisable",
+      "lumie",
+      "lavage",
+      "ristiques"
+    ]
+  },
+  {
+    "sample_id": 2098,
+    "predicted": 23,
+    "confidence": 0.4270407259464264,
+    "true": 22,
+    "correct": false,
+    "top_tokens": [
+      "tailles",
+      "disponibles",
+      "homescapes",
+      "zinc",
+      "oiseaux"
+    ]
+  },
+  {
+    "sample_id": 515,
+    "predicted": 14,
+    "confidence": 0.8547791242599487,
+    "true": 22,
+    "correct": false,
+    "top_tokens": [
+      "couette",
+      "sel",
+      "anti",
+      "sel",
+      "effet"
+    ]
+  },
+  {
+    "sample_id": 1383,
+    "predicted": 11,
+    "confidence": 0.6334177255630493,
+    "true": 22,
+    "correct": false,
+    "top_tokens": [
+      "exte",
+      "boucle",
+      "ceinture",
+      "plat",
+      "activite"
+    ]
+  },
+  {
+    "sample_id": 7752,
+    "predicted": 14,
+    "confidence": 0.7092623114585876,
+    "true": 22,
+    "correct": false,
+    "top_tokens": [
+      "table",
+      "professionnel",
+      "personnel",
+      "lasthanne",
+      "table"
+    ]
+  },
+  {
+    "sample_id": 4528,
+    "predicted": 22,
+    "confidence": 0.49881893396377563,
+    "true": 22,
+    "correct": true,
+    "top_tokens": [
+      "parai",
+      "rester",
+      "peine",
+      "attendre",
+      "chic"
+    ]
+  },
+  {
+    "sample_id": 3711,
+    "predicted": 22,
+    "confidence": 0.9877046346664429,
+    "true": 22,
+    "correct": true,
+    "top_tokens": [
+      "boire",
+      "bar",
+      "paies",
+      "consommation",
+      "cocktail"
+    ]
+  },
+  {
+    "sample_id": 9803,
+    "predicted": 22,
+    "confidence": 0.9896962642669678,
+    "true": 22,
+    "correct": true,
+    "top_tokens": [
+      "parasol",
+      "parasol",
+      "aspect",
+      "flower",
+      "verre"
+    ]
+  },
+  {
+    "sample_id": 3140,
+    "predicted": 22,
+    "confidence": 0.9725149869918823,
+    "true": 22,
+    "correct": true,
+    "top_tokens": [
+      "parasol",
+      "remplac",
+      "flon",
+      "toile",
+      "haute"
+    ]
+  },
+  {
+    "sample_id": 9424,
+    "predicted": 22,
+    "confidence": 0.979562520980835,
+    "true": 22,
+    "correct": true,
+    "top_tokens": [
+      "mesure",
+      "tool",
+      "atelier",
+      "variation",
+      "ondule"
+    ]
+  },
+  {
+    "sample_id": 7049,
+    "predicted": 13,
+    "confidence": 0.9629598259925842,
+    "true": 22,
+    "correct": false,
+    "top_tokens": [
+      "organisateur",
+      "organisateur",
+      "tements",
+      "modulaire",
+      "connecte"
+    ]
+  },
+  {
+    "sample_id": 10137,
+    "predicted": 23,
+    "confidence": 0.971238911151886,
+    "true": 23,
+    "correct": true,
+    "top_tokens": [
+      "pompe",
+      "triphase"
+    ]
+  },
+  {
+    "sample_id": 9298,
+    "predicted": 23,
+    "confidence": 0.9987608194351196,
+    "true": 23,
+    "correct": true,
+    "top_tokens": [
+      "hayward",
+      "piscine",
+      "hayward",
+      "cartouche",
+      "filtrante"
+    ]
+  },
+  {
+    "sample_id": 14037,
+    "predicted": 23,
+    "confidence": 0.9845532178878784,
+    "true": 23,
+    "correct": true,
+    "top_tokens": [
+      "eau",
+      "chauffeur",
+      "piscine",
+      "eau",
+      "tube"
+    ]
+  },
+  {
+    "sample_id": 8848,
+    "predicted": 23,
+    "confidence": 0.9933691620826721,
+    "true": 23,
+    "correct": true,
+    "top_tokens": [
+      "raccords",
+      "commander",
+      "curite",
+      "piscines",
+      "contactez"
+    ]
+  },
+  {
+    "sample_id": 12629,
+    "predicted": 23,
+    "confidence": 0.9718065857887268,
+    "true": 23,
+    "correct": true,
+    "top_tokens": [
+      "spa",
+      "nombre",
+      "balboa",
+      "skimmer",
+      "spa"
+    ]
+  },
+  {
+    "sample_id": 7180,
+    "predicted": 23,
+    "confidence": 0.8617116808891296,
+    "true": 23,
+    "correct": true,
+    "top_tokens": [
+      "vanne",
+      "gulation",
+      "bit",
+      "guler",
+      "formes"
+    ]
+  },
+  {
+    "sample_id": 13573,
+    "predicted": 23,
+    "confidence": 0.6443274021148682,
+    "true": 23,
+    "correct": true,
+    "top_tokens": [
+      "piscine",
+      "standard",
+      "vidange",
+      "montage",
+      "filtre"
+    ]
+  },
+  {
+    "sample_id": 12608,
+    "predicted": 22,
+    "confidence": 0.5038936734199524,
+    "true": 23,
+    "correct": false,
+    "top_tokens": [
+      "intempe",
+      "ries",
+      "bassin",
+      "sistante",
+      "alimente"
+    ]
+  },
+  {
+    "sample_id": 1506,
+    "predicted": 23,
+    "confidence": 0.7693663835525513,
+    "true": 23,
+    "correct": true,
+    "top_tokens": [
+      "testeur",
+      "acidite",
+      "eau",
+      "obtenir",
+      "carnets"
+    ]
+  },
+  {
+    "sample_id": 16906,
+    "predicted": 23,
+    "confidence": 0.9994732737541199,
+    "true": 23,
+    "correct": true,
+    "top_tokens": [
+      "piscine",
+      "carre",
+      "bulles",
+      "couverture",
+      "couverture"
+    ]
+  },
+  {
+    "sample_id": 6069,
+    "predicted": 23,
+    "confidence": 0.9217404723167419,
+    "true": 23,
+    "correct": true,
+    "top_tokens": [
+      "piscine",
+      "adapter",
+      "oslash",
+      "parois",
+      "piscine"
+    ]
+  },
+  {
+    "sample_id": 8128,
+    "predicted": 23,
+    "confidence": 0.9952057003974915,
+    "true": 23,
+    "correct": true,
+    "top_tokens": [
+      "skimmer",
+      "chelle",
+      "eau",
+      "rieure",
+      "piscine"
+    ]
+  },
+  {
+    "sample_id": 14475,
+    "predicted": 23,
+    "confidence": 0.9992924928665161,
+    "true": 23,
+    "correct": true,
+    "top_tokens": [
+      "hayward",
+      "gorie",
+      "cate",
+      "sceller",
+      "glable"
+    ]
+  },
+  {
+    "sample_id": 11450,
+    "predicted": 23,
+    "confidence": 0.9981991648674011,
+    "true": 23,
+    "correct": true,
+    "top_tokens": [
+      "ronde",
+      "piscine",
+      "capacite",
+      "ronde",
+      "gonflable"
+    ]
+  },
+  {
+    "sample_id": 10878,
+    "predicted": 23,
+    "confidence": 0.9942523837089539,
+    "true": 23,
+    "correct": true,
+    "top_tokens": [
+      "hayward",
+      "sceller",
+      "fond",
+      "coller",
+      "luxe"
+    ]
+  },
+  {
+    "sample_id": 11425,
+    "predicted": 24,
+    "confidence": 0.9940443634986877,
+    "true": 24,
+    "correct": true,
+    "top_tokens": [
+      "appareils",
+      "bobine",
+      "compatible",
+      "decker",
+      "fil"
+    ]
+  },
+  {
+    "sample_id": 8314,
+    "predicted": 24,
+    "confidence": 0.6289560794830322,
+    "true": 24,
+    "correct": true,
+    "top_tokens": [
+      "jauge",
+      "trou",
+      "verrouillage",
+      "riales",
+      "tails"
+    ]
+  },
+  {
+    "sample_id": 15427,
+    "predicted": 16,
+    "confidence": 0.7455266118049622,
+    "true": 24,
+    "correct": false,
+    "top_tokens": [
+      "tenues",
+      "chal",
+      "jour",
+      "rapeutique",
+      "main"
+    ]
+  },
+  {
+    "sample_id": 8163,
+    "predicted": 24,
+    "confidence": 0.9991316199302673,
+    "true": 24,
+    "correct": true,
+    "top_tokens": [
+      "fournisseur",
+      "aspirateur",
+      "origine",
+      "fourni",
+      "emballage"
+    ]
+  },
+  {
+    "sample_id": 16777,
+    "predicted": 24,
+    "confidence": 0.991621732711792,
+    "true": 24,
+    "correct": true,
+    "top_tokens": [
+      "tondeuse",
+      "hauteur",
+      "travail",
+      "surface",
+      "min"
+    ]
+  },
+  {
+    "sample_id": 12237,
+    "predicted": 24,
+    "confidence": 0.998939573764801,
+    "true": 24,
+    "correct": true,
+    "top_tokens": [
+      "fournisseur",
+      "aspirateur",
+      "origine",
+      "emballage",
+      "origine"
+    ]
+  },
+  {
+    "sample_id": 6619,
+    "predicted": 24,
+    "confidence": 0.9289775490760803,
+    "true": 24,
+    "correct": true,
+    "top_tokens": [
+      "xiaomi",
+      "lock",
+      "carte",
+      "verrouillage",
+      "smart"
+    ]
+  },
+  {
+    "sample_id": 1479,
+    "predicted": 24,
+    "confidence": 0.6853492856025696,
+    "true": 24,
+    "correct": true,
+    "top_tokens": [
+      "vice",
+      "poigne",
+      "verrouillage",
+      "soudure",
+      "cle"
+    ]
+  },
+  {
+    "sample_id": 2625,
+    "predicted": 13,
+    "confidence": 0.5356419086456299,
+    "true": 24,
+    "correct": false,
+    "top_tokens": [
+      "vin",
+      "fabricant",
+      "cuisine",
+      "lie",
+      "multicolore"
+    ]
+  },
+  {
+    "sample_id": 3047,
+    "predicted": 24,
+    "confidence": 0.8206154704093933,
+    "true": 24,
+    "correct": true,
+    "top_tokens": [
+      "label",
+      "balcon",
+      "environnemental",
+      "techniques",
+      "ristiques"
+    ]
+  },
+  {
+    "sample_id": 10480,
+    "predicted": 24,
+    "confidence": 0.575663685798645,
+    "true": 24,
+    "correct": true,
+    "top_tokens": [
+      "culture",
+      "barres",
+      "chambres",
+      "pvc",
+      "conc"
+    ]
+  },
+  {
+    "sample_id": 8294,
+    "predicted": 24,
+    "confidence": 0.999376118183136,
+    "true": 24,
+    "correct": true,
+    "top_tokens": [
+      "aspirateur",
+      "fournisseur",
+      "cit",
+      "aspirateur",
+      "origine"
+    ]
+  },
+  {
+    "sample_id": 3134,
+    "predicted": 24,
+    "confidence": 0.9366257190704346,
+    "true": 24,
+    "correct": true,
+    "top_tokens": [
+      "gazon",
+      "ation",
+      "forte",
+      "pelouses",
+      "engrais"
+    ]
+  },
+  {
+    "sample_id": 9181,
+    "predicted": 23,
+    "confidence": 0.9758338332176208,
+    "true": 24,
+    "correct": false,
+    "top_tokens": [
+      "enrouleur",
+      "jardin",
+      "enrouleur",
+      "alimentation",
+      "tailles"
+    ]
+  },
+  {
+    "sample_id": 16157,
+    "predicted": 24,
+    "confidence": 0.9652234315872192,
+    "true": 24,
+    "correct": true,
+    "top_tokens": [
+      "pompes",
+      "laiton",
+      "cran",
+      "carburant",
+      "tube"
+    ]
+  },
+  {
+    "sample_id": 8324,
+    "predicted": 25,
+    "confidence": 0.9987279772758484,
+    "true": 25,
+    "correct": true,
+    "top_tokens": [
+      "oeuvre",
+      "monde",
+      "crit",
+      "auteur",
+      "passer"
+    ]
+  },
+  {
+    "sample_id": 12981,
+    "predicted": 25,
+    "confidence": 0.9973735809326172,
+    "true": 25,
+    "correct": true,
+    "top_tokens": [
+      "difficulte",
+      "ouvrage",
+      "femme",
+      "uvre",
+      "sacrifice"
+    ]
+  },
+  {
+    "sample_id": 13571,
+    "predicted": 25,
+    "confidence": 0.9980973601341248,
+    "true": 25,
+    "correct": true,
+    "top_tokens": [
+      "ouvrage",
+      "jeune",
+      "public",
+      "propose",
+      "mission"
+    ]
+  },
+  {
+    "sample_id": 1944,
+    "predicted": 25,
+    "confidence": 0.9104724526405334,
+    "true": 25,
+    "correct": true,
+    "top_tokens": [
+      "jolie",
+      "partage",
+      "lecture",
+      "acirc",
+      "fille"
+    ]
+  },
+  {
+    "sample_id": 9001,
+    "predicted": 25,
+    "confidence": 0.9986640214920044,
+    "true": 25,
+    "correct": true,
+    "top_tokens": [
+      "auteur",
+      "monde",
+      "livre",
+      "niveaux",
+      "vient"
+    ]
+  },
+  {
+    "sample_id": 9317,
+    "predicted": 25,
+    "confidence": 0.6515795588493347,
+    "true": 25,
+    "correct": true,
+    "top_tokens": [
+      "touche"
+    ]
+  },
+  {
+    "sample_id": 14361,
+    "predicted": 25,
+    "confidence": 0.7112452983856201,
+    "true": 25,
+    "correct": true,
+    "top_tokens": [
+      "parents",
+      "connai",
+      "maman",
+      "beurre",
+      "pointe"
+    ]
+  },
+  {
+    "sample_id": 7148,
+    "predicted": 0,
+    "confidence": 0.21031533181667328,
+    "true": 25,
+    "correct": false,
+    "top_tokens": [
+      "<empty>"
+    ]
+  },
+  {
+    "sample_id": 11333,
+    "predicted": 0,
+    "confidence": 0.4294743537902832,
+    "true": 25,
+    "correct": false,
+    "top_tokens": [
+      "femmes"
+    ]
+  },
+  {
+    "sample_id": 11631,
+    "predicted": 25,
+    "confidence": 0.8368117213249207,
+    "true": 25,
+    "correct": true,
+    "top_tokens": [
+      "peine",
+      "politique",
+      "rite",
+      "atteindre",
+      "pauvres"
+    ]
+  },
+  {
+    "sample_id": 8491,
+    "predicted": 25,
+    "confidence": 0.7340586185455322,
+    "true": 25,
+    "correct": true,
+    "top_tokens": [
+      "ocirc",
+      "tome",
+      "retrouve",
+      "lection",
+      "joueurs"
+    ]
+  },
+  {
+    "sample_id": 9917,
+    "predicted": 25,
+    "confidence": 0.9947887659072876,
+    "true": 25,
+    "correct": true,
+    "top_tokens": [
+      "agit",
+      "but",
+      "cit",
+      "climat",
+      "souvenirs"
+    ]
+  },
+  {
+    "sample_id": 9283,
+    "predicted": 1,
+    "confidence": 0.3301612436771393,
+    "true": 25,
+    "correct": false,
+    "top_tokens": [
+      "rois",
+      "pre"
+    ]
+  },
+  {
+    "sample_id": 9243,
+    "predicted": 25,
+    "confidence": 0.998555600643158,
+    "true": 25,
+    "correct": true,
+    "top_tokens": [
+      "auteur",
+      "vit",
+      "bel",
+      "terrain",
+      "bien"
+    ]
+  },
+  {
+    "sample_id": 8348,
+    "predicted": 25,
+    "confidence": 0.9052391648292542,
+    "true": 25,
+    "correct": true,
+    "top_tokens": [
+      "oeuvres",
+      "cle",
+      "ation",
+      "bres",
+      "femmes"
+    ]
+  },
+  {
+    "sample_id": 9082,
+    "predicted": 26,
+    "confidence": 0.9903565049171448,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "steam",
+      "drive",
+      "windows",
+      "windows",
+      "configuration"
+    ]
+  },
+  {
+    "sample_id": 16053,
+    "predicted": 26,
+    "confidence": 0.9983569979667664,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "jeu",
+      "chargement",
+      "environnements",
+      "casse",
+      "redoutables"
+    ]
+  },
+  {
+    "sample_id": 7146,
+    "predicted": 26,
+    "confidence": 0.9994291663169861,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "jeu",
+      "chargement",
+      "supple",
+      "space",
+      "windows"
+    ]
+  },
+  {
+    "sample_id": 14627,
+    "predicted": 26,
+    "confidence": 0.999974250793457,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "requise",
+      "configuration",
+      "windows",
+      "monde",
+      "intel"
+    ]
+  },
+  {
+    "sample_id": 806,
+    "predicted": 26,
+    "confidence": 0.9934644103050232,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "mac",
+      "interactive",
+      "logo",
+      "mac",
+      "droits"
+    ]
+  },
+  {
+    "sample_id": 14188,
+    "predicted": 26,
+    "confidence": 0.9999954700469971,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "nvidia",
+      "geforce",
+      "gtx",
+      "intel",
+      "ghz"
+    ]
+  },
+  {
+    "sample_id": 7500,
+    "predicted": 26,
+    "confidence": 0.999996542930603,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "intel",
+      "windows",
+      "processeur",
+      "gtx",
+      "core"
+    ]
+  },
+  {
+    "sample_id": 7363,
+    "predicted": 26,
+    "confidence": 0.9970706701278687,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "their",
+      "respective",
+      "trademarks",
+      "copyrights",
+      "nvidia"
+    ]
+  },
+  {
+    "sample_id": 3845,
+    "predicted": 26,
+    "confidence": 0.9999971389770508,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "processeur",
+      "intel",
+      "windows",
+      "core",
+      "windows"
+    ]
+  },
+  {
+    "sample_id": 3559,
+    "predicted": 26,
+    "confidence": 0.999671459197998,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "requise",
+      "configuration",
+      "minimum",
+      "win",
+      "syste"
+    ]
+  },
+  {
+    "sample_id": 5696,
+    "predicted": 26,
+    "confidence": 0.9999808073043823,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "nvidia",
+      "geforce",
+      "gtx",
+      "windows",
+      "processeur"
+    ]
+  },
+  {
+    "sample_id": 16788,
+    "predicted": 26,
+    "confidence": 0.9999179840087891,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "chargement",
+      "jeu",
+      "fonds",
+      "cran",
+      "extras"
+    ]
+  },
+  {
+    "sample_id": 5289,
+    "predicted": 26,
+    "confidence": 0.999797523021698,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "forts",
+      "jeu",
+      "chargement",
+      "points",
+      "niveaux"
+    ]
+  },
+  {
+    "sample_id": 12110,
+    "predicted": 26,
+    "confidence": 0.9999710321426392,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "gtx",
+      "geforce",
+      "nvidia",
+      "windows",
+      "intel"
+    ]
+  },
+  {
+    "sample_id": 3180,
+    "predicted": 26,
+    "confidence": 0.9993047714233398,
+    "true": 26,
+    "correct": true,
+    "top_tokens": [
+      "chargement",
+      "jeu",
+      "forts",
+      "points",
+      "mystery"
+    ]
+  }
+]

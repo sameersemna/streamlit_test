@@ -6,6 +6,9 @@ import unicodedata
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+import fitz  # PyMuPDF
+from PIL import Image
+import io
 
 try:
     stopwords.words('english') # Attempt to access to check if already downloaded
@@ -142,3 +145,41 @@ def get_closest(word, word2idx, vectors, idx2word, number=10):
         ])
     return list_ret
 
+
+### JANEKs functions
+
+def display_html_file(file_path, height=None):
+    """
+    Display an HTML file in Streamlit.
+    """
+    with open(file_path, 'r', encoding='utf-8') as f:
+        html_content = f.read()
+
+    html_content = html_content.replace('background: #6c757d;', 'background: transparent;')
+
+    if height is None:
+        st.components.v1.html(html_content, height=600, scrolling=True)
+    else:
+        st.components.v1.html(html_content, height=height)
+
+def load_keras_model(model_path):
+    """Load a complete Keras model saved with model.save()"""
+    try:
+        model = keras.models.load_model(model_path)
+        st.success(f"Complete model loaded from: {model_path}")
+        return model
+    except Exception as e:
+        st.error(f"Error loading complete model: {e}")
+        return None
+    
+from PIL import Image
+
+def show_pdf_page(pdf_path, pnum=2):
+    """Show page 2 of a PDF as an image in streamlit"""
+    doc = fitz.open(pdf_path)
+    page = doc[pnum-1]  # Page 2 (0-indexed)
+    pix = page.get_pixmap(matrix=fitz.Matrix(1.5, 1.5))  # 1.5x zoom
+    img_data = pix.tobytes("png")
+    img = Image.open(io.BytesIO(img_data))
+    st.image(img)
+    doc.close()
