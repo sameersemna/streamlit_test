@@ -124,11 +124,13 @@ def get_freq_df(tokens):
 st.title("Rakuten e-commerce project")
 st.sidebar.title("Table of contents")
 pages = [
+    "Introduction",
     "Data Processing",
-    "Data Exploration", # Visualization
+    "Data Exploration",
     "Image Processing",
     "Modelling",
-    "Interpretation"
+    "Interpretation",
+    "Conclusions"
 ]
 page = st.sidebar.radio("Go to", pages)
 page_current = 0
@@ -920,11 +922,9 @@ if page == pages[page_current]:
     text_report = 'training_text-cnn-epochs-100-lr-0.001-testing_f1-0.7257_t-0721_1642.pdf'
     #text_predictions = ''
 
-    img_model = ''
-    img_history = ''
 
     multimodal_model = "multimodal-mobilenetv2--lr-0.0001_f1-0.795.keras"
-    multimodal_history = "multimodal-mobilenetv2--lr-0.0001_f1-0.795history.json"
+    multimodal_history = "multimodal-mobilenetv2--lr-0.0001_f1-0.795_history.json"
     multimodal_report = 'training_multimodal-mobilenetv2--lr-0.0001_f1-0.795_f1-0.7950_t-0722_2033.pdf'
     multimodal_predictions = 'multimodal-mobilenetv2--lr-0.0001_f1-0.795_predictions.npy'
     # Model selection dropdown
@@ -932,7 +932,6 @@ if page == pages[page_current]:
         "Select a model",
         "Basic ML Models", 
         "Custom CNN Text",
-        "MobileNet for Images", 
         "Multimodal Fusion Model"
     ]
 
@@ -940,20 +939,19 @@ if page == pages[page_current]:
 
     if selected_model == "Basic ML Models":
         st.subheader("Basic ML Models")
-        display_html_file('basic_models.html')
+        display_html_file(DIR_HTML +'/basic_models.html')
         
     elif selected_model == "Custom CNN Text":
         st.subheader("Custom CNN Text Model")
 
+        display_html_file(DIR_HTML +'/text_model.html')
 
-        display_html_file('text_model.html')
-        
         # Load specific model files
         model_file = text_model
         history_file = text_history
         
-        model_path = f"models/{model_file}"
-        history_path = f"models/{history_file}"
+        model_path = DIR_MODELS + f"/{model_file}"
+        history_path = DIR_MODELS + f"/{history_file}"
         
         st.info(f"Loading model: {model_file}")
         st.info(f"Loading history: {history_file}")
@@ -1045,20 +1043,20 @@ if page == pages[page_current]:
         else:
             st.error(f"Training history file not found: {history_path}")
 
-        pdf_path = 'models/'+ text_report
+        pdf_path = DIR_MODELS + f"/{text_report}"
         show_pdf_page(pdf_path, pnum=2)
             
     elif selected_model == "Multimodal Fusion Model":
         st.subheader("Multimodal Fusion Model")
-        display_html_file('multimodal.html')
-        display_html_file('technic.html')
+        display_html_file(DIR_HTML +'/multimodal.html')
+        display_html_file(DIR_HTML +'/technic.html')
         # Load specific multimodal model files
         model_file = multimodal_model
         history_file = multimodal_history
-        
-        model_path = f"models/{model_file}"
-        history_path = f"models/{history_file}"
-        
+
+        model_path = DIR_MODELS + f"/{model_file}"
+        history_path = DIR_MODELS +f"/{history_file}"
+
         st.info(f"Loading model: {model_file}")
         st.info(f"Loading history: {history_file}")
         
@@ -1149,13 +1147,9 @@ if page == pages[page_current]:
         else:
             st.error(f"Training history file not found: {history_path}")
 
-        pdf_path = 'models/'+ multimodal_report
+        pdf_path = DIR_MODELS+ f'/{multimodal_report}'
         show_pdf_page(pdf_path, pnum=2)
 
-    elif selected_model == "MobileNet for Images":
-        st.subheader("MobileNet for Images")
-        st.info("MobileNet implementation coming soon...")
-        # Add your MobileNet implementation here
         
     else:
         st.write("Please select a model from the dropdown above.")
