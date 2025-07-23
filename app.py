@@ -1,26 +1,35 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
-import os
-import matplotlib.pyplot as plt
-import seaborn as sns
-import nltk
+from collections import Counter
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-from collections import Counter
-from wordcloud import WordCloud
-import re
-import io
-import pickle
 from pathlib import Path
+from PIL import Image
+from rembg import remove
+from sklearn.metrics import confusion_matrix, classification_report
+from wordcloud import WordCloud
+import cv2
+import glob
+import io
+import json
+import keras
+import matplotlib.pyplot as plt
+import nltk
+import numpy as np
+import os
+import pandas as pd
+import pickle
+import random
+import re
+import seaborn as sns
+import streamlit as st
+
 import models
 from common import custom_stopwords, display_paired_images_in_reports_folder, prdtypes, prdtypes_en, select_h5_file, word_grouping
-
+from image_preprocessing import (load_original_image, get_random_image_path, baseline_preprocessing, 
+        advanced_augmentation_preprocessing, background_removal_preprocessing, smart_crop_preprocessing)
 from functions import display_html_file, show_pdf_page
-import keras
-from sklearn.metrics import confusion_matrix, classification_report
-import json
-from pathlib import Path
+
+import warnings
+warnings.filterwarnings('ignore')
 
 DATA_RAW = './data/raw'
 DATA_PROCESSED = './data/processed'
@@ -45,11 +54,12 @@ def load_all_data():
     try:
         X_test_df = pd.read_parquet(f"{DATA_RAW}/X_test_update.parquet")
         X_train_df = pd.read_parquet(f"{DATA_RAW}/X_train_update.parquet")
+        X_train_ready = pd.read_parquet(f"{DATA_PROCESSED}/X_train_ready.parquet")
         Y_train_df = pd.read_parquet(f"{DATA_RAW}/Y_train_CVw08PX.parquet")
         # Merge Y_train into X_train immediately after loading to ensure consistency across reruns
         X_train_df = X_train_df.merge(Y_train_df, how='left', left_index=True,
                                       right_index=True, suffixes=('_X_train', '_Y_train'))
-        return X_test_df, X_train_df, Y_train_df
+        return X_test_df, X_train_df, Y_train_df, X_train_ready
     except FileNotFoundError as e:
         st.error(
             f"Error loading data: {e}. Please ensure data files are in the '{DATA_RAW}' directory.")
@@ -104,7 +114,7 @@ download_nltk_data()
 # Stopwords and replacements
 french_stopwords = set(stopwords.words('french'))
 all_stopwords = french_stopwords.union(custom_stopwords)
-X_test, X_train, Y_train = load_all_data()
+X_test, X_train, Y_train, X_train_ready = load_all_data()
 
 # --- PAGE CONFIG MUST BE THE VERY FIRST STREAMLIT COMMAND ---
 st.set_page_config(
@@ -292,6 +302,7 @@ page_current = page_current + 1
 if page == pages[page_current]:
     st.header("Product type identification")
     data = X_train.copy()
+    # st.dataframe(data.head())
 
     st.title("Word Clouds and Frequency Tables by Product Type")
     st.subheader(
@@ -306,7 +317,11 @@ if page == pages[page_current]:
         str).apply(clean_text).sum()
     description_tokens = subset['description'].dropna().astype(
         str).apply(clean_text).sum()
-    combined_tokens = designation_tokens + description_tokens
+    # combined_tokens = designation_tokens + description_tokens
+
+    subset_ready = X_train_ready[X_train_ready['prdtypecode'] == selected_type]
+    combined_tokens = subset_ready['comb_tokens_fr'].astype(
+        str).apply(clean_text).sum()
 
     # Layout for word clouds
     st.subheader("Word Clouds")
@@ -760,20 +775,6 @@ if page == pages[page_current]:
 page_current = page_current + 1
 if page == pages[page_current]:
     st.title("🖼️ Image Preprocessing Methods Demo")
-
-    import cv2
-    from PIL import Image
-    import random
-    import glob
-    from rembg import remove
-    import warnings
-    import io
-
-    warnings.filterwarnings('ignore')
-
-    from image_preprocessing import (load_original_image, get_random_image_path, baseline_preprocessing, 
-            advanced_augmentation_preprocessing, background_removal_preprocessing, smart_crop_preprocessing)
-
     st.markdown("### 📊 Basic Image Properties")
 
     col1, col2 = st.columns(2)
