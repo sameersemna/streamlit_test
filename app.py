@@ -12,8 +12,10 @@ from wordcloud import WordCloud
 import re
 import io
 import pickle
+from pathlib import Path
 import models
 from common import custom_stopwords, display_paired_images_in_reports_folder, prdtypes, prdtypes_en, select_h5_file, word_grouping
+
 from functions import display_html_file, show_pdf_page
 import keras
 from sklearn.metrics import confusion_matrix, classification_report
@@ -30,7 +32,6 @@ DIR_SAMPLE_IMAGES = './sample_images'
 def read_markdown_file(markdown_file):
     return Path(markdown_file).read_text()
 
-
 # --- PAGE CONFIG MUST BE THE VERY FIRST STREAMLIT COMMAND ---
 st.set_page_config(
     page_title="Rakuten E-commerce Project",
@@ -39,33 +40,25 @@ st.set_page_config(
 )
 
 # --- Data Loading (Cached for efficiency) ---
-
-
 @st.cache_data
 def load_all_data():
-    path = r"./data/raw"
     try:
-        X_test_df = pd.read_parquet(f"{path}/X_test_update.parquet")
-        X_train_df = pd.read_parquet(f"{path}/X_train_update.parquet")
-        Y_train_df = pd.read_parquet(f"{path}/Y_train_CVw08PX.parquet")
+        X_test_df = pd.read_parquet(f"{DATA_RAW}/X_test_update.parquet")
+        X_train_df = pd.read_parquet(f"{DATA_RAW}/X_train_update.parquet")
+        Y_train_df = pd.read_parquet(f"{DATA_RAW}/Y_train_CVw08PX.parquet")
         # Merge Y_train into X_train immediately after loading to ensure consistency across reruns
         X_train_df = X_train_df.merge(Y_train_df, how='left', left_index=True,
                                       right_index=True, suffixes=('_X_train', '_Y_train'))
         return X_test_df, X_train_df, Y_train_df
     except FileNotFoundError as e:
         st.error(
-            f"Error loading data: {e}. Please ensure data files are in the '{path}' directory.")
+            f"Error loading data: {e}. Please ensure data files are in the '{DATA_RAW}' directory.")
         st.stop()  # Stop the app if data is not found
     except Exception as e:
         st.error(f"An unexpected error occurred during data loading: {e}")
         st.stop()
 
-
-X_test, X_train, Y_train = load_all_data()
-
 # --- NLTK Downloads (Cached for efficiency) ---
-
-
 @st.cache_resource
 def download_nltk_data():
     try:
@@ -78,16 +71,7 @@ def download_nltk_data():
     except Exception:
         nltk.download('punkt')
 
-
-download_nltk_data()
-
-# Stopwords and replacements
-french_stopwords = set(stopwords.words('french'))
-all_stopwords = french_stopwords.union(custom_stopwords)
-
 # Tokenization and cleaning
-
-
 def clean_text(text):
     if not isinstance(text, str):
         return []
@@ -99,7 +83,6 @@ def clean_text(text):
     return [word_grouping.get(w, w) for w in tokens if w not in all_stopwords]
 
 # Word clouds
-
 def plot_wordcloud(tokens, title, colormap):
     text = ' '.join(tokens)
     if not text:
@@ -114,11 +97,21 @@ def plot_wordcloud(tokens, title, colormap):
     st.pyplot(fig)
 
 # Frequency tables
-
-
 def get_freq_df(tokens):
     return pd.DataFrame(Counter(tokens).most_common(20), columns=["Word", "Frequency"])
 
+download_nltk_data()
+# Stopwords and replacements
+french_stopwords = set(stopwords.words('french'))
+all_stopwords = french_stopwords.union(custom_stopwords)
+X_test, X_train, Y_train = load_all_data()
+
+# --- PAGE CONFIG MUST BE THE VERY FIRST STREAMLIT COMMAND ---
+st.set_page_config(
+    page_title="Rakuten E-commerce Project",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # ---- Streamlit specific code ----
 st.title("Rakuten e-commerce project")
@@ -134,6 +127,21 @@ pages = [
 ]
 page = st.sidebar.radio("Go to", pages)
 page_current = 0
+
+# --- Page 0: Introduction ---------------------------------------------------
+if page == pages[page_current]:
+    st.title("Introduction")
+    # Page configuration
+    st.set_page_config(page_title="Rakuten Product Classification", layout="centered")
+    st.title("Classification of Rakuten E-Commerce Products")
+
+    introduction = read_markdown_file(f"{DIR_MARKDOWN}/introduction.md")
+    st.markdown(introduction, unsafe_allow_html=True)
+
+    # Footer
+    st.markdown("---")
+    st.caption("Developed as part of the Rakuten France Multimodal Product Classification Challenge.")
+
 
 # --- Page 1: Data Processing ---
 page_current = page_current + 1
@@ -744,6 +752,9 @@ if page == pages[page_current]:
             # Completed the line
             .head(20)[['prdtypecode', 'prdtype', 'description', 'duplicate_count']]
         )
+    
+    summary_images = read_markdown_file(f"{DIR_MARKDOWN}/summary_images.md")
+    st.markdown(summary_images, unsafe_allow_html=True)
 
 # -----------------------------------------------------
 page_current = page_current + 1
@@ -1177,7 +1188,6 @@ if page == pages[page_current]:
     st.subheader("GradCAM")
 
     display_paired_images_in_reports_folder("./reports/figures")
-
 
 # --- Page 5: Conclusion ---------------------------------------------------
 page_current = page_current + 1
