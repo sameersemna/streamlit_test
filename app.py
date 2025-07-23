@@ -29,11 +29,12 @@ def load_all_data():
     try:
         X_test_df = pd.read_parquet(f"{DATA_RAW}/X_test_update.parquet")
         X_train_df = pd.read_parquet(f"{DATA_RAW}/X_train_update.parquet")
+        X_train_ready = pd.read_parquet(f"{DATA_PROCESSED}/X_train_ready.parquet")
         Y_train_df = pd.read_parquet(f"{DATA_RAW}/Y_train_CVw08PX.parquet")
         # Merge Y_train into X_train immediately after loading to ensure consistency across reruns
         X_train_df = X_train_df.merge(Y_train_df, how='left', left_index=True,
                                       right_index=True, suffixes=('_X_train', '_Y_train'))
-        return X_test_df, X_train_df, Y_train_df
+        return X_test_df, X_train_df, Y_train_df, X_train_ready
     except FileNotFoundError as e:
         st.error(
             f"Error loading data: {e}. Please ensure data files are in the '{DATA_RAW}' directory.")
@@ -88,7 +89,7 @@ download_nltk_data()
 # Stopwords and replacements
 french_stopwords = set(stopwords.words('french'))
 all_stopwords = french_stopwords.union(custom_stopwords)
-X_test, X_train, Y_train = load_all_data()
+X_test, X_train, Y_train, X_train_ready = load_all_data()
 
 # --- PAGE CONFIG MUST BE THE VERY FIRST STREAMLIT COMMAND ---
 st.set_page_config(
@@ -275,6 +276,7 @@ page_current = page_current + 1
 if page == pages[page_current]:
     st.header("Product type identification")
     data = X_train.copy()
+    # st.dataframe(data.head())
 
     st.title("Word Clouds and Frequency Tables by Product Type")
     st.subheader(
@@ -289,7 +291,11 @@ if page == pages[page_current]:
         str).apply(clean_text).sum()
     description_tokens = subset['description'].dropna().astype(
         str).apply(clean_text).sum()
-    combined_tokens = designation_tokens + description_tokens
+    # combined_tokens = designation_tokens + description_tokens
+
+    subset_ready = X_train_ready[X_train_ready['prdtypecode'] == selected_type]
+    combined_tokens = subset_ready['comb_tokens_fr'].astype(
+        str).apply(clean_text).sum()
 
     # Layout for word clouds
     st.subheader("Word Clouds")
