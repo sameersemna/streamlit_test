@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Classification Model Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 15px;
+            background: #6c757d;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #6c757d;
+            margin-bottom: 25px;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+        
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .model-card {
+            background: #fef3f2;
+            border: 2px solid #f97316;
+            border-radius: 10px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .model-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .model-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #ea580c;
+            margin-bottom: 12px;
+        }
+        
+        .score-container {
+            margin: 8px 0;
+        }
+        
+        .f1-macro {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 5px 0;
+        }
+        
+        .score-label {
+            font-size: 0.8em;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+
+        
+        .info-section {
+            background: #f8f9fa;
+            border: 2px solid #6c757d;
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .info-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .info-text {
+            color: #495057;
+            line-height: 1.5;
+            font-size: 0.95em;
+        }
+        
+        .ranking {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(108, 117, 125, 0.1);
+            border-radius: 8px;
+        }
+        
+        .ranking-title {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1em;
+        }
+        
+        .ranking-list {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9em;
+        }
+        
+        .rank-item {
+            color: #495057;
+        }
+        
+        .rank-1 { color: #10b981; font-weight: bold; }
+        .rank-2 { color: #f97316; font-weight: bold; }
+        .rank-3 { color: #dc3545; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Text Classification Model Results</h1>
+        <div class="subtitle">Simple Initial Text-Based Modeling on Basic Text Tokens</div>
+        
+        <div class="models-grid">
+            <div class="model-card">
+                <div class="model-name">Linear SVM</div>
+                <div class="score-container">
+                    <div class="score-label">F1 Macro</div>
+                    <div class="f1-macro">0.783</div>
+                </div>
+            </div>
+            
+            <div class="model-card">
+                <div class="model-name">Logistic Regression</div>
+                <div class="score-container">
+                    <div class="score-label">F1 Macro</div>
+                    <div class="f1-macro">0.773</div>
+                </div>
+            </div>
+            
+            <div class="model-card">
+                <div class="model-name">SGD Classifier</div>
+                <div class="score-container">
+                    <div class="score-label">F1 Macro</div>
+                    <div class="f1-macro">0.734</div>
+                </div>
+            </div>
+            
+            <div class="model-card">
+                <div class="model-name">Random Forest</div>
+                <div class="score-container">
+                    <div class="score-label">F1 Macro</div>
+                    <div class="f1-macro">0.616</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ranking">
+            <div class="ranking-title">🏅 F1 Macro Ranking:</div>
+            <div class="ranking-list">
+                <span class="rank-item rank-1">1st: Linear SVM (0.783)</span>
+                <span class="rank-item rank-2">2nd: Logistic Regression (0.773)</span>
+                <span class="rank-item rank-3">3rd: SGD Classifier (0.734)</span>
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <div class="info-title">🎯 Model Testing Information</div>
+            <div class="info-text">
+                <strong>Task:</strong> Text Classification for Product Categories<br>
+                <strong>Dataset:</strong> 16,984 test samples<br>
+                <strong>Features:</strong> Basic text tokens (tokenized French text)<br>
+                <strong>Metric:</strong> F1 Macro Score<br>
+                <strong>Best Performance:</strong> Linear SVM achieved 78.3% F1 Macro Score
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "Model Name": "text-cnn-epochs-100-lr-0.001-testing",
+  "Timestamp": "0721_1642",
+  "Data Type": "Numpy Arrays",
+  "Total Parameters": 4370053,
+  "Training Epochs": 19,
+  "Final Training Accuracy": "0.9353",
+  "Final Validation Accuracy": "0.7420",
+  "Final Training Loss": "0.5085",
+  "Final Validation Loss": "1.4016",
+  "Final Training F1": "0.9365",
+  "Final Validation F1": "0.7257",
+  "Validation Metrics": {
+    "loss": 1.3845033645629883,
+    "compile_metrics": 0.7414036989212036
+  },
+  "Macro Avg F1": "0.7280",
+  "Weighted Avg F1": "0.7430",
+  "Number of Classes": 27,
+  "Batch Size": "N/A (arrays)",
+  "Input Info": "Input Shape: (16984, 60)",
+  "Hyperparameters": {
+    "dataset_percentage": 1.0,
+    "training_rows": 84916,
+    "n_epochs": 100,
+    "batch_size": 64,
+    "initial_learning_rate": 0.001,
+    "dense_size": 256,
+    "embedding_dim": 250,
+    "max_sequence_length": 60,
+    "vocab_limit": 15000,
+    "conv_filters": 128,
+    "conv_k_list": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "conv_k_reg": 0.005,
+    "dense_k_reg": 0.02
+  }
+}

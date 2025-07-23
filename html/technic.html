@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimodal CNN Technical Specifications</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 15px;
+            background: #6c757d;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e9ecef;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+        
+        .specs {
+            background: rgba(108, 117, 125, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.9em;
+        }
+        
+        .specs h3 {
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .spec-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚙️ Technical Specifications</h1>
+        
+        <div class="specs">
+            <div class="spec-grid">
+                <div class="spec-item">
+                    <strong>Training:</strong><br>
+                    • AdamW optimizer with weight decay<br>
+                    • F1-score monitoring<br>
+                    • Class-weighted loss<br>
+                    • Early stopping + LR reduction
+                </div>
+                <div class="spec-item">
+                    <strong>Data Pipeline:</strong><br>
+                    • Custom multimodal data generator<br>
+                    • Image augmentation (training)<br>
+                    • Batch-wise loading<br>
+                    • MobileNet preprocessing
+                </div>
+                <div class="spec-item">
+                    <strong>Regularization:</strong><br>
+                    • L2 regularization throughout<br>
+                    • BatchNormalization layers<br>
+                    • Dropout (0.4-0.5)<br>
+                    • Optional backbone freezing
+                </div>
+                <div class="spec-item">
+                    <strong>Performance:</strong><br>
+                    • Target: >70% val F1-score<br>
+                    • Auto-save best models<br>
+                    • Comprehensive reporting<br>
+                    • Training history tracking
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

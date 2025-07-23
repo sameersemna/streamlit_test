@@ -1,0 +1,2435 @@
+Token Importance Analysis Results (Occlusion Method)
+============================================================
+
+Sample ID: 14583
+Predicted: Toys (confidence: 0.43)
+True: Used Books (Correct: No)
+Top contributing tokens: ['fun', 'felt', 'crafts']
+------------------------------------------------------------
+
+Sample ID: 1672
+Predicted: Used Books (confidence: 0.49)
+True: Used Books (Correct: Yes)
+Top contributing tokens: ['edition', 'religion', 'affaires', 'arre', 'parlement']
+------------------------------------------------------------
+
+Sample ID: 2941
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.88)
+True: Used Books (Correct: No)
+Top contributing tokens: ['anne', 'guide', 'aventures']
+------------------------------------------------------------
+
+Sample ID: 8050
+Predicted: New Books (confidence: 0.88)
+True: Used Books (Correct: No)
+Top contributing tokens: ['ape', 'esprit', 'pond', 'question', 'propos']
+------------------------------------------------------------
+
+Sample ID: 10312
+Predicted: Collectible Cards (confidence: 0.43)
+True: Used Books (Correct: No)
+Top contributing tokens: ['serpent', 'omega']
+------------------------------------------------------------
+
+Sample ID: 6680
+Predicted: Used Books (confidence: 0.32)
+True: Used Books (Correct: Yes)
+Top contributing tokens: ['livre', 'cassette', 'coup', 'pied']
+------------------------------------------------------------
+
+Sample ID: 3661
+Predicted: Magazines and Journals (confidence: 0.56)
+True: Used Books (Correct: No)
+Top contributing tokens: ['marche', 'chapeaux', 'catalogue', 'bon']
+------------------------------------------------------------
+
+Sample ID: 5009
+Predicted: Food (confidence: 0.23)
+True: Used Books (Correct: No)
+Top contributing tokens: ['cieux', 'surmonte', 'nombre', 'liquide', 'pre']
+------------------------------------------------------------
+
+Sample ID: 12367
+Predicted: Used Books (confidence: 0.86)
+True: Used Books (Correct: Yes)
+Top contributing tokens: ['exercices', 'coeur', 'ouvrir', 'esprit', 'guide']
+------------------------------------------------------------
+
+Sample ID: 16975
+Predicted: New Books (confidence: 0.46)
+True: Used Books (Correct: No)
+Top contributing tokens: ['temps', 'franc', 'ais', 'debit', 'allemand']
+------------------------------------------------------------
+
+Sample ID: 4615
+Predicted: Used Books (confidence: 0.68)
+True: Used Books (Correct: Yes)
+Top contributing tokens: ['publicite', 'loisirs']
+------------------------------------------------------------
+
+Sample ID: 4394
+Predicted: Used Books (confidence: 0.70)
+True: Used Books (Correct: Yes)
+Top contributing tokens: ['art', 'adventure', 'crivez']
+------------------------------------------------------------
+
+Sample ID: 12350
+Predicted: Used Books (confidence: 0.81)
+True: Used Books (Correct: Yes)
+Top contributing tokens: ['piano']
+------------------------------------------------------------
+
+Sample ID: 10365
+Predicted: Magazines and Journals (confidence: 0.80)
+True: Used Books (Correct: No)
+Top contributing tokens: ['alsace', 'lorraine', 'france']
+------------------------------------------------------------
+
+Sample ID: 15493
+Predicted: Used Books (confidence: 0.69)
+True: Used Books (Correct: Yes)
+Top contributing tokens: ['guide']
+------------------------------------------------------------
+
+Sample ID: 12232
+Predicted: Video Games (confidence: 0.98)
+True: Video Games (Correct: Yes)
+Top contributing tokens: ['version', 'pal', 'anglais', 'nintendo', 'land']
+------------------------------------------------------------
+
+Sample ID: 5273
+Predicted: Adult Figurines and Role-Playing Games (confidence: 0.64)
+True: Video Games (Correct: No)
+Top contributing tokens: ['rpg', 'oriente', 'action', 'monstre', 'cre']
+------------------------------------------------------------
+
+Sample ID: 15509
+Predicted: Used Books (confidence: 0.43)
+True: Video Games (Correct: No)
+Top contributing tokens: ['blinde', 'king', 'bounty', 'princesse']
+------------------------------------------------------------
+
+Sample ID: 11023
+Predicted: Children's Figurines (confidence: 0.44)
+True: Video Games (Correct: No)
+Top contributing tokens: ['dbz', 'meteor', 'ball', 'dragon']
+------------------------------------------------------------
+
+Sample ID: 10289
+Predicted: Video Games (confidence: 0.94)
+True: Video Games (Correct: Yes)
+Top contributing tokens: ['pirates', 'bout', 'monde']
+------------------------------------------------------------
+
+Sample ID: 1613
+Predicted: PC Games (confidence: 0.25)
+True: Video Games (Correct: No)
+Top contributing tokens: ['interactive', 'jeu', 'aime', 'esprit', 'livre']
+------------------------------------------------------------
+
+Sample ID: 13165
+Predicted: Video Games (confidence: 0.99)
+True: Video Games (Correct: Yes)
+Top contributing tokens: ['ache', 'series', 'world', 'wii', 'vement']
+------------------------------------------------------------
+
+Sample ID: 11871
+Predicted: Used Books (confidence: 0.44)
+True: Video Games (Correct: No)
+Top contributing tokens: ['bible', 'enfant']
+------------------------------------------------------------
+
+Sample ID: 40
+Predicted: New Books (confidence: 0.57)
+True: Video Games (Correct: No)
+Top contributing tokens: ['vie', 'petits']
+------------------------------------------------------------
+
+Sample ID: 2527
+Predicted: Video Games (confidence: 1.00)
+True: Video Games (Correct: Yes)
+Top contributing tokens: ['anglais', 'jeu', 'import', 'xbox', 'apparaissent']
+------------------------------------------------------------
+
+Sample ID: 3670
+Predicted: Toys (confidence: 0.29)
+True: Video Games (Correct: No)
+Top contributing tokens: ['importation', 'soie', 'pre', 'sentation']
+------------------------------------------------------------
+
+Sample ID: 15498
+Predicted: Video Games (confidence: 0.96)
+True: Video Games (Correct: Yes)
+Top contributing tokens: ['yxjjpj', 'charge', 'poigne', 'bouton', 'charge']
+------------------------------------------------------------
+
+Sample ID: 2328
+Predicted: Video Games (confidence: 0.95)
+True: Video Games (Correct: Yes)
+Top contributing tokens: ['ajouter', 'simulateur', 'vulcan']
+------------------------------------------------------------
+
+Sample ID: 10969
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.34)
+True: Video Games (Correct: No)
+Top contributing tokens: ['kate', 'arrow', 'jungle']
+------------------------------------------------------------
+
+Sample ID: 11480
+Predicted: Video Games (confidence: 0.98)
+True: Video Games (Correct: Yes)
+Top contributing tokens: ['magideal', 'parleur', 'forfait', 'comprend', 'tablette']
+------------------------------------------------------------
+
+Sample ID: 3883
+Predicted: Maintenance (confidence: 0.87)
+True: Video Game Accessories (Correct: No)
+Top contributing tokens: ['fan', 'source', 'contenu', 'poigne', 'ventilateur']
+------------------------------------------------------------
+
+Sample ID: 5711
+Predicted: Video Game Accessories (confidence: 0.89)
+True: Video Game Accessories (Correct: Yes)
+Top contributing tokens: ['fil', 'compatible', 'tement', 'manette', 'charge']
+------------------------------------------------------------
+
+Sample ID: 14903
+Predicted: Video Game Accessories (confidence: 0.50)
+True: Video Game Accessories (Correct: Yes)
+Top contributing tokens: ['capteur', 'wii', 'pie', 'motion', 'vide']
+------------------------------------------------------------
+
+Sample ID: 14471
+Predicted: Video Game Accessories (confidence: 0.32)
+True: Video Game Accessories (Correct: Yes)
+Top contributing tokens: ['jeu', 'charge', 'fine', 'phone', 'portable']
+------------------------------------------------------------
+
+Sample ID: 1741
+Predicted: Video Game Accessories (confidence: 0.99)
+True: Video Game Accessories (Correct: Yes)
+Top contributing tokens: ['cutane', 'slim', 'manettes', 'console', 'storm']
+------------------------------------------------------------
+
+Sample ID: 5607
+Predicted: Video Game Accessories (confidence: 0.93)
+True: Video Game Accessories (Correct: Yes)
+Top contributing tokens: ['signal', 'charge', 'vide', 'rechargeable', 'chargeur']
+------------------------------------------------------------
+
+Sample ID: 423
+Predicted: Video Game Accessories (confidence: 0.93)
+True: Video Game Accessories (Correct: Yes)
+Top contributing tokens: ['manette', 'nappe', 'charge', 'connecteur', 'interne']
+------------------------------------------------------------
+
+Sample ID: 9949
+Predicted: Video Game Accessories (confidence: 0.98)
+True: Video Game Accessories (Correct: Yes)
+Top contributing tokens: ['remarquez', 'gamecube', 'party', 'mario']
+------------------------------------------------------------
+
+Sample ID: 4543
+Predicted: Video Game Accessories (confidence: 1.00)
+True: Video Game Accessories (Correct: Yes)
+Top contributing tokens: ['filaire', 'playstation', 'boutons', 'sony', 'warrior']
+------------------------------------------------------------
+
+Sample ID: 2298
+Predicted: Video Game Accessories (confidence: 0.76)
+True: Video Game Accessories (Correct: Yes)
+Top contributing tokens: ['console', 'plaque', 'xbox', 'nume', 'xbox']
+------------------------------------------------------------
+
+Sample ID: 300
+Predicted: Video Game Accessories (confidence: 0.99)
+True: Video Game Accessories (Correct: Yes)
+Top contributing tokens: ['coque', 'uniquement', 'compatible', 'mois']
+------------------------------------------------------------
+
+Sample ID: 1779
+Predicted: Video Games (confidence: 0.48)
+True: Video Game Accessories (Correct: No)
+Top contributing tokens: ['parties', 'profiter', 'esthe', 'jeu', 'boutons']
+------------------------------------------------------------
+
+Sample ID: 2409
+Predicted: Video Game Accessories (confidence: 0.53)
+True: Video Game Accessories (Correct: Yes)
+Top contributing tokens: ['rayures', 'prote', 'protection', 'jeu', 'cas']
+------------------------------------------------------------
+
+Sample ID: 8329
+Predicted: Video Game Accessories (confidence: 0.95)
+True: Video Game Accessories (Correct: Yes)
+Top contributing tokens: ['cran', 'lentille', 'sortie', 'console', 'inclure']
+------------------------------------------------------------
+
+Sample ID: 4836
+Predicted: Video Games (confidence: 0.69)
+True: Video Game Accessories (Correct: No)
+Top contributing tokens: ['marrage', 'infinity', 'disney', 'wars', 'star']
+------------------------------------------------------------
+
+Sample ID: 6423
+Predicted: Video Game Consoles (confidence: 1.00)
+True: Video Game Consoles (Correct: Yes)
+Top contributing tokens: ['ecran', 'tactile', 'affichage', 'cran', 'communication']
+------------------------------------------------------------
+
+Sample ID: 10076
+Predicted: Video Game Consoles (confidence: 1.00)
+True: Video Game Consoles (Correct: Yes)
+Top contributing tokens: ['portable', 'jeu', 'console', 'playstation', 'sony']
+------------------------------------------------------------
+
+Sample ID: 5198
+Predicted: Used Games (confidence: 0.55)
+True: Video Game Consoles (Correct: No)
+Top contributing tokens: ['game', 'regarder', 'large', 'new', 'cran']
+------------------------------------------------------------
+
+Sample ID: 11965
+Predicted: Video Game Consoles (confidence: 1.00)
+True: Video Game Consoles (Correct: Yes)
+Top contributing tokens: ['ecran', 'tactile', 'affichage', 'consoles', 'communication']
+------------------------------------------------------------
+
+Sample ID: 977
+Predicted: Video Game Consoles (confidence: 1.00)
+True: Video Game Consoles (Correct: Yes)
+Top contributing tokens: ['ecran', 'tactile', 'affichage', 'nume', 'nom']
+------------------------------------------------------------
+
+Sample ID: 5784
+Predicted: Video Game Consoles (confidence: 1.00)
+True: Video Game Consoles (Correct: Yes)
+Top contributing tokens: ['ecran', 'tactile', 'affichage', 'cran', 'communication']
+------------------------------------------------------------
+
+Sample ID: 8471
+Predicted: Video Game Accessories (confidence: 0.65)
+True: Video Game Consoles (Correct: No)
+Top contributing tokens: ['bloc', 'nintendo', 'uniquement', 'contenu', 'console']
+------------------------------------------------------------
+
+Sample ID: 10602
+Predicted: Video Game Consoles (confidence: 1.00)
+True: Video Game Consoles (Correct: Yes)
+Top contributing tokens: ['ecran', 'tactile', 'nume', 'cran', 'affichage']
+------------------------------------------------------------
+
+Sample ID: 8599
+Predicted: Board Games (confidence: 0.54)
+True: Video Game Consoles (Correct: No)
+Top contributing tokens: ['factory', 'table', 'montre', 'jeu', 'mario']
+------------------------------------------------------------
+
+Sample ID: 15366
+Predicted: Video Game Consoles (confidence: 1.00)
+True: Video Game Consoles (Correct: Yes)
+Top contributing tokens: ['portable', 'console', 'nintendo', 'jeu']
+------------------------------------------------------------
+
+Sample ID: 8158
+Predicted: Video Games (confidence: 0.43)
+True: Video Game Consoles (Correct: No)
+Top contributing tokens: ['audio', 'installer', 'optique', 'maximale', 'processeur']
+------------------------------------------------------------
+
+Sample ID: 10598
+Predicted: Video Game Consoles (confidence: 1.00)
+True: Video Game Consoles (Correct: Yes)
+Top contributing tokens: ['ecran', 'tactile', 'cran', 'affichage', 'nume']
+------------------------------------------------------------
+
+Sample ID: 9022
+Predicted: Used Games (confidence: 0.72)
+True: Video Game Consoles (Correct: No)
+Top contributing tokens: ['playstation', 'pro', 'sony']
+------------------------------------------------------------
+
+Sample ID: 9352
+Predicted: Video Game Consoles (confidence: 1.00)
+True: Video Game Consoles (Correct: Yes)
+Top contributing tokens: ['tactile', 'ecran', 'other', 'cran', 'nume']
+------------------------------------------------------------
+
+Sample ID: 5840
+Predicted: Video Game Consoles (confidence: 1.00)
+True: Video Game Consoles (Correct: Yes)
+Top contributing tokens: ['ecran', 'tactile', 'nume', 'cran', 'console']
+------------------------------------------------------------
+
+Sample ID: 1877
+Predicted: Children's Figurines (confidence: 0.92)
+True: Children's Figurines (Correct: Yes)
+Top contributing tokens: ['marvel', 'figurines', 'super', 'ros']
+------------------------------------------------------------
+
+Sample ID: 8242
+Predicted: Children's Figurines (confidence: 0.85)
+True: Children's Figurines (Correct: Yes)
+Top contributing tokens: ['ver', 'figurine', 'figurine', 'outfit', 'articule']
+------------------------------------------------------------
+
+Sample ID: 71
+Predicted: Children's Figurines (confidence: 0.89)
+True: Children's Figurines (Correct: Yes)
+Top contributing tokens: ['livre', 'sine', 'boite', 'main', 'sang']
+------------------------------------------------------------
+
+Sample ID: 4373
+Predicted: Children's Figurines (confidence: 0.98)
+True: Children's Figurines (Correct: Yes)
+Top contributing tokens: ['figurine', 'animaux', 'ours', 'sauvages', 'servant']
+------------------------------------------------------------
+
+Sample ID: 10839
+Predicted: Children's Figurines (confidence: 0.53)
+True: Children's Figurines (Correct: Yes)
+Top contributing tokens: ['peint', 'thermoplastique', 'film', 'animation', 'disney']
+------------------------------------------------------------
+
+Sample ID: 11140
+Predicted: Children's Figurines (confidence: 1.00)
+True: Children's Figurines (Correct: Yes)
+Top contributing tokens: ['pop', 'funko', 'television', 'twin', 'figure']
+------------------------------------------------------------
+
+Sample ID: 9477
+Predicted: Toys (confidence: 0.92)
+True: Children's Figurines (Correct: No)
+Top contributing tokens: ['faveurs', 'individuellement', 'anniversaire', 'garc', 'doux']
+------------------------------------------------------------
+
+Sample ID: 6234
+Predicted: Children's Figurines (confidence: 0.76)
+True: Children's Figurines (Correct: Yes)
+Top contributing tokens: ['tenue', 'engager', 'figurines', 'assortiment', 'coffrets']
+------------------------------------------------------------
+
+Sample ID: 2443
+Predicted: Video Game Accessories (confidence: 0.59)
+True: Children's Figurines (Correct: No)
+Top contributing tokens: ['hama', 'casque', 'casque', 'perle']
+------------------------------------------------------------
+
+Sample ID: 10676
+Predicted: Children's Figurines (confidence: 0.99)
+True: Children's Figurines (Correct: Yes)
+Top contributing tokens: ['magnet', 'corps', 'vie', 'humain']
+------------------------------------------------------------
+
+Sample ID: 7415
+Predicted: Board Games (confidence: 0.88)
+True: Children's Figurines (Correct: No)
+Top contributing tokens: ['jeton', 'ninja', 'tortue', 'application', 'star']
+------------------------------------------------------------
+
+Sample ID: 284
+Predicted: Children's Figurines (confidence: 1.00)
+True: Children's Figurines (Correct: Yes)
+Top contributing tokens: ['pvc', 'nendoroid', 'figure']
+------------------------------------------------------------
+
+Sample ID: 4212
+Predicted: Stationery (confidence: 0.39)
+True: Children's Figurines (Correct: No)
+Top contributing tokens: ['naruto', 'longueur', 'sac', 'bandoulie', 'bandoulie']
+------------------------------------------------------------
+
+Sample ID: 3605
+Predicted: Children's Figurines (confidence: 0.58)
+True: Children's Figurines (Correct: Yes)
+Top contributing tokens: ['japan', 'scale', 'edition', 'special', 'form']
+------------------------------------------------------------
+
+Sample ID: 6886
+Predicted: Toys (confidence: 0.78)
+True: Children's Figurines (Correct: No)
+Top contributing tokens: ['boite', 'chec', 'chec', 'fou', 'fou']
+------------------------------------------------------------
+
+Sample ID: 14325
+Predicted: Collectible Cards (confidence: 0.99)
+True: Collectible Cards (Correct: Yes)
+Top contributing tokens: ['panini', 'officiel', 'panier']
+------------------------------------------------------------
+
+Sample ID: 4341
+Predicted: Collectible Cards (confidence: 0.93)
+True: Collectible Cards (Correct: Yes)
+Top contributing tokens: ['carte', 'entite', 'vieille']
+------------------------------------------------------------
+
+Sample ID: 14368
+Predicted: Collectible Cards (confidence: 1.00)
+True: Collectible Cards (Correct: Yes)
+Top contributing tokens: ['mtg', 'magic', 'foil', 'premium', 'dernier']
+------------------------------------------------------------
+
+Sample ID: 6399
+Predicted: Used Books (confidence: 0.41)
+True: Collectible Cards (Correct: No)
+Top contributing tokens: ['lourde', 'orage', 'violent', 'tempe']
+------------------------------------------------------------
+
+Sample ID: 6416
+Predicted: Collectible Cards (confidence: 0.99)
+True: Collectible Cards (Correct: Yes)
+Top contributing tokens: ['fleer']
+------------------------------------------------------------
+
+Sample ID: 15678
+Predicted: Collectible Cards (confidence: 0.97)
+True: Collectible Cards (Correct: Yes)
+Top contributing tokens: ['carte', 'sire']
+------------------------------------------------------------
+
+Sample ID: 5867
+Predicted: Collectible Cards (confidence: 1.00)
+True: Collectible Cards (Correct: Yes)
+Top contributing tokens: ['poke', 'rare', 'heroes', 'anglais', 'gym']
+------------------------------------------------------------
+
+Sample ID: 6002
+Predicted: Collectible Cards (confidence: 0.98)
+True: Collectible Cards (Correct: Yes)
+Top contributing tokens: ['carte', 'monde', 'catch', 'lourds', 'evolution']
+------------------------------------------------------------
+
+Sample ID: 9890
+Predicted: Collectible Cards (confidence: 1.00)
+True: Collectible Cards (Correct: Yes)
+Top contributing tokens: ['pokemon', 'carte']
+------------------------------------------------------------
+
+Sample ID: 2597
+Predicted: Collectible Cards (confidence: 0.99)
+True: Collectible Cards (Correct: Yes)
+Top contributing tokens: ['poke', 'inverse']
+------------------------------------------------------------
+
+Sample ID: 9699
+Predicted: Collectible Cards (confidence: 0.89)
+True: Collectible Cards (Correct: Yes)
+Top contributing tokens: ['warcraft', 'world', 'ros', 'posture']
+------------------------------------------------------------
+
+Sample ID: 10283
+Predicted: Video Games (confidence: 0.40)
+True: Collectible Cards (Correct: No)
+Top contributing tokens: ['guerrier', 'action']
+------------------------------------------------------------
+
+Sample ID: 7576
+Predicted: Collectible Cards (confidence: 0.85)
+True: Collectible Cards (Correct: Yes)
+Top contributing tokens: ['warcraft', 'world', 'honneur', 'champion']
+------------------------------------------------------------
+
+Sample ID: 11636
+Predicted: Collectible Cards (confidence: 1.00)
+True: Collectible Cards (Correct: Yes)
+Top contributing tokens: ['commune']
+------------------------------------------------------------
+
+Sample ID: 50
+Predicted: Board Games (confidence: 0.50)
+True: Collectible Cards (Correct: No)
+Top contributing tokens: ['balle', 'cartes', 'dragon']
+------------------------------------------------------------
+
+Sample ID: 2869
+Predicted: Adult Figurines and Role-Playing Games (confidence: 1.00)
+True: Adult Figurines and Role-Playing Games (Correct: Yes)
+Top contributing tokens: ['pocket', 'monster', 'series']
+------------------------------------------------------------
+
+Sample ID: 892
+Predicted: Toys (confidence: 0.89)
+True: Adult Figurines and Role-Playing Games (Correct: No)
+Top contributing tokens: ['camion', 'contient', 'pompiers', 'action', 'licopte']
+------------------------------------------------------------
+
+Sample ID: 13790
+Predicted: Board Games (confidence: 0.38)
+True: Adult Figurines and Role-Playing Games (Correct: No)
+Top contributing tokens: ['witch', 'boi', 'comple']
+------------------------------------------------------------
+
+Sample ID: 7468
+Predicted: Adult Figurines and Role-Playing Games (confidence: 1.00)
+True: Adult Figurines and Role-Playing Games (Correct: Yes)
+Top contributing tokens: ['dragons', 'dungeons', 'chateau', 'castle']
+------------------------------------------------------------
+
+Sample ID: 10976
+Predicted: Adult Figurines and Role-Playing Games (confidence: 1.00)
+True: Adult Figurines and Role-Playing Games (Correct: Yes)
+Top contributing tokens: ['warhammer', 'hero', 'archer', 'table', 'quest']
+------------------------------------------------------------
+
+Sample ID: 262
+Predicted: Adult Figurines and Role-Playing Games (confidence: 0.76)
+True: Adult Figurines and Role-Playing Games (Correct: Yes)
+Top contributing tokens: ['anneaux', 'seigneur', 'terres', 'jeu', 'bataille']
+------------------------------------------------------------
+
+Sample ID: 12646
+Predicted: Children's Figurines (confidence: 0.89)
+True: Adult Figurines and Role-Playing Games (Correct: No)
+Top contributing tokens: ['figurine', 'dressage', 'reproduit', 'figurine', 'longues']
+------------------------------------------------------------
+
+Sample ID: 7809
+Predicted: Adult Figurines and Role-Playing Games (confidence: 0.94)
+True: Adult Figurines and Role-Playing Games (Correct: Yes)
+Top contributing tokens: ['roclix', 'batman', 'joker', 'wild']
+------------------------------------------------------------
+
+Sample ID: 567
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.34)
+True: Adult Figurines and Role-Playing Games (Correct: No)
+Top contributing tokens: ['claires', 'ran', 'marine', 'space']
+------------------------------------------------------------
+
+Sample ID: 1679
+Predicted: Adult Figurines and Role-Playing Games (confidence: 1.00)
+True: Adult Figurines and Role-Playing Games (Correct: Yes)
+Top contributing tokens: ['pocket', 'monster', 'series']
+------------------------------------------------------------
+
+Sample ID: 12914
+Predicted: Adult Figurines and Role-Playing Games (confidence: 0.99)
+True: Adult Figurines and Role-Playing Games (Correct: Yes)
+Top contributing tokens: ['miniatures', 'alliance', 'empire', 'luke']
+------------------------------------------------------------
+
+Sample ID: 9151
+Predicted: Adult Figurines and Role-Playing Games (confidence: 0.99)
+True: Adult Figurines and Role-Playing Games (Correct: Yes)
+Top contributing tokens: ['prince', 'august', 'pot', 'gamme', 'inte']
+------------------------------------------------------------
+
+Sample ID: 4327
+Predicted: Adult Figurines and Role-Playing Games (confidence: 0.98)
+True: Adult Figurines and Role-Playing Games (Correct: Yes)
+Top contributing tokens: ['miniatures', 'world', 'warcraft']
+------------------------------------------------------------
+
+Sample ID: 14245
+Predicted: Adult Figurines and Role-Playing Games (confidence: 0.96)
+True: Adult Figurines and Role-Playing Games (Correct: Yes)
+Top contributing tokens: ['heroclix', 'wolverine', 'manta', 'marvel']
+------------------------------------------------------------
+
+Sample ID: 10726
+Predicted: Used Books (confidence: 0.50)
+True: Adult Figurines and Role-Playing Games (Correct: No)
+Top contributing tokens: ['espace', 'tre', 'lointaine', 'mai', 'lune']
+------------------------------------------------------------
+
+Sample ID: 12412
+Predicted: Toys (confidence: 0.50)
+True: Toys (Correct: Yes)
+Top contributing tokens: ['licopte', 'drone', 'joueur', 'emballage', 'mjx']
+------------------------------------------------------------
+
+Sample ID: 4314
+Predicted: Children's Figurines (confidence: 0.67)
+True: Toys (Correct: No)
+Top contributing tokens: ['figurine', 'cle', 'porte', 'amour', 'ourson']
+------------------------------------------------------------
+
+Sample ID: 5082
+Predicted: Toys (confidence: 0.96)
+True: Toys (Correct: Yes)
+Top contributing tokens: ['poupe', 'poupe', 'peluche', 'kitty', 'peluche']
+------------------------------------------------------------
+
+Sample ID: 7732
+Predicted: Toys (confidence: 0.51)
+True: Toys (Correct: Yes)
+Top contributing tokens: ['peluche', 'jaunes', 'fonce', 'pingle', 'coquilles']
+------------------------------------------------------------
+
+Sample ID: 2231
+Predicted: Toys (confidence: 0.66)
+True: Toys (Correct: Yes)
+Top contributing tokens: ['lego', 'studios', 'stunt', 'piece', 'cascade']
+------------------------------------------------------------
+
+Sample ID: 1470
+Predicted: Board Games (confidence: 0.97)
+True: Toys (Correct: No)
+Top contributing tokens: ['clay', 'jouet', 'feature', 'emballage', 'contenu']
+------------------------------------------------------------
+
+Sample ID: 8644
+Predicted: Toys (confidence: 0.51)
+True: Toys (Correct: Yes)
+Top contributing tokens: ['voiture', 'neiges']
+------------------------------------------------------------
+
+Sample ID: 13746
+Predicted: Toys (confidence: 0.97)
+True: Toys (Correct: Yes)
+Top contributing tokens: ['jouet', 'loisirs', 'squishy', 'descriptions', 'soft']
+------------------------------------------------------------
+
+Sample ID: 15090
+Predicted: Toys (confidence: 0.42)
+True: Toys (Correct: Yes)
+Top contributing tokens: ['mignon', 'noeud', 'circonfe', 'rence', 'filles']
+------------------------------------------------------------
+
+Sample ID: 8653
+Predicted: Children's Fishing (confidence: 0.58)
+True: Toys (Correct: No)
+Top contributing tokens: ['reme', 'stress', 'amusant', 'gross', 'gross']
+------------------------------------------------------------
+
+Sample ID: 414
+Predicted: Board Games (confidence: 0.46)
+True: Toys (Correct: No)
+Top contributing tokens: ['jouet', 'parfait', 'queue', 'autisme', 'tdah']
+------------------------------------------------------------
+
+Sample ID: 9703
+Predicted: Toys (confidence: 0.82)
+True: Toys (Correct: Yes)
+Top contributing tokens: ['bear', 'japan', 'import', 'love', 'building']
+------------------------------------------------------------
+
+Sample ID: 10374
+Predicted: Toys (confidence: 0.99)
+True: Toys (Correct: Yes)
+Top contributing tokens: ['doudou', 'winnie', 'plat', 'dentition']
+------------------------------------------------------------
+
+Sample ID: 15565
+Predicted: Toys (confidence: 0.99)
+True: Toys (Correct: Yes)
+Top contributing tokens: ['doudou', 'ours', 'peluche', 'champs', 'tartine']
+------------------------------------------------------------
+
+Sample ID: 12542
+Predicted: Toys (confidence: 0.94)
+True: Toys (Correct: Yes)
+Top contributing tokens: ['doudou', 'lapin', 'imprime', 'plat', 'croissant']
+------------------------------------------------------------
+
+Sample ID: 11279
+Predicted: Board Games (confidence: 0.74)
+True: Board Games (Correct: Yes)
+Top contributing tokens: ['asmodee', 'party', 'party']
+------------------------------------------------------------
+
+Sample ID: 7824
+Predicted: Video Games (confidence: 0.83)
+True: Board Games (Correct: No)
+Top contributing tokens: ['import', 'allemand', 'steam', 'france', 'allemagne']
+------------------------------------------------------------
+
+Sample ID: 8648
+Predicted: Board Games (confidence: 0.99)
+True: Board Games (Correct: Yes)
+Top contributing tokens: ['jeu', 'socie']
+------------------------------------------------------------
+
+Sample ID: 3327
+Predicted: Board Games (confidence: 0.63)
+True: Board Games (Correct: Yes)
+Top contributing tokens: ['game', 'roll', 'game', 'enfant', 'boulettes']
+------------------------------------------------------------
+
+Sample ID: 9604
+Predicted: Children's Figurines (confidence: 0.90)
+True: Board Games (Correct: No)
+Top contributing tokens: ['importation', 'jeter', 'japon', 'bande', 'nest']
+------------------------------------------------------------
+
+Sample ID: 9733
+Predicted: Toys (confidence: 0.95)
+True: Board Games (Correct: No)
+Top contributing tokens: ['ativite', 'enfant', 'ability', 'robot', 'partir']
+------------------------------------------------------------
+
+Sample ID: 1224
+Predicted: Board Games (confidence: 0.76)
+True: Board Games (Correct: Yes)
+Top contributing tokens: ['jeu', 'cartes', 'cartes', 'jeu', 'peter']
+------------------------------------------------------------
+
+Sample ID: 7086
+Predicted: Board Games (confidence: 0.99)
+True: Board Games (Correct: Yes)
+Top contributing tokens: ['tarot', 'card', 'tarot', 'spe', 'jeu']
+------------------------------------------------------------
+
+Sample ID: 2181
+Predicted: Board Games (confidence: 0.90)
+True: Board Games (Correct: Yes)
+Top contributing tokens: ['tarot', 'cartes', 'heritage', 'pochette']
+------------------------------------------------------------
+
+Sample ID: 9302
+Predicted: Board Games (confidence: 1.00)
+True: Board Games (Correct: Yes)
+Top contributing tokens: ['zombicide', 'boite', 'jeu', 'zombicide', 'zombie']
+------------------------------------------------------------
+
+Sample ID: 15854
+Predicted: Toys (confidence: 0.82)
+True: Board Games (Correct: No)
+Top contributing tokens: ['bois', 'puzzle', 'bois', 'ome', 'bois']
+------------------------------------------------------------
+
+Sample ID: 8288
+Predicted: Magazines and Journals (confidence: 0.49)
+True: Board Games (Correct: No)
+Top contributing tokens: ['quipe', 'travail', 'festivals', 'brer']
+------------------------------------------------------------
+
+Sample ID: 7156
+Predicted: Toys (confidence: 0.53)
+True: Board Games (Correct: No)
+Top contributing tokens: ['tranche', 'ressemble', 'maquillage', 'contact', 'aspect']
+------------------------------------------------------------
+
+Sample ID: 12427
+Predicted: Board Games (confidence: 0.92)
+True: Board Games (Correct: Yes)
+Top contributing tokens: ['jeu', 'gles', 'domino', 'domino', 'autour']
+------------------------------------------------------------
+
+Sample ID: 16335
+Predicted: Board Games (confidence: 0.88)
+True: Board Games (Correct: Yes)
+Top contributing tokens: ['asmodee', 'version', 'asmodee', 'partir', 'feux']
+------------------------------------------------------------
+
+Sample ID: 8424
+Predicted: Remote Control Toys (confidence: 1.00)
+True: Remote Control Toys (Correct: Yes)
+Top contributing tokens: ['rique', 'hpp', 'niveau', 'acier', 'wpl']
+------------------------------------------------------------
+
+Sample ID: 16388
+Predicted: Video Games (confidence: 0.44)
+True: Remote Control Toys (Correct: No)
+Top contributing tokens: ['jaguar', 'miniature']
+------------------------------------------------------------
+
+Sample ID: 13769
+Predicted: Remote Control Toys (confidence: 0.99)
+True: Remote Control Toys (Correct: Yes)
+Top contributing tokens: ['rique', 'scy', 'aluminium', 'alliage', 'sunnylife']
+------------------------------------------------------------
+
+Sample ID: 9998
+Predicted: Remote Control Toys (confidence: 1.00)
+True: Remote Control Toys (Correct: Yes)
+Top contributing tokens: ['maquette', 'rique', 'avion', 'safe', 'phantom']
+------------------------------------------------------------
+
+Sample ID: 4647
+Predicted: Remote Control Toys (confidence: 0.99)
+True: Remote Control Toys (Correct: Yes)
+Top contributing tokens: ['rique', 'licopte', 'hover', 'super', 'endurance']
+------------------------------------------------------------
+
+Sample ID: 15816
+Predicted: Remote Control Toys (confidence: 0.46)
+True: Remote Control Toys (Correct: Yes)
+Top contributing tokens: ['moteur', 'moteur', 'voiture', 'nergie', 'prend']
+------------------------------------------------------------
+
+Sample ID: 7491
+Predicted: Toys (confidence: 0.55)
+True: Remote Control Toys (Correct: No)
+Top contributing tokens: ['plastic', 'globe']
+------------------------------------------------------------
+
+Sample ID: 8068
+Predicted: Remote Control Toys (confidence: 1.00)
+True: Remote Control Toys (Correct: Yes)
+Top contributing tokens: ['rique', 'quadcopter', 'lithium', 'fpv', 'quence']
+------------------------------------------------------------
+
+Sample ID: 7460
+Predicted: Remote Control Toys (confidence: 0.60)
+True: Remote Control Toys (Correct: Yes)
+Top contributing tokens: ['alfa', 'series', 'romeo', 'gray']
+------------------------------------------------------------
+
+Sample ID: 14940
+Predicted: Remote Control Toys (confidence: 0.99)
+True: Remote Control Toys (Correct: Yes)
+Top contributing tokens: ['esc', 'route', 'moteur', 'couple', 'voiture']
+------------------------------------------------------------
+
+Sample ID: 10580
+Predicted: Remote Control Toys (confidence: 1.00)
+True: Remote Control Toys (Correct: Yes)
+Top contributing tokens: ['rique', 'dfgjlkni', 'dji', 'drone', 'ble']
+------------------------------------------------------------
+
+Sample ID: 4947
+Predicted: Board Games (confidence: 0.54)
+True: Remote Control Toys (Correct: No)
+Top contributing tokens: ['transporte', 'autour', 'tourner', 'laissez', 'recharge']
+------------------------------------------------------------
+
+Sample ID: 1386
+Predicted: Remote Control Toys (confidence: 1.00)
+True: Remote Control Toys (Correct: Yes)
+Top contributing tokens: ['rique', 'maquette', 'avion', 'airplane', 'gyro']
+------------------------------------------------------------
+
+Sample ID: 3338
+Predicted: Remote Control Toys (confidence: 1.00)
+True: Remote Control Toys (Correct: Yes)
+Top contributing tokens: ['drone', 'rique', 'batterie', 'xiaomi', 'chargeur']
+------------------------------------------------------------
+
+Sample ID: 342
+Predicted: Remote Control Toys (confidence: 1.00)
+True: Remote Control Toys (Correct: Yes)
+Top contributing tokens: ['rique', 'drone', 'rapide', 'charge', 'portable']
+------------------------------------------------------------
+
+Sample ID: 4158
+Predicted: Baby Socks (confidence: 1.00)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['foot', 'baby', 'table', 'foot', 'baby']
+------------------------------------------------------------
+
+Sample ID: 14935
+Predicted: Baby Socks (confidence: 1.00)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['billard', 'triangle', 'plastique', 'billes', 'bce']
+------------------------------------------------------------
+
+Sample ID: 2044
+Predicted: Baby Socks (confidence: 0.99)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['supreme', 'pool', 'brosse', 'tapis', 'pointe']
+------------------------------------------------------------
+
+Sample ID: 7437
+Predicted: Baby Socks (confidence: 1.00)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['billard', 'queue', 'proce', 'conc', 'bille']
+------------------------------------------------------------
+
+Sample ID: 12115
+Predicted: Baby Socks (confidence: 1.00)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['auucne', 'cheville', 'main', 'feature', 'enfant']
+------------------------------------------------------------
+
+Sample ID: 5935
+Predicted: Baby Socks (confidence: 1.00)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['billard', 'queue', 'housses', 'transporter', 'maple']
+------------------------------------------------------------
+
+Sample ID: 7120
+Predicted: Baby Socks (confidence: 0.99)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['supre', 'embouts', 'colle']
+------------------------------------------------------------
+
+Sample ID: 16704
+Predicted: Baby Socks (confidence: 1.00)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['chaussettes', 'paire', 'obtenez', 'tail', 'assurez']
+------------------------------------------------------------
+
+Sample ID: 1156
+Predicted: Baby Socks (confidence: 1.00)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['chaussettes', 'paire', 'sentiment', 'sexe', 'coffret']
+------------------------------------------------------------
+
+Sample ID: 7394
+Predicted: Baby Socks (confidence: 0.99)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['triangle', 'queues', 'billard', 'massif', 'ardoise']
+------------------------------------------------------------
+
+Sample ID: 969
+Predicted: Baby Socks (confidence: 1.00)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['chaussettes', 'paire', 'sexe', 'plai', 'main']
+------------------------------------------------------------
+
+Sample ID: 10679
+Predicted: Baby Socks (confidence: 1.00)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['chaussettes', 'tail', 'obtenez', 'auucne', 'paires']
+------------------------------------------------------------
+
+Sample ID: 12289
+Predicted: Baby Socks (confidence: 1.00)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['sexe', 'informations', 'garc', 'couper', 'douceur']
+------------------------------------------------------------
+
+Sample ID: 3078
+Predicted: Baby Socks (confidence: 1.00)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['chette', 'fle', 'ailettes', 'micron', 'rigidite']
+------------------------------------------------------------
+
+Sample ID: 2394
+Predicted: Baby Socks (confidence: 1.00)
+True: Baby Socks (Correct: Yes)
+Top contributing tokens: ['chaussettes', 'paire', 'recommande', 'sexe', 'main']
+------------------------------------------------------------
+
+Sample ID: 16302
+Predicted: Toys (confidence: 0.46)
+True: Children's Fishing (Correct: No)
+Top contributing tokens: ['haute', 'alliage', 'cle', 'titane', 'alise']
+------------------------------------------------------------
+
+Sample ID: 16367
+Predicted: Pool Equipment (confidence: 0.90)
+True: Children's Fishing (Correct: No)
+Top contributing tokens: ['piscine', 'jardin', 'profitez', 'piscine', 'gonflable']
+------------------------------------------------------------
+
+Sample ID: 210
+Predicted: Children's Fishing (confidence: 0.96)
+True: Children's Fishing (Correct: Yes)
+Top contributing tokens: ['stress', 'stress', 'soulager', 'jouet', 'coordination']
+------------------------------------------------------------
+
+Sample ID: 10547
+Predicted: Garden Furniture (confidence: 0.69)
+True: Children's Fishing (Correct: No)
+Top contributing tokens: ['table', 'outdoor', 'table', 'nique', 'pique']
+------------------------------------------------------------
+
+Sample ID: 11758
+Predicted: Garden Furniture (confidence: 0.89)
+True: Children's Fishing (Correct: No)
+Top contributing tokens: ['anti', 'parasol', 'cline', 'parasol', 'assortis']
+------------------------------------------------------------
+
+Sample ID: 7559
+Predicted: Children's Fishing (confidence: 0.94)
+True: Children's Fishing (Correct: Yes)
+Top contributing tokens: ['torche', 'goverie', 'frontale', 'rechargeable', 'camping']
+------------------------------------------------------------
+
+Sample ID: 6356
+Predicted: Children's Fishing (confidence: 0.97)
+True: Children's Fishing (Correct: Yes)
+Top contributing tokens: ['squishies', 'libre', 'stress', 'montantes', 'phones']
+------------------------------------------------------------
+
+Sample ID: 15063
+Predicted: Indoor Furniture (confidence: 0.53)
+True: Children's Fishing (Correct: No)
+Top contributing tokens: ['table', 'pique', 'nique', 'garden']
+------------------------------------------------------------
+
+Sample ID: 16598
+Predicted: Maintenance (confidence: 0.40)
+True: Children's Fishing (Correct: No)
+Top contributing tokens: ['ruban', 'tige', 'ans', 'gymnastique', 'grs']
+------------------------------------------------------------
+
+Sample ID: 6528
+Predicted: Children's Fishing (confidence: 1.00)
+True: Children's Fishing (Correct: Yes)
+Top contributing tokens: ['tropolitaine', 'uniquement', 'trampoline', 'trampoline', 'corse']
+------------------------------------------------------------
+
+Sample ID: 9157
+Predicted: Children's Fishing (confidence: 0.77)
+True: Children's Fishing (Correct: Yes)
+Top contributing tokens: ['corde', 'sistance', 'haute', 'surface', 'ligne']
+------------------------------------------------------------
+
+Sample ID: 16705
+Predicted: Children's Fishing (confidence: 0.70)
+True: Children's Fishing (Correct: Yes)
+Top contributing tokens: ['tanque', 'boules', 'sable', 'technique', 'enfant']
+------------------------------------------------------------
+
+Sample ID: 13053
+Predicted: Children's Fishing (confidence: 0.88)
+True: Children's Fishing (Correct: Yes)
+Top contributing tokens: ['obtenez', 'ligne', 'graphique', 'main', 'correspond']
+------------------------------------------------------------
+
+Sample ID: 5179
+Predicted: Children's Fishing (confidence: 1.00)
+True: Children's Fishing (Correct: Yes)
+Top contributing tokens: ['rappel', 'chinois', 'number', 'chaud', 'lectionnez']
+------------------------------------------------------------
+
+Sample ID: 14255
+Predicted: Pool Equipment (confidence: 0.36)
+True: Children's Fishing (Correct: No)
+Top contributing tokens: ['tamis', 'moules', 'arrosoir', 'sable', 'pelle']
+------------------------------------------------------------
+
+Sample ID: 8960
+Predicted: Childcare (confidence: 0.98)
+True: Childcare (Correct: Yes)
+Top contributing tokens: ['naissance', 'unite', 'fille', 'lulu', 'brode']
+------------------------------------------------------------
+
+Sample ID: 3725
+Predicted: Childcare (confidence: 1.00)
+True: Childcare (Correct: Yes)
+Top contributing tokens: ['pue', 'riculture', 'ligne', 'techniques', 'raffine']
+------------------------------------------------------------
+
+Sample ID: 9036
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.51)
+True: Childcare (Correct: No)
+Top contributing tokens: ['planche', 'framboise', 'pages', 'autocollant']
+------------------------------------------------------------
+
+Sample ID: 8402
+Predicted: Childcare (confidence: 0.99)
+True: Childcare (Correct: Yes)
+Top contributing tokens: ['poussette', 'biberon', 'langer', 'matelas', 'posse']
+------------------------------------------------------------
+
+Sample ID: 1924
+Predicted: Childcare (confidence: 0.83)
+True: Childcare (Correct: Yes)
+Top contributing tokens: ['femmes', 'sac', 'sac', 'dos', 'merci']
+------------------------------------------------------------
+
+Sample ID: 15364
+Predicted: Toys (confidence: 0.76)
+True: Childcare (Correct: No)
+Top contributing tokens: ['pages', 'comprendre', 'promouvoir', 'jeu', 'couvertures']
+------------------------------------------------------------
+
+Sample ID: 8779
+Predicted: Childcare (confidence: 0.99)
+True: Childcare (Correct: Yes)
+Top contributing tokens: ['mois', 'sportives', 'coton', 'convient', 'respirant']
+------------------------------------------------------------
+
+Sample ID: 11840
+Predicted: Childcare (confidence: 0.89)
+True: Childcare (Correct: Yes)
+Top contributing tokens: ['thermome', 'front', 'touch']
+------------------------------------------------------------
+
+Sample ID: 3278
+Predicted: Childcare (confidence: 1.00)
+True: Childcare (Correct: Yes)
+Top contributing tokens: ['bavoir', 'imprime', 'cher', 'aime']
+------------------------------------------------------------
+
+Sample ID: 11164
+Predicted: Childcare (confidence: 1.00)
+True: Childcare (Correct: Yes)
+Top contributing tokens: ['biberon', 'sensation']
+------------------------------------------------------------
+
+Sample ID: 14476
+Predicted: Childcare (confidence: 1.00)
+True: Childcare (Correct: Yes)
+Top contributing tokens: ['bavoir', 'imprime']
+------------------------------------------------------------
+
+Sample ID: 10591
+Predicted: Childcare (confidence: 0.99)
+True: Childcare (Correct: Yes)
+Top contributing tokens: ['veil', 'tapis', 'veil', 'sens', 'rembourre']
+------------------------------------------------------------
+
+Sample ID: 7668
+Predicted: Childcare (confidence: 1.00)
+True: Childcare (Correct: Yes)
+Top contributing tokens: ['hochet']
+------------------------------------------------------------
+
+Sample ID: 4639
+Predicted: Childcare (confidence: 1.00)
+True: Childcare (Correct: Yes)
+Top contributing tokens: ['loisirs', 'applicables', 'sac', 'normalement', 'disperse']
+------------------------------------------------------------
+
+Sample ID: 14408
+Predicted: Childcare (confidence: 0.97)
+True: Childcare (Correct: Yes)
+Top contributing tokens: ['repositionnable', 'enfant', 'utilisable', 'traces', 'chambre']
+------------------------------------------------------------
+
+Sample ID: 5335
+Predicted: Indoor Furniture (confidence: 0.99)
+True: Indoor Furniture (Correct: Yes)
+Top contributing tokens: ['tement', 'pieds', 'similicuir', 'res', 'profondeur']
+------------------------------------------------------------
+
+Sample ID: 7438
+Predicted: Indoor Furniture (confidence: 0.98)
+True: Indoor Furniture (Correct: Yes)
+Top contributing tokens: ['acariens', 'anti', 'matelas', 'coton', 'matelasse']
+------------------------------------------------------------
+
+Sample ID: 1089
+Predicted: Bedding (confidence: 0.33)
+True: Indoor Furniture (Correct: No)
+Top contributing tokens: ['tissu', 'salete', 'surface', 'parfait', 'doux']
+------------------------------------------------------------
+
+Sample ID: 11340
+Predicted: Indoor Furniture (confidence: 0.79)
+True: Indoor Furniture (Correct: Yes)
+Top contributing tokens: ['mdf', 'bois', 'paulownia', 'tiroir', 'design']
+------------------------------------------------------------
+
+Sample ID: 4091
+Predicted: Decoration (confidence: 0.68)
+True: Indoor Furniture (Correct: No)
+Top contributing tokens: ['pcs', 'diffe', 'quantite', 'cuisson', 'caracte']
+------------------------------------------------------------
+
+Sample ID: 8490
+Predicted: Indoor Furniture (confidence: 0.98)
+True: Indoor Furniture (Correct: Yes)
+Top contributing tokens: ['sommier', 'compose', 'finition', 'matelas', 'pieds']
+------------------------------------------------------------
+
+Sample ID: 9688
+Predicted: Indoor Furniture (confidence: 0.27)
+True: Indoor Furniture (Correct: Yes)
+Top contributing tokens: ['surface', 'gamer', 'ergonomique', 'courses', 'pros']
+------------------------------------------------------------
+
+Sample ID: 9033
+Predicted: Indoor Furniture (confidence: 0.93)
+True: Indoor Furniture (Correct: Yes)
+Top contributing tokens: ['design', 'fauteuil', 'livre', 'houssable', 'clair']
+------------------------------------------------------------
+
+Sample ID: 10030
+Predicted: Indoor Furniture (confidence: 0.91)
+True: Indoor Furniture (Correct: Yes)
+Top contributing tokens: ['cuisine', 'essentiels', 'facile', 'peluches', 'wearable']
+------------------------------------------------------------
+
+Sample ID: 6207
+Predicted: Decoration (confidence: 0.89)
+True: Indoor Furniture (Correct: No)
+Top contributing tokens: ['magasin', 'maison', 'luminaire', 'rustique', 'applique']
+------------------------------------------------------------
+
+Sample ID: 14017
+Predicted: Indoor Furniture (confidence: 0.95)
+True: Indoor Furniture (Correct: Yes)
+Top contributing tokens: ['similicuir', 'moire', 'lit', 'matelas', 'lit']
+------------------------------------------------------------
+
+Sample ID: 16345
+Predicted: Indoor Furniture (confidence: 0.97)
+True: Indoor Furniture (Correct: Yes)
+Top contributing tokens: ['chaise', 'moule', 'assise', 'coque', 'expression']
+------------------------------------------------------------
+
+Sample ID: 13664
+Predicted: Indoor Furniture (confidence: 0.99)
+True: Indoor Furniture (Correct: Yes)
+Top contributing tokens: ['etage', 'fonte', 'murale', 'coration', 'florale']
+------------------------------------------------------------
+
+Sample ID: 16341
+Predicted: Indoor Furniture (confidence: 0.99)
+True: Indoor Furniture (Correct: Yes)
+Top contributing tokens: ['assise', 'rembourre', 'canisme', 'fauteuil', 'dossier']
+------------------------------------------------------------
+
+Sample ID: 1937
+Predicted: Indoor Furniture (confidence: 0.79)
+True: Indoor Furniture (Correct: Yes)
+Top contributing tokens: ['single', 'places', 'places', 'chaise', 'chien']
+------------------------------------------------------------
+
+Sample ID: 12681
+Predicted: Bedding (confidence: 1.00)
+True: Bedding (Correct: Yes)
+Top contributing tokens: ['pillow', 'oreiller', 'livre', 'inclus', 'inte']
+------------------------------------------------------------
+
+Sample ID: 7060
+Predicted: Bedding (confidence: 1.00)
+True: Bedding (Correct: Yes)
+Top contributing tokens: ['taie', 'comprend', 'javel', 'mesures', 'manuelles']
+------------------------------------------------------------
+
+Sample ID: 8253
+Predicted: Bedding (confidence: 0.99)
+True: Bedding (Correct: Yes)
+Top contributing tokens: ['taie', 'requise', 'options', 'paire', 'taie']
+------------------------------------------------------------
+
+Sample ID: 324
+Predicted: Bedding (confidence: 1.00)
+True: Bedding (Correct: Yes)
+Top contributing tokens: ['pillow', 'oreiller', 'viation', 'contenu', 'mesure']
+------------------------------------------------------------
+
+Sample ID: 13389
+Predicted: Bedding (confidence: 1.00)
+True: Bedding (Correct: Yes)
+Top contributing tokens: ['parai', 'taie', 'corer', 'maison', 'salon']
+------------------------------------------------------------
+
+Sample ID: 5794
+Predicted: Bedding (confidence: 0.99)
+True: Bedding (Correct: Yes)
+Top contributing tokens: ['pillow', 'inclus', 'mesure', 'viation', 'club']
+------------------------------------------------------------
+
+Sample ID: 6018
+Predicted: Bedding (confidence: 0.99)
+True: Bedding (Correct: Yes)
+Top contributing tokens: ['suan', 'couverture', 'lit', 'forfait', 'livre']
+------------------------------------------------------------
+
+Sample ID: 802
+Predicted: Toys (confidence: 0.59)
+True: Bedding (Correct: No)
+Top contributing tokens: ['peluche', 'doux', 'comprend', 'emoji', 'peluche']
+------------------------------------------------------------
+
+Sample ID: 195
+Predicted: Bedding (confidence: 0.99)
+True: Bedding (Correct: Yes)
+Top contributing tokens: ['coussin', 'pillow', 'coton', 'place', 'draps']
+------------------------------------------------------------
+
+Sample ID: 16123
+Predicted: Bedding (confidence: 0.99)
+True: Bedding (Correct: Yes)
+Top contributing tokens: ['canard', 'coton', 'machine', 'repassage', 'cuisine']
+------------------------------------------------------------
+
+Sample ID: 631
+Predicted: Bedding (confidence: 1.00)
+True: Bedding (Correct: Yes)
+Top contributing tokens: ['taie', 'place', 'parfait', 'ment', 'canape']
+------------------------------------------------------------
+
+Sample ID: 6384
+Predicted: Bedding (confidence: 0.99)
+True: Bedding (Correct: Yes)
+Top contributing tokens: ['suan', 'taie', 'coussin', 'sofa', 'cover']
+------------------------------------------------------------
+
+Sample ID: 3068
+Predicted: Bedding (confidence: 0.98)
+True: Bedding (Correct: Yes)
+Top contributing tokens: ['drap', 'tapis', 'coton', 'douche', 'gant']
+------------------------------------------------------------
+
+Sample ID: 9195
+Predicted: Bedding (confidence: 1.00)
+True: Bedding (Correct: Yes)
+Top contributing tokens: ['viation', 'taie', 'forfait', 'taie', 'oreiller']
+------------------------------------------------------------
+
+Sample ID: 16929
+Predicted: Bedding (confidence: 0.99)
+True: Bedding (Correct: Yes)
+Top contributing tokens: ['taie', 'chaise', 'coussin', 'bureau', 'canape']
+------------------------------------------------------------
+
+Sample ID: 13683
+Predicted: Decoration (confidence: 0.62)
+True: Food (Correct: No)
+Top contributing tokens: ['confort', 'homme', 'mousse', 'logo', 'chaussettes']
+------------------------------------------------------------
+
+Sample ID: 14073
+Predicted: Food (confidence: 1.00)
+True: Food (Correct: Yes)
+Top contributing tokens: ['cacao', 'cacao', 'sucre', 'gou', 'aro']
+------------------------------------------------------------
+
+Sample ID: 13942
+Predicted: Food (confidence: 1.00)
+True: Food (Correct: Yes)
+Top contributing tokens: ['petits', 'bio', 'bio', 'bio', 'bio']
+------------------------------------------------------------
+
+Sample ID: 7174
+Predicted: Food (confidence: 1.00)
+True: Food (Correct: Yes)
+Top contributing tokens: ['pommes', 'paration', 'bio', 'pre', 'pre']
+------------------------------------------------------------
+
+Sample ID: 12682
+Predicted: Food (confidence: 1.00)
+True: Food (Correct: Yes)
+Top contributing tokens: ['truffe', 'truffe', 'gluten', 'gluten']
+------------------------------------------------------------
+
+Sample ID: 2412
+Predicted: Food (confidence: 1.00)
+True: Food (Correct: Yes)
+Top contributing tokens: ['cafe', 'cafe', 'corse', 'cafe', 'ables']
+------------------------------------------------------------
+
+Sample ID: 15397
+Predicted: Food (confidence: 1.00)
+True: Food (Correct: Yes)
+Top contributing tokens: ['graisse', 'sachet', 'oeufs', 'consommateurs', 'graisse']
+------------------------------------------------------------
+
+Sample ID: 1690
+Predicted: Food (confidence: 1.00)
+True: Food (Correct: Yes)
+Top contributing tokens: ['thon', 'huile', 'poisson', 'conditionnement', 'olive']
+------------------------------------------------------------
+
+Sample ID: 16068
+Predicted: Used Books (confidence: 0.36)
+True: Food (Correct: No)
+Top contributing tokens: ['croquante']
+------------------------------------------------------------
+
+Sample ID: 3779
+Predicted: Food (confidence: 1.00)
+True: Food (Correct: Yes)
+Top contributing tokens: ['bio', 'bio', 'bio', 'fou', 'bio']
+------------------------------------------------------------
+
+Sample ID: 11422
+Predicted: Food (confidence: 0.92)
+True: Food (Correct: Yes)
+Top contributing tokens: ['lait', 'fruits', 'cola', 'gou', 'cola']
+------------------------------------------------------------
+
+Sample ID: 8922
+Predicted: Food (confidence: 1.00)
+True: Food (Correct: Yes)
+Top contributing tokens: ['bio', 'bio', 'gingembre', 'gingembre', 'gingembre']
+------------------------------------------------------------
+
+Sample ID: 9081
+Predicted: Food (confidence: 0.98)
+True: Food (Correct: Yes)
+Top contributing tokens: ['cafe', 'compatibles', 'compatibles', 'compatibles', 'cafe']
+------------------------------------------------------------
+
+Sample ID: 16639
+Predicted: Food (confidence: 1.00)
+True: Food (Correct: Yes)
+Top contributing tokens: ['consultez', 'frais', 'soigne', 'date', 'boites']
+------------------------------------------------------------
+
+Sample ID: 6411
+Predicted: Stationery (confidence: 0.99)
+True: Food (Correct: No)
+Top contributing tokens: ['lots', 'sacs', 'carton', 'fond', 'carton']
+------------------------------------------------------------
+
+Sample ID: 10296
+Predicted: Decoration (confidence: 0.93)
+True: Decoration (Correct: Yes)
+Top contributing tokens: ['mur', 'description', 'salon', 'matie', 'forfait']
+------------------------------------------------------------
+
+Sample ID: 8785
+Predicted: Used Books (confidence: 0.31)
+True: Decoration (Correct: No)
+Top contributing tokens: ['indien', 'boites', 'hit', 'super', 'encens']
+------------------------------------------------------------
+
+Sample ID: 961
+Predicted: Decoration (confidence: 0.85)
+True: Decoration (Correct: Yes)
+Top contributing tokens: ['matie', 'techniques', 'polyester', 'informations', 'bain']
+------------------------------------------------------------
+
+Sample ID: 7497
+Predicted: Decoration (confidence: 0.63)
+True: Decoration (Correct: Yes)
+Top contributing tokens: ['contenu', 'coffret', 'remercie', 'images', 'rectangle']
+------------------------------------------------------------
+
+Sample ID: 13064
+Predicted: Indoor Furniture (confidence: 0.44)
+True: Decoration (Correct: No)
+Top contributing tokens: ['booster', 'multicolor', 'mignon', 'esprit', 'incluent']
+------------------------------------------------------------
+
+Sample ID: 4090
+Predicted: Decoration (confidence: 0.91)
+True: Decoration (Correct: Yes)
+Top contributing tokens: ['mariage', 'besoins', 'chambre', 'bois', 'bois']
+------------------------------------------------------------
+
+Sample ID: 10574
+Predicted: Bedding (confidence: 0.85)
+True: Decoration (Correct: No)
+Top contributing tokens: ['lavable', 'lit', 'plai', 'taie', 'fermeture']
+------------------------------------------------------------
+
+Sample ID: 9148
+Predicted: Childcare (confidence: 0.62)
+True: Decoration (Correct: No)
+Top contributing tokens: ['humidificateur', 'water', 'tasse', 'poids', 'mesure']
+------------------------------------------------------------
+
+Sample ID: 14266
+Predicted: Decoration (confidence: 0.89)
+True: Decoration (Correct: Yes)
+Top contributing tokens: ['contenir', 'contenir', 'contenir', 'cification', 'perles']
+------------------------------------------------------------
+
+Sample ID: 11663
+Predicted: Decoration (confidence: 0.77)
+True: Decoration (Correct: Yes)
+Top contributing tokens: ['doux', 'toucher', 'machine', 'bricolage', 'carte']
+------------------------------------------------------------
+
+Sample ID: 1568
+Predicted: Decoration (confidence: 0.83)
+True: Decoration (Correct: Yes)
+Top contributing tokens: ['solaires', 'lumie', 'automatiquement', 'comprennent', 'lumie']
+------------------------------------------------------------
+
+Sample ID: 2774
+Predicted: Toys (confidence: 0.45)
+True: Decoration (Correct: No)
+Top contributing tokens: ['socle', 'beetle', 'lumineux', 'cube', 'cristal']
+------------------------------------------------------------
+
+Sample ID: 5719
+Predicted: Decoration (confidence: 0.97)
+True: Decoration (Correct: Yes)
+Top contributing tokens: ['scrapbooking', 'condition', 'artisanat', 'remercie', 'papier']
+------------------------------------------------------------
+
+Sample ID: 4527
+Predicted: Decoration (confidence: 0.96)
+True: Decoration (Correct: Yes)
+Top contributing tokens: ['motivation', 'rique', 'nume', 'nume', 'caracte']
+------------------------------------------------------------
+
+Sample ID: 11929
+Predicted: Decoration (confidence: 0.98)
+True: Decoration (Correct: Yes)
+Top contributing tokens: ['diamant', 'image', 'diamant', 'besoin', 'fini']
+------------------------------------------------------------
+
+Sample ID: 15857
+Predicted: Animals (confidence: 1.00)
+True: Animals (Correct: Yes)
+Top contributing tokens: ['dents', 'chien', 'chien', 'chien', 'dents']
+------------------------------------------------------------
+
+Sample ID: 14151
+Predicted: Animals (confidence: 0.96)
+True: Animals (Correct: Yes)
+Top contributing tokens: ['chat', 'jouet']
+------------------------------------------------------------
+
+Sample ID: 13195
+Predicted: Animals (confidence: 1.00)
+True: Animals (Correct: Yes)
+Top contributing tokens: ['collier', 'pet', 'sweetheart', 'chien', 'confortable']
+------------------------------------------------------------
+
+Sample ID: 15078
+Predicted: Animals (confidence: 1.00)
+True: Animals (Correct: Yes)
+Top contributing tokens: ['collier', 'collier', 'chien', 'colliers', 'chien']
+------------------------------------------------------------
+
+Sample ID: 1571
+Predicted: Animals (confidence: 0.98)
+True: Animals (Correct: Yes)
+Top contributing tokens: ['aquarium', 'aquarium', 'comprend', 'sentiment', 'compre']
+------------------------------------------------------------
+
+Sample ID: 9750
+Predicted: Animals (confidence: 0.29)
+True: Animals (Correct: Yes)
+Top contributing tokens: ['polaire', 'rieur', 'inte', 'chien', 'ajustable']
+------------------------------------------------------------
+
+Sample ID: 4827
+Predicted: Animals (confidence: 1.00)
+True: Animals (Correct: Yes)
+Top contributing tokens: ['animal', 'compagnie', 'chiens', 'ide', 'utiliser']
+------------------------------------------------------------
+
+Sample ID: 9452
+Predicted: Animals (confidence: 0.98)
+True: Animals (Correct: Yes)
+Top contributing tokens: ['aquarium', 'eau', 'tailles', 'servoir', 'main']
+------------------------------------------------------------
+
+Sample ID: 1511
+Predicted: Animals (confidence: 0.44)
+True: Animals (Correct: Yes)
+Top contributing tokens: ['compagnie', 'animal', 'yeux', 'chats', 'pet']
+------------------------------------------------------------
+
+Sample ID: 12314
+Predicted: Animals (confidence: 0.85)
+True: Animals (Correct: Yes)
+Top contributing tokens: ['nylon', 'polyester', 'rence', 'dog', 'facile']
+------------------------------------------------------------
+
+Sample ID: 1738
+Predicted: Animals (confidence: 0.95)
+True: Animals (Correct: Yes)
+Top contributing tokens: ['animal', 'chat', 'compagnie', 'pattes', 'cloches']
+------------------------------------------------------------
+
+Sample ID: 13742
+Predicted: Board Games (confidence: 0.39)
+True: Animals (Correct: No)
+Top contributing tokens: ['gamelle', 'conception', 'coloris', 'lamine', 'simple']
+------------------------------------------------------------
+
+Sample ID: 14157
+Predicted: Animals (confidence: 1.00)
+True: Animals (Correct: Yes)
+Top contributing tokens: ['chiens', 'petits', 'chiens', 'parfait', 'galement']
+------------------------------------------------------------
+
+Sample ID: 9171
+Predicted: Animals (confidence: 1.00)
+True: Animals (Correct: Yes)
+Top contributing tokens: ['animal', 'compagnie', 'collier', 'permettent', 'chat']
+------------------------------------------------------------
+
+Sample ID: 6971
+Predicted: Animals (confidence: 1.00)
+True: Animals (Correct: Yes)
+Top contributing tokens: ['puppy', 'pet', 'eau', 'colliers', 'chien']
+------------------------------------------------------------
+
+Sample ID: 7498
+Predicted: Magazines and Journals (confidence: 0.97)
+True: Magazines and Journals (Correct: Yes)
+Top contributing tokens: ['tele', 'scope', 'cinema', 'benoit', 'tourne']
+------------------------------------------------------------
+
+Sample ID: 11465
+Predicted: Magazines and Journals (confidence: 0.89)
+True: Magazines and Journals (Correct: Yes)
+Top contributing tokens: ['magazine', 'france', 'projet', 'jeu', 'commun']
+------------------------------------------------------------
+
+Sample ID: 3745
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.91)
+True: Magazines and Journals (Correct: No)
+Top contributing tokens: ['gaston']
+------------------------------------------------------------
+
+Sample ID: 7278
+Predicted: Magazines and Journals (confidence: 0.50)
+True: Magazines and Journals (Correct: Yes)
+Top contributing tokens: ['fusil', 'cibles', 'saga', 'jean', 'russe']
+------------------------------------------------------------
+
+Sample ID: 11464
+Predicted: Magazines and Journals (confidence: 0.89)
+True: Magazines and Journals (Correct: Yes)
+Top contributing tokens: ['illustre', 'monde', 'expe', 'mexique', 'dition']
+------------------------------------------------------------
+
+Sample ID: 7918
+Predicted: Childcare (confidence: 0.97)
+True: Magazines and Journals (Correct: No)
+Top contributing tokens: ['hochet', 'ric', 'dela', 'code']
+------------------------------------------------------------
+
+Sample ID: 14264
+Predicted: Magazines and Journals (confidence: 0.99)
+True: Magazines and Journals (Correct: Yes)
+Top contributing tokens: ['echo', 'presse', 'directeur', 'publicite', 'paris']
+------------------------------------------------------------
+
+Sample ID: 3074
+Predicted: Magazines and Journals (confidence: 0.98)
+True: Magazines and Journals (Correct: Yes)
+Top contributing tokens: ['charles', 'france', 'leon', 'dirige', 'baron']
+------------------------------------------------------------
+
+Sample ID: 1830
+Predicted: Children's Figurines (confidence: 0.30)
+True: Magazines and Journals (Correct: No)
+Top contributing tokens: ['pirate']
+------------------------------------------------------------
+
+Sample ID: 14650
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.48)
+True: Magazines and Journals (Correct: No)
+Top contributing tokens: ['jim', 'juillet']
+------------------------------------------------------------
+
+Sample ID: 7766
+Predicted: Used Books (confidence: 0.54)
+True: Magazines and Journals (Correct: No)
+Top contributing tokens: ['aste', 'obe', 'lix', 'gale']
+------------------------------------------------------------
+
+Sample ID: 15075
+Predicted: Video Games (confidence: 0.88)
+True: Magazines and Journals (Correct: No)
+Top contributing tokens: ['mondiale', 'guerre']
+------------------------------------------------------------
+
+Sample ID: 4256
+Predicted: Board Games (confidence: 0.98)
+True: Magazines and Journals (Correct: No)
+Top contributing tokens: ['questions', 'cycle']
+------------------------------------------------------------
+
+Sample ID: 7751
+Predicted: Magazines and Journals (confidence: 0.98)
+True: Magazines and Journals (Correct: Yes)
+Top contributing tokens: ['gravure', 'universel', 'journal', 'fetes', 'porte']
+------------------------------------------------------------
+
+Sample ID: 8887
+Predicted: Magazines and Journals (confidence: 0.68)
+True: Magazines and Journals (Correct: Yes)
+Top contributing tokens: ['vue', 'point', 'future', 'vie', 'harry']
+------------------------------------------------------------
+
+Sample ID: 6545
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.99)
+True: Magazine, Book and Comic Bundles (Correct: Yes)
+Top contributing tokens: ['volumes', 'presses', 'philosophe', 'france']
+------------------------------------------------------------
+
+Sample ID: 9486
+Predicted: Used Books (confidence: 0.59)
+True: Magazine, Book and Comic Bundles (Correct: No)
+Top contributing tokens: ['recherche', 'civilisations', 'encyclopedie']
+------------------------------------------------------------
+
+Sample ID: 5783
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.62)
+True: Magazine, Book and Comic Bundles (Correct: Yes)
+Top contributing tokens: ['journaux', 'socie', 'hebdo']
+------------------------------------------------------------
+
+Sample ID: 13555
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.89)
+True: Magazine, Book and Comic Bundles (Correct: Yes)
+Top contributing tokens: ['journaux', 'guerre']
+------------------------------------------------------------
+
+Sample ID: 12260
+Predicted: Magazines and Journals (confidence: 0.57)
+True: Magazine, Book and Comic Bundles (Correct: No)
+Top contributing tokens: ['jean', 'universite', 'robert', 'bac', 'jeunes']
+------------------------------------------------------------
+
+Sample ID: 7383
+Predicted: Magazines and Journals (confidence: 0.95)
+True: Magazine, Book and Comic Bundles (Correct: No)
+Top contributing tokens: ['magazine', 'liste', 'demande', 'anciens', 'vend']
+------------------------------------------------------------
+
+Sample ID: 15295
+Predicted: Magazines and Journals (confidence: 0.87)
+True: Magazine, Book and Comic Bundles (Correct: No)
+Top contributing tokens: ['officiel', 'ration', 'france', 'confe', 'nationale']
+------------------------------------------------------------
+
+Sample ID: 16605
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.46)
+True: Magazine, Book and Comic Bundles (Correct: Yes)
+Top contributing tokens: ['saga', 'grant', 'rie', 'batman']
+------------------------------------------------------------
+
+Sample ID: 7300
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.35)
+True: Magazine, Book and Comic Bundles (Correct: Yes)
+Top contributing tokens: ['tbe', 'divine', 'max', 'semi', 'droite']
+------------------------------------------------------------
+
+Sample ID: 14626
+Predicted: Used Books (confidence: 0.59)
+True: Magazine, Book and Comic Bundles (Correct: No)
+Top contributing tokens: ['introduction', 'sabre', 'tude', 'traditionnel', 'japonais']
+------------------------------------------------------------
+
+Sample ID: 11673
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.91)
+True: Magazine, Book and Comic Bundles (Correct: Yes)
+Top contributing tokens: ['livre', 'croix', 'point']
+------------------------------------------------------------
+
+Sample ID: 15402
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.45)
+True: Magazine, Book and Comic Bundles (Correct: Yes)
+Top contributing tokens: ['livre', 'harlequin', 'tirage', 'passion']
+------------------------------------------------------------
+
+Sample ID: 8238
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.85)
+True: Magazine, Book and Comic Bundles (Correct: Yes)
+Top contributing tokens: ['editions', 'miller', 'vols', 'ours']
+------------------------------------------------------------
+
+Sample ID: 12993
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.99)
+True: Magazine, Book and Comic Bundles (Correct: Yes)
+Top contributing tokens: ['tomes', 'comple', 'ditions', 'oeuvres', 'rencontre']
+------------------------------------------------------------
+
+Sample ID: 16307
+Predicted: Used Books (confidence: 0.31)
+True: Magazine, Book and Comic Bundles (Correct: No)
+Top contributing tokens: ['freud']
+------------------------------------------------------------
+
+Sample ID: 8257
+Predicted: Video Games (confidence: 0.57)
+True: Used Games (Correct: No)
+Top contributing tokens: ['super', 'game']
+------------------------------------------------------------
+
+Sample ID: 8683
+Predicted: Used Games (confidence: 0.97)
+True: Used Games (Correct: Yes)
+Top contributing tokens: ['jeu', 'kinect', 'xbox', 'slim', 'giga']
+------------------------------------------------------------
+
+Sample ID: 9000
+Predicted: Video Game Accessories (confidence: 0.42)
+True: Used Games (Correct: No)
+Top contributing tokens: ['notice', 'tro', 'tomy', 'retro', 'jeu']
+------------------------------------------------------------
+
+Sample ID: 9012
+Predicted: Used Games (confidence: 0.90)
+True: Used Games (Correct: Yes)
+Top contributing tokens: ['jeu']
+------------------------------------------------------------
+
+Sample ID: 2375
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.84)
+True: Used Games (Correct: No)
+Top contributing tokens: ['tbe', 'unite', 'interface', 'moteur']
+------------------------------------------------------------
+
+Sample ID: 1302
+Predicted: Used Games (confidence: 1.00)
+True: Used Games (Correct: Yes)
+Top contributing tokens: ['manettes', 'jeu']
+------------------------------------------------------------
+
+Sample ID: 12645
+Predicted: Used Games (confidence: 0.93)
+True: Used Games (Correct: Yes)
+Top contributing tokens: ['sony', 'slim', 'lite', 'psp']
+------------------------------------------------------------
+
+Sample ID: 1943
+Predicted: Collectible Cards (confidence: 0.70)
+True: Used Games (Correct: No)
+Top contributing tokens: ['carte', 'poke']
+------------------------------------------------------------
+
+Sample ID: 13517
+Predicted: Used Games (confidence: 0.99)
+True: Used Games (Correct: Yes)
+Top contributing tokens: ['jeu', 'wii', 'nintendo']
+------------------------------------------------------------
+
+Sample ID: 2831
+Predicted: Used Games (confidence: 1.00)
+True: Used Games (Correct: Yes)
+Top contributing tokens: ['jeu', 'photos', 'wii', 'nintendo', 'circus']
+------------------------------------------------------------
+
+Sample ID: 10032
+Predicted: Video Game Consoles (confidence: 0.87)
+True: Used Games (Correct: No)
+Top contributing tokens: ['black', 'console', 'xbox', 'ops']
+------------------------------------------------------------
+
+Sample ID: 8550
+Predicted: Used Games (confidence: 0.51)
+True: Used Games (Correct: Yes)
+Top contributing tokens: ['jeu', 'top']
+------------------------------------------------------------
+
+Sample ID: 10449
+Predicted: Used Games (confidence: 0.93)
+True: Used Games (Correct: Yes)
+Top contributing tokens: ['manette', 'jeu', 'jeu']
+------------------------------------------------------------
+
+Sample ID: 9624
+Predicted: Used Games (confidence: 0.70)
+True: Used Games (Correct: Yes)
+Top contributing tokens: ['xbox', 'raider', 'tomb']
+------------------------------------------------------------
+
+Sample ID: 4701
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.53)
+True: Used Games (Correct: No)
+Top contributing tokens: ['bandai', 'amis']
+------------------------------------------------------------
+
+Sample ID: 3842
+Predicted: Stationery (confidence: 1.00)
+True: Stationery (Correct: Yes)
+Top contributing tokens: ['sided', 'dice', 'dice', 'sided', 'multi']
+------------------------------------------------------------
+
+Sample ID: 12941
+Predicted: Magazine, Book and Comic Bundles (confidence: 0.42)
+True: Stationery (Correct: No)
+Top contributing tokens: ['mate', 'mate', 'mate']
+------------------------------------------------------------
+
+Sample ID: 10691
+Predicted: Stationery (confidence: 1.00)
+True: Stationery (Correct: Yes)
+Top contributing tokens: ['trodat', 'encreur', 'tampon', 'tampon', 'encreur']
+------------------------------------------------------------
+
+Sample ID: 12595
+Predicted: Stationery (confidence: 0.99)
+True: Stationery (Correct: Yes)
+Top contributing tokens: ['schneider', 'marqueurs', 'maxx', 'biseau', 'tableau']
+------------------------------------------------------------
+
+Sample ID: 3790
+Predicted: Toys (confidence: 0.55)
+True: Stationery (Correct: No)
+Top contributing tokens: ['lumineux', 'dora']
+------------------------------------------------------------
+
+Sample ID: 6211
+Predicted: Stationery (confidence: 1.00)
+True: Stationery (Correct: Yes)
+Top contributing tokens: ['stylo', 'plume']
+------------------------------------------------------------
+
+Sample ID: 5147
+Predicted: Stationery (confidence: 0.95)
+True: Stationery (Correct: Yes)
+Top contributing tokens: ['utilisations', 'reliure', 'collage', 'colle', 'porcelaine']
+------------------------------------------------------------
+
+Sample ID: 4049
+Predicted: Stationery (confidence: 0.99)
+True: Stationery (Correct: Yes)
+Top contributing tokens: ['tiquettes', 'avery', 'adhe', 'rouges', 'adhe']
+------------------------------------------------------------
+
+Sample ID: 141
+Predicted: Stationery (confidence: 1.00)
+True: Stationery (Correct: Yes)
+Top contributing tokens: ['stylos', 'feutre', 'bague', 'tal', 'bic']
+------------------------------------------------------------
+
+Sample ID: 6117
+Predicted: Stationery (confidence: 1.00)
+True: Stationery (Correct: Yes)
+Top contributing tokens: ['bille', 'stylos', 'diat', 'direct', 'spe']
+------------------------------------------------------------
+
+Sample ID: 2224
+Predicted: Stationery (confidence: 1.00)
+True: Stationery (Correct: Yes)
+Top contributing tokens: ['stylo', 'plume']
+------------------------------------------------------------
+
+Sample ID: 1773
+Predicted: Stationery (confidence: 1.00)
+True: Stationery (Correct: Yes)
+Top contributing tokens: ['lastiques', 'lastiques', 'exacompta', 'lastiques', 'carton']
+------------------------------------------------------------
+
+Sample ID: 16283
+Predicted: Stationery (confidence: 0.93)
+True: Stationery (Correct: Yes)
+Top contributing tokens: ['documents', 'contenir', 'feuilles', 'postales', 'postales']
+------------------------------------------------------------
+
+Sample ID: 16002
+Predicted: Stationery (confidence: 0.99)
+True: Stationery (Correct: Yes)
+Top contributing tokens: ['carnet', 'cartes', 'protege', 'visibles', 'etui']
+------------------------------------------------------------
+
+Sample ID: 11772
+Predicted: Stationery (confidence: 1.00)
+True: Stationery (Correct: Yes)
+Top contributing tokens: ['mines', 'schneider', 'mine', 'porte', 'crayon']
+------------------------------------------------------------
+
+Sample ID: 3247
+Predicted: Garden Furniture (confidence: 1.00)
+True: Garden Furniture (Correct: Yes)
+Top contributing tokens: ['aluminium', 'structure', 'fonte', 'anneaux', 'aluminium']
+------------------------------------------------------------
+
+Sample ID: 8332
+Predicted: Garden Furniture (confidence: 0.95)
+True: Garden Furniture (Correct: Yes)
+Top contributing tokens: ['jardin', 'exte', 'rieur', 'plantes', 'stable']
+------------------------------------------------------------
+
+Sample ID: 16625
+Predicted: Garden Furniture (confidence: 0.98)
+True: Garden Furniture (Correct: Yes)
+Top contributing tokens: ['acier', 'bac', 'jardinie', 'mentaires', 'galvanise']
+------------------------------------------------------------
+
+Sample ID: 4587
+Predicted: Maintenance (confidence: 0.98)
+True: Garden Furniture (Correct: No)
+Top contributing tokens: ['robinet', 'vis', 'droite', 'trique', 'fiches']
+------------------------------------------------------------
+
+Sample ID: 12527
+Predicted: Decoration (confidence: 0.20)
+True: Garden Furniture (Correct: No)
+Top contributing tokens: ['naturel', 'utilisable', 'lumie', 'lavage', 'ristiques']
+------------------------------------------------------------
+
+Sample ID: 2098
+Predicted: Pool Equipment (confidence: 0.43)
+True: Garden Furniture (Correct: No)
+Top contributing tokens: ['tailles', 'disponibles', 'homescapes', 'zinc', 'oiseaux']
+------------------------------------------------------------
+
+Sample ID: 515
+Predicted: Bedding (confidence: 0.85)
+True: Garden Furniture (Correct: No)
+Top contributing tokens: ['couette', 'sel', 'anti', 'sel', 'effet']
+------------------------------------------------------------
+
+Sample ID: 1383
+Predicted: Children's Fishing (confidence: 0.63)
+True: Garden Furniture (Correct: No)
+Top contributing tokens: ['exte', 'boucle', 'ceinture', 'plat', 'activite']
+------------------------------------------------------------
+
+Sample ID: 7752
+Predicted: Bedding (confidence: 0.71)
+True: Garden Furniture (Correct: No)
+Top contributing tokens: ['table', 'professionnel', 'personnel', 'lasthanne', 'table']
+------------------------------------------------------------
+
+Sample ID: 4528
+Predicted: Garden Furniture (confidence: 0.50)
+True: Garden Furniture (Correct: Yes)
+Top contributing tokens: ['parai', 'rester', 'peine', 'attendre', 'chic']
+------------------------------------------------------------
+
+Sample ID: 3711
+Predicted: Garden Furniture (confidence: 0.99)
+True: Garden Furniture (Correct: Yes)
+Top contributing tokens: ['boire', 'bar', 'paies', 'consommation', 'cocktail']
+------------------------------------------------------------
+
+Sample ID: 9803
+Predicted: Garden Furniture (confidence: 0.99)
+True: Garden Furniture (Correct: Yes)
+Top contributing tokens: ['parasol', 'parasol', 'aspect', 'flower', 'verre']
+------------------------------------------------------------
+
+Sample ID: 3140
+Predicted: Garden Furniture (confidence: 0.97)
+True: Garden Furniture (Correct: Yes)
+Top contributing tokens: ['parasol', 'remplac', 'flon', 'toile', 'haute']
+------------------------------------------------------------
+
+Sample ID: 9424
+Predicted: Garden Furniture (confidence: 0.98)
+True: Garden Furniture (Correct: Yes)
+Top contributing tokens: ['mesure', 'tool', 'atelier', 'variation', 'ondule']
+------------------------------------------------------------
+
+Sample ID: 7049
+Predicted: Indoor Furniture (confidence: 0.96)
+True: Garden Furniture (Correct: No)
+Top contributing tokens: ['organisateur', 'organisateur', 'tements', 'modulaire', 'connecte']
+------------------------------------------------------------
+
+Sample ID: 10137
+Predicted: Pool Equipment (confidence: 0.97)
+True: Pool Equipment (Correct: Yes)
+Top contributing tokens: ['pompe', 'triphase']
+------------------------------------------------------------
+
+Sample ID: 9298
+Predicted: Pool Equipment (confidence: 1.00)
+True: Pool Equipment (Correct: Yes)
+Top contributing tokens: ['hayward', 'piscine', 'hayward', 'cartouche', 'filtrante']
+------------------------------------------------------------
+
+Sample ID: 14037
+Predicted: Pool Equipment (confidence: 0.98)
+True: Pool Equipment (Correct: Yes)
+Top contributing tokens: ['eau', 'chauffeur', 'piscine', 'eau', 'tube']
+------------------------------------------------------------
+
+Sample ID: 8848
+Predicted: Pool Equipment (confidence: 0.99)
+True: Pool Equipment (Correct: Yes)
+Top contributing tokens: ['raccords', 'commander', 'curite', 'piscines', 'contactez']
+------------------------------------------------------------
+
+Sample ID: 12629
+Predicted: Pool Equipment (confidence: 0.97)
+True: Pool Equipment (Correct: Yes)
+Top contributing tokens: ['spa', 'nombre', 'balboa', 'skimmer', 'spa']
+------------------------------------------------------------
+
+Sample ID: 7180
+Predicted: Pool Equipment (confidence: 0.86)
+True: Pool Equipment (Correct: Yes)
+Top contributing tokens: ['vanne', 'gulation', 'bit', 'guler', 'formes']
+------------------------------------------------------------
+
+Sample ID: 13573
+Predicted: Pool Equipment (confidence: 0.64)
+True: Pool Equipment (Correct: Yes)
+Top contributing tokens: ['piscine', 'standard', 'vidange', 'montage', 'filtre']
+------------------------------------------------------------
+
+Sample ID: 12608
+Predicted: Garden Furniture (confidence: 0.50)
+True: Pool Equipment (Correct: No)
+Top contributing tokens: ['intempe', 'ries', 'bassin', 'sistante', 'alimente']
+------------------------------------------------------------
+
+Sample ID: 1506
+Predicted: Pool Equipment (confidence: 0.77)
+True: Pool Equipment (Correct: Yes)
+Top contributing tokens: ['testeur', 'acidite', 'eau', 'obtenir', 'carnets']
+------------------------------------------------------------
+
+Sample ID: 16906
+Predicted: Pool Equipment (confidence: 1.00)
+True: Pool Equipment (Correct: Yes)
+Top contributing tokens: ['piscine', 'carre', 'bulles', 'couverture', 'couverture']
+------------------------------------------------------------
+
+Sample ID: 6069
+Predicted: Pool Equipment (confidence: 0.92)
+True: Pool Equipment (Correct: Yes)
+Top contributing tokens: ['piscine', 'adapter', 'oslash', 'parois', 'piscine']
+------------------------------------------------------------
+
+Sample ID: 8128
+Predicted: Pool Equipment (confidence: 1.00)
+True: Pool Equipment (Correct: Yes)
+Top contributing tokens: ['skimmer', 'chelle', 'eau', 'rieure', 'piscine']
+------------------------------------------------------------
+
+Sample ID: 14475
+Predicted: Pool Equipment (confidence: 1.00)
+True: Pool Equipment (Correct: Yes)
+Top contributing tokens: ['hayward', 'gorie', 'cate', 'sceller', 'glable']
+------------------------------------------------------------
+
+Sample ID: 11450
+Predicted: Pool Equipment (confidence: 1.00)
+True: Pool Equipment (Correct: Yes)
+Top contributing tokens: ['ronde', 'piscine', 'capacite', 'ronde', 'gonflable']
+------------------------------------------------------------
+
+Sample ID: 10878
+Predicted: Pool Equipment (confidence: 0.99)
+True: Pool Equipment (Correct: Yes)
+Top contributing tokens: ['hayward', 'sceller', 'fond', 'coller', 'luxe']
+------------------------------------------------------------
+
+Sample ID: 11425
+Predicted: Maintenance (confidence: 0.99)
+True: Maintenance (Correct: Yes)
+Top contributing tokens: ['appareils', 'bobine', 'compatible', 'decker', 'fil']
+------------------------------------------------------------
+
+Sample ID: 8314
+Predicted: Maintenance (confidence: 0.63)
+True: Maintenance (Correct: Yes)
+Top contributing tokens: ['jauge', 'trou', 'verrouillage', 'riales', 'tails']
+------------------------------------------------------------
+
+Sample ID: 15427
+Predicted: Decoration (confidence: 0.75)
+True: Maintenance (Correct: No)
+Top contributing tokens: ['tenues', 'chal', 'jour', 'rapeutique', 'main']
+------------------------------------------------------------
+
+Sample ID: 8163
+Predicted: Maintenance (confidence: 1.00)
+True: Maintenance (Correct: Yes)
+Top contributing tokens: ['fournisseur', 'aspirateur', 'origine', 'fourni', 'emballage']
+------------------------------------------------------------
+
+Sample ID: 16777
+Predicted: Maintenance (confidence: 0.99)
+True: Maintenance (Correct: Yes)
+Top contributing tokens: ['tondeuse', 'hauteur', 'travail', 'surface', 'min']
+------------------------------------------------------------
+
+Sample ID: 12237
+Predicted: Maintenance (confidence: 1.00)
+True: Maintenance (Correct: Yes)
+Top contributing tokens: ['fournisseur', 'aspirateur', 'origine', 'emballage', 'origine']
+------------------------------------------------------------
+
+Sample ID: 6619
+Predicted: Maintenance (confidence: 0.93)
+True: Maintenance (Correct: Yes)
+Top contributing tokens: ['xiaomi', 'lock', 'carte', 'verrouillage', 'smart']
+------------------------------------------------------------
+
+Sample ID: 1479
+Predicted: Maintenance (confidence: 0.69)
+True: Maintenance (Correct: Yes)
+Top contributing tokens: ['vice', 'poigne', 'verrouillage', 'soudure', 'cle']
+------------------------------------------------------------
+
+Sample ID: 2625
+Predicted: Indoor Furniture (confidence: 0.54)
+True: Maintenance (Correct: No)
+Top contributing tokens: ['vin', 'fabricant', 'cuisine', 'lie', 'multicolore']
+------------------------------------------------------------
+
+Sample ID: 3047
+Predicted: Maintenance (confidence: 0.82)
+True: Maintenance (Correct: Yes)
+Top contributing tokens: ['label', 'balcon', 'environnemental', 'techniques', 'ristiques']
+------------------------------------------------------------
+
+Sample ID: 10480
+Predicted: Maintenance (confidence: 0.58)
+True: Maintenance (Correct: Yes)
+Top contributing tokens: ['culture', 'barres', 'chambres', 'pvc', 'conc']
+------------------------------------------------------------
+
+Sample ID: 8294
+Predicted: Maintenance (confidence: 1.00)
+True: Maintenance (Correct: Yes)
+Top contributing tokens: ['aspirateur', 'fournisseur', 'cit', 'aspirateur', 'origine']
+------------------------------------------------------------
+
+Sample ID: 3134
+Predicted: Maintenance (confidence: 0.94)
+True: Maintenance (Correct: Yes)
+Top contributing tokens: ['gazon', 'ation', 'forte', 'pelouses', 'engrais']
+------------------------------------------------------------
+
+Sample ID: 9181
+Predicted: Pool Equipment (confidence: 0.98)
+True: Maintenance (Correct: No)
+Top contributing tokens: ['enrouleur', 'jardin', 'enrouleur', 'alimentation', 'tailles']
+------------------------------------------------------------
+
+Sample ID: 16157
+Predicted: Maintenance (confidence: 0.97)
+True: Maintenance (Correct: Yes)
+Top contributing tokens: ['pompes', 'laiton', 'cran', 'carburant', 'tube']
+------------------------------------------------------------
+
+Sample ID: 8324
+Predicted: New Books (confidence: 1.00)
+True: New Books (Correct: Yes)
+Top contributing tokens: ['oeuvre', 'monde', 'crit', 'auteur', 'passer']
+------------------------------------------------------------
+
+Sample ID: 12981
+Predicted: New Books (confidence: 1.00)
+True: New Books (Correct: Yes)
+Top contributing tokens: ['difficulte', 'ouvrage', 'femme', 'uvre', 'sacrifice']
+------------------------------------------------------------
+
+Sample ID: 13571
+Predicted: New Books (confidence: 1.00)
+True: New Books (Correct: Yes)
+Top contributing tokens: ['ouvrage', 'jeune', 'public', 'propose', 'mission']
+------------------------------------------------------------
+
+Sample ID: 1944
+Predicted: New Books (confidence: 0.91)
+True: New Books (Correct: Yes)
+Top contributing tokens: ['jolie', 'partage', 'lecture', 'acirc', 'fille']
+------------------------------------------------------------
+
+Sample ID: 9001
+Predicted: New Books (confidence: 1.00)
+True: New Books (Correct: Yes)
+Top contributing tokens: ['auteur', 'monde', 'livre', 'niveaux', 'vient']
+------------------------------------------------------------
+
+Sample ID: 9317
+Predicted: New Books (confidence: 0.65)
+True: New Books (Correct: Yes)
+Top contributing tokens: ['touche']
+------------------------------------------------------------
+
+Sample ID: 14361
+Predicted: New Books (confidence: 0.71)
+True: New Books (Correct: Yes)
+Top contributing tokens: ['parents', 'connai', 'maman', 'beurre', 'pointe']
+------------------------------------------------------------
+
+Sample ID: 7148
+Predicted: Used Books (confidence: 0.21)
+True: New Books (Correct: No)
+Top contributing tokens: ['<empty>']
+------------------------------------------------------------
+
+Sample ID: 11333
+Predicted: Used Books (confidence: 0.43)
+True: New Books (Correct: No)
+Top contributing tokens: ['femmes']
+------------------------------------------------------------
+
+Sample ID: 11631
+Predicted: New Books (confidence: 0.84)
+True: New Books (Correct: Yes)
+Top contributing tokens: ['peine', 'politique', 'rite', 'atteindre', 'pauvres']
+------------------------------------------------------------
+
+Sample ID: 8491
+Predicted: New Books (confidence: 0.73)
+True: New Books (Correct: Yes)
+Top contributing tokens: ['ocirc', 'tome', 'retrouve', 'lection', 'joueurs']
+------------------------------------------------------------
+
+Sample ID: 9917
+Predicted: New Books (confidence: 0.99)
+True: New Books (Correct: Yes)
+Top contributing tokens: ['agit', 'but', 'cit', 'climat', 'souvenirs']
+------------------------------------------------------------
+
+Sample ID: 9283
+Predicted: Video Games (confidence: 0.33)
+True: New Books (Correct: No)
+Top contributing tokens: ['rois', 'pre']
+------------------------------------------------------------
+
+Sample ID: 9243
+Predicted: New Books (confidence: 1.00)
+True: New Books (Correct: Yes)
+Top contributing tokens: ['auteur', 'vit', 'bel', 'terrain', 'bien']
+------------------------------------------------------------
+
+Sample ID: 8348
+Predicted: New Books (confidence: 0.91)
+True: New Books (Correct: Yes)
+Top contributing tokens: ['oeuvres', 'cle', 'ation', 'bres', 'femmes']
+------------------------------------------------------------
+
+Sample ID: 9082
+Predicted: PC Games (confidence: 0.99)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['steam', 'drive', 'windows', 'windows', 'configuration']
+------------------------------------------------------------
+
+Sample ID: 16053
+Predicted: PC Games (confidence: 1.00)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['jeu', 'chargement', 'environnements', 'casse', 'redoutables']
+------------------------------------------------------------
+
+Sample ID: 7146
+Predicted: PC Games (confidence: 1.00)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['jeu', 'chargement', 'supple', 'space', 'windows']
+------------------------------------------------------------
+
+Sample ID: 14627
+Predicted: PC Games (confidence: 1.00)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['requise', 'configuration', 'windows', 'monde', 'intel']
+------------------------------------------------------------
+
+Sample ID: 806
+Predicted: PC Games (confidence: 0.99)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['mac', 'interactive', 'logo', 'mac', 'droits']
+------------------------------------------------------------
+
+Sample ID: 14188
+Predicted: PC Games (confidence: 1.00)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['nvidia', 'geforce', 'gtx', 'intel', 'ghz']
+------------------------------------------------------------
+
+Sample ID: 7500
+Predicted: PC Games (confidence: 1.00)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['intel', 'windows', 'processeur', 'gtx', 'core']
+------------------------------------------------------------
+
+Sample ID: 7363
+Predicted: PC Games (confidence: 1.00)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['their', 'respective', 'trademarks', 'copyrights', 'nvidia']
+------------------------------------------------------------
+
+Sample ID: 3845
+Predicted: PC Games (confidence: 1.00)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['processeur', 'intel', 'windows', 'core', 'windows']
+------------------------------------------------------------
+
+Sample ID: 3559
+Predicted: PC Games (confidence: 1.00)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['requise', 'configuration', 'minimum', 'win', 'syste']
+------------------------------------------------------------
+
+Sample ID: 5696
+Predicted: PC Games (confidence: 1.00)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['nvidia', 'geforce', 'gtx', 'windows', 'processeur']
+------------------------------------------------------------
+
+Sample ID: 16788
+Predicted: PC Games (confidence: 1.00)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['chargement', 'jeu', 'fonds', 'cran', 'extras']
+------------------------------------------------------------
+
+Sample ID: 5289
+Predicted: PC Games (confidence: 1.00)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['forts', 'jeu', 'chargement', 'points', 'niveaux']
+------------------------------------------------------------
+
+Sample ID: 12110
+Predicted: PC Games (confidence: 1.00)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['gtx', 'geforce', 'nvidia', 'windows', 'intel']
+------------------------------------------------------------
+
+Sample ID: 3180
+Predicted: PC Games (confidence: 1.00)
+True: PC Games (Correct: Yes)
+Top contributing tokens: ['chargement', 'jeu', 'forts', 'points', 'mystery']
+------------------------------------------------------------
+
+
+Accuracy: 73.6% (405 samples)

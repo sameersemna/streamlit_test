@@ -16,12 +16,28 @@ from pathlib import Path
 import models
 from common import custom_stopwords, display_paired_images_in_reports_folder, prdtypes, prdtypes_en, select_h5_file, word_grouping
 
+from functions import display_html_file, show_pdf_page
+import keras
+from sklearn.metrics import confusion_matrix, classification_report
+import json
+from pathlib import Path
+
 DATA_RAW = './data/raw'
 DATA_PROCESSED = './data/processed'
 DIR_MARKDOWN = './markdown'
+DIR_HTML = './html'
+DIR_MODELS = './models'
+DIR_SAMPLE_IMAGES = './sample_images'
 
 def read_markdown_file(markdown_file):
     return Path(markdown_file).read_text()
+
+# --- PAGE CONFIG MUST BE THE VERY FIRST STREAMLIT COMMAND ---
+st.set_page_config(
+    page_title="Rakuten E-commerce Project",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # --- Data Loading (Cached for efficiency) ---
 @st.cache_data
@@ -103,10 +119,11 @@ st.sidebar.title("Table of contents")
 pages = [
     "Introduction",
     "Data Processing",
-    "Data Exploration", # Visualization
+    "Data Exploration",
+    "Image Processing",
     "Modelling",
     "Interpretation",
-    "Conclusion"
+    "Conclusions"
 ]
 page = st.sidebar.radio("Go to", pages)
 page_current = 0
@@ -126,7 +143,7 @@ if page == pages[page_current]:
     st.caption("Developed as part of the Rakuten France Multimodal Product Classification Challenge.")
 
 
-# --- Page 1: Data Processing ---------------------------------------------------
+# --- Page 1: Data Processing ---
 page_current = page_current + 1
 if page == pages[page_current]:
     st.subheader("Presentation of DataFrames")
@@ -270,7 +287,7 @@ if page == pages[page_current]:
     """)
 
 
-# --- Page 2: DataVizualization ---------------------------------------------------
+# --- Page 2: DataVizualization ---
 page_current = page_current + 1
 if page == pages[page_current]:
     st.header("Product type identification")
@@ -735,117 +752,423 @@ if page == pages[page_current]:
             # Completed the line
             .head(20)[['prdtypecode', 'prdtype', 'description', 'duplicate_count']]
         )
-
+    
     summary_images = read_markdown_file(f"{DIR_MARKDOWN}/summary_images.md")
     st.markdown(summary_images, unsafe_allow_html=True)
 
-# --- Page 3: Modelling ---------------------------------------------------
+# -----------------------------------------------------
 page_current = page_current + 1
 if page == pages[page_current]:
-    st.header("Modelling")
+    st.title("🖼️ Image Preprocessing Methods Demo")
 
-    modelling = read_markdown_file(f"{DIR_MARKDOWN}/modelling.md")
-    st.markdown(modelling, unsafe_allow_html=True)
+    import cv2
+    from PIL import Image
+    import random
+    import glob
+    from rembg import remove
+    import warnings
+    import io
 
-    selected_model_file = select_h5_file(folder_path=models.DIR_MODELS)
+    warnings.filterwarnings('ignore')
 
-    if not selected_model_file or selected_model_file == 'Select':
-        st.write("No model file selected.")
+    from image_preprocessing import (load_original_image, get_random_image_path, baseline_preprocessing, 
+            advanced_augmentation_preprocessing, background_removal_preprocessing, smart_crop_preprocessing)
+
+    st.markdown("### 📊 Basic Image Properties")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.metric("Total Images", "84,916")
+        st.metric("Missing Images", "0")
+        st.metric("Average Sharpness", "671.93")
+        st.metric("Sharp Images (%)", "86%")
+
+    with col2:
+        st.metric("Average Brightness", "43.47")
+        st.metric("Bright Images (%)", "35%")
+        st.metric("Average Contrast", "62.93")
+
+
+    st.markdown("*Compare 4 different image preprocessing approaches*")
+
+    # Sidebar controls
+    st.sidebar.header("Controls")
+
+    # Random image button
+    if st.sidebar.button("🎲 Select Random Image", type="primary"):
+        st.session_state.current_image = get_random_image_path()
+        st.session_state.processed_images = None
+
+    # Initialize session state
+    if 'current_image' not in st.session_state:
+        st.session_state.current_image = get_random_image_path()
+    if 'processed_images' not in st.session_state:
+        st.session_state.processed_images = None
+
+    # Display current image info
+    st.info(f"**Current Image:** {os.path.basename(st.session_state.current_image)}")
+
+    # Show original image continuously at the top
+    if st.session_state.current_image:
+        original = load_original_image(st.session_state.current_image)
+        if original is not None:
+            st.subheader("📸 Original Image")
+            
+            # Make the original image bigger by using columns
+            col1, col2, col3 = st.columns([1, 3, 1])
+            with col2:
+                st.image(original, caption=f"Current: {os.path.basename(st.session_state.current_image)}", use_container_width=True)
+
+    # Method descriptions - always visible as dropdown
+    st.markdown("---")
+    st.subheader("🔍 Method Descriptions")
+
+    with st.expander("📖 Click to learn about each method"):
+
+        preproc_img = read_markdown_file(f"{DIR_MARKDOWN}/image_preproc.md")
+        st.markdown(preproc_img, unsafe_allow_html=True)
+        
+        # st.markdown("""
+        # **⚡ Baseline Preprocessing:**
+        # - Maintains aspect ratio with intelligent scaling
+        # - Creates uniform 500×500 output with white padding
+        # - RGB conversion and normalization to [0,1]
+        
+        # **🎭 Background Removed:**
+        # - Uses AI-based rembg library for automatic background removal
+        # - Replaces background with white
+        
+        # **✂️ Smart Crop:**
+        # - Uses edge detection and contour analysis
+        # - Automatically crops to product boundaries
+        # - Applies histogram equalization for better contrast
+        
+        # **🌟 Advanced Augmentation:**
+        # - Multi-stage enhancement pipeline
+        # - Fast Non-Local Means Denoising
+        # - CLAHE (Contrast Limited Adaptive Histogram Equalization)
+        # - Custom sharpening kernel and color balance
+        # """)
+
+    # Show process instruction if not processed yet
+    if not st.session_state.processed_images:
+        st.info("👆 Click 'Process Image' to see the preprocessing results!")
+
+    # Process images button
+    if st.sidebar.button("🔄 Process Image", type="secondary"):
+        with st.spinner("Processing image with all methods... This may take a moment."):
+            
+            if original is not None:
+                # Process with all methods
+                baseline = baseline_preprocessing(st.session_state.current_image)
+                background_removed = background_removal_preprocessing(st.session_state.current_image)
+                smart_crop = smart_crop_preprocessing(st.session_state.current_image)
+                advanced = advanced_augmentation_preprocessing(st.session_state.current_image)
+                
+                # Store in session state
+                st.session_state.processed_images = {
+                    'baseline': baseline,
+                    'background_removed': background_removed,
+                    'smart_crop': smart_crop,
+                    'advanced': advanced
+                }
+                
+                st.success("✅ Image processed successfully!")
+            else:
+                st.error("Failed to load the selected image.")
+
+    # Display results
+    if st.session_state.processed_images:
+        st.markdown("---")
+        st.subheader("📊 Processing Results")
+        
+        # Create 4 columns for the processed images
+        col1, col2 = st.columns(2)
+        col3, col4 = st.columns(2)
+        
+        
+        columns = [col1, col2, col3, col4]
+        methods = [
+            ('baseline', '⚡ Baseline'),
+            ('background_removed', '🎭 Background Removed'),
+            ('smart_crop', '✂️ Smart Crop'),
+            ('advanced', '🌟 Advanced Augmentation')
+        ]
+        
+        for i, (method, title) in enumerate(methods):
+            with columns[i]:
+                st.markdown(f"**{title}**")
+                
+                img = st.session_state.processed_images[method]
+                if img is not None:
+                    # Convert to display format if needed
+                    if img.dtype == np.float32:
+                        display_img = (img * 255).astype(np.uint8)
+                    else:
+                        display_img = img
+                    
+                    st.image(display_img, use_container_width=True)
+                    
+                    # Show image stats
+                    st.caption(f"Shape: {img.shape}")
+                    if img.dtype == np.float32:
+                        st.caption(f"Range: [{img.min():.3f}, {img.max():.3f}]")
+                    else:
+                        st.caption(f"Range: [{img.min()}, {img.max()}]")
+                else:
+                    st.error("Failed to process with this method")
+
     else:
-        st.write(f"You selected: **{selected_model_file}**")
+        st.markdown("---")
 
-        FILE_MODEL_WEIGHTS = f"{models.DIR_MODELS}/{selected_model_file}.h5"
-        FILE_MODEL_HISTORY = f"{models.DIR_MODELS}/{selected_model_file}.pkl"
-        st.info(f"Files used: {FILE_MODEL_WEIGHTS}, {FILE_MODEL_HISTORY}")
-
-        model = models.get_model_img_custom(X_train)
-        # Now, load the weights. The model's layers are now defined and built.
-        try:
-            model.load_weights(FILE_MODEL_WEIGHTS)
-            st.success("Model weights loaded successfully!")
-        except Exception as e:
-            st.error(f"Error loading model weights: {e}")
-            st.info(
-                f"Please ensure '{FILE_MODEL_WEIGHTS}' exists and the model architecture (vocab_size, embedding_dim, max_sequence_length, and layer types/order) precisely matches the saved weights.")
-
-        # You can now use your model
-        st.write("Model Summary:")
-        model.summary()
-
-        vectors = model.layers[-1].trainable_weights[0].numpy()
-        st.write(f"Shape of last loaded Dense vector: {vectors.shape}")
-
-        if os.path.exists(FILE_MODEL_HISTORY):
-            with open(FILE_MODEL_HISTORY, 'rb') as file_pi:
-                history = pickle.load(file_pi)
-            print(f"Training history loaded from {FILE_MODEL_HISTORY}")
-            print("Loaded history keys:", history.history.keys())
-        else:
-            print(
-                f"Warning: Training history file not found at {FILE_MODEL_HISTORY}")
-
-        model_name = f'{selected_model_file}-lr-{models.LR}_testing_valf1-{history.history["val_f1_score"][-1]:.3f}'
-
-        st.title(f"Last Dense Layer (with {model_name})")
-        st.json(history.history, expanded=False)
-
-        # TRAINING CURVES + SUMMARY
-        fig = plt.figure(figsize=(12, 4))
-
-        # Create grid: 2x3 layout
-        gs = fig.add_gridspec(2, 3, height_ratios=[
-                              1, 1], width_ratios=[1, 1, 0.8])
-
-        # Training curves (top row)
-        ax1 = fig.add_subplot(gs[0, 0])
-        ax1.plot(history.history['loss'], label='Train', linewidth=2)
-        ax1.plot(history.history['val_loss'], label='Val', linewidth=2)
-        ax1.set_title('Loss', fontweight='bold')
-        ax1.legend()
-        ax1.grid(True, alpha=0.3)
-
-        ax2 = fig.add_subplot(gs[0, 1])
-        ax2.plot(history.history['accuracy'], label='Train', linewidth=2)
-        ax2.plot(history.history['val_accuracy'], label='Val', linewidth=2)
-        ax2.set_title('Accuracy', fontweight='bold')
-        ax2.legend()
-        ax2.grid(True, alpha=0.3)
-
-        # F1 and LR (bottom row)
-        ax3 = fig.add_subplot(gs[1, 0])
-        if 'f1_score' in history.history:
-            ax3.plot(history.history['f1_score'], label='Train', linewidth=2)
-            ax3.plot(history.history['val_f1_score'], label='Val', linewidth=2)
-            ax3.set_title('F1 Score', fontweight='bold')
-            ax3.legend()
-        else:
-            ax3.text(0.5, 0.5, 'F1 not tracked', ha='center', va='center')
-            ax3.set_title('F1 Score (N/A)')
-        ax3.grid(True, alpha=0.3)
-
-        ax4 = fig.add_subplot(gs[1, 1])
-        if 'learning_rate' in history.history:
-            ax4.plot(history.history['learning_rate'],
-                     linewidth=2, color='red')
-            ax4.set_title('Learning Rate', fontweight='bold')
-            ax4.set_yscale('log')
-        else:
-            ax4.text(0.5, 0.5, 'LR not tracked', ha='center', va='center')
-            ax4.set_title('Learning Rate (N/A)')
-        ax4.grid(True, alpha=0.3)
-
-        # Summary text (right side)
-        ax_text = fig.add_subplot(gs[:, 2])
-        ax_text.axis('off')
-
-        plt.suptitle(
-            f'Training Report - {model_name}', fontsize=14, fontweight='bold')
-        plt.tight_layout()
-        st.pyplot(fig)
-
-# --- Page 4: Interpretation ---------------------------------------------------
+# ---  Modeling ---------------------------
 page_current = page_current + 1
 if page == pages[page_current]:
+
+    st.header("Modeling")
+
+    text_model = "text-cnn-epochs-100-lr-0.001-testing.keras"
+    text_history = "text-cnn-epochs-100-lr-0.001-testing_history.json"
+    text_report = 'training_text-cnn-epochs-100-lr-0.001-testing_f1-0.7257_t-0721_1642.pdf'
+    #text_predictions = ''
+
+
+    multimodal_model = "multimodal-mobilenetv2--lr-0.0001_f1-0.795.keras"
+    multimodal_history = "multimodal-mobilenetv2--lr-0.0001_f1-0.795_history.json"
+    multimodal_report = 'training_multimodal-mobilenetv2--lr-0.0001_f1-0.795_f1-0.7950_t-0722_2033.pdf'
+    multimodal_predictions = 'multimodal-mobilenetv2--lr-0.0001_f1-0.795_predictions.npy'
+    # Model selection dropdown
+    model_options = [
+        "Select a model",
+        "Basic ML Models", 
+        "Custom CNN Text",
+        "Multimodal Fusion Model"
+    ]
+
+    selected_model = st.selectbox("Choose a model:", model_options)
+
+    if selected_model == "Basic ML Models":
+        st.subheader("Basic ML Models")
+        display_html_file(DIR_HTML +'/basic_models.html')
+        
+    elif selected_model == "Custom CNN Text":
+        st.subheader("Custom CNN Text Model")
+
+        display_html_file(DIR_HTML +'/text_model.html')
+
+        # Load specific model files
+        model_file = text_model
+        history_file = text_history
+        
+        model_path = DIR_MODELS + f"/{model_file}"
+        history_path = DIR_MODELS + f"/{history_file}"
+        
+        st.info(f"Loading model: {model_file}")
+        st.info(f"Loading history: {history_file}")
+        
+        # Load Keras model
+        try:
+            model = keras.models.load_model(model_path)
+            st.success(f"Complete Keras model loaded from: {model_path}")
+        except Exception as e:
+            st.error(f"Error loading Keras model: {e}")
+            st.stop()
+        
+        # Load history from JSON
+        if os.path.exists(history_path):
+            with open(history_path, 'r') as f:
+                history_data = json.load(f)
+            st.success(f"Training history loaded from {history_path}")
+            
+            # Display model info
+            model_name = "Custom CNN Text Model"
+            st.title(f"CNN Text Model Results: {model_name}")
+            
+            # Create visualization
+            fig = plt.figure(figsize=(12, 8))
+            
+            # Loss curve
+            plt.subplot(2, 2, 1)
+            plt.plot(history_data['loss'], label='Train Loss', linewidth=2)
+            plt.plot(history_data['val_loss'], label='Val Loss', linewidth=2)
+            plt.title('Training Loss', fontweight='bold')
+            plt.legend()
+            plt.grid(True, alpha=0.3)
+            
+            # F1 Score curve (main focus)
+            plt.subplot(2, 2, 2)
+            if 'f1_score' in history_data:
+                plt.plot(history_data['f1_score'], label='Train F1 Macro', linewidth=2)
+                plt.plot(history_data['val_f1_score'], label='Val F1 Macro', linewidth=2)
+                plt.title('F1 Score (Macro) - Primary Metric', fontweight='bold')
+                plt.legend()
+            else:
+                plt.text(0.5, 0.5, 'F1 Macro not tracked', ha='center', va='center')
+                plt.title('F1 Score (N/A)')
+            plt.grid(True, alpha=0.3)
+            
+            # Learning Rate (if available)
+            plt.subplot(2, 2, 3)
+            if 'learning_rate' in history_data:
+                plt.plot(history_data['learning_rate'], linewidth=2, color='red')
+                plt.title('Learning Rate', fontweight='bold')
+                plt.yscale('log')
+            else:
+                plt.text(0.5, 0.5, 'LR not tracked', ha='center', va='center')
+                plt.title('Learning Rate (N/A)')
+            plt.grid(True, alpha=0.3)
+            
+            # Model summary info
+            plt.subplot(2, 2, 4)
+            plt.axis('off')
+            
+            final_val_f1 = history_data.get('val_f1_score', ['N/A'])[-1] if 'val_f1_score' in history_data else 'N/A'
+            final_train_f1 = history_data.get('f1_score', ['N/A'])[-1] if 'f1_score' in history_data else 'N/A'
+            final_val_loss = history_data['val_loss'][-1]
+            epochs = len(history_data['loss'])
+            
+            summary_text = f"""MODEL SUMMARY
+
+    Epochs: {epochs}
+    Final Train F1 Macro: {final_train_f1 if final_train_f1 != 'N/A' else 'N/A'}
+    Final Val F1 Macro: {final_val_f1 if final_val_f1 != 'N/A' else 'N/A'}
+    Final Val Loss: {final_val_loss:.3f}
+
+    Parameters: {model.count_params():,}
+    Architecture: Custom CNN Text
+    """
+            
+            plt.text(0.1, 0.9, summary_text, transform=plt.gca().transAxes,
+                    fontsize=10, verticalalignment='top', fontfamily='monospace')
+            
+            plt.suptitle(f'Training Results: {model_name}', fontsize=14, fontweight='bold')
+            plt.tight_layout()
+            st.pyplot(fig)
+            
+            # Show detailed metrics
+            st.subheader("Training History Details")
+            with st.expander("View Raw Training History"):
+                st.json(history_data)
+                
+        else:
+            st.error(f"Training history file not found: {history_path}")
+
+        pdf_path = DIR_MODELS + f"/{text_report}"
+        show_pdf_page(pdf_path, pnum=2)
+            
+    elif selected_model == "Multimodal Fusion Model":
+        st.subheader("Multimodal Fusion Model")
+        display_html_file(DIR_HTML +'/multimodal.html')
+        display_html_file(DIR_HTML +'/technic.html')
+        # Load specific multimodal model files
+        model_file = multimodal_model
+        history_file = multimodal_history
+
+        model_path = DIR_MODELS + f"/{model_file}"
+        history_path = DIR_MODELS +f"/{history_file}"
+
+        st.info(f"Loading model: {model_file}")
+        st.info(f"Loading history: {history_file}")
+        
+        # Load Keras model
+        try:
+            model = keras.models.load_model(model_path)
+            st.success(f"Complete Keras model loaded from: {model_path}")
+        except Exception as e:
+            st.error(f"Error loading Keras model: {e}")
+            st.stop()
+        
+        # Load history from JSON
+        if os.path.exists(history_path):
+            with open(history_path, 'r') as f:
+                history_data = json.load(f)
+            st.success(f"Training history loaded from {history_path}")
+            
+            # Display model info
+            model_name = "Multimodal Fusion Model (Text + MobileNetV2)"
+            st.title(f"Multimodal Model Results: {model_name}")
+            
+            # Create visualization
+            fig = plt.figure(figsize=(12, 8))
+            
+            # Loss curve
+            plt.subplot(2, 2, 1)
+            plt.plot(history_data['loss'], label='Train Loss', linewidth=2)
+            plt.plot(history_data['val_loss'], label='Val Loss', linewidth=2)
+            plt.title('Training Loss', fontweight='bold')
+            plt.legend()
+            plt.grid(True, alpha=0.3)
+            
+            # F1 Score curve (main focus)
+            plt.subplot(2, 2, 2)
+            if 'f1_score' in history_data:
+                plt.plot(history_data['f1_score'], label='Train F1 Macro', linewidth=2)
+                plt.plot(history_data['val_f1_score'], label='Val F1 Macro', linewidth=2)
+                plt.title('F1 Score (Macro) - Primary Metric', fontweight='bold')
+                plt.legend()
+            else:
+                plt.text(0.5, 0.5, 'F1 Macro not tracked', ha='center', va='center')
+                plt.title('F1 Score (N/A)')
+            plt.grid(True, alpha=0.3)
+            
+            # Learning Rate (if available)
+            plt.subplot(2, 2, 3)
+            if 'learning_rate' in history_data:
+                plt.plot(history_data['learning_rate'], linewidth=2, color='red')
+                plt.title('Learning Rate', fontweight='bold')
+                plt.yscale('log')
+            else:
+                plt.text(0.5, 0.5, 'LR not tracked', ha='center', va='center')
+                plt.title('Learning Rate (N/A)')
+            plt.grid(True, alpha=0.3)
+            
+            # Model summary info
+            plt.subplot(2, 2, 4)
+            plt.axis('off')
+            
+            final_val_f1 = history_data.get('val_f1_score', ['N/A'])[-1] if 'val_f1_score' in history_data else 'N/A'
+            final_train_f1 = history_data.get('f1_score', ['N/A'])[-1] if 'f1_score' in history_data else 'N/A'
+            final_val_loss = history_data['val_loss'][-1]
+            epochs = len(history_data['loss'])
+            
+            summary_text = f"""MODEL SUMMARY
+
+    Epochs: {epochs}
+    Final Train F1 Macro: {final_train_f1 if final_train_f1 != 'N/A' else 'N/A'}
+    Final Val F1 Macro: {final_val_f1 if final_val_f1 != 'N/A' else 'N/A'}
+    Final Val Loss: {final_val_loss:.3f}
+
+    Parameters: {model.count_params():,}
+    Architecture: Multimodal (Text CNN + MobileNetV2)
+    """
+            
+            plt.text(0.1, 0.9, summary_text, transform=plt.gca().transAxes,
+                    fontsize=10, verticalalignment='top', fontfamily='monospace')
+            
+            plt.suptitle(f'Training Results: {model_name}', fontsize=14, fontweight='bold')
+            plt.tight_layout()
+            st.pyplot(fig)
+            
+            # Show detailed metrics
+            st.subheader("Training History Details")
+            with st.expander("View Raw Training History"):
+                st.json(history_data)
+                
+        else:
+            st.error(f"Training history file not found: {history_path}")
+
+        pdf_path = DIR_MODELS+ f'/{multimodal_report}'
+        show_pdf_page(pdf_path, pnum=2)
+
+        
+    else:
+        st.write("Please select a model from the dropdown above.")
+
+# --- Page 4: Interpretation ---
+page_current = page_current + 1
+if page == pages[page_current]:
+
     st.header("Interpretation")
 
     st.markdown("""
