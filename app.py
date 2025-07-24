@@ -14,12 +14,14 @@ import pickle
 import re
 import seaborn as sns
 import streamlit as st
+from sklearn.preprocessing import MinMaxScaler, LabelEncoder
+from tensorflow.keras.preprocessing.image import load_img, img_to_array
 
 import models
-from common import custom_stopwords, display_paired_images_in_reports_folder, prdtypes, prdtypes_en, select_h5_file, word_grouping
+from common import custom_stopwords, display_paired_images_in_reports_folder, get_image_full_path, prdtypes, prdtypes_en, select_h5_file, word_grouping
 from image_preprocessing import (load_original_image, get_random_image_path, baseline_preprocessing, 
         advanced_augmentation_preprocessing, background_removal_preprocessing, smart_crop_preprocessing)
-from functions import display_html_file, show_pdf_page
+from functions import display_html_file, show_pdf_page, load_keras_model_and_predict, numpy_to_json
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -30,6 +32,7 @@ DIR_MARKDOWN = './markdown'
 DIR_HTML = './html'
 DIR_MODELS = './models'
 DIR_SAMPLE_IMAGES = './sample_images'
+img_size = 224
 
 def read_markdown_file(markdown_file):
     return Path(markdown_file).read_text()
@@ -109,6 +112,16 @@ french_stopwords = set(stopwords.words('french'))
 all_stopwords = french_stopwords.union(custom_stopwords)
 X_test, X_train, Y_train, X_train_ready = load_all_data()
 
+text_model = "text-cnn-epochs-100-lr-0.001-testing.keras"
+text_history = "text-cnn-epochs-100-lr-0.001-testing_history.json"
+text_report = 'training_text-cnn-epochs-100-lr-0.001-testing_f1-0.7257_t-0721_1642.pdf'
+#text_predictions = ''
+
+multimodal_model = "multimodal-mobilenetv2--lr-0.0001_f1-0.795.keras"
+multimodal_history = "multimodal-mobilenetv2--lr-0.0001_f1-0.795_history.json"
+multimodal_report = 'training_multimodal-mobilenetv2--lr-0.0001_f1-0.795_f1-0.7950_t-0722_2033.pdf'
+multimodal_predictions = 'multimodal-mobilenetv2--lr-0.0001_f1-0.795_predictions.npy'
+
 # --- PAGE CONFIG MUST BE THE VERY FIRST STREAMLIT COMMAND ---
 st.set_page_config(
     page_title="Rakuten E-commerce Project",
@@ -126,6 +139,7 @@ pages = [
     "Image Processing",
     "Modelling",
     "Interpretation",
+    "Prediction",
     "Conclusions"
 ]
 page = st.sidebar.radio("Go to", pages)
@@ -266,28 +280,8 @@ if page == pages[page_current]:
         f"**The exact number of duplicates by line is:** {X_train.duplicated().sum()}")
 
     st.header("First Analysis")
-    st.markdown("""
-    **Designation**
-
-    No null values but 3% of duplicates, which can cause issues further on.
-
-    **Description**
-
-    35% of missing values, suggesting that descriptions are optional for sellers on Rakuten.
-    14% of duplicates, which suggests that some sellers may have...
-    - copy-pasted descriptions for identical products they sold numerous copies of
-    - copy-pasted descriptions for identical products with some slight feature differences (different color, size, state, etc.)
-
-    Missing values and duplicates will require some preprocessing.
-
-    **Productid and Imageid**
-
-    Unique identifiers generated for each product. No missing values or duplicates.
-
-    **Product Type Code**
-
-    There are 27 unique product types. We will drill-down into these further on.
-    """)
+    analysis_1 = read_markdown_file(f"{DIR_MARKDOWN}/analysis_1.md")
+    st.markdown(analysis_1, unsafe_allow_html=True)
 
 
 # --- Page 2: Data Visualization ---
@@ -804,27 +798,8 @@ if page == pages[page_current]:
         preproc_img = read_markdown_file(f"{DIR_MARKDOWN}/image_preproc.md")
         st.markdown(preproc_img, unsafe_allow_html=True)
         
-        # st.markdown("""
-        # **⚡ Baseline Preprocessing:**
-        # - Maintains aspect ratio with intelligent scaling
-        # - Creates uniform 500×500 output with white padding
-        # - RGB conversion and normalization to [0,1]
-        
-        # **🎭 Background Removed:**
-        # - Uses AI-based rembg library for automatic background removal
-        # - Replaces background with white
-        
-        # **✂️ Smart Crop:**
-        # - Uses edge detection and contour analysis
-        # - Automatically crops to product boundaries
-        # - Applies histogram equalization for better contrast
-        
-        # **🌟 Advanced Augmentation:**
-        # - Multi-stage enhancement pipeline
-        # - Fast Non-Local Means Denoising
-        # - CLAHE (Contrast Limited Adaptive Histogram Equalization)
-        # - Custom sharpening kernel and color balance
-        # """)
+        method_description = read_markdown_file(f"{DIR_MARKDOWN}/method_description.md")
+        st.markdown(method_description, unsafe_allow_html=True)
 
     # Show process instruction if not processed yet
     if not st.session_state.processed_images:
@@ -861,8 +836,6 @@ if page == pages[page_current]:
         # Create 4 columns for the processed images
         col1, col2 = st.columns(2)
         col3, col4 = st.columns(2)
-        
-        
         columns = [col1, col2, col3, col4]
         methods = [
             ('baseline', '⚡ Baseline'),
@@ -902,17 +875,6 @@ page_current = page_current + 1
 if page == pages[page_current]:
 
     st.header("Modeling")
-
-    text_model = "text-cnn-epochs-100-lr-0.001-testing.keras"
-    text_history = "text-cnn-epochs-100-lr-0.001-testing_history.json"
-    text_report = 'training_text-cnn-epochs-100-lr-0.001-testing_f1-0.7257_t-0721_1642.pdf'
-    #text_predictions = ''
-
-
-    multimodal_model = "multimodal-mobilenetv2--lr-0.0001_f1-0.795.keras"
-    multimodal_history = "multimodal-mobilenetv2--lr-0.0001_f1-0.795_history.json"
-    multimodal_report = 'training_multimodal-mobilenetv2--lr-0.0001_f1-0.795_f1-0.7950_t-0722_2033.pdf'
-    multimodal_predictions = 'multimodal-mobilenetv2--lr-0.0001_f1-0.795_predictions.npy'
     # Model selection dropdown
     model_options = [
         "Select a model",
@@ -920,7 +882,6 @@ if page == pages[page_current]:
         "Custom CNN Text",
         "Multimodal Fusion Model"
     ]
-
     selected_model = st.selectbox("Choose a model:", model_options)
 
     if selected_model == "Basic ML Models":
@@ -1005,14 +966,14 @@ if page == pages[page_current]:
             
             summary_text = f"""MODEL SUMMARY
 
-    Epochs: {epochs}
-    Final Train F1 Macro: {final_train_f1 if final_train_f1 != 'N/A' else 'N/A'}
-    Final Val F1 Macro: {final_val_f1 if final_val_f1 != 'N/A' else 'N/A'}
-    Final Val Loss: {final_val_loss:.3f}
+            Epochs: {epochs}
+            Final Train F1 Macro: {final_train_f1 if final_train_f1 != 'N/A' else 'N/A'}
+            Final Val F1 Macro: {final_val_f1 if final_val_f1 != 'N/A' else 'N/A'}
+            Final Val Loss: {final_val_loss:.3f}
 
-    Parameters: {model.count_params():,}
-    Architecture: Custom CNN Text
-    """
+            Parameters: {model.count_params():,}
+            Architecture: Custom CNN Text
+            """
             
             plt.text(0.1, 0.9, summary_text, transform=plt.gca().transAxes,
                     fontsize=10, verticalalignment='top', fontfamily='monospace')
@@ -1109,14 +1070,14 @@ if page == pages[page_current]:
             
             summary_text = f"""MODEL SUMMARY
 
-    Epochs: {epochs}
-    Final Train F1 Macro: {final_train_f1 if final_train_f1 != 'N/A' else 'N/A'}
-    Final Val F1 Macro: {final_val_f1 if final_val_f1 != 'N/A' else 'N/A'}
-    Final Val Loss: {final_val_loss:.3f}
+            Epochs: {epochs}
+            Final Train F1 Macro: {final_train_f1 if final_train_f1 != 'N/A' else 'N/A'}
+            Final Val F1 Macro: {final_val_f1 if final_val_f1 != 'N/A' else 'N/A'}
+            Final Val Loss: {final_val_loss:.3f}
 
-    Parameters: {model.count_params():,}
-    Architecture: Multimodal (Text CNN + MobileNetV2)
-    """
+            Parameters: {model.count_params():,}
+            Architecture: Multimodal (Text CNN + MobileNetV2)
+            """
             
             plt.text(0.1, 0.9, summary_text, transform=plt.gca().transAxes,
                     fontsize=10, verticalalignment='top', fontfamily='monospace')
@@ -1135,7 +1096,6 @@ if page == pages[page_current]:
 
         pdf_path = DIR_MODELS+ f'/{multimodal_report}'
         show_pdf_page(pdf_path, pnum=2)
-
         
     else:
         st.write("Please select a model from the dropdown above.")
@@ -1143,31 +1103,148 @@ if page == pages[page_current]:
 # --- Page 4: Interpretation ---
 page_current = page_current + 1
 if page == pages[page_current]:
-
     st.header("Interpretation")
+    interpretation = read_markdown_file(f"{DIR_MARKDOWN}/interpretation.md")
+    st.markdown(interpretation, unsafe_allow_html=True)
 
-    st.markdown("""
-    *   Main results for text
-        
-    *   Main results for for images
-        
-    *   Main results for multimodal
-        
-    *   Comparison with benchmarks
-        
-    *   Potential improvements
-        
-    *   Outlook
-    """)
-
-    st.subheader("GradCAM")
-
+    st.subheader("Grad-CAM")
     display_paired_images_in_reports_folder("./reports/figures")
 
-# --- Page 5: Conclusion ---------------------------------------------------
+# --- Page 5: Prediction ---------------------------------------------------
+page_current = page_current + 1
+if page == pages[page_current]:
+    st.title("Prediction")
+
+    # Sidebar controls
+    st.sidebar.header("Controls")
+    X_test_short = X_test.sort_values(by="imageid", ascending=False).head(50)
+    
+    # Random image button
+    if st.sidebar.button("🎲 Select Random Test Product", type="primary"):
+        st.session_state.current_product = X_test_short.sample(n=1)
+        st.session_state.processed_product = None
+
+    # Initialize session state
+    if 'current_product' not in st.session_state:
+        st.session_state.current_product = X_test_short.sample(n=1)
+    if 'processed_product' not in st.session_state:
+        st.session_state.processed_product = None
+
+    curr_product = st.session_state.current_product.to_dict('records')[0]
+    curr_product_img = get_image_full_path(curr_product['imageid'], curr_product['productid'], './data/raw/images/images_test')
+    # st.table(st.session_state.current_product)
+
+    # Show original image continuously at the top
+    if curr_product_img:
+        original = load_original_image(curr_product_img)
+        if original is not None:
+            st.subheader(curr_product['designation'])
+            st.text(curr_product['description'])
+            
+            # Make the original image bigger by using columns
+            col1, col2, col3 = st.columns([1, 3, 1])
+            with col2:
+                st.image(original, caption=f"Current: {os.path.basename(curr_product_img)}", use_container_width=True)
+
+    # Method descriptions - always visible as dropdown
+    st.markdown("---")
+    st.subheader("🔍 Predictions")
+    
+    df = st.session_state.current_product
+    df['combined'] = df['designation'] + df['description']
+    df['comb_tokens_fr'] = df['combined'].dropna().astype(str).apply(clean_text)
+    # st.table(df)
+         
+    model_options = [
+        "Select a model",
+        "Custom CNN Text",
+        "Multimodal Fusion Model"
+    ]
+    selected_model_predict = st.selectbox("Choose a model:", model_options)
+
+    if selected_model_predict == "Custom CNN Text":
+        st.subheader("Custom CNN Text Model")
+
+        # Load specific model files
+        model_file = text_model
+        history_file = text_history        
+        model_path = DIR_MODELS + f"/{model_file}"
+        history_path = DIR_MODELS + f"/{history_file}"
+
+        df_input = [df]
+            
+    elif selected_model_predict == "Multimodal Fusion Model":
+        st.subheader("Multimodal Fusion Model")
+        # Load specific multimodal model files
+        model_file = multimodal_model
+        history_file = multimodal_history
+        model_path = DIR_MODELS + f"/{model_file}"
+        history_path = DIR_MODELS +f"/{history_file}"
+
+        img = load_img(curr_product_img, target_size=(img_size, img_size))
+        img_array = img_to_array(img)
+        df_input = [df, img_array]
+        
+    else:
+        st.write("Please select a model from the dropdown above.")
+
+    if selected_model_predict != 'Select a model':
+        try:
+            model = keras.models.load_model(model_path)
+        except Exception as e:
+            st.error(f"Error loading Keras model: {e}")
+            st.stop()
+        
+        if os.path.exists(history_path):
+            with open(history_path, 'r') as f:
+                history_data = json.load(f)                
+        else:
+            st.error(f"Training history file not found: {history_path}")
+
+        vectors = model.layers[-1].trainable_weights[0].numpy()
+        # print(vectors)
+        st.write(f"Shape of loaded embedding vectors: {vectors.shape}")
+
+        # If your model has multiple inputs:
+        if isinstance(model.input, list):
+            print("\nModel has multiple inputs:")
+            for i, inp in enumerate(model.input):
+                print(f"  Input {i+1} Expected Shape: {inp.shape}")
+                expected_shape = inp.shape
+                print(f"Model's Expected Input Shape: {expected_shape}")
+                expected_dtype = inp.dtype
+                print(f"Model's Expected Input Data Type: {expected_dtype}")
+                if isinstance(model.input, list):
+                    print("\nModel has multiple inputs:")
+                    for i, inp in enumerate(model.input):
+                        print(f"  Input {i+1} - Shape: {inp.shape}, Dtype: {inp.dtype}")
+
+
+        predictions = load_keras_model_and_predict(model_path, df_input)
+        # st.text(predictions)
+        if predictions is not None:
+            if len(predictions) > 0:
+                st.json(numpy_to_json(predictions), expanded=False)
+
+                # label_encoder = LabelEncoder()
+                # st.write(vectors)
+                
+                predictions_output = np.array(predictions)
+                # Get the index of the highest probability for the first (and only) sample
+                predicted_class_index = np.argmax(predictions_output[0])
+
+                # Get the confidence for that class
+                confidence = predictions_output[0][predicted_class_index]
+
+                st.text(f"Predicted Class Index (0-indexed): {predicted_class_index}")
+                x = list(prdtypes)[predicted_class_index]
+                st.text(f"(prdtypecode: {str(x)}) {prdtypes.get(x)} [{prdtypes_en.get(x)}]")
+                st.text(f"Confidence (Probability): {confidence:.4f}")
+
+
+# --- Page 6: Conclusion ---------------------------------------------------
 page_current = page_current + 1
 if page == pages[page_current]:
     st.title("Conclusion")
-
     conclusion = read_markdown_file(f"{DIR_MARKDOWN}/conclusion.md")
     st.markdown(conclusion, unsafe_allow_html=True)
