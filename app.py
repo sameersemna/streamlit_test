@@ -134,7 +134,7 @@ st.title("Rakuten e-commerce project")
 st.sidebar.title("Table of contents")
 pages = [
     "Introduction",
-    "Data Processing",
+    "Data Discovery",
     "Data Exploration",
     "Image Processing",
     "Modelling",
@@ -284,17 +284,14 @@ if page == pages[page_current]:
     st.markdown(analysis_1, unsafe_allow_html=True)
 
 
-# --- Page 2: DataVizualization ---
+# --- Page 2: Data Visualization ---
 page_current = page_current + 1
 if page == pages[page_current]:
     st.header("Product type identification")
     data = X_train.copy()
     # st.dataframe(data.head())
 
-    st.title("Word Clouds and Frequency Tables by Product Type")
-    st.subheader(
-        "(Type Name assumed based on observations in French & English)")
-    #         "Choose a product type:", sorted(data['prdtypecode'].unique()))
+    # "Choose a product type:", sorted(data['prdtypecode'].unique()))
     selected_type = st.selectbox(
         "Choose a product type:", prdtypes,
         format_func=lambda x: f"(prdtypecode: {str(x)}) {prdtypes.get(x)} [{prdtypes_en.get(x)}]")
@@ -339,14 +336,14 @@ if page == pages[page_current]:
     X_train["prdtype"] = X_train["prdtypecode"].map(prdtypes)
 
     # Show a sample table
-    st.subheader("Sample of Mapped Product Types in X_train")
+    st.subheader("Product type mapping")
     st.dataframe(
         X_train.sample(20)[['prdtypecode', 'prdtype',]].sort_values(by="prdtypecode"),
         use_container_width=True,
         # hide_index=True
     )
 
-    st.subheader("Distribution of products across product types")
+    st.subheader("Class imbalance analysis")
     prdtypecode_count = X_train['prdtypecode'].value_counts()
 
     # Key statistics
@@ -390,23 +387,9 @@ if page == pages[page_current]:
         ]
     })
 
-    st.subheader("General statistics")
-    st.dataframe(stat_analysis, use_container_width=True)
+    st.subheader("Class imbalance analysis")
+    prdtypecode_count = X_train['prdtypecode'].value_counts()
 
-    st.write("Distribution")
-    prdtypecode_count_index = prdtypecode_count.index
-    prdtypecode_proportions = prdtypecode_count / len(X_train) * 100
-    prdtype_sorted_list = [prdtypes[code] for code in prdtypecode_count_index]
-
-    st.header("Proportion and Occurrences of Each Product Type")
-    fig1, ax1 = plt.subplots(figsize=(14, 6))
-    sns.barplot(
-        x=prdtype_sorted_list,
-        y=prdtypecode_proportions[prdtypecode_count_index],
-        order=prdtype_sorted_list,
-        color="lightblue",
-        ax=ax1
-    )
     ax1.set_ylabel('Proportion (%)')
     ax1.set_xlabel('Product Type')
     ax1.set_title('Proportion and Occurences of Each Product Type',
@@ -425,7 +408,6 @@ if page == pages[page_current]:
     # })
     # st.dataframe(prdtypecode_count_df)
 
-    st.header("Dispersion Product Types per # Occurences")
     fig2 = plt.figure(figsize=(14, 3))
     sns.boxplot(x=prdtypecode_count.values, color="lightblue")
     plt.title("Dispersion Product Types per # Occurences",
@@ -434,12 +416,13 @@ if page == pages[page_current]:
     st.pyplot(fig2)
 
     st.markdown("""
-    > We can see that **50% of products** have between **1,500** and **5,000 occurrences**.
-    > **Équipement de piscine** is an **outlier** — it appears more than **10,200 times**.
-    > This may cause **overfitting**, so we will need to account for its **over-representation** in future steps.
+    We can see that **50% of products** have between **1,500** and **5,000 occurrences**.
+    **Équipement de piscine** is an **outlier** — it appears more than **10,200 times**.
+    This may cause **overfitting**, so we will need to account for its **over-representation** in future steps.
     """)
-
-    st.write("Data inspection")
+    st.header("Data Inspection")
+        
+    st.subheader("Null Values per class")
     X_train['designation_length'] = X_train['designation'].astype(
         str).str.len()
     X_train['description_length'] = X_train['description'].astype(
@@ -496,7 +479,7 @@ if page == pages[page_current]:
              suggesting that the title was a sufficient source of information for sellers and buyers, especially when it is second hand.
              We will have to take this in consideration in the future to prevent underfitting.''')
 
-    st.write("Replicate descriptions")
+    st.subheader("Replicate descriptions per class")
     # Create a new column that checks if designation is identical to description
     X_train['identical_designation_description'] = X_train['designation'].astype(
         str) == X_train['description'].astype(str)
@@ -548,7 +531,7 @@ if page == pages[page_current]:
     replicate_products_count = replicate_products.shape[0]
 
     st.header(
-        "Random Sample of 10 Products with Identical Designation and Description")
+        "Sample of 10 Products with Identical Designation and Description")
     st.write(
         f'There are {replicate_products_count} replicate products in total.')
     st.dataframe(replicate_products[[
@@ -560,8 +543,6 @@ if page == pages[page_current]:
     # X_train['designation_length'] = X_train['designation'].str.len()
     # X_train['description_length'] = X_train['description'].str.len()
     
-    # st.header("Duplicate designations and descriptions")
-    # st.title("Duplicate Values Analysis")
     # Group by 'prdtypecode' and count duplicates
     duplicate_counts = X_train.groupby('prdtypecode').agg(
         designation_duplicates=pd.NamedAgg(
