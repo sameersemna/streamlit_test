@@ -1,6 +1,8 @@
 import streamlit as st
 import os
 
+image_file_extension = 'jpg'
+
 # Mapping dictionary
 prdtypes = {
     10: "Livres d'occasion",
@@ -219,9 +221,9 @@ def display_paired_images_in_reports_folder(reports_folder="./reports"):
     # Create an initial set of two columns for the header
     header_col1, header_col2 = st.columns(2)
     with header_col1:
-        st.subheader("JPEG (Left Column)")
+        st.subheader("Original Image")
     with header_col2:
-        st.subheader("GIF (Right Column)")
+        st.subheader("Gradient-weighted Class Activation Mapping")
     st.markdown("---") # Visual separator
 
     # Loop through common names and display images
@@ -241,3 +243,6 @@ def display_paired_images_in_reports_folder(reports_folder="./reports"):
             st.image(gif_path, caption=f"{name}.gif", use_container_width=True)
 
         st.markdown("---") # Separator between each pair of images for clarity
+
+def get_image_full_path(image_id, product_id, base_folder, file_extension = image_file_extension):
+    return os.path.join(base_folder, f'image_{image_id}_product_{product_id}.{file_extension}')
