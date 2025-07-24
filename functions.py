@@ -9,6 +9,18 @@ from nltk.corpus import stopwords
 import fitz  # PyMuPDF
 from PIL import Image
 import io
+import os
+import json
+import ast
+import pandas as pd
+import tensorflow as tf
+from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from collections import Counter
+import traceback
+
+MAX_SEQUENCE_LENGTH = 60
+VOCAB_LIMIT = 40000
 
 try:
     stopwords.words('english') # Attempt to access to check if already downloaded
@@ -146,8 +158,105 @@ def get_closest(word, word2idx, vectors, idx2word, number=10):
     return list_ret
 
 
-### JANEKs functions
+def get_pad_sequence(df):
+    df['comb_tokens_fr'] = df['comb_tokens_fr'].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) else x)
+    all_tokens_filtered = []
+    for token_list in df['comb_tokens_fr']:
+        all_tokens_filtered.extend(token_list)
+    # Count token frequencies
+    token_counter = Counter(all_tokens_filtered)
+    # Keep only top N most frequent tokens
+    most_common_tokens = dict(token_counter.most_common(VOCAB_LIMIT))
+    vocab_filtered = {word: i+1 for i, word in enumerate(most_common_tokens.keys())}
+    vocab_size_filtered = len(vocab_filtered) + 1
 
+    def tokens_to_sequences_filtered(token_list):
+        return [vocab_filtered[token] for token in token_list if token in vocab_filtered]
+        
+    sequences = [tokens_to_sequences_filtered(tokens) for tokens in df['comb_tokens_fr']]
+    print(sequences)
+    return pad_sequences(sequences, maxlen=MAX_SEQUENCE_LENGTH, padding='post')
+
+@st.cache_data
+def load_keras_model_and_predict(model_path: str, data_df: pd.DataFrame):
+    """
+    Loads a Keras model from a specified path and uses it to make predictions
+    on a pandas DataFrame.
+
+    Args:
+        model_path (str): The file path to the saved Keras model (e.g., 'my_model.h5').
+        data_df (pd.DataFrame): The DataFrame containing the input data for prediction.
+                                Ensure its columns/structure match the model's expected input.
+
+    Returns:
+        np.ndarray: The predictions made by the model.
+    """
+    if not os.path.exists(model_path):
+        st.error(f"Error: Model file not found at '{model_path}'.")
+        return None
+
+    try:
+        # 1. Load the Keras model
+        st.write(f"Loading model from: {model_path}")
+        model = tf.keras.models.load_model(model_path)
+        st.success("Model loaded successfully!")
+        # model.summary() # Print model summary for verification
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
+        st.info("Ensure the model file is valid and TensorFlow is correctly installed.")
+        return None
+
+    # 2. Prepare the DataFrame for prediction
+    # Keras models typically expect NumPy arrays as input.
+    # The shape and data type must match what the model was trained on.
+    # For a tabular model, often directly converting the DataFrame to a NumPy array is sufficient.
+    # If your model expects specific preprocessing (e.g., scaling, normalization,
+    # specific column order, one-hot encoding, or different input for images/text),
+    # apply that preprocessing here before converting to NumPy.
+
+    # print('***************************************************************')
+    dt = get_pad_sequence(data_df[0])
+    # dt = data_df['comb_tokens_fr'].iloc[0]
+    # print(dt)
+    # st.table(dt)
+
+    # Example: Assuming data_df contains numerical features suitable for direct input
+    # Convert DataFrame to a NumPy array
+    # dt = to_categorical(dt)
+    # input_data_np = data_df.values # Or select specific columns: data_df[feature_columns].values
+    input_data_np = np.array(dt) 
+    # st.table(input_data_np)
+
+    # Reshape if necessary (e.g., for recurrent layers expecting (samples, timesteps, features))
+    # if model.input_shape[1:] != input_data_np.shape[1:]:
+    #     st.warning(f"Input data shape {input_data_np.shape} might not match model input shape {model.input_shape}. Reshaping might be needed.")
+    #     # Example for 1D input if model expects (None, num_features) but data is (num_samples,)
+    #     if len(input_data_np.shape) == 1 and len(model.input_shape) == 2:
+    #         input_data_np = input_data_np.reshape(-1, 1) # Reshape to (samples, 1)
+
+    st.write(f"Input data shape for prediction: {input_data_np.shape}")
+    if len(data_df) == 2:
+        # input_data_np = np.array(input_data_np[0])
+        input_image_np = np.array([data_df[1]])
+        st.write(f"Input image shape for prediction: {input_image_np.shape}")
+
+    # 3. Make predictions
+    st.write("Making predictions...")
+    try:
+        if len(data_df) == 2:
+            predictions = model.predict([input_data_np, input_image_np])
+        else:
+            predictions = model.predict(input_data_np)
+        st.success("Predictions generated successfully!")
+        return predictions
+    except Exception as e:
+        st.error(f"Error during prediction: {e}")
+        st.info("Check if input data shape and type match the model's expectations.")
+
+        traceback.print_exc()
+        return None
+
+### JANEKs functions
 def display_html_file(file_path, height=None):
     """
     Display an HTML file in Streamlit.
@@ -183,3 +292,28 @@ def show_pdf_page(pdf_path, pnum=2):
     img = Image.open(io.BytesIO(img_data))
     st.image(img)
     doc.close()
+
+def numpy_to_json(numpy_array: np.ndarray, indent: int = None) -> str:
+    """
+    Converts a NumPy array to a JSON string.
+
+    Args:
+        numpy_array (np.ndarray): The NumPy array to convert.
+        indent (int, optional): If not None, JSON array elements will be pretty-printed
+                                with that indent level. Defaults to None (compact output).
+
+    Returns:
+        str: A JSON string representation of the NumPy array.
+    """
+    if not isinstance(numpy_array, np.ndarray):
+        raise TypeError("Input must be a NumPy array.")
+
+    # Convert the NumPy array to a Python list
+    # .tolist() handles multi-dimensional arrays correctly,
+    # converting them into nested lists.
+    python_list = numpy_array.tolist()
+
+    # Convert the Python list to a JSON string
+    json_string = json.dumps(python_list, indent=indent)
+
+    return json_string
