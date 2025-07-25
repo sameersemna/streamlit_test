@@ -698,9 +698,20 @@ if page == pages[page_current]:
     )
     plt.tight_layout(rect=[0, 0.1, 1, 1])
     st.pyplot(fig)
-    
+
+    st.header("Text Preprocessing steps")
+    st.markdown("""
+    1. **HTML withdrawal**.
+    2. **Language identification**. We identified French as the main language (75%).
+    3. **Translation to French**. We used Google Translate API. 
+    4. **Stopwords withdrawal**. We used existing libraries enriched by custom stopwords.
+    5. **Tokenization** using Spacy.
+    6. **Lemmatization**. We lemmatized the text to reduce the total number of tokens.
+    7. **Final clean**. We removed persisting incoherences.
+    8. **Vectorization** using FastText. We carried out several vectorizations trying out different parameters (max_length, min_length and bucket_length), later used for parameter optimization with GridSearch. 
+    """
+
     summary_images = read_markdown_file(f"{DIR_MARKDOWN}/summary_images.md")
-    st.markdown(summary_images, unsafe_allow_html=True)
 
 # -----------------------------------------------------
 page_current = page_current + 1
