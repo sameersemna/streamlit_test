@@ -344,7 +344,7 @@ if page == pages[page_current]:
         # hide_index=True
     )
 
-    st.subheader("Class imbalance analysis")
+    st.header("Class imbalance analysis")
     prdtypecode_count = X_train['prdtypecode'].value_counts()
 
     # Key statistics
@@ -431,7 +431,6 @@ if page == pages[page_current]:
     **Équipement de piscine** is an **outlier** — it appears more than **10,200 times**.
     This may cause **overfitting**, so we will need to account for its **over-representation** in future steps.
     """)
-    st.header("Data Inspection")
         
     st.subheader("Null Values per class")
     X_train['designation_length'] = X_train['designation'].astype(
@@ -541,7 +540,7 @@ if page == pages[page_current]:
     replicate_products = X_train[X_train['identical_designation_description']]
     replicate_products_count = replicate_products.shape[0]
 
-    st.header(
+    st.subheader(
         "Sample of 10 Products with Identical Designation and Description")
     st.write(
         f'There are {replicate_products_count} replicate products in total.')
@@ -659,9 +658,7 @@ if page == pages[page_current]:
     # st.dataframe(final_df_sorted)
 
     # TITLE AND HEADER
-    st.title("Duplicates Analysis")
-    st.header(
-        "Product Types by Percentage of Duplicate Designations vs. Descriptions")
+    st.subheader("Duplicates Analysis")
 
     # CREATE THE VISUALIZATION
     fig = plt.figure(figsize=(10, 12))
