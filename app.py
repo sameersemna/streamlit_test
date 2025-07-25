@@ -1,3 +1,5 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 from collections import Counter
 from nltk.corpus import stopwords
 from pathlib import Path
@@ -8,7 +10,6 @@ import keras
 import matplotlib.pyplot as plt
 import nltk
 import numpy as np
-import os
 import pandas as pd
 import pickle
 import re
