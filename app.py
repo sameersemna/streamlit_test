@@ -1123,11 +1123,7 @@ if page == pages[page_current]:
 # --- Page 4: Interpretation ---
 page_current = page_current + 1
 if page == pages[page_current]:
-    st.header("Interpretation")
-    interpretation = read_markdown_file(f"{DIR_MARKDOWN}/interpretation.md")
-    st.markdown(interpretation, unsafe_allow_html=True)
-
-    st.subheader("Grad-CAM")
+    st.header("Interpretation Grad-CAM")
     display_paired_images_in_reports_folder("./reports/figures")
 
 # --- Page 5: Prediction ---------------------------------------------------
