@@ -760,9 +760,6 @@ if page == pages[page_current]:
 
         preproc_img = read_markdown_file(f"{DIR_MARKDOWN}/image_preproc.md")
         st.markdown(preproc_img, unsafe_allow_html=True)
-        
-        method_description = read_markdown_file(f"{DIR_MARKDOWN}/method_description.md")
-        st.markdown(method_description, unsafe_allow_html=True)
 
     # Show process instruction if not processed yet
     if not st.session_state.processed_images:
