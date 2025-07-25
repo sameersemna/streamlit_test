@@ -387,9 +387,19 @@ if page == pages[page_current]:
         ]
     })
 
-    st.subheader("Class imbalance analysis")
-    prdtypecode_count = X_train['prdtypecode'].value_counts()
+    prdtypecode_count_index = prdtypecode_count.index
+    prdtypecode_proportions = prdtypecode_count / len(X_train) * 100
+    prdtype_sorted_list = [prdtypes[code] for code in prdtypecode_count_index]
 
+    st.header("Proportion and Occurrences of Each Product Type")
+    fig1, ax1 = plt.subplots(figsize=(14, 6))
+    sns.barplot(
+        x=prdtype_sorted_list,
+        y=prdtypecode_proportions[prdtypecode_count_index],
+        order=prdtype_sorted_list,
+        color="lightblue",
+        ax=ax1
+    )
     ax1.set_ylabel('Proportion (%)')
     ax1.set_xlabel('Product Type')
     ax1.set_title('Proportion and Occurences of Each Product Type',
@@ -690,51 +700,6 @@ if page == pages[page_current]:
     )
     plt.tight_layout(rect=[0, 0.1, 1, 1])
     st.pyplot(fig)
-
-    # Display final dataframe
-    # st.header(
-    #     "Number of Duplicate Values in Designation and Description per Product Type (Excluding Nulls)")
-    # st.dataframe(final_df)
-    col1, col2 = st.columns(2)
-
-    # Get and display top 20 duplicated designations
-    with col1:
-        st.subheader("Top 20 Most Duplicated Designations")
-        top_designations = X_train[X_train.duplicated(
-            subset=['designation'], keep=False)]
-        top_designations = top_designations.groupby(
-            'designation').size().reset_index(name='duplicate_count')
-        top_designations = top_designations.merge(
-            X_train[['designation', 'prdtypecode']].drop_duplicates(),
-            on='designation',
-            how='left'
-        )
-        top_designations['prdtype'] = top_designations['prdtypecode'].map(
-            prdtypes)
-        st.dataframe(
-            top_designations.sort_values('duplicate_count', ascending=False)
-            .head(20)[['prdtypecode', 'prdtype', 'designation', 'duplicate_count']]
-        )
-
-    # Get and display top 20 duplicated descriptions
-    with col2:
-        st.subheader("Top 20 Most Duplicated Descriptions")
-        top_descriptions = X_train[X_train.duplicated(
-            subset=['description'], keep=False)]
-        top_descriptions = top_descriptions.groupby(
-            'description').size().reset_index(name='duplicate_count')
-        top_descriptions = top_descriptions.merge(
-            X_train[['description', 'prdtypecode']].drop_duplicates(),
-            on='description',
-            how='left'
-        )
-        top_descriptions['prdtype'] = top_descriptions['prdtypecode'].map(
-            prdtypes)
-        st.dataframe(
-            top_descriptions.sort_values('duplicate_count', ascending=False)
-            # Completed the line
-            .head(20)[['prdtypecode', 'prdtype', 'description', 'duplicate_count']]
-        )
     
     summary_images = read_markdown_file(f"{DIR_MARKDOWN}/summary_images.md")
     st.markdown(summary_images, unsafe_allow_html=True)
