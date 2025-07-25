@@ -1,3 +1,5 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import streamlit as st
 import numpy as np
 from sklearn.preprocessing import Normalizer
@@ -9,7 +11,6 @@ from nltk.corpus import stopwords
 import fitz  # PyMuPDF
 from PIL import Image
 import io
-import os
 import json
 import ast
 import pandas as pd
@@ -177,7 +178,6 @@ def get_pad_sequence(df):
     print(sequences)
     return pad_sequences(sequences, maxlen=MAX_SEQUENCE_LENGTH, padding='post')
 
-@st.cache_data
 def load_keras_model_and_predict(model_path: str, data_df: pd.DataFrame):
     """
     Loads a Keras model from a specified path and uses it to make predictions
@@ -253,7 +253,7 @@ def load_keras_model_and_predict(model_path: str, data_df: pd.DataFrame):
         st.error(f"Error during prediction: {e}")
         st.info("Check if input data shape and type match the model's expectations.")
 
-        traceback.print_exc()
+        # traceback.print_exc()
         return None
 
 ### JANEKs functions
