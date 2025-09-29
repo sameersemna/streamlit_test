@@ -25,3 +25,6 @@ Note: Make sure about the folder paths
 sh copyfiles.sh
 streamlit run app.py
 ```
+
+Convert .env to TOML
+https://jam.dev/utilities/env-to-netlify-toml
