@@ -406,61 +406,6 @@ def run_user_interface():
                 st.plotly_chart(fig, use_container_width=True)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                payload = {
-                    "points": st.session_state.get("new_points", []),
-                    "date_range": {
-                        "start_date": str(st.session_state.slider_range[0]),
-                        "end_date": str(st.session_state.slider_range[1])
-                    }
-                }
-
-                try:
-                    # Replace this URL with your actual API endpoint
-                    API_URL = f"{BACKEND_URL}/fetch_predictions"
-                    response = requests.post(API_URL, json=payload, timeout=30)
-
-                    if response.status_code == 200:
-                        data = response.json()
-
-                        # Example expected data: {"predictions": [...], "history": [...]}
-                        predictions = pd.DataFrame(data.get("predictions", []))
-                        history = pd.DataFrame(data.get("history", []))
-
-                        st.success("✅ Predictions and history received!")
-
-                        if not predictions.empty:
-                            st.subheader("Predictions")
-                            st.dataframe(predictions)
-
-                        if not history.empty:
-                            st.subheader("Groundwater Level History")
-                            st.dataframe(history.set_index("ID"))
-
-                    else:
-                        st.error(f"API Error: {response.status_code} — {response.text}")
-
-                except Exception as e:
-                    st.error(f"Error contacting API: {e}")
-
     else:
         st.info("Select at least one point and a date range to fetch predictions.")
 
