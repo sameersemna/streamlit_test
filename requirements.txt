@@ -10,3 +10,4 @@ mysql-connector-python==9.4.0
 sqlalchemy==2.0.43
 streamlit-autorefresh
 prometheus-client==0.22.1
+plotly

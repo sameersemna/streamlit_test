@@ -8,6 +8,12 @@ from pathlib import Path
 # import sys
 # sys.path.append("..")
 # sys.path.append('../src')
+from streamlit_folium import st_folium
+import folium
+from folium.plugins import MarkerCluster, Draw
+from datetime import datetime, date
+import time
+from user_interface import run_user_interface
 import logging
 import threading
 import time
@@ -19,7 +25,7 @@ METRICS_PORT = 8502
 # Define a key for the session state to track initialization
 INIT_KEY = 'metrics_initialized'
 # Get the default Prometheus registry
-REGISTRY = CollectorRegistry() 
+REGISTRY = CollectorRegistry()
 
 
 # --- 2. Custom Log Handler for Metrics ---
@@ -28,27 +34,27 @@ class PrometheusLogHandler(logging.Handler):
     def __init__(self, error_counter):
         super().__init__()
         self.error_counter = error_counter
-        
+
     def emit(self, record):
         if record.levelno >= logging.ERROR:
             self.error_counter.inc()
 
 
 # --- 3. Initialization Logic (Runs ONLY ONCE) ---
-# This block uses st.session_state to ensure that metrics, logging, 
+# This block uses st.session_state to ensure that metrics, logging,
 # and the metrics server are set up only on the first run.
 if INIT_KEY not in st.session_state:
-    
+
     # Define custom metrics using the explicit registry
     # This metric counts how many times the Streamlit button is clicked
     BUTTON_CLICKS_TOTAL = Counter(
-        'streamlit_button_clicks_total', 
+        'streamlit_button_clicks_total',
         'Total number of times the primary button was clicked',
         registry=REGISTRY # Use the specific registry
     )
     # This metric counts every time an ERROR level log is generated
     APP_LOG_ERRORS_TOTAL = Counter(
-        'streamlit_app_log_errors_total', 
+        'streamlit_app_log_errors_total',
         'Total count of application log errors generated',
         registry=REGISTRY # Use the specific registry
     )
@@ -56,16 +62,16 @@ if INIT_KEY not in st.session_state:
     # Configure logger to use our custom handler
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)
-    
+
     # Attach the custom handler using the defined metric
     logger.addHandler(PrometheusLogHandler(APP_LOG_ERRORS_TOTAL))
-    
+
     # Start the metrics server
     def start_metrics_server():
         """Starts the Prometheus HTTP server in a non-blocking thread."""
         try:
             # Serve the metrics from our specific registry
-            start_http_server(METRICS_PORT, registry=REGISTRY) 
+            start_http_server(METRICS_PORT, registry=REGISTRY)
             print(f"Prometheus metrics server started on port {METRICS_PORT}")
         except Exception as e:
             # Handle the case if the port is already in use
@@ -91,16 +97,16 @@ logger = st.session_state[INIT_KEY]['logger']
 engine, _ = get_engine()
 
 st.set_page_config(
-    page_title=TITLE,
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
 # ---- Streamlit specific code ----
-st.title(TITLE)
+# st.title(TITLE)
 st.sidebar.title("Table of contents")
 pages = [
-    "Intro", "Data", "Vizualization", "Modelling", "Train & Predict"
+    "Intro", "Data", "Vizualization", "Modelling", "Train & Predict",
+    "User Interface"
 ]
 page = st.sidebar.radio("Go to", pages)
 
@@ -120,9 +126,9 @@ The goal of this project is to develop a system capable of analyzing weather and
         """
     )
 
-    
+
     st.divider()
-    st.subheader("Project Architecture")  
+    st.subheader("Project Architecture")
 
     img_path = Path(__file__).parent / "assets" / "architecture.jpg"
     st.image(str(img_path), caption="High-level system architecture", use_column_width=True)
@@ -145,15 +151,15 @@ if page == pages[1]:
 
     st.subheader("Maps")
     choice = st.radio(
-        label="",  
+        label="",
         options=list(img_options.keys()),
         horizontal=True,
-        label_visibility="collapsed", 
+        label_visibility="collapsed",
     )
     st.image(str(img_options[choice]), caption=choice, use_column_width=True)
 
 
-    
+
     st.title("Current Tables from Database")
 
     selected_table = st.selectbox(
@@ -198,12 +204,12 @@ if page == pages[1]:
 
             json_response = response.json()
             st.json(json_response)
-            
+
             if json_response['fetched_wasserportal'] is not None:
                 fetched_wasserportal = pd.read_parquet(f"{json_response['fetched_wasserportal']['file']}")
                 st.markdown(f"\n**{json_response['fetched_wasserportal']['file']}**\n")
                 st.dataframe(fetched_wasserportal.head())
-                
+
         except requests.exceptions.RequestException as e:
             st.error(f"Failed to connect to the backend: {e}")
 
@@ -267,7 +273,7 @@ if page == "Train & Predict":
         # station_id_pred = st.number_input("Station ID", min_value=0, value=100)
         station_id_pred = st.selectbox(
             "Choose a Station:",
-            df_stations,            
+            df_stations,
             format_func=lambda x: (
                 f"Station No. {x} "
                 f"({df_stations.loc[int(x), 'lat']}, "
@@ -297,3 +303,8 @@ if page == "Train & Predict":
             # st.json(response.json())
         except Exception as e:
             st.error(f"Prediction request failed: {e}")
+
+
+
+if page==pages[5]: # User Interface
+    run_user_interface()

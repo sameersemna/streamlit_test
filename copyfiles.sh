@@ -63,8 +63,7 @@ copy_file 'Architecture.JPG'
 copy_file '.env'
 
 cp $dir_source/requirements_fe.txt ./requirements.txt
-cp $dir_source/src/fe/constants.py ./constants.py
-cp $dir_source/src/fe/app.py ./app.py
+cp $dir_source/src/fe/*.py ./
 cp -r $dir_source/src/fe/assets ./assets
 
 replace_text_in_file "./constants.py" "DIR_SRC = os.path.join(DIR_FE, '../..')" "DIR_SRC = DIR_FE"
