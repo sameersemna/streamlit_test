@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
+import mysql.connector
 
 DIR_FE = os.path.dirname(os.path.abspath(__file__))
 DIR_SRC = DIR_FE
@@ -52,13 +53,20 @@ MLFLOW_TRACKING_URI = "http://backend:5000"
 
 def get_engine():
     messages = []
-    engine = create_engine(DATABASE_URL, pool_pre_ping=True)
+    engine = create_engine(
+        DATABASE_URL, 
+        pool_pre_ping=True,
+        pool_recycle=3600,
+        pool_size=10,
+        max_overflow=5
+    )
 
     try:
         with engine.connect() as conn:
-            result = conn.execute(text("SELECT 1"))
-            message = "✅ Connected to MySQL, test query result:", result.scalar(
-            )
+            message = "✅ Connected to MySQL"
+            # result = conn.execute(text("SELECT 1"))
+            # message = "✅ Connected to MySQL, test query result:", result.scalar(
+            # )
             print(message)
             messages.append(message)
     except Exception as e:

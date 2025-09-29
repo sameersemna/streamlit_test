@@ -26,7 +26,7 @@ METRICS_PORT = 8502
 INIT_KEY = 'metrics_initialized'
 # Get the default Prometheus registry
 REGISTRY = CollectorRegistry()
-
+DEV_ALERT = "Only working on Locally Dockerized Developer Environment, due to peer dependencies"
 
 # --- 2. Custom Log Handler for Metrics ---
 class PrometheusLogHandler(logging.Handler):
@@ -89,7 +89,6 @@ if INIT_KEY not in st.session_state:
     }
 
 # --- 4. Streamlit UI Logic (Uses initialized objects from session state) ---
-
 # Retrieve initialized objects from session state
 BUTTON_CLICKS_TOTAL = st.session_state[INIT_KEY]['button_counter']
 logger = st.session_state[INIT_KEY]['logger']
@@ -97,6 +96,7 @@ logger = st.session_state[INIT_KEY]['logger']
 engine, _ = get_engine()
 
 st.set_page_config(
+    page_title=TITLE,
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -105,14 +105,13 @@ st.set_page_config(
 # st.title(TITLE)
 st.sidebar.title("Table of contents")
 pages = [
-    "Intro", "Data", "Vizualization", "Modelling", "Train & Predict",
-    "User Interface"
+    "Introduction", "Data Sources", "Model Train & Predict",
+    "User Interface", "Monitoring"
 ]
 page = st.sidebar.radio("Go to", pages)
 
 # --- Page 1 ---
 if page == pages[0]:
-
     st.subheader("Project Objective")
     st.markdown(
         """
@@ -126,13 +125,11 @@ The goal of this project is to develop a system capable of analyzing weather and
         """
     )
 
-
     st.divider()
     st.subheader("Project Architecture")
 
     img_path = Path(__file__).parent / "assets" / "architecture.jpg"
     st.image(str(img_path), caption="High-level system architecture", use_column_width=True)
-
 
     st.markdown(f"Streamlit Metrics available for scraping by Prometheus at `http://localhost:{METRICS_PORT}/metrics`")
     st.markdown(f"FastAPI Metrics available for scraping by Prometheus at `http://localhost:{BACKEND_PORT}/metrics`")
@@ -140,7 +137,7 @@ The goal of this project is to develop a system capable of analyzing weather and
 
 # --- Page 2 ---
 if page == pages[1]:
-    st.header("Data")
+    st.header("Data Sources")
 
     from pathlib import Path
     assets_dir = Path(__file__).parent / "assets"
@@ -158,10 +155,7 @@ if page == pages[1]:
     )
     st.image(str(img_options[choice]), caption=choice, use_column_width=True)
 
-
-
-    st.title("Current Tables from Database")
-
+    st.subheader("Current Tables from Database")
     selected_table = st.selectbox(
         "Choose a Table:",
         DATA_TABLES,
@@ -196,7 +190,8 @@ if page == pages[1]:
             st.error(f"Failed to connect to the backend: {e}")
     st.divider()
 
-    st.title("Update Database from APIs")
+    st.subheader("Update Database from APIs")
+    st.warning(DEV_ALERT)
     if st.button("Update Data"):
         try:
             with st.spinner('Fetching API data...'):
@@ -214,19 +209,15 @@ if page == pages[1]:
             st.error(f"Failed to connect to the backend: {e}")
 
 # --- New Page: Train & Predict ---
-if page == "Train & Predict":
+if page == "Model Train & Predict":
     st.header("Train & Predict Groundwater Levels")
+    st.warning(DEV_ALERT)
     subquery = "SELECT UNIQUE(station) FROM gw_table ORDER BY station"
     df_stations = pd.read_sql(f"SELECT id, lat, lon, height, id AS station_id FROM stations_meta WHERE id IN ({subquery}) ORDER BY id", engine)
     df_stations = df_stations.set_index('station_id')
 
-    # st.subheader(df_stations.iloc[1]['lat'])
-    # st.subheader(df_stations.iloc[2]['lon'])
-    # st.subheader(df_stations.iloc[3]['height'])
     st.subheader("Train Model")
     with st.form("train_form"):
-        # station_ids = st.text_input("Station IDs (comma separated)",
-        #                             value="100")
         station_id_select = st.multiselect(
             "Choose a Station:",
             df_stations,
@@ -306,5 +297,39 @@ if page == "Train & Predict":
 
 
 
-if page==pages[5]: # User Interface
+if page==pages[3]: # User Interface
     run_user_interface()
+
+if page==pages[4]: # Monitoring
+    st.header('Monitoring')
+    tab1, tab2, tab3, tab4 = st.tabs(["MLFlow", "Prometheus", "Grafana", "AWS / SkySQL Azure"])
+
+    with tab1:
+        st.header("MLFlow")
+        img_path = Path(__file__).parent / "assets" / "mlflow_models.png"
+        st.image(str(img_path), caption="Models", use_column_width=True)
+        img_path = Path(__file__).parent / "assets" / "mlflow_runs.png"
+        st.image(str(img_path), caption="Runs", use_column_width=True)
+        
+        
+    with tab2:
+        st.header("Prometheus")
+        img_path = Path(__file__).parent / "assets" / "prometheus_http.jpeg"
+        st.image(str(img_path), caption="HTTP Calls from FastAPI", use_column_width=True)
+        img_path = Path(__file__).parent / "assets" / "prometheus_errors.jpeg"
+        st.image(str(img_path), caption="Streamlit Errors", use_column_width=True)
+
+    with tab3:
+        st.header("Grafana")
+        img_path = Path(__file__).parent / "assets" / "grafana_data.png"
+        st.image(str(img_path), caption="MySQL Data Reports Dashboard", use_column_width=True)
+        img_path = Path(__file__).parent / "assets" / "grafana_prometheus.png"
+        st.image(str(img_path), caption="Prometheus Events from FastAPI/Streamlit Dashboard", use_column_width=True)
+
+    with tab4:
+        st.header("AWS / SkySQL Azure")
+        img_path = Path(__file__).parent / "assets" / "azure_mariadb.jpeg"
+        st.image(str(img_path), caption="AWS MariaDB Monitoring", use_column_width=True)
+        img_path = Path(__file__).parent / "assets" / "skysql.jpeg"
+        st.image(str(img_path), caption="SkySQL Azure Dashboard", use_column_width=True)
+        
