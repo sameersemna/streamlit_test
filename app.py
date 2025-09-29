@@ -613,7 +613,6 @@ if page==pages[3]: # User Interface
             unsafe_allow_html=True
         )
         
-        st.subheader(st.session_state.slider_range[0].strftime("%Y-%m-%d"))
         if st.button("Fetch Predictions from database"):
             with st.spinner("Sending request to database..."):
                 start_date = st.session_state.slider_range[0]
