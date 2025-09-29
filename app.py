@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 import pandas as pd
-
+import plotly.io as pio
 from constants import BACKEND_URL, DATA_TABLES, SQL_TABLE_LIMIT_DEFAULT, TITLE, BACKEND_PORT, get_engine
 from pathlib import Path
 from streamlit_folium import st_folium
@@ -10,7 +10,7 @@ from streamlit_folium import st_folium
 # import time
 # from user_interface import run_user_interface
 from datetime import date, timedelta
-from user_interface import create_map, plot_multiple_stations
+from user_interface import create_map, plot_multiple_stations, plot_abs_gw_history
 import logging
 import threading
 from prometheus_client import start_http_server, Counter, Gauge, CollectorRegistry
@@ -23,10 +23,12 @@ INIT_KEY = 'metrics_initialized'
 # Get the default Prometheus registry
 REGISTRY = CollectorRegistry()
 DEV_ALERT = "Only working on Locally Dockerized Developer Environment, due to peer dependencies"
+assets_dir = Path(__file__).parent / "assets"
 
 # --- 2. Custom Log Handler for Metrics ---
 class PrometheusLogHandler(logging.Handler):
     """A log handler that increments the APP_LOG_ERRORS_TOTAL metric on errors."""
+
     def __init__(self, error_counter):
         super().__init__()
         self.error_counter = error_counter
@@ -46,13 +48,13 @@ if INIT_KEY not in st.session_state:
     BUTTON_CLICKS_TOTAL = Counter(
         'streamlit_button_clicks_total',
         'Total number of times the primary button was clicked',
-        registry=REGISTRY # Use the specific registry
+        registry=REGISTRY  # Use the specific registry
     )
     # This metric counts every time an ERROR level log is generated
     APP_LOG_ERRORS_TOTAL = Counter(
         'streamlit_app_log_errors_total',
         'Total count of application log errors generated',
-        registry=REGISTRY # Use the specific registry
+        registry=REGISTRY  # Use the specific registry
     )
 
     # Configure logger to use our custom handler
@@ -109,8 +111,7 @@ page = st.sidebar.radio("Go to", pages)
 # --- Page 1 ---
 if page == pages[0]:
     st.subheader("Project Objective")
-    st.markdown(
-        """
+    st.markdown("""
 The goal of this project is to develop a system capable of analyzing weather and groundwater time series data in Berlin in order to detect potential basement flooding risks. Based on this analysis, users will receive early alerts, allowing them to take preventive actions (e.g., removing valuables or equipment from basements).
 
 **To achieve this, two main datasets have been used:**
@@ -124,31 +125,60 @@ The goal of this project is to develop a system capable of analyzing weather and
     st.divider()
     st.subheader("Project Architecture")
 
-    img_path = Path(__file__).parent / "assets" / "architecture.jpg"
-    st.image(str(img_path), caption="High-level system architecture", use_column_width=True)
+    img_path = assets_dir / "architecture.jpg"
+    st.image(str(img_path),
+             caption="High-level system architecture",
+             use_column_width=True)
 
-    st.markdown(f"Streamlit Metrics available for scraping by Prometheus at `http://localhost:{METRICS_PORT}/metrics`")
-    st.markdown(f"FastAPI Metrics available for scraping by Prometheus at `http://localhost:{BACKEND_PORT}/metrics`")
+    st.divider()
+    st.subheader("Airflow (Optional)")
 
+    st.markdown("""
+    
+    For these reasons, Airflow was not used:           
+                
+    - Our source data was very complicated (Precip & GW from different sources: CSV, ZIP, custom formats).  
+    - Complex logic was required to reformat and save in the database.  
+    - Data changes were not frequent, so scheduling updates was not necessary at this stage.  
+    - Scheduled updates would have complicated testing of model predictions.   
+    
+    Airflow can be incorporated later once models are stabilized and recurring data is available.  
+    """)
+
+    st.markdown(
+        f"Streamlit Metrics available for scraping by Prometheus at `http://localhost:{METRICS_PORT}/metrics`"
+    )
+    st.markdown(
+        f"FastAPI Metrics available for scraping by Prometheus at `http://localhost:{BACKEND_PORT}/metrics`"
+    )
 
 # --- Page 2 ---
 if page == pages[1]:
     st.header("Data Sources")
 
-    assets_dir = Path(__file__).parent / "assets"
-    img_options = {
-        "DWD grid (Berlin)": assets_dir / "dwd_grid_berlin.png",
-        "Groundwater stations": assets_dir / "groundwater_station_locations.png",
-    }
+    tab1, tab2, tab3 = st.tabs(["GW Distribution", "Precipitation Distribution", "Source Maps"])
 
-    st.subheader("Maps")
-    choice = st.radio(
-        label="",
-        options=list(img_options.keys()),
-        horizontal=True,
-        label_visibility="collapsed",
-    )
-    st.image(str(img_options[choice]), caption=choice, use_column_width=True)
+    with tab1:
+        fig = pio.read_json('./assets/groundwater_stations_map.json')
+        st.plotly_chart(fig)
+
+    with tab2:
+        fig_2 = pio.read_json('./assets/precipitation_plot.json')
+        st.plotly_chart(fig_2)
+    
+    with tab3:
+        img_options = {
+            "DWD grid (Berlin)": assets_dir / "dwd_grid_berlin.png",
+            "Groundwater stations": assets_dir / "groundwater_station_locations.png",
+        }
+
+        choice = st.radio(
+            label="",
+            options=list(img_options.keys()),
+            horizontal=True,
+            label_visibility="collapsed",
+        )
+        st.image(str(img_options[choice]), caption=choice, use_column_width=True)
 
     st.subheader("Current Tables from Database")
     selected_table = st.selectbox(
@@ -196,8 +226,10 @@ if page == pages[1]:
             st.json(json_response)
 
             if json_response['fetched_wasserportal'] is not None:
-                fetched_wasserportal = pd.read_parquet(f"{json_response['fetched_wasserportal']['file']}")
-                st.markdown(f"\n**{json_response['fetched_wasserportal']['file']}**\n")
+                fetched_wasserportal = pd.read_parquet(
+                    f"{json_response['fetched_wasserportal']['file']}")
+                st.markdown(
+                    f"\n**{json_response['fetched_wasserportal']['file']}**\n")
                 st.dataframe(fetched_wasserportal.head())
 
         except requests.exceptions.RequestException as e:
@@ -208,7 +240,9 @@ if page == "Model Train & Predict":
     st.header("Train & Predict Groundwater Levels")
     st.warning(DEV_ALERT)
     subquery = "SELECT UNIQUE(station) FROM gw_table ORDER BY station"
-    df_stations = pd.read_sql(f"SELECT id, lat, lon, height, id AS station_id FROM stations_meta WHERE id IN ({subquery}) ORDER BY id", engine)
+    df_stations = pd.read_sql(
+        f"SELECT id, lat, lon, height, id AS station_id FROM stations_meta WHERE id IN ({subquery}) ORDER BY id",
+        engine)
     df_stations = df_stations.set_index('station_id')
 
     st.subheader("Train Model")
@@ -217,16 +251,14 @@ if page == "Model Train & Predict":
             "Choose a Station:",
             df_stations,
             max_selections=1,
-            format_func=lambda x: (
-                f"Station No. {x} "
-                f"({df_stations.loc[int(x), 'lat']}, "
-                f"{df_stations.loc[int(x), 'lon']}) "
-                f"[Ht: {df_stations.loc[int(x), 'height']}]"
-            )
-        )
-        start_date = st.text_input("Start Date (YYYY-MM-DD)",
+            format_func=lambda x:
+            (f"Station No. {x} "
+             f"({df_stations.loc[int(x), 'lat']}, "
+             f"{df_stations.loc[int(x), 'lon']}) "
+             f"[Ht: {df_stations.loc[int(x), 'height']}]"))
+        start_date_text = st.text_input("Start Date (YYYY-MM-DD)",
                                    value="2022-01-01")
-        end_date = st.text_input("End Date (YYYY-MM-DD)", value="2025-04-30")
+        end_date_text = st.text_input("End Date (YYYY-MM-DD)", value="2025-04-30")
         test_size = st.number_input("Test Size (0 for no test split)",
                                     min_value=0.0,
                                     max_value=1.0,
@@ -241,12 +273,13 @@ if page == "Model Train & Predict":
                 ids = station_ids = [str(item) for item in station_id_select]
                 payload = {
                     "station_ids": ids,
-                    "start_date": start_date,
-                    "end_date": end_date,
+                    "start_date": start_date_text,
+                    "end_date": end_date_text,
                     "test_size": test_size
                 }
                 with st.spinner("Training model..."):
-                    response = requests.post(f"{BACKEND_URL}/train", json=payload)
+                    response = requests.post(f"{BACKEND_URL}/train",
+                                             json=payload)
                 st.write("Response:")
                 st.json(response.json())
             except Exception as e:
@@ -260,13 +293,11 @@ if page == "Model Train & Predict":
         station_id_pred = st.selectbox(
             "Choose a Station:",
             df_stations,
-            format_func=lambda x: (
-                f"Station No. {x} "
-                f"({df_stations.loc[int(x), 'lat']}, "
-                f"{df_stations.loc[int(x), 'lon']}) "
-                f"[Ht: {df_stations.loc[int(x), 'height']}]"
-            )
-        )
+            format_func=lambda x:
+            (f"Station No. {x} "
+             f"({df_stations.loc[int(x), 'lat']}, "
+             f"{df_stations.loc[int(x), 'lon']}) "
+             f"[Ht: {df_stations.loc[int(x), 'height']}]"))
         start_date_pred = st.text_input("Start Date (YYYY-MM-DD)",
                                         value="2025-01-01",
                                         key="pred_start")
@@ -293,7 +324,6 @@ if page == "Model Train & Predict":
 
 
 if page==pages[3]: # User Interface
-    # run_user_interface()
     st.title("🌍 Berlin Interactive Map and Groundwater predictions")
 
     # ======= INSTRUCTION BOX =======
@@ -464,7 +494,7 @@ if page==pages[3]: # User Interface
         slider_range = st.slider(
             "Select date range",
             min_value=date(2025, 1, 1),
-            max_value=date(2027, 1, 1),
+            max_value=date(2026, 1, 1),
             value=st.session_state.slider_range,
             key="date_slider_widget"
         )
@@ -582,7 +612,8 @@ if page==pages[3]: # User Interface
             """,
             unsafe_allow_html=True
         )
-
+        
+        st.subheader(st.session_state.slider_range[0].strftime("%Y-%m-%d"))
         if st.button("Fetch Predictions from database"):
             with st.spinner("Sending request to database..."):
                 start_date = st.session_state.slider_range[0]
@@ -591,9 +622,7 @@ if page==pages[3]: # User Interface
 
                 # for prediction only seven days increment
                 pred_date = start_date + timedelta(days=7)
-                start_date_bevor30 = start_date - timedelta(days=120)
-
-
+                start_date_bevor30 = start_date - timedelta(days=183)
 
                 st.write(f"Start Date: {start_date}")
                 st.write(f"End Date: {end_date}")
@@ -617,73 +646,129 @@ if page==pages[3]: # User Interface
                 nearby_stations = []
                 obs_df_list = []
                 pred_df_list = []
+                pred_df_list2 = []
+                pred_df_list3 = []
                 i=0
                 for lat, lon in points[["lat","lon"]].values:
                     dist = (all_stations["lat"] - lat)**2 + (all_stations["lon"] - lon)**2
                     min_idx = dist.idxmin()
                     closest_station = all_stations.loc[min_idx]
                     nearby_stations.append(closest_station)
-                    # closest_station['ID'] = 100
+                    # closest_station['ID'] = 100 + i
                     points.loc[i, 'Closest Station ID'] = closest_station['ID']
+                    points.loc[i, 'height'] = closest_station['height']
                     i+=1
 
                     gw_cs_df = pd.read_sql(f"SELECT * FROM gw_table WHERE station = {int(closest_station['ID'])} AND date BETWEEN '{start_date_bevor30}' AND '{start_date_str}'", engine)
                     cs_pred_df = pd.read_sql(f"SELECT * FROM gw_table WHERE station = {int(closest_station['ID'])} AND date BETWEEN '{start_date_str}' AND '{pred_date_str}'", engine)
+                    cs_pred_df2 = pd.read_sql(f"SELECT * FROM pred_table WHERE station = {int(closest_station['ID'])} AND date = '{start_date_str}'", engine)
+                    cs_pred_df2["day"] = cs_pred_df2["date"] + pd.to_timedelta(cs_pred_df2["day"].astype(int), unit='d')
+                    cs_pred_df2.drop(columns=["date"], inplace=True)
+                    cs_pred_df2.rename(columns={"day": "date"}, inplace=True) # columns: date, station, value
+                    cs_pred_df2["station"] = cs_pred_df2["station"].astype(int)
+                    # st.dataframe(cs_pred_df2)
+                    cs_pred_df3 = cs_pred_df2.pivot(index='station', columns='date', values='value') # columns are the dates
 
-                    # st.subheader("Groundwater Level History:")
-                    # st.dataframe(gw_cs_df.set_index("date"))
-
-                    # if not cs_pred_df.empty:
-                    #     st.subheader("Predicted Groundwater Level (7 days):")
-                    #     st.dataframe(cs_pred_df.set_index("date"))
+                    # Create new names
+                    # new_names = {f"day_{i}": (start_date + timedelta(days=i)).strftime("%Y-%m-%d")
+                    # for i in range(1,8)}
+                    # # # Rename columns
+                    # cs_pred_df2 = cs_pred_df2.rename(columns=new_names)
 
                     obs_df_list.append(gw_cs_df)
                     pred_df_list.append(cs_pred_df)
+                    pred_df_list2.append(cs_pred_df2) # columns: date, station, value
+                    pred_df_list3.append(cs_pred_df3) # columns are the dates
 
-                st.dataframe(points)
-                gw_cs_df_all = pd.concat(obs_df_list)
-                cs_pred_df_all = pd.concat(pred_df_list)
-
-                st.info("To be able to plot multiple stations in a single figure, the station mean groundwater level is removed respectively.")
-                # make plotly figures
-                # fig = create_obs_pred_fig(gw_cs_df, cs_pred_df)
-                fig = plot_multiple_stations(gw_cs_df_all, cs_pred_df_all)
-                st.plotly_chart(fig, use_container_width=True)
+                # st.dataframe(points)
+                # cache results in session_state so we don’t recompute on every choice change
+                st.session_state["points_df"] = points
+                st.session_state["gw_cs_df_all"] = pd.concat(obs_df_list)
+                st.session_state["cs_pred_df_all"] = pd.concat(pred_df_list)
+                st.session_state["cs_pred_df_all2"] = pd.concat(pred_df_list2)
+                st.session_state["cs_pred_df_all3"] = pd.concat(pred_df_list3)
 
 
     else:
         st.info("Select at least one point and a date range to fetch predictions.")
 
+    # --- Interactive part (always runs, but cheap) ---
+    if "points_df" in st.session_state:
+        points = st.session_state["points_df"]
+        gw_cs_df_all = st.session_state["gw_cs_df_all"]
+        cs_pred_df_all = st.session_state["cs_pred_df_all"]
+        cs_pred_df_all2 = st.session_state["cs_pred_df_all2"] # columns: date, station, value
+        cs_pred_df_all3 = st.session_state["cs_pred_df_all3"] # only one row, columns are the dates
+
+        # st.dataframe(points)
+
+        st.info("Station mean groundwater level is removed for comparability.")
+
+        fig = plot_multiple_stations(gw_cs_df_all, cs_pred_df_all2, points)
+        st.plotly_chart(fig, use_container_width=True)
+
+        st.write("User Selected Points forecasted Groundwater Level (7 days):")
+        st.dataframe(
+            pd.concat([points.reset_index(drop=True), cs_pred_df_all3.reset_index(drop=True)], axis=1)
+            .drop(columns=["date", "station_id"], axis=1, errors="ignore")
+        )
+
+        st.info("Select a point to view its absolute Groundwater history.")
+        # Now choice is just visualization, no recomputation
+        # Create descriptive labels
+        labels = [f"New Point {i+1} (Station {int(station_id)})" for i, station_id in enumerate(points["Closest Station ID"])]
+
+        # Mapping from label → station ID
+        label_to_station: dict[str, int] = dict(zip(labels, points["Closest Station ID"]))
+
+        # User chooses a label
+        choice_label = st.radio(
+            "User Selected Points: ",
+            labels,
+            horizontal=True,
+            label_visibility="collapsed",
+        )
+
+        # Map back to station ID
+        choice = label_to_station[choice_label]
+        # choice = st.radio("", list(points["Closest Station ID"]), horizontal=True, label_visibility="collapsed")
+        # st.plotly_chart(plot_abs_gw_history(gw_cs_df_all[gw_cs_df_all["station"] == choice], choice, station_height=points[points["Closest Station ID"] == choice]["height"].values[0]), use_container_width=True)
+        st.plotly_chart(plot_abs_gw_history(gw_cs_df_all[gw_cs_df_all["station"] == choice], choice ), use_container_width=True)
+
+    else:
+        st.info("To show Groundwater records, fetch predictions first.")
+
 if page==pages[4]: # Monitoring
     st.header('Monitoring')
+
     tab1, tab2, tab3, tab4 = st.tabs(["MLFlow", "Prometheus", "Grafana", "AWS / SkySQL Azure"])
 
     with tab1:
         st.header("MLFlow")
-        img_path = Path(__file__).parent / "assets" / "mlflow_models.png"
-        st.image(str(img_path), caption="Models", use_column_width=True)
-        img_path = Path(__file__).parent / "assets" / "mlflow_runs.png"
-        st.image(str(img_path), caption="Runs", use_column_width=True)
+        img_path = assets_dir / "mlflow_models.png"
+        st.image(str(img_path), caption="Section listing registered models on the left and metric panels on the right to compare model behavior at a glance.", use_column_width=True)
+        img_path = assets_dir / "mlflow_runs.png"
+        st.image(str(img_path), caption="Panel displaying multiple runs side by side. Runs list on the left, comparative charts in the center, with filters and sorting to explore differences.", use_column_width=True)
         
         
     with tab2:
         st.header("Prometheus")
-        img_path = Path(__file__).parent / "assets" / "prometheus_http.jpeg"
+        img_path = assets_dir / "prometheus_http.jpeg"
         st.image(str(img_path), caption="HTTP Calls from FastAPI", use_column_width=True)
-        img_path = Path(__file__).parent / "assets" / "prometheus_errors.jpeg"
+        img_path = assets_dir / "prometheus_errors.jpeg"
         st.image(str(img_path), caption="Streamlit Errors", use_column_width=True)
 
     with tab3:
         st.header("Grafana")
-        img_path = Path(__file__).parent / "assets" / "grafana_data.png"
+        img_path = assets_dir / "grafana_data.png"
         st.image(str(img_path), caption="MySQL Data Reports Dashboard", use_column_width=True)
-        img_path = Path(__file__).parent / "assets" / "grafana_prometheus.png"
+        img_path = assets_dir / "grafana_prometheus.png"
         st.image(str(img_path), caption="Prometheus Events from FastAPI/Streamlit Dashboard", use_column_width=True)
 
     with tab4:
         st.header("AWS / SkySQL Azure")
-        img_path = Path(__file__).parent / "assets" / "azure_mariadb.jpeg"
+        img_path = assets_dir / "azure_mariadb.jpeg"
         st.image(str(img_path), caption="AWS MariaDB Monitoring", use_column_width=True)
-        img_path = Path(__file__).parent / "assets" / "skysql.jpeg"
+        img_path = assets_dir / "skysql.jpeg"
         st.image(str(img_path), caption="SkySQL Azure Dashboard", use_column_width=True)
         

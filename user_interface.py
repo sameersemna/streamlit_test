@@ -1,9 +1,10 @@
 import streamlit as st
+import pandas as pd
 import folium
 from folium.plugins import MarkerCluster, Draw
 import plotly.graph_objs as go
-from constants import BACKEND_URL, DATA_TABLES, get_engine
-
+import plotly.express as px
+from constants import BACKEND_URL, DATA_TABLES
 
 # ---------- CREATE MAP FUNCTION ----------
 @st.cache_data
@@ -39,6 +40,35 @@ def create_map(stations, user_points):
     )
     m.add_child(draw)
     return m    
+
+@st.cache_data
+def plot_abs_gw_history(df, choice,station_height=None):
+    # Get min/max for Y axis
+    y_min = df["value"].min()
+    y_max = df["value"].max()
+
+    # Expand min/max to include station height
+    if station_height is not None:
+        y_min = min(y_min, station_height)
+        y_max = max(y_max, station_height)
+
+    fig = px.line(df, y="value", x=df["date"],
+                title=f"Groundwater History — Station {int(choice)}, Mean GWL = {df['value'].mean():.2f} m",)
+
+    # Set Y-axis range
+    fig.update_yaxes(range=[y_min, y_max])
+    # Add station height as horizontal line (if provided)
+    if station_height is not None:
+        fig.add_hline(
+            y=station_height,
+            line_dash="solid",  # solid line
+            line_color="red",
+            line_width=2,  # thickness
+            annotation_text=f"Station Height = {station_height}",
+            annotation_position="bottom left"
+        )
+    return fig
+
 
 
 @st.cache_data
@@ -105,7 +135,7 @@ def create_obs_pred_fig(obs_df, pred_df, y_range=None, title="Observations vs Pr
     return fig
 
 @st.cache_data
-def plot_multiple_stations(obs_df, pred_df, y_range=None, title="Observations vs Predictions", height=600):
+def plot_multiple_stations(obs_df, pred_df, points, start_date=None, end_date=None, y_range=None, title="Observations vs Predictions", height=600):
     """
     Plot multiple stations with observations and predictions in different colors.
 
@@ -120,6 +150,11 @@ def plot_multiple_stations(obs_df, pred_df, y_range=None, title="Observations vs
     title : str
         Chart title.
     """
+    obs_df = obs_df.copy()
+    pred_df = pred_df.copy()
+
+    obs_df["date"] = pd.to_datetime(obs_df["date"])
+    pred_df["date"] = pd.to_datetime(pred_df["date"])
     fig = go.Figure()
 
     stations = obs_df["station"].unique()
@@ -132,13 +167,15 @@ def plot_multiple_stations(obs_df, pred_df, y_range=None, title="Observations vs
         obs_station["value"] = obs_station["value"] - obs_mean
         pred_station["value"] = pred_station["value"] - obs_mean
 
+        user_pointname = points[points["Closest Station ID"] == int(station)]["name"].values[0]
+
         # Observations
         fig.add_trace(
             go.Scatter(
                 x=obs_station["date"],
                 y=obs_station["value"],
                 mode="lines",
-                name=f"{station} - Obs",
+                name= f"{user_pointname} (Station {station})",# f"{station}",
                 line=dict(color=None),  # Let Plotly auto-choose
                 legendgroup=f"{station}",  # 🔗 Link both traces in the legend
             )
@@ -151,11 +188,17 @@ def plot_multiple_stations(obs_df, pred_df, y_range=None, title="Observations vs
                 y=pred_station["value"],
                 mode="lines",
                 name=f"{station} - Pred",
-                line=dict(dash="dash", color=None),  # Auto color
+                line=dict(dash="dot", color=None),  # Auto color
                 legendgroup=f"{station}",  # 🔗 Link both traces in the legend
                 showlegend=False,
             )
         )
+
+    # --- decide default x-axis range from data ---
+    if end_date is None:
+        end_date = max(obs_df["date"].max(), pred_df["date"].max())
+    if start_date is None:
+        start_date = end_date - pd.DateOffset(days=45)
 
     if y_range:
         fig.update_yaxes(range=y_range)
@@ -173,14 +216,21 @@ def plot_multiple_stations(obs_df, pred_df, y_range=None, title="Observations vs
                     ]
                 )
             ),
-            rangeslider=dict(visible=True, thickness=0.15),
+            rangeslider=dict(
+            visible=True,
+            thickness=0.15,
+            bgcolor="rgba(200,200,200,0.4)",  # light gray transparent
+            bordercolor="rgba(0,0,0,0.1)",    # faint border
+            ),
             type="date",
             tickformat="%Y-%m-%d",  # ✅ date format yyyy-mm-dd
             showgrid=True,           # ✅ x-axis grid lines
             gridcolor="LightGray",   # grid color
             gridwidth=1,             # grid line width
+            range=[start_date, end_date],  # 👈 default view = last month
         ),
         yaxis=dict(
+            title="Relative GW level [m]",
             showgrid=True,           # ✅ y-axis grid lines
             gridcolor="LightGray",
             gridwidth=1,

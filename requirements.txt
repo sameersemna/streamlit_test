@@ -6,6 +6,7 @@ numpy
 streamlit-folium
 folium
 requests
+plotly
 mysql-connector-python==9.4.0
 sqlalchemy==2.0.43
 streamlit-autorefresh
