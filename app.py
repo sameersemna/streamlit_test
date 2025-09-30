@@ -772,7 +772,7 @@ if page==pages[4]: # Monitoring
         st.image(str(img_path), caption="SkySQL Azure Dashboard", use_column_width=True)
     
     with tab5:
-        st.header("Imporovements Roadmap")
+        st.header("Improvements Roadmap")
         st.markdown("""
     
         Todo:           
