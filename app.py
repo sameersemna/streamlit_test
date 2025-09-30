@@ -135,7 +135,7 @@ The goal of this project is to develop a system capable of analyzing weather and
 
     st.markdown("""
     
-    For these reasons, Airflow was not used:           
+    Reasons for postponing Airflow implementation:           
                 
     - Our source data was very complicated (Precip & GW from different sources: CSV, ZIP, custom formats).  
     - Complex logic was required to reformat and save in the database.  
@@ -740,7 +740,7 @@ if page==pages[3]: # User Interface
 if page==pages[4]: # Monitoring
     st.header('Monitoring')
 
-    tab1, tab2, tab3, tab4 = st.tabs(["MLFlow", "Prometheus", "Grafana", "AWS / SkySQL Azure"])
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(["MLFlow", "Prometheus", "Grafana", "AWS / SkySQL Azure", "Improvements Roadmap"])
 
     with tab1:
         st.header("MLFlow")
@@ -770,4 +770,28 @@ if page==pages[4]: # Monitoring
         st.image(str(img_path), caption="AWS MariaDB Monitoring", use_column_width=True)
         img_path = assets_dir / "skysql.jpeg"
         st.image(str(img_path), caption="SkySQL Azure Dashboard", use_column_width=True)
-        
+    
+    with tab5:
+        st.header("Imporovements Roadmap")
+        st.markdown("""
+    
+        Todo:           
+                    
+        - Find & fetch other data from relevant sources for predictive model improvements, factors that affect GW:
+            * Weather forecasts (Precipitation predictions)
+            * Geology/Hydrogeology (Soil content of GW stations, we only have coordinates & altitude now)
+            * Geographic Waterbody scale & proximity of the GW Stations (like Oceans, Lakes, Rivers, etc. and their distance to the station)
+            * Anthropogenic Activity (locations where GW is being pulled out by humans by borewells, etc.)
+            * Evapotranspiration (locations near dense forest or vegetation)
+            * Annual Temperature cycle (to compare Winter freeze & slow snow melt delay after precipitation affecting GW)
+            * Tidal Pumping (High tide/Low tide dates to neighboring coastline)
+            * Phases of the Moon (Indirect effect)
+        - Structure fetched data to SQL Database & Architect a relational GraphDB based on the factors.
+        - Develop better Models starting with factors expected to have a stronger direct affect on GW levels then move to weaker indirect factors.
+        - Prediction improvements:
+            * Ignore predict coordinates requested on waterbodies.
+            * Instead of simple nearest Station use Triangulated Average of 3 nearest stations. 
+        - Implement Airflow, once models are stabilized and recurring data is available.  
+        """)
+
+    
