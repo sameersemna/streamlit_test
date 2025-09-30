@@ -129,10 +129,29 @@ The goal of this project is to develop a system capable of analyzing weather and
     st.image(str(img_path),
              caption="High-level system architecture",
              use_column_width=True)
+    
+    st.divider()
+    st.subheader("Docker Containers architecture")
+    st.markdown("""
+    
+    Three containers were structured:
+
+        1. Backend (FastAPI & MLFlow)
+        2. Frontend (Streamlit)
+        3. Monitoring (Prometheus & Grafana)
+                
+    - Having a big number of Docker containers was causing some of the developers to have a lag on their local systems, due to CPU & RAM requirements of the containers.
+    - Keeping MLFlow & FastAPI together allowed to share python code between them, reducing overhead of having to structure it in another way
+    - Similary for Prometheus & Grafana, Grafana was using locally available Prometheus in its container on a separate port, while Prometheus was configured to scrape metrics from FastAPI & Streamlit on another server.
+    - SQL was taken to a cloud service optional (AWS/SkySQL Azure), which got benefits like:
+        * Had a free tier enough for current project, which also gave out of the box monitoring dashboards
+        * Allowed Streamlit to work deployed online
+        * Allowed sharing of data between team mates, to distribute workload of training, predictions & UI
+        * Allowed all stakeholders to connect their Grafana to a central DB for exact same data of Dashboards
+    """)
 
     st.divider()
     st.subheader("Airflow (Optional)")
-
     st.markdown("""
     
     Reasons for postponing Airflow implementation:           
